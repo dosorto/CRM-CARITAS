@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Empleado;
 use Livewire\WithPagination;
 use App\Models\Departamento;
+use App\Models\User;
+use Hash;
 
 class Empleados extends Component
 {
@@ -14,6 +16,8 @@ class Empleados extends Component
     use WithPagination;
     public $nombre, $apellido, $identidad, $telefono, $fecha_nacimiento, $estado_civil, $departamento_id;
     public $abrirModal = false;
+
+    public $email;
     public $empleado;
 
     public $modeEditar = false;
@@ -32,7 +36,9 @@ class Empleados extends Component
             'telefono' => ['required', 'size:9', 'regex:/^\d{4}-\d{4}$/','unique:empleados,telefono'],
             'fecha_nacimiento' => 'before:today|required',
             'estado_civil' => 'required',
-            'departamento_id' => 'required'
+            'departamento_id' => 'required',
+            'email' => 'required|unique:users,email',
+
 
         ];
     }
@@ -109,6 +115,9 @@ class Empleados extends Component
 
             $empleado->save();
 
+            $this->crearUsuario($empleado);
+
+
             $this->toEmpleados();
 
             /* Esto es para limpiar xd , recordar estooo*/
@@ -119,6 +128,44 @@ class Empleados extends Component
         }
 
     }
+
+    public function crearUsuario($empleado) {
+
+        // Separar los nombres y apellidos
+    $nombres = explode(' ', $empleado->nombre);
+    $apellidos = explode(' ', $empleado->apellido);
+
+    // Obtener el primer nombre y el primer apellido
+    $primerNombre = $nombres[0];
+    $primerApellido = $apellidos[0];
+
+    // La fecha de nacimiento ya es un DateTime por ser de tipo 'date' en la base de datos
+    $fechaNacimiento = $empleado->fecha_nacimiento;
+
+    // Formatear día y mes de la fecha de nacimiento
+    $dia = $fechaNacimiento->format('d');
+    $mes = $fechaNacimiento->format('m');
+
+    // Crear el nombre de usuario
+    $nombreUsuario = strtolower($primerNombre . '.' . $primerApellido . $dia . $mes);
+
+        $usuario = new User();
+        $usuario->name = $nombreUsuario;
+        $usuario->email = $this->email;
+        $usuario->password = Hash::make(12345678);
+        $usuario->empleado_id = $empleado->id;
+        $usuario->save();
+
+
+
+
+
+
+
+
+    }
+
+
 
     public function modeEdit($id){
         $this->empleado = Empleado::find($id);
