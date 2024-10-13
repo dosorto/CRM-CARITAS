@@ -3,7 +3,7 @@
 
         <div class="flex mb-8">
             <div class="w-24">
-                <a href=" /migrantes" class="text-gray-800 dark:text-gray-300 hover:underline text-lg">
+                <a href=" /migrantes" class="text-gray-800 hover:underline text-lg dark:text-gray-300">
                     &larr; Volver
                 </a>
             </div>
@@ -15,207 +15,195 @@
             </div>
         </div>
 
-        <form wire:submit.prevent="crear">
+        {{-- full pagina --}}
+        <div class="w-full flex justify-center h-full">
 
-            {{-- full pagina --}}
-            <div class="w-full flex items-stretch h-full gap-12">
+            {{-- columna central --}}
+            <div class="flex-col h-full w-2/3">
 
-                {{-- columna izquierda --}}
-                <div class="flex-col h-full w-1/2">
+                {{-- cuadro clarito que engloba los inputs --}}
+                <div class="bg-slate-800 rounded-lg p-10">
 
-                    {{-- cuadro clarito que engloba los inputs --}}
-                    <div class="bg-slate-800 rounded-lg p-6 h-full">
-
-                        <h1 class="mb-6 text-xl font-bold">Datos Personales</h1>
-
+                    @if ($step == 1)
+                        <h1 class="mb-6 text-xl font-bold"> Datos Personales </h1>
                         {{-- filas --}}
-                        <div class="w-full flex gap-5 mb-6">
+                        <div class="text-lg">
 
-                            <div class="size-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Primer Nombre
-                                </label>
-                                <input type="text" wire:model="primer_nombre"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required />
+                            <div class="w-full flex gap-12 mb-6 h-full">
+
+                                <div class="size-full flex-col items-center">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Nombres
+                                    </label>
+                                    <input type="text" wire:model="datosPersonales.nombres"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+
+
+                                <div class="size-full flex-col items-center">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Apellidos
+                                    </label>
+
+                                    <input type="text" wire:model="datosPersonales.apellidos"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+
                             </div>
 
+                            {{-- <div class="w-full flex gap-12 mb-6">
 
                             <div class="size-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Segundo Nombre
-                                </label>
-
-                                <input type="text" wire:model="segundo_nombre"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required />
-                            </div>
-
-
-
-
-
-
-                        </div>
-
-                        <div class="w-full flex gap-5 mb-6">
-
-                            <div class="size-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
                                     Primer Apellido
                                 </label>
                                 <input type="text" wire:model="primer_apellido"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required />
                             </div>
 
                             <div class="size-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
                                     Segundo Apellido
                                 </label>
 
                                 <input type="text" wire:model="segundo_apellido"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     required />
                             </div>
 
-                        </div>
+                        </div> --}}
 
-                        <div class="w-full flex gap-5 mb-6">
-
-                            <div class="w-1/2 h-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Tipo de Identificación
-                                </label>
-                                <select wire:model="tipo_identificacion"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="">Seleccione...</option>
-                                    <option>DNI</option>
-                                    <option>Pasaporte</option>
-                                </select>
-                            </div>
+                            <div class="w-full flex gap-12 mb-6">
 
 
 
-                            <div class="w-1/2 h-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Estado Civil
-                                </label>
-                                <select wire:model="estado_civil" required
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="">Seleccione...</option>
-                                    <option>Soltero/a</option>
-                                    <option>Casado/a</option>
-                                    <option>Divorciado/a</option>
-                                    <option>Viudo/a</option>
-                                    <option>Unión Libre</option>
-                                </select>
-                            </div>
-
-                        </div>
-
-                        <div class="w-full flex gap-5 mb-6">
-
-                            <div class="w-2/3 size-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Número de Identificación
-                                </label>
-
-                                <input type="text" wire:model="numero_identificacion"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required />
-                            </div>
-
-                            <div class="w-2/3 size-max flex items-center gap-8 justify-center">
-
-                                <div class="flex-col">
-                                    {{-- Sexo --}}
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                        Sexo
+                                <div class="w-1/2 h-full flex-col items-center">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Tipo de Identificación
                                     </label>
-                                    <div class="flex items-center h-full pt-2">
-                                        <input type="radio" id="sexo_m" value="M" wire:model="sexo"
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
-                                        <label for="sexo_m"
-                                            class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">M</label>
-
-                                        <input type="radio" id="sexo_f" value="F" wire:model="sexo"
-                                            class="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
-                                        <label for="sexo_f"
-                                            class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">F</label>
-                                    </div>
+                                    <select wire:model="datosPersonales.tipoIdentificacion"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="">Seleccione...</option>
+                                        <option>DNI</option>
+                                        <option>Pasaporte</option>
+                                    </select>
                                 </div>
-                                <div class="flex-col">
-                                    <!-- LGBT Checkbox -->
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                        LGBT
+
+                                <div class="w-1/2 size-full flex-col items-center">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Número de Identificación
                                     </label>
-                                    <div class="flex items-center h-full pt-2">
-                                        <input type="checkbox" wire:model="es_lgbt"
-                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
-                                        <label class="ml-2 text-xs font-medium text-gray-900 dark:text-gray-300">¿Es
-                                            LGBT?</label>
-                                    </div>
+
+                                    <input type="text" wire:model="datosPersonales.numeroIdentificacion"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="w-full flex gap-5 mb-2">
-                            <div class="size-full flex-col items-center">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Pais
-                                </label>
-                                <select wire:model="pais_id"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="">Seleccione...</option>
-                                    @foreach ($paises as $pais)
-                                        <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="w-full flex gap-12 mb-6">
+
+                                <div class="w-1/2 h-full flex-col items-center">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Estado Civil
+                                    </label>
+                                    <select wire:model="datosPersonales.estadoCivil" required
+                                        class="bg-gray-50 border borde r-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="">Seleccione...</option>
+                                        <option>Soltero/a</option>
+                                        <option>Casado/a</option>
+                                        <option>Divorciado/a</option>
+                                        <option>Viudo/a</option>
+                                        <option>Unión Libre</option>
+                                    </select>
+                                </div>
+
+                                <div class="w-1/2 size-max flex items-center gap-16 justify-center">
+
+                                    <div class="flex-col">
+                                        {{-- Sexo --}}
+                                        <label
+                                            class="flex justify-cernter mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                            Sexo
+                                        </label>
+                                        <div class="flex items-center h-full pt-2">
+                                            <input type="radio" id="sexo_m" value="M"
+                                                wire:model="datosPersonales.sexo"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
+                                            <label for="sexo_m"
+                                                class="ml-1 font-medium text-gray-900 dark:text-gray-300">M</label>
+
+                                            <input type="radio" id="sexo_f" value="F"
+                                                wire:model="datosPersonales.sexo"
+                                                class="ml-4 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
+                                            <label for="sexo_f"
+                                                class="ml-1 font-medium text-gray-900 dark:text-gray-300">F</label>
+                                        </div>
+                                    </div>
+                                    <div class="flex-col">
+                                        <!-- LGBT Checkbox -->
+                                        <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                            LGBT
+                                        </label>
+                                        <div class="flex items-center h-full pt-2">
+                                            <input type="checkbox" wire:model="datosPersonales.esLGBT"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
+                                            <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">¿Es
+                                                LGBT?</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="size-full flex-col items-center3">
-                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                    Fecha de Nacimiento
-                                </label>
-                                <input type="date" wire:model="fecha_nacimiento"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required />
+
+                            <div class="w-full flex gap-12 mb-2">
+                                <div class="size-full flex-col items-center">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Pais
+                                    </label>
+                                    <select wire:model="datosPersonales.idPais"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="">Seleccione...</option>
+                                        @foreach ($paises as $pais)
+                                            <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="size-full flex-col items-center3">
+                                    <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
+                                        Fecha de Nacimiento
+                                    </label>
+                                    <input type="date" wire:model="datosPersonales.fechaNacimiento"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                </div>
-
-
-                {{-- Columna Derecha --}}
-                <div class="flex size-full bg-black h-full w-1/2">
-
-                    {{-- cuadro clarito que engloba los inputs de familias --}}
-                    <div class="bg-slate-800 rounded-lg p-6 w-full h-full flex flex-col">
-
+                    @elseif($step == 2)
                         <div class="flex-col">
                             <h1 class="mb-6 text-xl font-bold">Registrar Familiar</h1>
 
                             <div class="flex">
                                 <div class="w-full">
-                                    <div class="flex-col items-center text-center px-4">
+                                    <div class="flex-col items-center text-center px-4 text-lg">
 
                                         ¿Tiene ya un familiar registrado?
 
 
 
                                         <div class="flex-col items-center mt-2">
-                                            <input type="radio" id="familiar_si" name="tiene_familiar"
-                                                value="1" wire:model.live="tiene_familiar"
+                                            <input type="radio" id="familiar_si" name="tiene_familiar" value="1"
+                                                wire:model.live="tiene_familiar"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
                                             <label for="familiar_si"
-                                                class="ml-1 mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sí</label>
+                                                class="ml-1 mr-3 font-medium text-gray-900 dark:text-gray-300">Sí</label>
 
-                                            <input type="radio" id="familiar_no" name="tiene_familiar"
-                                                value="0" wire:model.live="tiene_familiar"
+                                            <input type="radio" id="familiar_no" name="tiene_familiar" value="0"
+                                                wire:model.live="tiene_familiar"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-full focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-600 dark:border-gray-600">
                                             <label for="familiar_no"
-                                                class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+                                                class="ml-1 font-medium text-gray-900 dark:text-gray-300">No</label>
                                         </div>
 
 
@@ -276,12 +264,8 @@
 
                                 <div class="flex mt-6 justify-center">
                                     <button type="button" wire:click="limpiarFamiliar"
-                                        class="dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">Seleccionar Otro Familiar</button>
-                                </div>
-
-                                <div class="flex mt-6 justify-center">
-                                    <button type="submit"
-                                        class="dark:bg-green-800 dark:hover:bg-green-700 text-white py-2 px-5 rounded">Crear</button>
+                                        class="dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">
+                                        Seleccionar un Familiar Diferente</button>
                                 </div>
                             @else
                                 {{-- Tabla de Búsqueda --}}
@@ -295,7 +279,7 @@
 
                                             <div class="border-b dark:border-gray-400">
                                                 <select wire:model="atributo"
-                                                    class="hover:bg-gray-300 bg-gray-200 text-gray-800 text-sm block dark:bg-slate-800 dark:placeholder-gray-400 dark:text-white border-none">
+                                                    class="hover:bg-gray-300 bg-gray-200 text-gray-800 block dark:bg-slate-800 dark:placeholder-gray-400 dark:text-white border-none">
                                                     <option value="numero_identificacion">Número de Identificación
                                                     </option>
                                                     <option value="primer_nombre">Primer Nombre</option>
@@ -307,7 +291,7 @@
                                         {{-- Botón de Limpiar Filtro --}}
 
                                         <button wire:click="limpiarFiltro"
-                                            class="py-2 px-4 text-sm font-medium text-gray-900 bg-gray-50 border border-gray-300 rounded hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-1 focus:ring-blue-600 focus:text-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            class="py-2 px-4 font-medium text-gray-900 bg-gray-50 border border-gray-300 rounded hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-1 focus:ring-blue-600 focus:text-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                                             Limpiar Filtros
                                         </button>
 
@@ -318,12 +302,12 @@
                                         <div class="w-full flex mt-4">
 
                                             <input type="text" wire:model="texto_busqueda"
-                                                class="ps-3 text-sm rounded-s text-gray-900 border-y border-gray-300 w-full bg-gray-50 focus:ring-gray-500 focus:border-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                class="ps-3 rounded-s text-gray-900 border-y border-gray-300 w-full bg-gray-50 focus:ring-gray-500 focus:border-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 placeholder="Buscar...">
                                             {{-- Botón de Búsqueda de la derecha --}}
                                             <div class="relative w-[60px]">
                                                 <button title="Buscar" wire:click="buscar" type="button"
-                                                    class="size-full rounded-e hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm border-s-gray-100 p-2 dark:bg-gray-600 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-500 dark:focus:bg-neutral-600">
+                                                    class="size-full rounded-e hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 border-s-gray-100 p-2 dark:bg-gray-600 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-500 dark:focus:bg-neutral-600">
                                                     <div class="flex justify-center items-center h-full w-full gap-2">
                                                         <svg class="w-4 h-4 text-gray-600 dark:text-gray-300"
                                                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -356,7 +340,7 @@
 
                                                     @if ($migrantes_filtrados->isEmpty())
                                                         <tr>
-                                                            <td colspan="4" class="w-full p-4 text-sm text-center">
+                                                            <td colspan="4" class="w-full p-4 text-center">
                                                                 No hay resultados
                                                             </td>
                                                         </tr>
@@ -382,7 +366,7 @@
                                                                         component: 'crud.migrantes.info-migrante', 
                                                                         arguments: { id: {{ $migrante->id }} }})"
                                                                         title="Mostrar información completa"
-                                                                        class="relative text-gray-800 dark:text-white bg-gray-400 hover:bg-gray-300 focus:bg-gray-500 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center me-2 dark:bg-slate-700 dark:hover:bg-slate-600 dark:focus:bg-zinc-700">
+                                                                        class="relative text-gray-800 dark:text-white bg-gray-400 hover:bg-gray-300 focus:bg-gray-500 font-medium rounded-lg px-2 py-2 text-center inline-flex items-center me-2 dark:bg-slate-700 dark:hover:bg-slate-600 dark:focus:bg-zinc-700">
                                                                         <svg class="w-4 h-4 text-gray-800 dark:text-white"
                                                                             aria-hidden="true"
                                                                             xmlns="http://www.w3.org/2000/svg"
@@ -397,8 +381,8 @@
 
                                                                     <button type="button"
                                                                         title="Seleccionar Como Familiar"
-                                                                        wire:click="seleccionar_migrante( {{ $migrante->id }} )"
-                                                                        class="relative group text-white bg-green-800 hover:bg-green-700 focus:bg-green-900 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center me-2">
+                                                                        wire:click="seleccionarMigrante( {{ $migrante->id }} )"
+                                                                        class="relative group text-white bg-green-800 hover:bg-green-700 focus:bg-green-900 font-medium rounded-lg px-2 py-2 text-center inline-flex items-center me-2">
                                                                         <svg class="w-4 h-4 text-white"
                                                                             aria-hidden="true"
                                                                             xmlns="http://www.w3.org/2000/svg"
@@ -430,27 +414,35 @@
                                     Nuevo Código de Familia:
                                 </p>
                                 <p>
-                                    {{ $codigo_familia }}
+                                    {{ $codigoFamilia }}
                                 </p>
                             </div>
 
-
-                            <div class="flex mt-6 justify-center">
-                                <button type="submit"
-                                    class="dark:bg-green-800 dark:hover:bg-green-700 text-white py-2 px-5 rounded">Crear</button>
-                            </div>
                         @endif
+                    @elseif($step == 3)
+                        <h1 class="mb-6 text-xl font-bold"> Registrar Expediente</h1>
+                        pendiente...
+                        <button wire:click="test">
+                            debug
+                        </button>
+                        {{-- <div class="w-full flex justify-end gap-4">
+                            <button wire:click="previousStep"
+                                class="dark:bg-slate-700 py-3 px-5 mt-5 rounded-lg dark:hover:bg-slate-600">Anterior</button>
+                            <button wire:click="nextStep"
+                                class="dark:bg-slate-700 py-3 px-5 mt-5 rounded-lg dark:hover:bg-slate-600">Siguiente</button>
+                        </div> --}}
 
+                    @endif
+                    <div class="w-full flex justify-end gap-4">
+                        @if ($step > 1)
+                            <button wire:click="previousStep"
+                                class="dark:bg-slate-700 py-3 px-5 mt-5 rounded-lg dark:hover:bg-slate-600">Anterior</button>
+                        @endif
+                        <button wire:click="nextStep"
+                            class="dark:bg-slate-700 py-3 px-5 mt-5 rounded-lg dark:hover:bg-slate-600">Siguiente</button>
                     </div>
-
                 </div>
-
-
             </div>
-        </form>
-
+        </div>
     </div>
-
-
-
 </div>
