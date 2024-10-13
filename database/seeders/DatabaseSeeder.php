@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PaisSeeder::class,
             DepartamentoSeeder::class,
+            CiudadSeeder::class,
 
         ]);
 
@@ -59,10 +60,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'ibaquedano@unah.hn',
             'password' => Hash::make('12345678'),
         ])->assignRole($role);
-
-        DB::table('ciudades')->insert(['nombre_ciudad' => 'Choluteca', 'departamento_id' => 1]);
-        DB::table('ciudades')->insert(['nombre_ciudad' => 'Perijá', 'departamento_id' => 2]);
-        DB::table('ciudades')->insert(['nombre_ciudad' => 'Barranquilla', 'departamento_id' => 3]);
 
         Migrante::factory(30)->create();
     }

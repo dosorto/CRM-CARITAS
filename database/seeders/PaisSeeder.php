@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Pais;
 use Illuminate\Support\Facades\DB;
+use App\Models\Pais;
 
 class PaisSeeder extends Seeder
 {
