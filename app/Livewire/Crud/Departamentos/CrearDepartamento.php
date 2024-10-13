@@ -19,11 +19,8 @@ class CrearDepartamento extends ModalComponent
 
     public function seleccionar_pais($id)
     {
-        dump(1);
-        dd(0);
-        // $this->pais_seleccionado = true;
-        // // $this->pais_id = $id;
-        // $this->pais = Pais::find($id);
+        $this->pais_seleccionado = true;
+        $this->pais = Pais::find($id);
     }
 
     public function limpiarPais()
@@ -50,12 +47,6 @@ class CrearDepartamento extends ModalComponent
         $this->dispatch('departamento-creado');
 
         $this->closeModal();
-    }
-
-    public function seleccionar()
-    {
-        dump(1);
-        dd(1);
     }
 
     public function render()

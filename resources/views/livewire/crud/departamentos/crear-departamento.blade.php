@@ -1,4 +1,4 @@
-<x-modal class="w-auto max-w-md">
+<x-modal form-action="crear" class="w-auto max-w-md">
 
     <x-slot name="title">
         Crear Departamento
@@ -16,7 +16,7 @@
                         placeholder="Escribir aquí..." required />
                 </div>
                 <div class="w-1/3">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Codigo</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Código</label>
                     <input type="text" wire:model="codigo_departamento"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Escribir aquí..." required />
@@ -28,12 +28,12 @@
                 <div class="border border-gray-600 rounded-lg mt-8 p-4 flex-col">
 
                     <div class="flex justify-center mb-4 text-lg font-bold">
-                        Pais Seleccionado
+                        País Seleccionado
                     </div>
 
                     <div class="flex gap-2 mt-2">
                         <p class="font-bold">
-                            Nombre del Pais:
+                            Nombre del País:
                         </p>
                         <p>
                             {{ $pais->nombre_pais }}
@@ -44,8 +44,8 @@
 
                 <div class="flex mt-6 justify-center">
                     <button type="button" wire:click="limpiarPais"
-                        class="dark:bg-gray-700 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">Cambiar
-                        Pais Seleccionado</button>
+                        class="dark:bg-slate-800 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">Cambiar
+                        País Seleccionado</button>
                 </div>
 
                 {{-- <div class="flex mt-6 justify-center">
@@ -58,7 +58,7 @@
                     {{-- Buscador --}}
                     <div class="flex-col">
                         <div class="flex justify-start">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pais</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">País</label>
                         </div>
                         <div class="flex h-full">
                             <input type="text" wire:model.live="texto_busqueda"
@@ -90,7 +90,7 @@
                             class="min-w-full text-xs text-left text-gray-500 dark:text-gray-400 border border-gray-700">
                             <thead class="text-xs uppercase bg-gray-100 dark:bg-slate-900 dark:text-gray-400">
                                 <tr>
-                                    <th class="px-2 py-2">Pais</th>
+                                    <th class="px-2 py-2">País</th>
                                     <th class="px-2 py-2">Seleccionar</th>
 
                                 </tr>
