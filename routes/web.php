@@ -9,6 +9,7 @@ use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Usuarios\Usuarios;
 use App\Livewire\Crud\Roles\VerRoles;
+use App\Livewire\Crud\Permisos\VerPermisos;
 
 
 // Route::view('/', 'welcome');
@@ -87,3 +88,7 @@ Route::get('/departamento', VerDepartamentos::class);
 Route::get('/empleados', Empleados::class);
 Route::get('/recuperar-contrasena', PasswordRecovery::class)->name('password.recovery');
 
+
+Route::get('/permisos', VerPermisos::class)
+    ->middleware(['auth'])
+    ->name('ver-permisos');
