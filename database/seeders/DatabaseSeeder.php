@@ -47,16 +47,16 @@ class DatabaseSeeder extends Seeder
 
         // aqui mio xd
 
-        $role1 = Role::create(['name' => 'Administrador']);
-        Permission::create(['name' => 'Administrador'])->assignRole($role1);
+        // $role1 = Role::create(['name' => 'Administrador']);
+        // Permission::create(['name' => 'Administrador'])->assignRole($role1);
 
-        $role = Role::find(1);
+        // $role = Role::find(1);
 
         User::create([
             'name' => 'ibaquedano',
             'email' => 'ibaquedano@unah.hn',
             'password' => Hash::make('12345678'),
-        ])->assignRole($role);
+        ]);
 
 
         DB::table('paises')->insert(['nombre_pais' => 'Honduras', 'codigo_alfa3' => 'HND', 'codigo_numerico' => '340']);
