@@ -15,7 +15,7 @@
             <div class="flex w-4/6">
 
                 {{-- label del buscador, aquí iría el <select> para filtros en otros modelos --}}
-                <div class="relative w-3/12">
+                <div class="relative w-1/3">
                     <p
                         class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         Nombre del Departamento
@@ -23,7 +23,7 @@
                 </div>
 
                 {{-- Input y Botón de busqueda --}}
-                <div class="relative w-9/12">
+                <div class="relative w-2/3">
                     {{-- wire:model.live actualiza la variable texto_busqueda constantemente --}}
                     <input type="text" wire:model.live="texto_busqueda"
                         class="h-full ps-4 text-sm text-gray-900 border-y border-gray-300 w-full bg-gray-50 focus:ring-gray-500 focus:border-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -74,10 +74,10 @@
                             Departamento
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Codigo del Departamento
+                            Código del Departamento
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Pais
+                            País
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Acciones

@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             RoleSeeder::class,
+            PaisSeeder::class,
+            DepartamentoSeeder::class,
+            CiudadSeeder::class,
 
         ]);
 
@@ -45,25 +48,12 @@ class DatabaseSeeder extends Seeder
 
         // aqui mio xd
 
-        $role1 = Role::create(['name' => 'Administrador']);
-        Permission::create(['name' => 'Administrador'])->assignRole($role1);
+        // $role1 = Role::create(['name' => 'Administrador']);
+        // Permission::create(['name' => 'Administrador'])->assignRole($role1);
 
-        $role = Role::find(1);
-
-
+        // $role = Role::find(1);
 
 
-        DB::table('paises')->insert(['nombre_pais' => 'Honduras', 'codigo_alfa3' => 'HND', 'codigo_numerico' => '340']);
-        DB::table('paises')->insert(['nombre_pais' => 'Venezuela', 'codigo_alfa3' => 'VEN', 'codigo_numerico' => '862']);
-        DB::table('paises')->insert(['nombre_pais' => 'Colombia', 'codigo_alfa3' => 'COL', 'codigo_numerico' => '170']);
-
-        DB::table('departamentos')->insert(['nombre_departamento' => 'Choluteca', 'codigo_departamento' => 'HN-CH', 'pais_id' => 1]);
-        DB::table('departamentos')->insert(['nombre_departamento' => 'Machiques', 'codigo_departamento' => '0263', 'pais_id' => 2]);
-        DB::table('departamentos')->insert(['nombre_departamento' => 'Atlántico', 'codigo_departamento' => '08', 'pais_id' => 3]);
-
-        DB::table('ciudades')->insert(['nombre_ciudad' => 'Choluteca', 'departamento_id' => 1]);
-        DB::table('ciudades')->insert(['nombre_ciudad' => 'Perijá', 'departamento_id' => 2]);
-        DB::table('ciudades')->insert(['nombre_ciudad' => 'Barranquilla', 'departamento_id' => 3]);
 
         Migrante::factory(30)->create();
 
@@ -97,6 +87,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'ibaquedano@unah.hn',
             'password' => Hash::make('12345678'),
             'empleado_id' => 2
-        ])->assignRole($role);
+        ]);
     }
 }

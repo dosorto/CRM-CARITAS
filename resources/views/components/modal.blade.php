@@ -1,5 +1,6 @@
 {{-- Esta es la plantilla para darle forma a los modales --}}
 
+
 @props(['formAction' => false])
 <div class="w-full">
 
