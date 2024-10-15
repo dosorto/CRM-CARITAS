@@ -14,52 +14,29 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
 
-        //Permisos del DASHBOARD
-        Permission::create(['name' => 'ver-dashboard']);
+        // //Permisos del DASHBOARD
+        Permission::create(['name' => 'Ver Dashboard']);
 
         //Permisos del CRUD PAIS
-        Permission::create(['name' => 'ver-paises']);
-        Permission::create(['name' => 'crear-pais']);
-        Permission::create(['name' => 'editar-pais']);
-        Permission::create(['name' => 'eliminar-pais']);
-        
-        //Permisos del CRUD DEPARTAMENTO
-        Permission::create(['name' => 'ver-departamento']);
-        Permission::create(['name' => 'crear-departamento']);
-        Permission::create(['name' => 'editar-departamento']);
-        Permission::create(['name' => 'eliminar-departamento']);
+        Permission::create(['name' => 'Administrar Paises']);
 
-        //Permisos del CRUD MUNICIPIO
-        Permission::create(['name' => 'ver-municipios']);
-        Permission::create(['name' => 'crear-municipio']);
-        Permission::create(['name' => 'editar-municipio']);
-        Permission::create(['name' => 'eliminar-municipio']);
+        //Permisos del CRUD DEPARTAMENTO
+        Permission::create(['name' => 'Administrar Departamentos']);
 
         //Permisos del CRUD CIUDAD
-        Permission::create(['name' => 'ver-ciudades']);
-        Permission::create(['name' => 'crear-ciudad']);
-        Permission::create(['name' => 'editar-ciudad']);
-        Permission::create(['name' => 'eliminar-ciudad']);
+        Permission::create(['name' => 'Administrar Ciudades']);
 
         //Permisos del CRUD ROLES
-        Permission::create(['name' => 'ver-roles']);
-        Permission::create(['name' => 'crear-rol']);
-        Permission::create(['name' => 'editar-rol']);
-        Permission::create(['name' => 'eliminar-rol']);
+        Permission::create(['name' => 'Administrar Roles']);
 
         //Permisos del CRUD PERMISOS
-        Permission::create(['name' => 'ver-permisos']);
+         Permission::create(['name' => 'Ver Permisos']);
+        Permission::create(['name' => 'Administrar Permisos']);
 
         //Permisos del CRUD ROLES
-        Permission::create(['name' => 'ver-usuarios']);
-        Permission::create(['name' => 'crear-usuario']);
-        Permission::create(['name' => 'editar-usuario']);
-        Permission::create(['name' => 'eliminar-usuario']);
+        Permission::create(['name' => 'Administrar Usuarios']);
 
         //Permisos del CRUD EMPLEADOS
-        Permission::create(['name' => 'ver-empleados']);
-        Permission::create(['name' => 'crear-empleado']);
-        Permission::create(['name' => 'editar-empleado']);
-        Permission::create(['name' => 'eliminar-empleado']);
+        Permission::create(['name' => 'Administrar Empleados']);
     }
 }

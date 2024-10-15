@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
 
         <div class="flex mb-8">
@@ -21,6 +21,8 @@
             {{-- columna central --}}
             <div class="flex-col h-full w-2/3">
 
+                    {{-- cuadro clarito que engloba los inputs --}}
+                    <div class="shadow-md rounded-lg p-6 h-full">
                 {{-- cuadro clarito que engloba los inputs --}}
                 <div class="bg-slate-800 rounded-lg p-10">
 
@@ -188,7 +190,7 @@
                                 <div class="w-full">
                                     <div class="flex-col items-center text-center px-4 text-lg">
 
-                                        ¿Tiene ya un familiar registrado?
+                                            ¿Tiene ya un familiar registrado?
 
 
 
@@ -207,10 +209,10 @@
                                         </div>
 
 
+                                        </div>
                                     </div>
-                                </div>
 
-                                {{-- <div class="dark:border-l-2 w-1/2 flex items-center  h-full dark:border-gray-500 pl-4">
+                                    {{-- <div class="dark:border-l-2 w-1/2 flex items-center  h-full dark:border-gray-500 pl-4">
                                     <div>
                                         <p class="text-xs dark:text-slate-400">
                                             Nota: Si ya tiene un familiar registrado, debe seleccionarse para
@@ -218,49 +220,49 @@
                                         </p>
                                     </div>
                                 </div> --}}
-                            </div>
-                        </div>
-
-
-
-
-                        @if ($tiene_familiar)
-
-                            {{-- Información del familiar seleccionado --}}
-                            @if ($familiar_seleccionado)
-
-                                <div class="border border-gray-600 rounded-lg mt-8 p-4 flex-col">
-
-                                    <div class="flex justify-center mb-4 text-lg font-bold">
-                                        Familiar Seleccionado
-                                    </div>
-
-                                    <div class="flex gap-2 mt-2">
-                                        <p class="font-bold">
-                                            Nombre Completo:
-                                        </p>
-                                        <p>
-                                            {{ $familiar->primer_nombre . ' ' . $familiar->segundo_nombre . ' ' . $familiar->primer_apellido . ' ' . $familiar->segundo_apellido }}
-                                        </p>
-                                    </div>
-
-                                    <div class="flex gap-2 mt-2">
-                                        <p class="font-bold">
-                                            Número de Identificación:
-                                        </p>
-                                        <p>
-                                            {{ $familiar->numero_identificacion . ' (' . $familiar->tipo_identificacion . ')' }}
-                                        </p>
-                                    </div>
-                                    <div class="flex gap-2 mt-2">
-                                        <p class="font-bold">
-                                            Código Familiar:
-                                        </p>
-                                        <p>
-                                            {{ $familiar->codigo_familiar }}
-                                        </p>
-                                    </div>
                                 </div>
+                            </div>
+
+
+
+
+                            @if ($tiene_familiar)
+
+                                {{-- Información del familiar seleccionado --}}
+                                @if ($familiar_seleccionado)
+
+                                    <div class="border border-gray-600 rounded-lg mt-8 p-4 flex-col">
+
+                                        <div class="flex justify-center mb-4 text-lg font-bold">
+                                            Familiar Seleccionado
+                                        </div>
+
+                                        <div class="flex gap-2 mt-2">
+                                            <p class="font-bold">
+                                                Nombre Completo:
+                                            </p>
+                                            <p>
+                                                {{ $familiar->primer_nombre . ' ' . $familiar->segundo_nombre . ' ' . $familiar->primer_apellido . ' ' . $familiar->segundo_apellido }}
+                                            </p>
+                                        </div>
+
+                                        <div class="flex gap-2 mt-2">
+                                            <p class="font-bold">
+                                                Número de Identificación:
+                                            </p>
+                                            <p>
+                                                {{ $familiar->numero_identificacion . ' (' . $familiar->tipo_identificacion . ')' }}
+                                            </p>
+                                        </div>
+                                        <div class="flex gap-2 mt-2">
+                                            <p class="font-bold">
+                                                Código Familiar:
+                                            </p>
+                                            <p>
+                                                {{ $familiar->codigo_familiar }}
+                                            </p>
+                                        </div>
+                                    </div>
 
                                 <div class="flex mt-6 justify-center">
                                     <button type="button" wire:click="limpiarFamiliar"
@@ -288,7 +290,7 @@
                                             </div>
                                         </div>
 
-                                        {{-- Botón de Limpiar Filtro --}}
+                                            {{-- Botón de Limpiar Filtro --}}
 
                                         <button wire:click="limpiarFiltro"
                                             class="py-2 px-4 font-medium text-gray-900 bg-gray-50 border border-gray-300 rounded hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-1 focus:ring-blue-600 focus:text-blue-600 dark:bg-gray-700 dark:border-gray-700 dark:text-gray-200 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
@@ -296,10 +298,10 @@
                                         </button>
 
 
-                                    </div>
+                                        </div>
 
-                                    <div>
-                                        <div class="w-full flex mt-4">
+                                        <div>
+                                            <div class="w-full flex mt-4">
 
                                             <input type="text" wire:model="texto_busqueda"
                                                 class="ps-3 rounded-s text-gray-900 border-y border-gray-300 w-full bg-gray-50 focus:ring-gray-500 focus:border-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -321,22 +323,22 @@
                                             </div>
                                         </div>
 
-                                        {{-- Tabla --}}
-                                        <div class="overflow-x-auto overflow-y-auto mt-4 rounded-lg max-h-[240px]"
-                                            style="scrollbar-width: thin; scrollbar-color: #4b5563 #1f2937;">
-                                            <!-- Ajusta max-h según sea necesario -->
-                                            <table
-                                                class="min-w-full text-xs text-left text-gray-500 dark:text-gray-400 border border-gray-700">
-                                                <thead
-                                                    class="text-xs uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                                                    <tr>
-                                                        <th class="px-2 py-2">NOMBRE</th>
-                                                        <th class="px-2 py-2">IDENTIFICACIÓN</th>
-                                                        <th class="px-2 py-2">PAÍS</th>
-                                                        <th class="px-2 py-2">OPCIONES</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                            {{-- Tabla --}}
+                                            <div class="overflow-x-auto overflow-y-auto mt-4 rounded-lg max-h-[240px]"
+                                                style="scrollbar-width: thin; scrollbar-color: #4b5563 #1f2937;">
+                                                <!-- Ajusta max-h según sea necesario -->
+                                                <table
+                                                    class="min-w-full text-xs text-left text-gray-500 dark:text-gray-400 border border-gray-700">
+                                                    <thead
+                                                        class="text-xs uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                                        <tr>
+                                                            <th class="px-2 py-2">NOMBRE</th>
+                                                            <th class="px-2 py-2">IDENTIFICACIÓN</th>
+                                                            <th class="px-2 py-2">PAÍS</th>
+                                                            <th class="px-2 py-2">OPCIONES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
 
                                                     @if ($migrantes_filtrados->isEmpty())
                                                         <tr>
@@ -359,8 +361,8 @@
                                                                 </td>
                                                                 <td class="px-2 py-2">
 
-                                                                    <button type="button"
-                                                                        wire:click="
+                                                                        <button type="button"
+                                                                            wire:click="
                                                                 $dispatch(
                                                                     'openModal', { 
                                                                         component: 'crud.migrantes.info-migrante', 

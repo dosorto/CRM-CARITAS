@@ -1,10 +1,10 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
 
         {{-- Titulo --}}
         <div class="w-full flex justify-center mb-6">
             <h1 class="text-2xl font-bold">
-                Paises
+                Países
             </h1>
         </div>
 
@@ -18,7 +18,7 @@
                 <div class="relative w-3/12">
                     <p
                         class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        Nombre del Pais
+                        Nombre del País
                     </p>
                 </div>
 
@@ -71,13 +71,13 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Pais
+                            País
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Codigo ISO 3
+                            Código ISO 3
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Codigo Numérico
+                            Código Numérico
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Acciones

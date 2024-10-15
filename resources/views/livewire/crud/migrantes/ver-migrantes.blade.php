@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
 
         <div class="flex">
@@ -25,7 +25,7 @@
                     <div class="flex w-full">
 
                         {{-- Opciones de búsqueda --}}
-                        <div class="w-1/3 dark">
+                        <div class="w-1/3">
                             <select wire:model="atributo"
                                 class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="numero_identificacion">Número de Identificación</option>
@@ -222,7 +222,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="dark size-full mt-4 flex justify-end">
+        <div class="size-full mt-4 flex justify-end">
             {{ $datos->links(data: ['scrollTo' => false]) }}
         </div>
     </div>
