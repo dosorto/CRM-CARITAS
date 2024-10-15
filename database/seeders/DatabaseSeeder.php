@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Empleado;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Migrante;
 use App\Models\User;
@@ -34,10 +35,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        User::factory()->create([
-            'name' => 'Mario',
-            'email' => 'mcarbajalg@unah.hn',
-        ]);
+
 
         // Esto no se hace así, hay que hacer seeders y factories por cada modelo
         DB::table('gravedad_faltas')->insert(['gravedad_falta' => 'Muy Grave', 'nivel_gravedad' => '3']);
@@ -55,12 +53,40 @@ class DatabaseSeeder extends Seeder
 
         $role = Role::find(1);
 
+
+
+        Migrante::factory(30)->create();
+
+        Empleado::create([
+            'nombre' => 'Mario',
+            'apellido' => 'Carbajal',
+            'identidad' => '0000-0000-00000',
+            'telefono' => '0000-0000',
+            'fecha_nacimiento' => '1995-01-01',
+            'estado_civil' => 'Soltero',
+            'departamento_id'=> 1
+        ]);
+        Empleado::create([
+            'nombre' => 'Ingrid ',
+            'apellido' => 'Baquedano',
+            'identidad' => '0091-0001-01000',
+            'telefono' => '0000-0001',
+            'fecha_nacimiento' => '1997-01-01',
+            'estado_civil' => 'Soltero',
+            'departamento_id'=> 2
+        ]);
+
+
+        User::factory()->create([
+            'name' => 'Mario',
+            'email' => 'mcarbajalg@unah.hn',
+            'empleado_id' => 1
+        ]);
         User::create([
             'name' => 'ibaquedano',
             'email' => 'ibaquedano@unah.hn',
             'password' => Hash::make('12345678'),
+            'empleado_id' => 2
         ])->assignRole($role);
-
-        Migrante::factory(30)->create();
     }
 }
