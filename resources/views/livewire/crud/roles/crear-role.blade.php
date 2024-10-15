@@ -6,7 +6,7 @@
 
     <x-slot name="content">
 
-        <div class="flex gap-4 justify-between">
+        <div class="flex-col gap-4 justify-between">
             <div class="mb-2 w-2/3">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del rol</label>
                 <input type="text" wire:model="name"

@@ -26,9 +26,9 @@
     <title>EXODO</title>
 </head>
 
-<body class="bg-gray-900">
+<body class="dark:bg-gray-900">
 
-    <div class="dark size-full">
+    <div class="size-full">
 
 <<<<<<< HEAD
         {{-- Botón para abrir la barra lateral cuando no quepa --}}
