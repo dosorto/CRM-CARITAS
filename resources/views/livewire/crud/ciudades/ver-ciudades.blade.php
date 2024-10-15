@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
          {{-- Titulo --}}
          <div class="w-full flex justify-center mb-6">

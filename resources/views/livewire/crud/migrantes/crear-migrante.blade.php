@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
 
         <div class="flex mb-8">
@@ -24,7 +24,7 @@
                 <div class="flex-col h-full w-1/2">
 
                     {{-- cuadro clarito que engloba los inputs --}}
-                    <div class="bg-slate-800 rounded-lg p-6 h-full">
+                    <div class="shadow-md rounded-lg p-6 h-full">
 
                         <h1 class="mb-6 text-xl font-bold">Datos Personales</h1>
 
@@ -188,10 +188,10 @@
 
 
                 {{-- Columna Derecha --}}
-                <div class="flex size-full bg-black h-full w-1/2">
+                <div class="flex size-full h-full w-1/2">
 
                     {{-- cuadro clarito que engloba los inputs de familias --}}
-                    <div class="bg-slate-800 rounded-lg p-6 w-full h-full flex flex-col">
+                    <div class="shadow-md sm:rounded-lg rounded-lg p-6 w-full h-full flex flex-col">
 
                         <div class="flex-col">
                             <h1 class="mb-6 text-xl font-bold">Registrar Familiar</h1>

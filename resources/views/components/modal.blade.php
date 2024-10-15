@@ -1,7 +1,7 @@
 {{-- Esta es la plantilla para darle forma a los modales --}}
 
 @props(['formAction' => false])
-<div class="dark w-full">
+<div class="w-full">
 
     {{-- Apertura de formulario en caso de que reciba el parámetro de form-action --}}
     @if ($formAction)
@@ -9,7 +9,7 @@
     @endif
 
     {{-- Campo reservado para el título del modal --}}
-    <div class="dark:bg-slate-800 dark:text-slate-300 p-4 sm:px-6 sm:py-4 border-b border-gray-150">
+    <div class="dark:bg-slate-800 bg-gray-300 dark:text-slate-300 p-4 sm:px-6 sm:py-4 border-b border-gray-150">
         @if (isset($title))
             <h3 class="text-lg leading-6 font-medium">
                 {{ $title }}

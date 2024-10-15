@@ -2,7 +2,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     './storage/framework/views/*.php',
@@ -11,11 +11,12 @@ export default {
     "./resources/**/*.vue",
     "./node_modules/flowbite/**/*.js"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
-        fontFamily: {
-            sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-        },
+      fontFamily: {
+        sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   plugins: [
@@ -23,4 +24,3 @@ export default {
     forms
   ],
 }
-

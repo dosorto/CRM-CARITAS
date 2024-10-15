@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
 
     <div class="dark:text-gray-300">
 
