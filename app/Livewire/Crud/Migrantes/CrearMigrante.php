@@ -8,7 +8,6 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 
-#[Layout('components.layouts.no-sidebar')]
 class CrearMigrante extends Component
 {
     // Paso 1, datos personales

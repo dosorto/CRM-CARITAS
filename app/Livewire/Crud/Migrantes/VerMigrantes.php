@@ -9,7 +9,6 @@ use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
 
-#[Layout('components.layouts.no-sidebar')]
 class VerMigrantes extends Component
 {
     use WithPagination, WithoutUrlPagination;
