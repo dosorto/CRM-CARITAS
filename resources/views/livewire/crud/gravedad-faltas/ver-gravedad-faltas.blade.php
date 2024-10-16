@@ -149,7 +149,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="dark size-full mt-4">
+        <div class="size-full mt-4">
             {{ $datos->links() }}
         </div>
     </div>

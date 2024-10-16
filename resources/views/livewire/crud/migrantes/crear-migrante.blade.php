@@ -1,19 +1,14 @@
 <div>
     <div class="dark:text-gray-300">
 
-        <div class="flex mb-8">
-            <div class="w-24">
-                <a href=" /migrantes" class="text-gray-800 hover:underline text-lg dark:text-gray-300">
-                    &larr; Volver
-                </a>
-            </div>
-            {{-- Titulo --}}
-            <div class="w-full flex justify-center me-24">
-                <h1 class="text-2xl font-bold">
-                    Registrar Nuevo Migrante
-                </h1>
-            </div>
+
+        {{-- Titulo --}}
+        <div class="w-full flex justify-center my-4">
+            <h1 class="text-2xl font-bold">
+                Registrar Nuevo Migrante
+            </h1>
         </div>
+
 
         {{-- full pagina --}}
         <div class="w-full flex justify-center h-full">
@@ -54,29 +49,6 @@
                                     </div>
 
                                 </div>
-
-                                {{-- <div class="w-full flex gap-12 mb-6">
-
-                            <div class="size-full flex-col items-center">
-                                <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
-                                    Primer Apellido
-                                </label>
-                                <input type="text" wire:model="primer_apellido"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required />
-                            </div>
-
-                            <div class="size-full flex-col items-center">
-                                <label class="block mb-2 font-medium text-gray-900 dark:text-gray-300">
-                                    Segundo Apellido
-                                </label>
-
-                                <input type="text" wire:model="segundo_apellido"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    required />
-                            </div>
-
-                        </div> --}}
 
                                 <div class="w-full flex gap-12 mb-6">
 

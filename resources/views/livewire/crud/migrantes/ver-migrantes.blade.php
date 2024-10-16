@@ -195,8 +195,8 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="size-full mt-4 flex justify-end">
-            {{ $datos->links(data: ['scrollTo' => false]) }}
+        <div class="size-full mt-4">
+            {{ $datos->links() }}
         </div>
     </div>
 </div>
