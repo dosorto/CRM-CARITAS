@@ -82,39 +82,6 @@
                         </a>
                     </li>
 
-                    {{-- Elemento Roles --}}
-                    <li>
-                        <a href="/roles"
-                            class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-red-700 dark:hover:bg-gray-700 group">
-
-                            <svg class="w-5 h-5 text-gray-100 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Zm2 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-
-
-                            <span class="flex-1 ms-3 whitespace-nowrap">Roles</span>
-                        </a>
-                    </li>
-
-                    {{-- Elemento Permisos --}}
-                    <li>
-                        <a href="/permisos"
-                            class="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-red-700 dark:hover:bg-gray-700 group">
-
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-100 transition duration-75 dark:text-gray-400"
-                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 20 18">
-                                <path
-                                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
-                            </svg>
-
-                            <span class="flex-1 ms-3 whitespace-nowrap">Permisos</span>
-                        </a>
-                    </li>
 
                     {{-- Elemento de Cerrar Sesión --}}
                     <li>
@@ -127,7 +94,7 @@
                     {{-- Botón de tema oscuro --}}
                     <li class="absolute bottom-0 w-full">
                         <button id="theme-toggle" type="button"
-                            class="flex gap-2 mb-4 text-red-500 dark:text-gray-400 hover:bg-red-800 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                            class="flex gap-2 mb-4 text-red-300 dark:text-gray-400 hover:bg-red-800 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                             <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
