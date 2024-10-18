@@ -1,18 +1,11 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
 
-        <div class="flex">
-            <div class="w-24">
-                <a href=" /" class=" text-gray-800 dark:text-gray-300 hover:underline text-lg">
-                    &larr; Volver
-                </a>
-            </div>
-            {{-- Titulo --}}
-            <div class="w-full flex justify-center mb-8 me-24">
-                <h1 class="text-2xl font-bold">
-                    Listado de Migrantes
-                </h1>
-            </div>
+        {{-- Titulo --}}
+        <div class="w-full flex justify-center mb-8">
+            <h1 class="text-2xl font-bold">
+                Listado de Migrantes
+            </h1>
         </div>
 
 
@@ -25,7 +18,7 @@
                     <div class="flex w-full">
 
                         {{-- Opciones de búsqueda --}}
-                        <div class="w-1/3 dark">
+                        <div class="w-1/3">
                             <select wire:model="atributo"
                                 class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="numero_identificacion">Número de Identificación</option>
@@ -33,7 +26,7 @@
                                 <option value="apellidos">Primer / Segundo Apellido</option>
                                 <option value="codigo_familiar">Código Familiar</option>
                             </select>
-                            
+
 
                         </div>
 
@@ -99,22 +92,13 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-3 py-3 ">
-                            Nombre Completo
-                        </th>
-                        <th scope="col" class="px-3 py-3 ">
-                            Sexo
-                        </th>
-                        <th scope="col" class="px-3 py-3 ">
                             Número de Identificación
                         </th>
                         <th scope="col" class="px-3 py-3 ">
+                            Nombre Completo
+                        </th>
+                        <th scope="col" class="px-3 py-3 ">
                             Pais
-                        </th>
-                        <th scope="col" class="px-3 py-3">
-                            Estado Civil
-                        </th>
-                        <th scope="col" class="px-3 py-3">
-                            Codigo Familiar
                         </th>
                         <th scope="col" class="px-3 py-3">
                             Acciones
@@ -129,7 +113,9 @@
                             <div wire:key="{{ $item->id }}">
 
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-
+                                    <td class="px-3 py-3">
+                                        {{ $item->numero_identificacion . ' (' . $item->tipo_identificacion . ')' }}
+                                    </td>
                                     <td class="px-3 py-3">
                                         {{ $item->primer_nombre .
                                             ' ' .
@@ -140,27 +126,14 @@
                                             $item->segundo_apellido }}
                                     </td>
                                     <td class="px-3 py-3">
-                                        {{ $item->sexo }}
-                                    </td>
-                                    <td class="px-3 py-3">
-                                        {{ $item->numero_identificacion . ' (' . $item->tipo_identificacion . ')' }}
-                                    </td>
-                                    <td class="px-3 py-3">
                                         {{ $item->pais->nombre_pais }}
                                     </td>
-                                    <td class="px-3 py-3">
-                                        {{ $item->estado_civil }}
-                                    </td>
-                                    <td class="px-3 py-3">
-                                        {{ $item->codigo_familiar }}
-                                    </td>
-
                                     {{-- Botones de Acciones --}}
                                     <td class="px-3 py-3 flex gap-2">
                                         <div>
                                             {{-- Boton de Información --}}
-                                            <button type="button" 
-                                            wire:click=" 
+                                            <button type="button"
+                                                wire:click=" 
                                                 $dispatch(
                                                     'openModal', { 
                                                             component: 'crud.migrantes.info-migrante', 
@@ -222,8 +195,8 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="dark size-full mt-4 flex justify-end">
-            {{ $datos->links(data: ['scrollTo' => false]) }}
+        <div class="size-full mt-4">
+            {{ $datos->links() }}
         </div>
     </div>
 </div>

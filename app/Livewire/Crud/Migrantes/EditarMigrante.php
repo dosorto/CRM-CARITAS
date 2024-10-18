@@ -8,7 +8,6 @@ use App\Models\Migrante;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Layout;
 
-#[Layout('components.layouts.no-sidebar')]
 class EditarMigrante extends Component
 {
     public $id;

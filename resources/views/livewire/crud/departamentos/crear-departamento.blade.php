@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="dark size-full flex-col">
+        <div class="size-full flex-col">
 
             {{-- Inputs de nombre de Departamento y Código --}}
             <div class="flex w-full mb-4 gap-4">

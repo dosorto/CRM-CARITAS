@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
     <div class="dark:text-gray-300">
          {{-- Titulo --}}
          <div class="w-full flex justify-center mb-6">
@@ -147,7 +147,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="dark size-full mt-4">
+        <div class="size-full mt-4">
             {{ $datos->links() }}
         </div>
 

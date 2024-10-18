@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
 
     <div class="dark:text-gray-300">
 
@@ -20,11 +20,10 @@
 
                     {{-- Opciones de Busqueda por Atributo --}}
                     <div class="relative w-3/12">
-                        <select wire:model="atributo"
+                        <span
                             class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="nombre">Nombre</option>
-                            <option value="apellido">Apellido</option>
-                        </select>
+                            Nombre
+                        </span>
                     </div>
 
                     {{-- Input y Botón de Búsqueda --}}
@@ -90,7 +89,7 @@
                     <div>
 
                         @foreach ($usuarios as $item)
-                            <div wire:key="{{ $item->id}}">
+                            <div wire:key="{{ $item->id }}">
 
 
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -99,17 +98,15 @@
                                         {{ $item->name }}
                                     </td>
                                     <td class="px-6 py-3">
-                                        {{ $item->email}}
+                                        {{ $item->email }}
                                     </td>
 
                                     {{-- Botones de Acciones --}}
                                     <td class="px-6 py-3 flex gap-2">
                                         <div>
                                             {{-- Boton Editar --}}
-                                            <button type="button"
-                                             {{-- Con este evento del boton se invoca el modal de Editar --}}
-                                             wire:click="modeEdit({{ $item->id }})"
-
+                                            <button type="button" {{-- Con este evento del boton se invoca el modal de Editar --}}
+                                                wire:click="modeEdit({{ $item->id }})"
                                                 class="text-gray-800 dark:text-white bg-amber-300 hover:bg-yellow-300 focus:bg-amber-400 font-medium rounded-lg text-sm px-4 py-2 text-center inline-flex items-center me-2 dark:bg-slate-700 dark:hover:bg-slate-600 dark:focus:bg-zinc-700">
 
                                                 <svg class="w-5 h-4 text-gray-800 dark:text-white" aria-hidden="true"
@@ -125,8 +122,7 @@
                                             </button>
 
                                             {{-- Boton Eliminar --}}
-                                            <button type="button" wire:click="modeDelete({{$item->id}})"
-
+                                            <button type="button" wire:click="modeDelete({{ $item->id }})"
                                                 class=" bg-red-600 hover:bg-red-500 focus:bg-red-700 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center me-2 dark:bg-red-800 dark:hover:bg-red-700 dark:focus:bg-red-900">
                                                 <svg class="w-5 h-4 text-gray-200 dark:text-white" aria-hidden="true"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -147,7 +143,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="dark size-full mt-4">
+        <div class="size-full mt-4">
             {{ $usuarios->links() }}
         </div>
 
@@ -155,25 +151,25 @@
     </div>
 
     @if ($abrirModal)
-
-        <div style="background-color: rgba(0,0,0,0.5)" id="default-modal" tabindex="-1"  class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full">
+        <div style="background-color: rgba(0,0,0,0.5)" id="default-modal" tabindex="-1"
+            class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full">
             @include('livewire.usuarios.crear-usuario')
         </div>
     @endif
     @if ($modeEditar)
-
-    <div style="background-color: rgba(0,0,0,0.5)" id="default-modal" tabindex="-1"  class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full">
-        @include('livewire.usuarios.editar-usuario')
-    </div>
+        <div style="background-color: rgba(0,0,0,0.5)" id="default-modal" tabindex="-1"
+            class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full">
+            @include('livewire.usuarios.editar-usuario')
+        </div>
     @endif
     @if ($modeEliminar)
-    <div style="background-color: rgba(0,0,0,0.5)" id="default-modal" tabindex="-1"  class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full border">
-        @include('livewire.usuarios.eliminar-usuario')
-    </div>
+        <div style="background-color: rgba(0,0,0,0.5)" id="default-modal" tabindex="-1"
+            class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full border">
+            @include('livewire.usuarios.eliminar-usuario')
+        </div>
     @endif
 
 
 
 
 </div>
-

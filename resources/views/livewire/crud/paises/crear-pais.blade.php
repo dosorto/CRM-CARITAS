@@ -6,7 +6,7 @@
 
     <x-slot name="content">
 
-        <div class="dark flex-col gap-4 justify-between">
+        <div class="flex-col gap-4 justify-between">
             <div class="mb-4 w-full">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">País</label>
                 <input type="text" wire:model="nombre_pais"

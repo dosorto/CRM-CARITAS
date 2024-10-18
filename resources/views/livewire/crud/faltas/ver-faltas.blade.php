@@ -1,4 +1,4 @@
-<div class="dark">
+<div>
 
     <div class="dark:text-gray-300">
 
@@ -19,16 +19,14 @@
                 <form class="flex w-full" wire:submit="buscar">
 
                     {{-- Opciones de Busqueda por Atributo --}}
-                    <div class="relative w-3/12">
-                        <select wire:model="atributo"
+                    <div class="relative w-1/3">
+                        <span
                             class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="nombre">Nombre</option>
-                            <option value="apellido">Apellido</option>
-                        </select>
+                        Falta Disciplinaria</span>
                     </div>
 
                     {{-- Input y Botón de Búsqueda --}}
-                    <div class="relative w-9/12">
+                    <div class="relative w-2/3">
                         <input type="text" wire:model.live="texto_busqueda"
                             class="h-full ps-4 text-sm text-gray-900 border-y border-gray-300 w-full bg-gray-50 focus:ring-gray-500 focus:border-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Buscar...">
@@ -92,7 +90,7 @@
                         @foreach ($datos as $item)
                             <div wire:key="{{ $item->id }}">
 
-                            
+
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
                                     <td class="px-6 py-3">
@@ -128,7 +126,8 @@
                                             </button>
 
                                             {{-- Boton Eliminar --}}
-                                            <button type="button" wire:click=" 
+                                            <button type="button"
+                                                wire:click=" 
                                             $dispatch(
                                                 'openModal', { 
                                                         component: 'crud.gravedad-faltas.eliminar-gravedad-falta', 
@@ -154,7 +153,7 @@
         </div>
 
         {{-- Paginación --}}
-        <div class="dark size-full mt-4">
+        <div class="size-full mt-4">
             {{ $datos->links() }}
         </div>
 

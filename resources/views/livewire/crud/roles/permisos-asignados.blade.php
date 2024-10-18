@@ -9,7 +9,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="dark flex-col justify-between">
+        <div class="flex-col justify-between">
             @foreach ($permisos as $permiso)
                 <div class="mt-4">
                     {{ $permiso }}
