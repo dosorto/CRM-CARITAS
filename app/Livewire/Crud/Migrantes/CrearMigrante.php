@@ -65,24 +65,35 @@ class CrearMigrante extends Component
                 // Paso 1: Buscar por Identificación
             case 1:
                 return [
-                    'datosPersonales.numeroIdentificacion' => 'required',
+                    'codigoFamilia' => 'required',
+                    // 'datosPersonales.numeroIdentificacion' => 'required',
                 ];
 
                 // Registrar Datos Personales
             case 2:
                 return [
-                    'datosPersonales.nombres' => 'required',
-                    'datosPersonales.apellidos' => 'required',
-                    'datosPersonales.tipoIdentificacion' => 'required',
-                    'datosPersonales.estadoCivil' => 'required',
-                    'datosPersonales.sexo' => 'required',
-                    'datosPersonales.fechaNacimiento' => 'required',
+                    // 'datosPersonales.nombres' => 'required',
+                    // 'datosPersonales.apellidos' => 'required',
+                    // 'datosPersonales.tipoIdentificacion' => 'required',
+                    // 'datosPersonales.estadoCivil' => 'required',
+                    // 'datosPersonales.sexo' => 'required',
+                    // 'datosPersonales.fechaNacimiento' => 'required',
+
+
+                    'codigoFamilia' => 'required',
                 ];
             case 3:
                 return [
                     'codigoFamilia' => 'required',
                 ];
-
+            case 4:
+                return [
+                    'codigoFamilia' => 'required',
+                ];
+            case 5:
+                return [
+                    'codigoFamilia' => 'required',
+                ];
 
             default:
                 return [
@@ -103,6 +114,10 @@ class CrearMigrante extends Component
     #[On('next-step')]
     public function nextStep()
     {
+        if ($this->step == 5) {
+            die();
+        }
+
         try {
             // esta funcion llama a $this->rules()
             $this->validate();
