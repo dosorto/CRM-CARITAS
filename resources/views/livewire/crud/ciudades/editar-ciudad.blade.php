@@ -1,5 +1,5 @@
 <x-modal form-action="editar">
-    
+
     <x-slot name="title">
         Editar Ciudad
     </x-slot>
@@ -13,18 +13,118 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Escribir aquí..." required />
             </div>
-            <div class="mb-2 w-1/3">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departamento</label>
-                <select wire:model="departamento_id"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required>
-                    <option selected>Seleccionar...</option>
-                    @foreach($departamentos as $depto)
-                        <option value="{{ $depto->id }}">{{ $depto->nombre_departamento }}</option>
-                    @endforeach
-                </select>
-            </div>
         </div>
+
+        {{--
+            AQUI VA LO NUEVOOOOOOOOOOOOOOOOOOOOOOOOO
+        --}}
+
+        @if ($departamento_seleccionado)
+
+            <div class="border border-gray-600 rounded-lg mt-8 p-4 flex-col">
+
+                <div class="flex justify-center mb-4 text-lg font-bold">
+                    Departamento Seleccionado
+                </div>
+
+                <div class="flex gap-2 mt-2">
+                    <p class="font-bold">
+                        Nombre del Departamento:
+                    </p>
+                    <p>
+                        {{ $departamento->nombre_departamento }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="flex mt-6 justify-center">
+                <button type="button" wire:click="limpiar_departamento"
+                    class="dark:bg-slate-900 bg-slate-700 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">Cambiar
+                    Departamento Seleccionado</button>
+            </div>
+
+            {{-- <div class="flex mt-6 justify-center">
+                    <button type="submit"
+                        class="dark:bg-green-800 dark:hover:bg-green-700 text-white py-2 px-5 rounded">Crear</button>
+                </div> --}}
+        @else
+            <div class="flex-col mb-2 w-full gap-2 items-end">
+
+                {{-- Buscador --}}
+                <div class="flex-col">
+                    <div class="flex justify-start">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Departamento</label>
+                    </div>
+                    <div class="flex h-full">
+                        <input type="text" wire:model.live="texto_busqueda"
+                            class="ps-3 text-sm rounded-s text-gray-900 border-y border-gray-300 w-full bg-gray-50 focus:ring-gray-500 focus:border-gray-900 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Buscar...">
+
+                        {{-- Ícono de Búsqueda de la derecha --}}
+                        <div class="relative w-[50px]">
+                            <div
+                                class="flex justify-center items-center h-full w-full rounded-e-lg hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm border-s-gray-100 dark:border-s-gray-700 focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <label for="table-search" class="sr-only">Search Icon</label>
+
+                                <svg class="w-[18px] h-[18px] text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="-1 -1 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="3" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="overflow-x-auto overflow-y-auto mt-4 rounded-lg max-h-[180px]"
+                    style="scrollbar-width: thin; scrollbar-color: #4b5563 #1f2937;">
+                    <!-- Ajusta max-h según sea necesario -->
+                    <table class="min-w-full text-xs text-left text-gray-500 dark:text-gray-400 border border-gray-700">
+                        <thead class="text-xs uppercase bg-gray-100 dark:bg-slate-900 dark:text-gray-400">
+                            <tr>
+                                <th class="px-2 py-2">Departamento</th>
+                                <th class="px-2 py-2">Seleccionar</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if ($departamentos_filtrados->isEmpty())
+                                <tr>
+                                    <td colspan="4" class="w-full p-4 text-sm text-center">
+                                        No hay resultados
+                                    </td>
+                                </tr>
+                            @else
+                                @foreach ($departamentos_filtrados as $departamento)
+                                    <tr class="bg-white border-b dark:bg-slate-800 dark:border-gray-700">
+                                        <td class="px-2 py-2">
+                                            {{ $departamento->nombre_departamento }}
+                                        </td>
+                                        <td class="px-2 py-2">
+
+                                            <button type="button" title="Seleccionar Departamento"
+                                                wire:click="seleccionar_departamento({{ $departamento->id }})"
+                                                class="relative group text-white bg-green-800 hover:bg-green-700 focus:bg-green-900 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center me-2">
+                                                <svg class="w-4 h-4 text-white" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
 
     </x-slot>
 
@@ -38,4 +138,3 @@
 
     </x-slot>
 </x-modal>
-
