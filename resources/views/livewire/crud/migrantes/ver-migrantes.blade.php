@@ -21,7 +21,7 @@
                         <div class="w-1/3">
                             <select wire:model="atributo"
                                 class="hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm rounded-s-lg border-s-gray-100 dark:border-s-gray-700 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="numero_identificacion">Número de Identificación</option>
+                                <option value="numero_identificacion">Identificación</option>
                                 <option value="nombres">Primer / Segundo Nombre</option>
                                 <option value="apellidos">Primer / Segundo Apellido</option>
                                 <option value="codigo_familiar">Código Familiar</option>
@@ -45,7 +45,6 @@
                                 <div
                                     class="flex justify-center items-center h-full w-full rounded-e-lg hover:bg-gray-300 bg-gray-200 border border-gray-300 text-gray-900 text-sm border-s-gray-100  focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     {{-- <label for="table-search" class="sr-only">Search Icon</label> --}}
-
 
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
