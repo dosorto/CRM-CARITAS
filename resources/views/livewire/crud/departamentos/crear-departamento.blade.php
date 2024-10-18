@@ -44,7 +44,7 @@
 
                 <div class="flex mt-6 justify-center">
                     <button type="button" wire:click="limpiarPais"
-                        class="dark:bg-slate-800 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">Cambiar
+                        class="dark:bg-slate-900 bg-slate-700 dark:hover:bg-gray-600 text-white py-2 px-5 rounded">Cambiar
                         País Seleccionado</button>
                 </div>
 
