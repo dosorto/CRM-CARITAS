@@ -3,7 +3,7 @@
 
 <head>
     <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        // On page load or when changing themes, best to add inline in head to avoid FOUC
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
                 '(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -26,8 +26,8 @@
 
         <livewire:layout.side-bar />
 
-        <div class="p-4 sm:ml-64">
-            <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-600">
+        <div class="p-2 sm:ml-64">
+            <div class="p-2 border-gray-200 rounded-lg dark:border-gray-600">
 
                 {{ $slot }}
 
@@ -83,5 +83,7 @@
 
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 </html>
