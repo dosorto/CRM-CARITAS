@@ -22,7 +22,8 @@
 
                 {{-- Logo de la Barra Lateral --}}
                 <a href="#" class="flex items-center ps-2.5 mb-5">
-                    <img src="storage/images/logo-white.png" class="h-12 me-6 sm:h-14" alt="Flowbite Logo" />
+                    <img src="{{ asset('storage/images/logo-white.png') }}" class="h-12 me-6 sm:h-14"
+                        alt="Flowbite Logo" />
                 </a>
             </div>
             {{-- Elementos de la barra lateral --}}

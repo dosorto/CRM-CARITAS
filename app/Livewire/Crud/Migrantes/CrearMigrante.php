@@ -3,102 +3,127 @@
 namespace App\Livewire\Crud\Migrantes;
 
 use App\Models\Migrante;
-use App\Models\Pais;
+use Livewire\Attributes\On;
 use Illuminate\Validation\ValidationException;
+use App\Models\Pais;
+
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 
 class CrearMigrante extends Component
 {
-    // Paso 1, datos personales
+    // Paso 1 y 2, datos personales
     public $datosPersonales = [];
 
-    // public $nombres;
-    // public $apellidos;
-    // public $tipo_identificacion;
-    // public $numero_identificacion;
-    // public $estado_civil;
-    // public $sexo;
-    // public $es_lgbt = false;
-    // public $pais_id;
-    // public $fecha_nacimiento;
-
-    // paso 2, datos familiares
-    public $codigoFamilia;
-
-
-    // variables para búsqueda familiar
-    public $tiene_familiar = false;
+    // Paso 3, familiar
+    public $tieneFamiliar = true;
     public $familiar_seleccionado = false;
     public $texto_busqueda = '';
     public $atributo = 'numero_identificacion';
     public $familiar;
+    public $codigoFamilia;
 
-    // Variables para el control de los pasos
-    public $step = 1;
+
+    // Control de pasos
+    public $step;
+    public $migranteEncontrado = 0;
+
+
+    public function mount()
+    {
+        $this->step = 1;
+        $this->generarNuevoCodigoFamiliar();
+    }
+
+    public function render()
+    {
+        $migrantes_filtrados = $this->texto_busqueda == '' ? collect([]) : $this->filtrar();
+        $paises = Pais::all();
+        return view('livewire.crud.migrantes.crear-migrante')
+            ->with('migrantes_filtrados', $migrantes_filtrados)
+            ->with('paises', $paises);
+    }
+
+    public function buscarExpediente()
+    {
+        try {
+            // this function calls $this->rules()
+            $this->validate();
+            $this->migranteEncontrado = Migrante::where(
+                'numero_identificacion',
+                $this->datosPersonales['numeroIdentificacion']
+            )->first();
+        } catch (ValidationException $e) {
+            session()->flash('error', 'Este campo es requerido.');
+        }
+    }
+
 
     public function rules()
     {
-        return $this->validarPaso();
-    }
-
-    public function validarPaso()
-    {
         switch ($this->step) {
-                // Datos Personales
+
+                // Paso 1: Buscar por Identificación
             case 1:
                 return [
-                    'datosPersonales.nombres' => 'required',
-                    // 'datosPersonales.apellidos' => 'required',
-                    // 'datosPersonales.tipoIdentificacion' => 'required',
-                    // 'datosPersonales.numeroIdentificacion' => 'required',
-                    // 'datosPersonales.estadoCivil' => 'required',
-                    // 'datosPersonales.sexo' => 'required',
-                    // 'datosPersonales.idPais' => 'required',
-                    // 'datosPersonales.fechaNacimiento' => 'required',
+                    'datosPersonales.numeroIdentificacion' => 'required',
                 ];
 
-                // Registro Familiar
+                // Registrar Datos Personales
             case 2:
                 return [
-                    'codigoFamilia' => 'required'
+                    'datosPersonales.nombres' => 'required',
+                    'datosPersonales.apellidos' => 'required',
+                    'datosPersonales.tipoIdentificacion' => 'required',
+                    'datosPersonales.estadoCivil' => 'required',
+                    'datosPersonales.sexo' => 'required',
+                    'datosPersonales.fechaNacimiento' => 'required',
                 ];
             case 3:
                 return [
-                    
+                    'codigoFamilia' => 'required',
                 ];
 
 
             default:
-                return [];
+                return [
+                    'codigoFamilia' => 'required',
+                ];
         }
     }
 
-    public function test()
+    #[On('previous-step')]
+    public function previousStep()
     {
-        dd($this->datosPersonales, $this->codigoFamilia);
+        if ($this->step !== 1) {
+
+            $this->step--;
+        }
     }
 
+    #[On('next-step')]
     public function nextStep()
     {
         try {
-
-            // this function calls $this->rules()
+            // esta funcion llama a $this->rules()
             $this->validate();
+
+            // validaciones del primer paso
+            if ($this->step === 1) {
+                // No ha buscado ninguna vez al migrante
+                if ($this->migranteEncontrado === 0 || $this->datosPersonales['numeroIdentificacion'] === '') {
+                    return session()->flash('error', 'Debe buscar el registro antes de avanzar');
+                }
+                // Encontró al migrante, se salta al paso 4.
+                elseif ($this->migranteEncontrado) {
+                    return $this->step = 4;
+                }
+                $this->migranteEncontrado = 0;
+            }
 
             $this->step++;
         } catch (ValidationException $e) {
-
+            session()->flash('error', 'Verifique que todos los campos necesarios estén llenos...');
         }
-    }
-
-    public function previousStep()
-    {
-        $this->step--;
-    }
-    public function buscar()
-    {
-        $this->filtrar();
     }
 
     public function generarNuevoCodigoFamiliar()
@@ -117,20 +142,9 @@ class CrearMigrante extends Component
     {
         $nuevo_migrante = new Migrante;
 
-        $nuevo_migrante->primer_nombre =
-            $nuevo_migrante->segundo_nombre =
-            $nuevo_migrante->primer_apellido =
-            $nuevo_migrante->segundo_apellido =
-            $nuevo_migrante->numero_identificacion =
-            $nuevo_migrante->tipo_identificacion =
-            $nuevo_migrante->estado_civil =
-            $nuevo_migrante->es_lgbt =
-            $nuevo_migrante->sexo =
-            $nuevo_migrante->pais_id =
-            $nuevo_migrante->fecha_nacimiento =
-            $nuevo_migrante->codigo_familiar =
 
-            $nuevo_migrante->save();
+
+        // $nuevo_migrante->save();
 
         $this->redirect('/migrantes');
     }
@@ -163,17 +177,8 @@ class CrearMigrante extends Component
         $this->texto_busqueda = '';
     }
 
-    public function mount()
+    public function buscar()
     {
-        $this->generarNuevoCodigoFamiliar();
-    }
-
-    public function render()
-    {
-        $migrantes_filtrados = $this->texto_busqueda == '' ? collect([]) : $this->filtrar();
-        $paises = Pais::all();
-        return view('livewire.crud.migrantes.crear-migrante')
-            ->with('migrantes_filtrados', $migrantes_filtrados)
-            ->with('paises', $paises);
+        $this->filtrar();
     }
 }

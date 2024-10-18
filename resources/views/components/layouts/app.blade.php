@@ -20,7 +20,7 @@
     <title>EXODO</title>
 </head>
 
-<body class="dark:bg-gray-900">
+<body class="dark:bg-gray-900 dark:text-gray-300">
 
     <div class="size-full">
 

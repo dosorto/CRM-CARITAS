@@ -7,9 +7,9 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="dark">
+        <div>
             <div class="mb-2 flex gap-2">
-                <p class="font-bold">Nombre Completo:</p>
+                <p class="font-bold">Nombre:</p>
                 <p>
                     {{ $migrante->primer_nombre .
                         ' ' .
