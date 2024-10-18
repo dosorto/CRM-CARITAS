@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-2">
-            <div class="col-span-1">
+            <div class="col-span-1 dark:text-white">
                 <x-chartjs-component :chart="$chartDonut" />
             </div>
             <div class="col-span-2">
@@ -53,17 +53,16 @@
     </div>
 
     <div class=" h-auto">
-        <a href="" class="grid grid-cols-1 md:grid-cols-5 gap-4 p-4">
-            <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 justify-center">
+        <a href="/administracion" class="flex flex-col items-start p-2 w-auto">
+            <div
+                class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-slate-800 dark:border-gray-700 justify-center">
                 <div class="w-full flex flex-wrap justify-center p-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 26 26"><path fill="#A9A9A9" d="M16.563 15.9c-.159-.052-1.164-.505-.536-2.414h-.009c1.637-1.686 2.888-4.399 2.888-7.07c0-4.107-2.731-6.26-5.905-6.26c-3.176 0-5.892 2.152-5.892 6.26c0 2.682 1.244 5.406 2.891 7.088c.642 1.684-.506 2.309-.746 2.396c-3.324 1.203-7.224 3.394-7.224 5.557v.811c0 2.947 5.714 3.617 11.002 3.617c5.296 0 10.938-.67 10.938-3.617v-.811c0-2.228-3.919-4.402-7.407-5.557m-5.516 8.709c0-2.549 1.623-5.99 1.623-5.99l-1.123-.881c0-.842 1.453-1.723 1.453-1.723s1.449.895 1.449 1.723l-1.119.881s1.623 3.428 1.623 6.018c0 .406-3.906.312-3.906-.028"/></svg>
+                    @svg('grommet-user-admin', 'w-16 h-16')
                 </div>
-                <div class="font-semibold text-xl flex justify-center dark:text-white pb-3">
-                    <p>Administrador</p>
+                <div class="font-semibold flex justify-center dark:text-gray-300 pb-3">
+                    <p>Administración</p>
                 </div>
             </div>
         </a>
-
-
     </div>
 </div>

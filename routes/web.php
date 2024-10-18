@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Administracion;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Crud\Ciudades\VerCiudades;
@@ -26,9 +27,9 @@ use App\Livewire\Crud\Faltas\CrearFalta;
 use App\Livewire\Empleados\Empleados;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 // Route::view('dashboard', 'dashboard')
@@ -38,6 +39,13 @@ Route::get('/', function () {
 Route::get('/', Dashboard::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::get('/administracion', Administracion::class)
+    ->middleware(['auth', 'verified'])
+    ->name('administracion');
+
+
+
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
