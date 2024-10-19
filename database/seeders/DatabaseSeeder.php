@@ -49,10 +49,10 @@ class DatabaseSeeder extends Seeder
 
         // aqui mio xd
 
-        $role1 = Role::create(['name' => 'Administrador']);
-        Permission::create(['name' => 'Administrador'])->assignRole($role1);
+        $role = Role::create(['name' => 'admin']);
+        // Permission::create(['name' => 'Administrador'])->assignRole($role1);
 
-        $role = Role::find(1);
+        // $role = Role::find(1);
 
 
 

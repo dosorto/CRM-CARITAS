@@ -89,8 +89,13 @@
                                 <td class="px-6 py-3 flex gap-2">
                                     <div>
                                         {{-- Boton VerPermisos --}}
-                                        <button type="button" {{-- Con este evento del boton se invoca el modal de Editar --}}
-
+                                        <button type="button" {{-- Con este evento del boton se invoca el modal de VerPermisos --}}
+                                        wire:click="
+                                        $dispatch(
+                                            'openModal', {
+                                                    component: 'crud.roles.permisos-asignados',
+                                                    arguments: { id: {{ $item->id }} }}
+                                            )"
                                             class="text-gray-800 dark:text-white bg-amber-300 hover:bg-yellow-300 focus:bg-amber-400 font-medium rounded-lg text-sm pl-2 pr-4 py-2 text-center inline-flex items-center me-2 dark:bg-slate-700 dark:hover:bg-slate-600 dark:focus:bg-zinc-700">
 
                                             <svg class="w-5 h-4 text-gray-800 dark:text-white" aria-hidden="true"
