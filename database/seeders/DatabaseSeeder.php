@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             PaisSeeder::class,
             DepartamentoSeeder::class,
             CiudadSeeder::class,
+            MobiliarioSeeder::class,
 
         ]);
 
