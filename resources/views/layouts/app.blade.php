@@ -1,36 +1,91 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>ÉXODO</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <livewire:layout.navigation />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/theme-switcher.js'])
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+</head>
+
+<body class="bg-neutral">
+
+    {{-- Drawer --}}
+    <div class="drawer sm:drawer-open">
+
+        {{-- Input oculto para activar/desactivar la sidebar --}}
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+
+        {{-- Contenido de la página --}}
+        <div class="drawer-content flex flex-col items-center justify-center">
+            <div class="flex justify-start w-full">
+                <label for="my-drawer-2" class="btn drawer-button sm:hidden m-2 px-2 dark:text-slate-400">
+                    <span class="icon-[ri--menu-unfold-3-fill] size-10"></span>
+                </label>
+            </div>
+
+            {{ $slot }}
+
         </div>
-    </body>
+
+        {{-- Barra Lateral como tal (Por alguna razón está abajo) --}}
+        <div class="drawer-side z-50">
+            {{-- No se que hace este label --}}
+            <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
+
+            {{-- Contenedor principal de la barra lateral --}}
+            <div class="bg-primary text-base-content min-h-full w-64 flex flex-col">
+
+                {{-- Logo de la Barra Lateral --}}
+                <div class="px-4 pt-4">
+                    <a href="#" class="flex items-center pl-2.5 w-full">
+                        <img id="logo" src="{{ asset('storage/images/logo-white.png') }}" class="h-16 me-6 sm:h-14"
+                            alt="Logo" />
+                    </a>
+                </div>
+
+                {{-- Grupo de elementos de enlace --}}
+                <div class="p-4 flex-grow text-primary-content">
+                    <livewire:components.icon-link-group />
+                </div>
+
+                
+                <div class="p-4">
+                    <livewire:components.theme-switcher />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Immediately set initial theme to prevent flash of wrong theme
+        (function() {
+            function getTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    return savedTheme === 'dark';
+                }
+                return window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+
+            const isDark = getTheme();
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</body>
+
 </html>

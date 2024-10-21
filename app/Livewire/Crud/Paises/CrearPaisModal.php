@@ -4,10 +4,10 @@ namespace App\Livewire\Crud\Paises;
 
 use Livewire\Component;
 
-class VerPaises extends Component
+class CrearPaisModal extends Component
 {
     public function render()
     {
-        return view('livewire.crud.paises.ver-paises');
+        return view('livewire.crud.paises.crear-pais-modal');
     }
 }
