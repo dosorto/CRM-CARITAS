@@ -1,6 +1,6 @@
 <label>
-    <a href="{{ route($route) }}" class="btn w-full h-full active:scale-95 hover:scale-105 shadow-xl rounded-2xl p-0">
-        <div class="card bg-base-100 {{ $cardWidth }}">
+    <a href="{{ route($route) }}" class="btn w-full h-full active:scale-95 hover:scale-105 shadow-lg rounded-lg p-0">
+        <div class="card bg-base-100 rounded-lg {{ $cardWidth }}">
             <div class="card-body flex flex-row justify-center p-4">
 
                 <div class="flex justify-center items-center">

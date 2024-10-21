@@ -11,71 +11,63 @@
             <div class="h-full flex flex-col">
 
                 {{-- Contenedor encima de la tabla --}}
-                <section class="flex flex-row justify-between py-4">
+                <section class="flex justify-between py-4">
+
                     {{-- Buscador --}}
-                    <div class="join">
-                        <select class="select join-item w-full">
-                            <option value="nombre">Nombre</option>
-                            <option value="codigo_iso">Código</option>
+                    <div class="join w-[55%]">
+                        <select wire:model.live="atributo"
+                            class="select join-item w-min bg-accent">
+                            <option value="Nombre">Nombre</option>
+                            <option value="CodigoAlfa3">Código Alfa 3</option>
+                            <option value="CodigoNumerico">Código Numérico</option>
                         </select>
-                        <input class="input join-item" placeholder="Buscar..." />
+                        <label class=" w-full input join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
+
+                            <input wire:model.live="texto_a_buscar" placeholder="Buscar..." type="text"/>
+                            <span class="icon-[map--search] size-5 text-gray-400"></span>
+                        </label>
                     </div>
+
                     {{-- Botones --}}
-                    <div class="join">
-                        <livewire:crud.paises.crear-pais-modal />    
+                    <div class="join w-[45%] flex justify-end gap-4">
+                        <button wire:click="limpiarFiltros"
+                            class="btn btn-accent text-base-content">
+                            Limpiar Filtro
+                        </button>
+                        <livewire:crud.paises.crear-pais-modal />
                     </div>
+
                 </section>
 
                 {{-- Tabla --}}
-                <article class="flex-grow overflow-y-auto rounded-xl border-2">
+                <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent">
                     <table class="table table-pin-rows">
-                        <thead class="text-lg">
-                            <tr>
-                                <th>A</th>
+                        <thead class="text-base">
+                            <tr class="border-b border-l border-accent bg-accent">
+                                <th>Nombre del País</th>
+                                <th>Código ISO Alfa 3</th>
+                                <th>Código ISO Numérico</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tbody class="">
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <tr>
-                                <td>Ant-Man</td>
-                            </tr>
-                            <!-- Repeat rows as needed -->
+                        <tbody class="text-base">
+                            @foreach ($paises as $pais)
+                                <tr class="border border-accent">
+                                    <td>{{ $pais->nombre_pais }}</td>
+                                    <td>{{ $pais->codigo_alfa3 }}</td>
+                                    <td>{{ $pais->codigo_numerico }}</td>
+                                    <td>
+                                        Botones
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </article>
             </div>
         </main>
         <footer class="mt-auto h-auto py-4">
-            Paginación
+            {{ $paises->links() }}
         </footer>
     </div>
 </div>

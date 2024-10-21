@@ -27,13 +27,15 @@ module.exports = {
                 light: {
                     ...require("daisyui/src/theming/themes")["light"],
                     "primary":          "#981915",  // Color de Fondo de la sidebar
-                    "primary-content":  "#D1D5DB",  // Color del contenido de la Sidebar
+                    "primary-content":  "#F1F5FB",  // Color del contenido de la Sidebar
 
                     "neutral":          "#FFFFFF",  // Color del Fondo Completo de la página
 
                     "base-100":         "#EFDFDF",  // Color de fondo de elementos varios por encima del fondo general
-                    "base-content":     "#3A3232",  // Color de los textos e íconos de los elementos en el fondo general
+                    "base-content":     "#2A2222",  // Color de los textos e íconos de los elementos en el fondo general
                     
+                    "accent":           "#E3DFDF",  // Color del encabezado de tablas, bordes y elementos de formulario especiales  
+                    "accent-content":   "#F6EFEF",  // Color del cuerpo de las tablas y elementos de formulario comunes
                 },
                 dark: {
                     ...require("daisyui/src/theming/themes")["dark"],
@@ -46,18 +48,19 @@ module.exports = {
                     "base-100":         "#1F2937",  // Color de fondo de elementos varios por encima del fondo general
                     "base-content":     "#FAFAFA",  // Color de los textos e íconos de los elementos en el fondo general                              
 
-                    
-
                     "base-200":         "#1961FD",              
                     "base-300":         "#0f172a", 
                     
+                    "accent":           "#536074",       
+                    "accent-content":   "#424D5F",  
+
                     // Sin usar por el momento
                     "secondary":        "#AAAAAA",  
                     "secondary-content":"#AAAAAA",       
-                    "accent":           "#37cdbe",       
-                    "accent-content":   "#37cdbe",       
+                         
    
-                    "info":             "#3b82f6",     
+                    "info":             "#172554",  
+                       
                     "info-content":     "#3b82f6",     
                     "success":          "#16a34a",      
                     "success-content":  "#16a34a",      
