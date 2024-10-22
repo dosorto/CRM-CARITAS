@@ -15,24 +15,25 @@
 
                     {{-- Buscador --}}
                     <div class="join w-[55%]">
-                        <select wire:model.live="atributo"
-                            class="select join-item w-min bg-accent">
+                        <select wire:model.live="atributo" class="select join-item w-min bg-accent">
                             <option value="Nombre">Nombre</option>
                             <option value="CodigoAlfa3">Código Alfa 3</option>
                             <option value="CodigoNumerico">Código Numérico</option>
                         </select>
-                        <label class=" w-full input join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
-
-                            <input wire:model.live="texto_a_buscar" placeholder="Buscar..." type="text"/>
+                        <label
+                            class=" w-full input join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
+                            <input wire:model.live="texto_a_buscar" placeholder="Buscar..." type="text" />
                             <span class="icon-[map--search] size-5 text-gray-400"></span>
                         </label>
                     </div>
 
                     {{-- Botones --}}
                     <div class="join w-[45%] flex justify-end gap-4">
-                        <button wire:click="limpiarFiltros"
-                            class="btn btn-accent text-base-content">
-                            Limpiar Filtro
+                        <button wire:click="limpiarFiltros" class="btn btn-accent text-base-content">
+                            <span class="icon-[mingcute--broom-line] size-6"></span>
+                            <p>
+                                Limpiar Filtro
+                            </p>
                         </button>
                         <livewire:crud.paises.crear-pais-modal />
                     </div>
