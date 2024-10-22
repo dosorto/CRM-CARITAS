@@ -5,6 +5,7 @@ namespace App\Livewire\Components;
 use Livewire\Component;
 
 use App\Livewire\Components\ContentTable;
+use Livewire\Attributes\On;
 
 class BuscadorDinamico extends Component
 {
@@ -30,5 +31,12 @@ class BuscadorDinamico extends Component
         $this->dispatch('search-text-changed', textToFind: $this->textToFind, colSelected: $this->fakeColNames[$this->colSelected]);
         return view('livewire.components.buscador-dinamico')
             ->with('fakeColNames', $this->fakeColNames);
+    }
+
+    #[On('limpiar-filtros-clicked')]
+    public function limpiar()
+    {
+        $this->textToFind = '';
+        $this->colSelected = array_key_first($this->fakeColNames);
     }
 }
