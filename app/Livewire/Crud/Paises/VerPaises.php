@@ -5,37 +5,26 @@ namespace App\Livewire\Crud\Paises;
 use App\Models\Pais;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\WithoutUrlPagination;
 
 class VerPaises extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
-    public $atributo = 'Nombre';
-    public $texto_a_buscar = '';
-
-    public $columnasFalsas = [
-        'Nombre' => 'nombre_pais',
-        'CodigoAlfa3' => 'codigo_alfa3',
-        'CodigoNumerico' => 'codigo_numerico',
+    public $fakeColNames = [
+        'Nombre del Pais' => 'nombre_pais',
+        'Codigo alfa-3' => 'codigo_alfa3',
+        'Codigo Numérico' => 'codigo_numerico',
     ];
-
-    public function filtrar()
-    {
-        $datos = Pais::where($this->columnasFalsas[$this->atributo], 'LIKE', '%' . $this->texto_a_buscar . '%')->paginate(30);
-        $this->resetpage();
-        return $datos;
-    }
-
-    public function limpiarFiltros()
-    {
-        $this->texto_a_buscar = '';
-        $this->resetpage();
-    }
 
     public function render()
     {
-        $paises = $this->filtrar();
-         return view('livewire.crud.paises.ver-paises')
-            ->with('paises', $paises);
+        $colNames = ['Nombre del País', 'Código alfa-3', 'Código Numérico'];
+        $keys = ['nombre_pais', 'codigo_alfa3', 'codigo_numerico'];
+
+        return view('livewire.crud.paises.ver-paises')
+            ->with('colNames', $colNames)
+            ->with('keys', $keys)
+            ->with('itemClass', Pais::class);
     }
 }
