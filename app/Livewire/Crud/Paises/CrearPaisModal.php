@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Paises;
 
+use App\Models\Pais;
 use Livewire\Component;
 
 class CrearPaisModal extends Component
@@ -12,11 +13,20 @@ class CrearPaisModal extends Component
 
     public function  crear()
     {
-        $this->validate([
+        $validated = $this->validate([
             'Nombre' => 'required',
-            'Alfa3' => 'required',
-            'Numerico' => 'required',
+            'Alfa3' => 'required|size:3',
+            'Numerico' => 'required|size:3',
         ]);
+
+        $nuevoPais = new Pais;
+        $nuevoPais->nombre_pais = $validated['Nombre'];
+        $nuevoPais->codigo_alfa3 = $validated['Alfa3'];
+        $nuevoPais->codigo_numerico = $validated['Numerico'];
+
+        $nuevoPais->save();
+        $this->dispatch('cerrar-modal');
+        $this->dispatch('pais-created');
     }
 
     public function render()

@@ -11,7 +11,7 @@
         
             {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
             <span wire:loading.remove class="icon-[map--search] size-5 text-gray-400"></span>
-            <span wire:loading class="loading loading-dots loading-md"></span>
+            <span wire:loading class="loading loading-dots"></span>
             {{-- <span class="loading loading-dots loading-md"></span> --}}
         </label>
         

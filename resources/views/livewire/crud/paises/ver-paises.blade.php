@@ -3,7 +3,7 @@
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Paises</h1>
         <div>
-            Apartados Extra
+            Cosas aparte...
         </div>
     </header>
 
@@ -12,7 +12,7 @@
 
         {{-- Buscador --}}
         <div class="w-[55%]">
-            <livewire:components.buscador-dinamico :fakeColNames="$fakeColNames"/>
+            <livewire:components.buscador-dinamico :fakeColNames="$fakeColNames" />
         </div>
 
         {{-- Botones --}}
@@ -22,8 +22,5 @@
         </div>
     </section>
 
-
-
     <livewire:components.content-table :colNames="$colNames" :keys="$keys" :itemClass="$itemClass" />
-
 </div>

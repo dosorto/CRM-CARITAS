@@ -6,6 +6,7 @@ use App\Models\Pais;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithoutUrlPagination;
+use Livewire\Attributes\On;
 
 class VerPaises extends Component
 {
@@ -26,5 +27,10 @@ class VerPaises extends Component
             ->with('colNames', $colNames)
             ->with('keys', $keys)
             ->with('itemClass', Pais::class);
+    }
+
+    #[On('pais-created')]
+    public function paisCreated(){
+        $this->resetPage();
     }
 }
