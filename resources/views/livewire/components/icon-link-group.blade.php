@@ -9,6 +9,10 @@
     </a>
     <a href="{{ route('ver-paises') }}" class="btn btn-primary w-full flex justify-start">
         <span class="icon-[tdesign--location-setting] size-5"></span>
-        Administrar Paises
+        Paises
+    </a>
+    <a href="{{ route('ver-departamentos') }}" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[tdesign--location-setting] size-5"></span>
+        Departamentos
     </a>
 </div>
