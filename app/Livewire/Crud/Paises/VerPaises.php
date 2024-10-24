@@ -29,7 +29,7 @@ class VerPaises extends Component
             ->with('itemClass', Pais::class);
     }
 
-    #[On('pais-created')]
+    #[On('item-created')]
     public function paisCreated(){
         $this->resetPage();
     }

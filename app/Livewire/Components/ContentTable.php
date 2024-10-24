@@ -10,7 +10,7 @@ class ContentTable extends Component
 {
     use WithPagination;
 
-    protected $pagination = 30;
+    protected $paginationSize;
 
     public $colNames;
     public $keys;
@@ -18,21 +18,22 @@ class ContentTable extends Component
     public $textToFind = '';
     public $colSelected;
 
-    public function mount($colNames, $keys, $itemClass)
+    public function mount($colNames, $keys, $itemClass, $paginationSize)
     {
         $this->colNames = $colNames;
         $this->keys = $keys;
         $this->itemClass = $itemClass;
         $this->colSelected = array_key_first($colNames);
+        $this->paginationSize = $paginationSize;
     }
 
     public function filterData()
     {
         
         return $this->textToFind === '' ?
-            $this->itemClass::paginate($this->pagination)
+            $this->itemClass::paginate($this->paginationSize)
             :
-            $this->itemClass::where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%')->paginate($this->pagination);
+            $this->itemClass::where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%')->paginate($this->paginationSize);
     }
 
     public function render()
@@ -53,6 +54,6 @@ class ContentTable extends Component
         $this->colSelected = $colSelected;
     }
 
-    #[On('pais-created')]
-    public function paisCreated(){}
+    #[On('item-created')]
+    public function itemCreated(){}
 }
