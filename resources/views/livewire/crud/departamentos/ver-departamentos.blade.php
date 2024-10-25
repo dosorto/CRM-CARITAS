@@ -1,6 +1,7 @@
 <div class="h-screen w-full flex flex-col px-5">
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
+        
         <h1 class="text-xl font-bold">Departamentos</h1>
         <div>
             Cosas aparte...
@@ -18,7 +19,7 @@
         {{-- Botones --}}
         <div class="join w-[45%] flex justify-end gap-4">
             <livewire:components.limpiar-filtros />
-            <livewire:crud.paises.crear-pais-modal />
+            <livewire:crud.departamentos.crear-departamento-modal />
         </div>
     </section>
 

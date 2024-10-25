@@ -3,7 +3,7 @@
 namespace App\Livewire\Crud\Paises;
 
 use Livewire\Component;
-use App\Models\Pais;
+use Livewire\Attributes\On;
 
 class EditarPaisModal extends Component
 {
@@ -31,12 +31,17 @@ class EditarPaisModal extends Component
         $this->dispatch('item-edited');
     }
 
-    public function mount($parameters)
+    public function initForm()
     {
-        $this->pais = $parameters['item'];
         $this->Nombre = $this->pais->nombre_pais;
         $this->Alfa3 = $this->pais->codigo_alfa3;
         $this->Numerico = $this->pais->codigo_numerico;
+    }
+
+    public function mount($parameters)
+    {
+        $this->pais = $parameters['item'];
+        $this->initForm();
     }
 
     public function render()

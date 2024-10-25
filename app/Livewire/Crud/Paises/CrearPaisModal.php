@@ -26,7 +26,7 @@ class CrearPaisModal extends Component
 
         $nuevoPais->save();
         $this->dispatch('cerrar-modal');
-        $this->dispatch('pais-created');
+        $this->dispatch('item-created');
     }
 
     public function render()

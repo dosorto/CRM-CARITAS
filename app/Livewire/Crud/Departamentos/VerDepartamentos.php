@@ -4,8 +4,6 @@ namespace App\Livewire\Crud\Departamentos;
 
 use App\Models\Departamento;
 use Livewire\Component;
-use Livewire\WithPagination;
-use Livewire\WithoutUrlPagination;
 
 class VerDepartamentos extends Component
 {
@@ -31,20 +29,19 @@ class VerDepartamentos extends Component
         'codigo_departamento', 
         'pais.nombre_pais'];
 
-    public $actions = [];
-    // public $actions = [
-    //     [
-    //         'name' => 'edit',
-    //         'component' => 'crud.departamentos.editar-departamento-modal',
-    //         'params' => []
-    //     ],
-    //     [
-    //         'name' => 'delete',
-    //         'component' => 'crud.departamentos.editar-departamento-modal',
-    //         'params' => []
-    //     ]
-    // ];
-    public $paginationSize = 30;
+    public $actions = [
+        [
+            'name' => 'edit',
+            'component' => 'crud.departamentos.editar-departamento-modal',
+            'params' => []
+        ],
+        [
+            'name' => 'delete',
+            'component' => 'crud.departamentos.eliminar-departamento-modal',
+            'params' => []
+        ],
+    ];
+    public $paginationSize = 15;
     public $itemClass = Departamento::class;
 
     public function render()

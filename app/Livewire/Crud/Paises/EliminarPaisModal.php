@@ -9,9 +9,11 @@ class EliminarPaisModal extends Component
 {
     public $pais;
 
-    public function deletepais()
+    public function deleteItem()
     {
         $this->pais->delete();
+        $this->dispatch('cerrar-modal');
+        $this->dispatch('item-deleted');
     }
 
     public function mount($parameters)

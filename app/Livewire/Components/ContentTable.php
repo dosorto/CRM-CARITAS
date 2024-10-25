@@ -58,7 +58,9 @@ class ContentTable extends Component
     }
 
     #[On('item-created')]
-    public function itemCreated(){$this->resetPage();}
+    public function itemCreated(){}
     #[On('item-edited')]
-    public function itemEdited(){$this->resetPage();}
+    public function itemEdited(){}
+    #[On('item-deleted')]
+    public function itemDeleted(){}
 }
