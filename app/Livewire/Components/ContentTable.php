@@ -18,13 +18,16 @@ class ContentTable extends Component
     public $textToFind = '';
     public $colSelected;
 
-    public function mount($colNames, $keys, $itemClass, $paginationSize)
+    public $actions = [];
+
+    public function mount($colNames, $keys, $itemClass, $paginationSize, $actions = [0])
     {
         $this->colNames = $colNames;
         $this->keys = $keys;
         $this->itemClass = $itemClass;
         $this->colSelected = array_key_first($colNames);
         $this->paginationSize = $paginationSize;
+        $this->actions = $actions;
     }
 
     public function filterData()

@@ -23,6 +23,8 @@ class VerPaises extends Component
         $colNames = ['Nombre del País', 'Código alfa-3', 'Código Numérico'];
         $keys = ['nombre_pais', 'codigo_alfa3', 'codigo_numerico'];
 
+        $actions = [];
+
         return view('livewire.crud.paises.ver-paises')
             ->with('colNames', $colNames)
             ->with('keys', $keys)

@@ -12,26 +12,30 @@
             </thead>
             <tbody class="text-base">
                 @foreach ($items as $item)
-                <tr wire:key="{{ $item->id }}" class="border border-accent">
-                    @foreach ($keys as $key)
-                        @php
-                            // Separar los niveles de relación, ej: 'pais.nombre_pais'
-                            $keyParts = explode('.', $key);
-                            $value = $item;
-            
-                            // Iterar sobre las partes del key para llegar al valor final
-                            foreach ($keyParts as $part) {
-                                if ($value) {
-                                    $value = $value->{$part};
+                    <tr wire:key="{{ $item->id }}" class="border border-accent">
+                        @foreach ($keys as $key)
+                            @php
+                                // Separar los niveles de relación, ej: 'pais.nombre_pais'
+                                $keyParts = explode('.', $key);
+                                $value = $item;
+
+                                // Iterar sobre las partes del key para llegar al valor final
+                                foreach ($keyParts as $part) {
+                                    if ($value) {
+                                        $value = $value->{$part};
+                                    }
                                 }
-                            }
-                        @endphp
-                        <td>{{ $value }}</td>
-                    @endforeach
-                    <td>
-                        Botones...
-                    </td>
-                </tr>
+                            @endphp
+                            <td>{{ $value }}</td>
+                        @endforeach
+                        {{-- Modal de eliminar --}}
+                        <td class="flex gap-2">
+                            <livewire:dynamic-component
+                                :wire:key="'crud.paises.eliminar-pais-modal' . '-' . $item->id"
+                                :component="'crud.paises.eliminar-pais-modal'" 
+                                :id="$item->id">
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
