@@ -36,6 +36,7 @@ module.exports = {
                     
                     "accent":           "#E3DFDF",  // Color del encabezado de tablas, bordes y elementos de formulario especiales  
                     "accent-content":   "#F6EFEF",  // Color del cuerpo de las tablas y elementos de formulario comunes
+                    
                
                 },
                 dark: {
@@ -66,7 +67,7 @@ module.exports = {
                     "success":          "#16a34a",      
                     "success-content":  "#16a34a",      
                     "warning":          "#f59e0b",     
-                    "warning-content":  "#f59e0b",     
+                    "warning-content":  "#FFFFFF",     
                     "error":            "#dc2626",   
                     "error-content":    "#dc2626",
                 },

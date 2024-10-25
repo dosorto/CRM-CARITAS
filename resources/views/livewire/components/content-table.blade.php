@@ -28,12 +28,13 @@
                             @endphp
                             <td>{{ $value }}</td>
                         @endforeach
-                        {{-- Modal de eliminar --}}
                         <td class="flex gap-2">
+                            @foreach ($actions as $action)
                             <livewire:dynamic-component
-                                :wire:key="'crud.paises.eliminar-pais-modal' . '-' . $item->id"
-                                :component="'crud.paises.eliminar-pais-modal'" 
-                                :id="$item->id">
+                                :wire:key="$action['name'] . '-' . $item->id"
+                                :component="$action['component']"
+                                :parameters="array_merge(['item' => $item], $action['parameters'] ?? [])" />
+                            @endforeach
                         </td>
                     </tr>
                 @endforeach
@@ -42,7 +43,7 @@
     </article>
 
     {{-- Footer fijo en el fondo --}}
-    <footer class="h-min py-4 border-t border-accent mb-0">
+    <footer class="py-4 border-t border-accent mb-0">
         {{ $items->links() }}
     </footer>
 </main>

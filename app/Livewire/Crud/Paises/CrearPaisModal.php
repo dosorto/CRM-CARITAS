@@ -11,7 +11,7 @@ class CrearPaisModal extends Component
     public $Alfa3;
     public $Numerico;
 
-    public function  crear()
+    public function  create()
     {
         $validated = $this->validate([
             'Nombre' => 'required',

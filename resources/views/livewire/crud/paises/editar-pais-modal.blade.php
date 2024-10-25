@@ -1,17 +1,16 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="crearPaisModal" class="btn btn-accent text-base-content gap-2 pl-3">
-        <span class="icon-[material-symbols--add-location-rounded] size-6"></span>
-        Añadir
+    <label for="editPaisModal-{{$pais->id}}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
+        <span class="icon-[line-md--edit] size-4"></span>
     </label>
 
     {{-- Modal --}}
-    <input type="checkbox" id="crearPaisModal" class="modal-toggle" />
+    <input type="checkbox" id="editPaisModal-{{$pais->id}}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-2/3 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
-            <h3 class="text-lg font-bold text-center">Añadir País</h3>
+            <h3 class="text-lg font-bold text-center">Editar País</h3>
 
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
@@ -58,11 +57,11 @@
                 <div wire:loading class="flex items-center p-3">
                     <span class="loading loading-dots size-6 text-gray-400"></span>
                 </div>
-                <button type="button" wire:click="create" class="btn btn-success text-base-content gap-1 pl-3">
-                    <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
-                    Crear
+                <button type="button" wire:click="edit" class="btn btn-success text-base-content gap-1 pl-3">
+                    <span class="icon-[material-symbols--save] size-5"></span>
+                    Guardar
                 </button>
-                <label for="crearPaisModal" class="btn btn-accent text-base-content">Cancelar</label>
+                <label for="editPaisModal-{{$pais->id}}" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
@@ -71,7 +70,7 @@
     <script>
         $wire.on('cerrar-modal', () => {
             // Cerrar el modal desactivando el checkbox
-            document.getElementById('crearPaisModal').checked = false;
+            document.getElementById('editPaisModal-{{$pais->id}}').checked = false;
         });
     </script>
 @endscript

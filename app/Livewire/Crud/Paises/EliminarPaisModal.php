@@ -7,16 +7,21 @@ use Livewire\Component;
 
 class EliminarPaisModal extends Component
 {
-    public $id;
+    public $pais;
 
-    public function mount($id)
+    public function deletepais()
     {
-        $this->id = $id;
+        $this->pais->delete();
+    }
+
+    public function mount($parameters)
+    {
+        $this->pais = $parameters['item'];
     }
 
     public function render()
     {
         return view('livewire.crud.paises.eliminar-pais-modal')
-            ->with('pais', Pais::find($this->id));
+            ->with('pais', $this->pais);
     }
 }

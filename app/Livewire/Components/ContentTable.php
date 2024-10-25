@@ -10,29 +10,28 @@ class ContentTable extends Component
 {
     use WithPagination;
 
-    protected $paginationSize;
-
+    
     public $colNames;
     public $keys;
+    public $paginationSize;
     public $itemClass;
+    public $actions = [];
+
     public $textToFind = '';
     public $colSelected;
 
-    public $actions = [];
-
-    public function mount($colNames, $keys, $itemClass, $paginationSize, $actions = [0])
+    public function mount($colNames, $keys, $paginationSize = 15, $itemClass, $actions)
     {
         $this->colNames = $colNames;
         $this->keys = $keys;
-        $this->itemClass = $itemClass;
-        $this->colSelected = array_key_first($colNames);
         $this->paginationSize = $paginationSize;
+        $this->itemClass = $itemClass;
         $this->actions = $actions;
-    }
+        $this->colSelected = array_key_first($colNames);
+     }
 
     public function filterData()
     {
-        
         return $this->textToFind === '' ?
             $this->itemClass::paginate($this->paginationSize)
             :
@@ -45,7 +44,8 @@ class ContentTable extends Component
         return view('livewire.components.content-table')
             ->with('colNames', $this->colNames)
             ->with('keys', $this->keys)
-            ->with('items', $items);
+            ->with('items', $items)
+            ->with('actions', $this->actions);
     }
 
 
@@ -58,5 +58,7 @@ class ContentTable extends Component
     }
 
     #[On('item-created')]
-    public function itemCreated(){}
+    public function itemCreated(){$this->resetPage();}
+    #[On('item-edited')]
+    public function itemEdited(){$this->resetPage();}
 }
