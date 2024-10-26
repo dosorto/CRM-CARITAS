@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Livewire\Crud\Mobiliarios;
+
+use App\Models\Mobiliario;
+use Livewire\Component;
+use Livewire\Attributes\Lazy;
+
+#[Lazy()]
+class VerMobiliarios extends Component
+{
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div class="size-full h-screen flex items-center justify-center">
+            <span class="loading loading-ring loading-lg"></span>
+        </div>
+        HTML;
+    }
+    // Esto es para el buscador
+    // $fakeColNames = [
+    //     'Nombre que aparece en el select' => 'nombre del atributo'
+    // ]
+    public $fakeColNames = [
+        'Nombre del Mobiliario' => 'nombre_mobiliario',
+        'Código' => 'codigo',
+
+    ];
+
+    // Nombre de los encabezados de las columnas
+    public $colNames = [
+        'Código',
+        'Nombre del Mobiliario',
+        'Descripción',
+        'Estado',
+        'Ubicación',
+        'Categoría',
+        'SubCategoría',
+    ];
+
+    // Atributos, deben estar en el mismo orden que las $colNames
+    public $keys = [
+        'codigo',
+        'nombre_mobiliario',
+        'descripcion',
+        'estado',
+        'ubicacion',
+        'subcategoria.categoria.nombre_categoria',
+        'subcategoria.nombre_subcategoria',
+    ];
+
+    public $actions = [
+        [
+            'name' => 'edit',
+            'component' => 'crud.mobiliarios.editar-mobiliario-modal',
+            'parameters' => ['idModal' => 'editPaisModal']
+        ],
+        [
+            'name' => 'delete',
+            'component' => 'crud.mobiliarios.eliminar-mobiliario-modal',
+            'parameters' => ['idModal' => 'deletePaisModal']
+        ]
+    ];
+    public $paginationSize = 30;
+    public $itemClass = Mobiliario::class;
+    public $idCreateModal = "createPaisModal";
+
+    public function render()
+    {
+        return view('livewire.crud.mobiliarios.ver-mobiliarios');
+    }
+}

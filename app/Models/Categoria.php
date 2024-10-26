@@ -14,7 +14,7 @@ class Categoria extends Model
 
     protected $table = 'categorias';
 
-    public function subcategorias():HasMany
+    public function subcategorias(): HasMany
     {
         return $this->hasMany(SubCategoria::class); // Relación con subcategorías
     }
