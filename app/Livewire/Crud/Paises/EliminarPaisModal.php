@@ -20,7 +20,7 @@ class EliminarPaisModal extends Component
 
     public function mount($parameters)
     {
-        $this->pais = Pais::find($parameters['id']);
+        $this->pais = $parameters['item'];
     }
 
     public function render()
