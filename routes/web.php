@@ -10,6 +10,9 @@ use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Usuarios\Usuarios;
 use App\Livewire\Crud\Roles\VerRoles;
 use App\Livewire\Crud\Permisos\VerPermisos;
+use App\Livewire\Crud\Categorias\VerCategorias;
+use App\Livewire\Crud\SubCategorias\VerSubCategorias;
+use App\Livewire\Crud\Mobiliarios\VerMobiliarios;
 
 
 // Route::view('/', 'welcome');
@@ -85,6 +88,9 @@ Route::get('/ciudades', VerCiudades::class);
 
 Route::get('/pais', VerPaises::class);
 Route::get('/departamento', VerDepartamentos::class);
+Route::get('/categorias', VerCategorias::class);
+Route::get('/subcategorias', VerSubCategorias::class);
+Route::get('/mobiliarios', VerMobiliarios::class);
 Route::get('/empleados', Empleados::class);
 Route::get('/recuperar-contrasena', PasswordRecovery::class)->name('password.recovery');
 

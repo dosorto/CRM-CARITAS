@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             PaisSeeder::class,
             DepartamentoSeeder::class,
             CiudadSeeder::class,
+            CategoriaSeeder::class,
+            SubCategoriaSeeder::class,
             MobiliarioSeeder::class,
 
         ]);
@@ -49,8 +51,8 @@ class DatabaseSeeder extends Seeder
 
         // aqui mio xd
 
-        $role = Role::create(['name' => 'admin']);
-        // Permission::create(['name' => 'Administrador'])->assignRole($role1);
+        $role1 = Role::create(['name' => 'Administrador']);
+        Permission::create(['name' => 'Administrador'])->assignRole($role1);
 
         // $role = Role::find(1);
 
@@ -88,6 +90,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'ibaquedano@unah.hn',
             'password' => Hash::make('12345678'),
             'empleado_id' => 2
-        ])->assignRole($role);
+        ]);
     }
 }

@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mobiliarios', function (Blueprint $table) {
+        Schema::create('articulos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_mobiliario', length: 100);
-            $table->string('descripcion')->nullable();
-            $table->string('codigo', length: 60)->nullable();
-            $table->string('estado', length: 5);
-            $table->string('ubicacion', length: 10);
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('codigo_barra')->unique()->nullable();
+            $table->integer('cantidad_stock');
 
             $table->unsignedBigInteger('subcategoria_id');
             $table->foreign('subcategoria_id')->references('id')->on('subcategorias');
-            
+
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mobiliarios');
+        Schema::dropIfExists('articulos');
     }
 };

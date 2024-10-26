@@ -14,8 +14,8 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
 
-        //Permisos del DASHBOARD
-        Permission::create(['name' => 'Administrar Dashboard']);
+        // //Permisos del DASHBOARD
+        Permission::create(['name' => 'Ver Dashboard']);
 
         //Permisos del CRUD PAIS
         Permission::create(['name' => 'Administrar Paises']);
@@ -30,6 +30,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Administrar Roles']);
 
         //Permisos del CRUD PERMISOS
+         Permission::create(['name' => 'Ver Permisos']);
         Permission::create(['name' => 'Administrar Permisos']);
 
         //Permisos del CRUD ROLES

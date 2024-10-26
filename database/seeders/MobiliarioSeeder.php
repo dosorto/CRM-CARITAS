@@ -15,13 +15,57 @@ class MobiliarioSeeder extends Seeder
     public function run(): void
     {
         DB::table('mobiliarios')->insert([
-            ['nombre_mobiliario' => 'Cama', 'descripcion' => 'Cama de cuarto en buen estado', 'codigo_barra' => null, 'codigo' => 'CA-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa'],
-            ['nombre_mobiliario' => 'Estufa', 'descripcion' => 'Estufa eléctrica de cuatro quemadores', 'codigo_barra' => null, 'codigo' => 'ES-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa'],
-            ['nombre_mobiliario' => 'Mesa', 'descripcion' => 'Mesa de comedor para seis personas', 'codigo_barra' => null, 'codigo' => 'ME-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa'],
-            ['nombre_mobiliario' => 'Televisor', 'descripcion' => 'Televisor de 42 pulgadas', 'codigo_barra' => null, 'codigo' => 'TE-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa'],
-            ['nombre_mobiliario' => 'Sillón', 'descripcion' => 'Sillón reclinable de sala', 'codigo_barra' => null, 'codigo' => 'SI-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa'],
-            ['nombre_mobiliario' => 'Refrigerador', 'descripcion' => 'Refrigerador grande con congelador', 'codigo_barra' => null, 'codigo' => 'RE-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa'],
-            ['nombre_mobiliario' => 'Lámpara', 'descripcion' => 'Lámpara de mesa', 'codigo_barra' => null, 'codigo' => 'LA-CC00001', 'estado' => 'Bueno', 'ubicacion' => 'Casa']
+            ['nombre_mobiliario' => 'Televisor', 
+            'descripcion' => 'Televisor LG LCD 32 pulg',  
+            'codigo' => 'PSCCH-000001', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 1],
+            
+            ['nombre_mobiliario' => 'Sintonizador de Televisor', 
+            'descripcion' => 'Sintonizador de T.V digital marca TENKO',  
+            'codigo' => 'PSCCH-000002', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 2],
+
+
+            ['nombre_mobiliario' => 'Estufa Eléctrica', 
+            'descripcion' => 'Estufa eléctrica gris de cuatro quemadores',  
+            'codigo' => 'PSCCH-000003', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 3],
+
+
+            ['nombre_mobiliario' => 'Ventilador', 
+            'descripcion' => 'Ventilador gris', 
+            'codigo' => 'PSCCH-000004', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 4],
+
+
+            ['nombre_mobiliario' => 'Mesa', 
+            'descripcion' => 'Mesa grande de comedor, color roble oscuro',
+            'codigo' => 'PSCCH-000005', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 14],
+
+            ['nombre_mobiliario' => 'Estante', 
+            'descripcion' => 'Estante de cocina',
+            'codigo' => 'PSCCH-000006', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 16],
+
+            ['nombre_mobiliario' => 'Ropero', 
+            'descripcion' => 'Ropero de ropa', 
+            'codigo' => 'PSCCH-000007', 
+            'estado' => 'Bueno', 
+            'ubicacion' => 'Bodega', 
+            'subcategoria_id' => 17]
         ]);
     }
 }
