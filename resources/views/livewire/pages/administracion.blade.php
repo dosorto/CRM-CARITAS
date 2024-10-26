@@ -17,6 +17,10 @@
                 <livewire:components.link-card title="Departamentos" cardWidth=" w-full"
                     iconClass="icon-[vaadin--flag] size-6" route="ver-departamentos" />
             </article>
+            <article>
+                <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
+                    iconClass="icon-[vaadin--flag] size-6" route="ver-ciudades" />
+            </article>
         </main>
 
         {{-- Footer fijo en la parte inferior --}}

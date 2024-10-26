@@ -16,9 +16,11 @@ class EliminarPaisModal extends Component
         $this->dispatch('item-deleted');
     }
 
+    public function initInfo(){}
+
     public function mount($parameters)
     {
-        $this->pais = $parameters['item'];
+        $this->pais = Pais::find($parameters['id']);
     }
 
     public function render()

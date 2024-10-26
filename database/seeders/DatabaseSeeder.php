@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PaisSeeder::class,
             DepartamentoSeeder::class,
+            CiudadSeeder::class,
         ]);
     }
 }

@@ -26,7 +26,7 @@
         {{-- Contenido de la página --}}
         <div class="drawer-content flex flex-col items-center justify-center">
             <div class="flex justify-start w-full">
-                <label for="my-drawer-2" class="btn drawer-button sm:hidden m-2 px-2 dark:text-slate-400">
+                <label for="my-drawer-2" class="btn drawer-button sm:hidden m-2 px-2 btn-accent text-base-content">
                     <span class="icon-[ri--menu-unfold-3-fill] size-10"></span>
                 </label>
             </div>

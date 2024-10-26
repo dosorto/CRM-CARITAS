@@ -4,7 +4,6 @@ namespace App\Livewire\Components;
 
 use Livewire\Component;
 
-use App\Livewire\Components\ContentTable;
 use Livewire\Attributes\On;
 
 class BuscadorDinamico extends Component

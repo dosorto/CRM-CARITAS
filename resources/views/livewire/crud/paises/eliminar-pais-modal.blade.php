@@ -30,8 +30,8 @@
             </main>
 
             <div class="modal-action">
-                <div wire:loading class="flex items-center p-3">
-                    <span class="loading loading-dots size-6 text-gray-400"></span>
+                <div wire:loading class="flex items-center p-2 justify-start size-full">
+                    <span class="loading loading-spinner loading-md text-gray-400"></span>
                 </div>
                 <button type="button" wire:click="deleteItem" class="btn btn-error text-primary-content gap-1 pl-3">
                     <span class="icon-[mingcute--delete-2-fill] size-5"></span>

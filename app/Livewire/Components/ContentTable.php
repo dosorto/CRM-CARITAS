@@ -10,7 +10,10 @@ class ContentTable extends Component
 {
     use WithPagination;
 
-    
+    protected $listeners = [
+        'search-text-changed' => '$refresh',
+    ];
+
     public $colNames;
     public $keys;
     public $paginationSize;
@@ -20,15 +23,6 @@ class ContentTable extends Component
     public $textToFind = '';
     public $colSelected;
 
-    public function mount($colNames, $keys, $paginationSize = 15, $itemClass, $actions)
-    {
-        $this->colNames = $colNames;
-        $this->keys = $keys;
-        $this->paginationSize = $paginationSize;
-        $this->itemClass = $itemClass;
-        $this->actions = $actions;
-        $this->colSelected = array_key_first($colNames);
-     }
 
     public function filterData()
     {
@@ -37,6 +31,18 @@ class ContentTable extends Component
             :
             $this->itemClass::where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%')->paginate($this->paginationSize);
     }
+
+    public function mount($colNames, $keys, $paginationSize = 15, $itemClass, $actions)
+    {
+        $this->colNames = $colNames;
+        $this->keys = $keys;
+        $this->paginationSize = $paginationSize;
+        $this->itemClass = $itemClass;
+        $this->actions = $actions;
+        $this->colSelected = array_key_first($colNames);
+    }
+
+    
 
     public function render()
     {
@@ -58,9 +64,9 @@ class ContentTable extends Component
     }
 
     #[On('item-created')]
-    public function itemCreated(){}
+    public function itemCreated() {}
     #[On('item-edited')]
-    public function itemEdited(){}
+    public function itemEdited() {}
     #[On('item-deleted')]
-    public function itemDeleted(){}
+    public function itemDeleted() {}
 }

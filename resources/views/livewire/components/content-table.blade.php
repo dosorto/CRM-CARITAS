@@ -30,10 +30,10 @@
                         @endforeach
                         <td class="flex gap-2">
                             @foreach ($actions as $action)
-                            <livewire:dynamic-component
-                                :wire:key="$action['name'] . '-' . $item->id"
-                                :component="$action['component']"
-                                :parameters="array_merge(['item' => $item], $action['parameters'] ?? [])" />
+                                <livewire:dynamic-component
+                                    :wire:key="$action['name'] . '-' . $item->id"
+                                    :component="$action['component']"
+                                    :parameters="array_merge(['item' => $item], $action['parameters'] ?? [])"/>
                             @endforeach
                         </td>
                     </tr>

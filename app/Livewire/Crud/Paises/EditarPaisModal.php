@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Paises;
 
+use App\Models\Pais;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
@@ -12,7 +13,7 @@ class EditarPaisModal extends Component
     public $Numerico;
     public $pais;
 
-    public function  edit()
+    public function  editItem()
     {
         $validated = $this->validate([
             'Nombre' => 'required',
@@ -40,7 +41,7 @@ class EditarPaisModal extends Component
 
     public function mount($parameters)
     {
-        $this->pais = $parameters['item'];
+        $this->pais = Pais::find($parameters['id']);
         $this->initForm();
     }
 

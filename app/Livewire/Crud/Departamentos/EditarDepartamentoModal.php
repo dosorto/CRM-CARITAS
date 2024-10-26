@@ -13,7 +13,7 @@ class EditarDepartamentoModal extends Component
     public $IdPais;
     public $paises;
     
-    public function edit()
+    public function editItem()
     {
         $validated = $this->validate([
             'Nombre' => 'required',

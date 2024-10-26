@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Departamentos;
 
+use App\Models\Departamento;
 use Livewire\Component;
 
 class EliminarDepartamentoModal extends Component
@@ -19,6 +20,8 @@ class EliminarDepartamentoModal extends Component
     {
         $this->depto = $parameters['item'];
     }
+
+    public function initInfo(){}
 
     public function render()
     {

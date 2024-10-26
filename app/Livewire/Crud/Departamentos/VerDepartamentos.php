@@ -3,10 +3,20 @@
 namespace App\Livewire\Crud\Departamentos;
 
 use App\Models\Departamento;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
+#[Lazy()]
 class VerDepartamentos extends Component
 {
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div class="size-full h-screen flex items-center justify-center">
+            <span class="loading loading-ring loading-lg"></span>
+        </div>
+        HTML;
+    }
     // Esto es para el buscador
     // $fakeColNames = [
     //     'Nombre que aparece en el select' => 'nombre del atributo'

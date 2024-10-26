@@ -1,6 +1,6 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="crearPaisModal" class="btn btn-accent text-base-content gap-2 pl-3">
+    <label for="crearDepartamentoModal" class="btn btn-accent text-base-content gap-2 pl-3">
         <span class="icon-[material-symbols--add-location-rounded] size-6"></span>
         Añadir
     </label>
@@ -10,7 +10,7 @@
         <div class="modal-box w-2/3 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
-            <h3 class="text-lg font-bold text-center">Editar Departamento</h3>
+            <h3 class="text-lg font-bold text-center">Añadir Departamento</h3>
 
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
@@ -42,7 +42,7 @@
                     {{-- País --}}
                     <div class="w-[47%] flex flex-col">
                         <label class="mb-1">País</label>
-                        <select wire:model="IdPais" class="input bg-accent text-neutral-content">
+                        <select wire:model="IdPais" class="select bg-accent text-base-content">
                             {{-- <option value="">Seleccione...</option> --}}
                             @foreach ($paises as $pais)
                                 <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
@@ -53,12 +53,12 @@
             </main>
 
             <div class="modal-action">
-                <div wire:loading class="flex items-center p-3">
-                    <span class="loading loading-dots size-6 text-gray-400"></span>
+                <div wire:loading class="flex items-center p-2 justify-start size-full">
+                    <span class="loading loading-spinner loading-md text-gray-400"></span>
                 </div>
-                <button type="button" wire:click="crear" class="btn btn-success text-base-content gap-1 pl-3">
-                    <span class="icon-[material-symbols--save] size-5"></span>
-                    Guardar
+                <button type="button" wire:click="create" class="btn btn-success text-base-content gap-1 pl-3">
+                    <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
+                    Crear
                 </button>
                 <label for="crearDepartamentoModal" class="btn btn-accent text-base-content">Cancelar</label>
             </div>

@@ -4,9 +4,20 @@ namespace App\Livewire\Crud\Paises;
 
 use App\Models\Pais;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 
+#[Lazy()]
 class VerPaises extends Component
 {
+    // Anillo de Cargando cuando el componente tarda
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div class="size-full h-screen flex items-center justify-center">
+            <span class="loading loading-ring loading-lg"></span>
+        </div>
+        HTML;
+    }
     // Esto es para el buscador
     // $fakeColNames = [
     //     'Nombre que aparece en el select' => 'nombre del atributo'

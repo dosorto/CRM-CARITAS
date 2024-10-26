@@ -15,4 +15,8 @@
         <span class="icon-[tdesign--location-setting] size-5"></span>
         Departamentos
     </a>
+    <a href="{{ route('ver-ciudades') }}" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[tdesign--location-setting] size-5"></span>
+        Ciudades
+    </a>
 </div>

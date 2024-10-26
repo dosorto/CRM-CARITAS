@@ -13,7 +13,7 @@ class CrearDepartamentoModal extends Component
     public $IdPais;
     public $paises;
 
-    public function crear()
+    public function create()
     {
         $validated = $this->validate([
             'Nombre' => 'required',
@@ -23,17 +23,26 @@ class CrearDepartamentoModal extends Component
 
         $nuevoDepto = new Departamento();
         $nuevoDepto->nombre_departamento = $validated['Nombre'];
-        $nuevoDepto->codigo_departamento = $validated['Alfa3'];
-        $nuevoDepto->pais_id = $validated['Numerico'];
+        $nuevoDepto->codigo_departamento = $validated['Codigo'];
+        $nuevoDepto->pais_id = $validated['IdPais'];
 
         $nuevoDepto->save();
         $this->dispatch('cerrar-modal');
         $this->dispatch('item-created');
     }
 
-    public function mount()
+    public function initForm()
     {
         $this->paises = Pais::all();
+        $this->Nombre = '';
+        $this->Codigo = '';
+        // Honduras
+        $this->IdPais = 74;
+    }
+
+    public function mount()
+    {
+        $this->initForm();
     }
 
     public function render()
