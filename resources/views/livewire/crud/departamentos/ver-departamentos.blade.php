@@ -19,7 +19,7 @@
         {{-- Botones --}}
         <div class="join w-[45%] flex justify-end gap-4">
             <livewire:components.limpiar-filtros />
-            <livewire:crud.departamentos.crear-departamento-modal />
+            <livewire:crud.departamentos.crear-departamento-modal :idModal="$idCreateModal" />
         </div>
     </section>
 

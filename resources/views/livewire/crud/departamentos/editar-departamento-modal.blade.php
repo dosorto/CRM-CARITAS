@@ -1,10 +1,10 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="editDepartamentoModal-{{ $depto->id }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
         <span class="icon-[line-md--edit] size-4"></span>
     </label>
 
-    <input type="checkbox" id="editDepartamentoModal-{{ $depto->id }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-2/3 max-w-5xl bg-neutral">
 
@@ -42,12 +42,11 @@
                     <div class="w-[47%] flex flex-col">
                         <label class="mb-1">País</label>
                         <select wire:model="IdPais" class="select bg-accent text-base-content">
-                            {{-- <option value="">Seleccione...</option> --}}
                             @foreach ($paises as $pais)
-                                <option value="{{$pais->id}}">{{$pais->nombre_pais}}</option>
+                                <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
                             @endforeach
                         </select>
-                    </div> 
+                    </div>
                 </div>
             </main>
 
@@ -59,7 +58,7 @@
                     <span class="icon-[material-symbols--save] size-5"></span>
                     Guardar
                 </button>
-                <label for="editDepartamentoModal-{{ $depto->id }}"
+                <label for="{{ $idModal }}-{{ $item->id }}"
                     class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
@@ -67,7 +66,7 @@
 </div>
 @script
     <script>
-        document.getElementById('editDepartamentoModal-{{ $depto->id }}').addEventListener('change', function(event) {
+        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
                 $wire.initForm();
@@ -76,7 +75,7 @@
 
         $wire.on('cerrar-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('editDepartamentoModal-{{ $depto->id }}').checked = false;
+            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });
     </script>
 @endscript

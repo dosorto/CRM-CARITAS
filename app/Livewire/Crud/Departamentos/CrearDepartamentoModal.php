@@ -12,6 +12,7 @@ class CrearDepartamentoModal extends Component
     public $Codigo;
     public $IdPais;
     public $paises;
+    public $idModal;
 
     public function create()
     {
@@ -40,8 +41,9 @@ class CrearDepartamentoModal extends Component
         $this->IdPais = 74;
     }
 
-    public function mount()
+    public function mount($idModal)
     {
+        $this->idModal = $idModal;
         $this->initForm();
     }
 

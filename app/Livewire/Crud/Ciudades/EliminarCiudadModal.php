@@ -6,11 +6,12 @@ use Livewire\Component;
 
 class EliminarCiudadModal extends Component
 {
-    public $ciudad;
+    public $item;
+    public $idModal;
 
     public function deleteItem()
     {
-        $this->ciudad->delete();
+        $this->item->delete();
         $this->dispatch('cerrar-modal');
         $this->dispatch('item-deleted');
     }
@@ -19,7 +20,8 @@ class EliminarCiudadModal extends Component
 
     public function mount($parameters)
     {
-        $this->ciudad = $parameters['item'];
+        $this->item = $parameters['item'];
+        $this->idModal = $parameters['idModal'];
     }
 
     public function render()

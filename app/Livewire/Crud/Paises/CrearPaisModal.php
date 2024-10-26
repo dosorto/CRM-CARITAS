@@ -10,6 +10,7 @@ class CrearPaisModal extends Component
     public $Nombre;
     public $Alfa3;
     public $Numerico;
+    public $idModal;
 
     public function  create()
     {
@@ -27,6 +28,11 @@ class CrearPaisModal extends Component
         $nuevoPais->save();
         $this->dispatch('cerrar-modal');
         $this->dispatch('item-created');
+    }
+
+    public function mount($idModal)
+    {
+        $this->idModal = $idModal;
     }
 
     public function render()

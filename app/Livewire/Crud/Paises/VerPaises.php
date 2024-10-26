@@ -45,15 +45,18 @@ class VerPaises extends Component
     public $actions = [
         [
             'name' => 'edit',
-            'component' => 'crud.paises.editar-pais-modal'
+            'component' => 'crud.paises.editar-pais-modal',
+            'parameters' => ['idModal' => 'editPaisModal']
         ],
         [
             'name' => 'delete',
-            'component' => 'crud.paises.eliminar-pais-modal'
+            'component' => 'crud.paises.eliminar-pais-modal',
+            'parameters' => ['idModal' => 'deletePaisModal']
         ]
     ];
     public $paginationSize = 30;
     public $itemClass = Pais::class;
+    public $idCreateModal = "createPaisModal";
 
     public function render()
     {

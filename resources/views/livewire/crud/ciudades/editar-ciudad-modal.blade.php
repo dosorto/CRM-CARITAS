@@ -1,10 +1,10 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="editarCiudadModal-{{ $ciudad->id }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
         <span class="icon-[line-md--edit] size-4"></span>
     </label>
 
-    <input type="checkbox" id="editarCiudadModal-{{ $ciudad->id }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-1/3 max-w-5xl bg-neutral">
 
@@ -44,7 +44,7 @@
                     <span class="icon-[material-symbols--save] size-5"></span>
                     Guardar
                 </button>
-                <label for="editarCiudadModal-{{ $ciudad->id }}"
+                <label for="{{ $idModal }}-{{ $item->id }}"
                     class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
@@ -52,7 +52,7 @@
 </div>
 @script
     <script>
-        document.getElementById('editarCiudadModal-{{ $ciudad->id }}').addEventListener('change', function(event) {
+        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
                 $wire.initForm();
@@ -61,7 +61,7 @@
 
         $wire.on('cerrar-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('editarCiudadModal-{{ $ciudad->id }}').checked = false;
+            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });
     </script>
 @endscript

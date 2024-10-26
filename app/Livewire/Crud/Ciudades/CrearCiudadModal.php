@@ -9,7 +9,8 @@ use App\Models\Departamento;
 class CrearCiudadModal extends Component
 {
     public $Nombre;
-    public $IdDepto;
+    public $idDepto;
+    public $idModal;
     public $deptos;
     
     public function create()
@@ -21,7 +22,7 @@ class CrearCiudadModal extends Component
 
         $ciudadEdited = new Ciudad();
         $ciudadEdited->nombre_ciudad = $validated['Nombre'];
-        $ciudadEdited->departamento_id = $validated['IdDepto'];
+        $ciudadEdited->departamento_id = $validated['idDepto'];
 
         $ciudadEdited->save();
         $this->dispatch('cerrar-modal');
@@ -34,8 +35,9 @@ class CrearCiudadModal extends Component
         $this->Nombre = '';
     }
 
-    public function mount()
+    public function mount($idModal)
     {
+        $this->idModal = $idModal;
         $this->initForm();
     }
 

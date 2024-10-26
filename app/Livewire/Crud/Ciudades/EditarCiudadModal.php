@@ -7,10 +7,11 @@ use Livewire\Component;
 
 class EditarCiudadModal extends Component
 {
-    public $ciudad;
+    public $item;
     public $Nombre;
     public $IdDepto;
     public $deptos;
+    public $idModal;
     
     public function editItem()
     {
@@ -19,7 +20,7 @@ class EditarCiudadModal extends Component
             'IdDepto' => 'required',
         ]);
 
-        $ciudadEdited = $this->ciudad;
+        $ciudadEdited = $this->item;
         $ciudadEdited->nombre_ciudad = $validated['Nombre'];
         $ciudadEdited->departamento_id = $validated['IdDepto'];
 
@@ -30,14 +31,15 @@ class EditarCiudadModal extends Component
 
     public function initForm()
     {
-        $this->Nombre = $this->ciudad->nombre_ciudad;
-        $this->IdDepto = $this->ciudad->departamento->id;
+        $this->Nombre = $this->item->nombre_ciudad;
+        $this->IdDepto = $this->item->departamento->id;
         $this->deptos = Departamento::all();
     }
 
     public function mount($parameters)
     {
-        $this->ciudad = $parameters['item'];
+        $this->item = $parameters['item'];
+        $this->idModal = $parameters['idModal'];
         $this->initForm();
     }
 

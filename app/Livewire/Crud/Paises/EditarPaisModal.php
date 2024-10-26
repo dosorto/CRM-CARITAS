@@ -2,16 +2,15 @@
 
 namespace App\Livewire\Crud\Paises;
 
-use App\Models\Pais;
 use Livewire\Component;
-use Livewire\Attributes\On;
 
 class EditarPaisModal extends Component
 {
     public $Nombre;
     public $Alfa3;
     public $Numerico;
-    public $pais;
+    public $item;
+    public $idModal;
 
     public function  editItem()
     {
@@ -21,7 +20,7 @@ class EditarPaisModal extends Component
             'Numerico' => 'required|size:3',
         ]);
 
-        $paisEdited = $this->pais;
+        $paisEdited = $this->item;
 
         $paisEdited->nombre_pais = $validated['Nombre'];
         $paisEdited->codigo_alfa3 = $validated['Alfa3'];
@@ -34,14 +33,15 @@ class EditarPaisModal extends Component
 
     public function initForm()
     {
-        $this->Nombre = $this->pais->nombre_pais;
-        $this->Alfa3 = $this->pais->codigo_alfa3;
-        $this->Numerico = $this->pais->codigo_numerico;
+        $this->Nombre = $this->item->nombre_pais;
+        $this->Alfa3 = $this->item->codigo_alfa3;
+        $this->Numerico = $this->item->codigo_numerico;
     }
 
     public function mount($parameters)
     {
-        $this->pais = $parameters['item'];
+        $this->item = $parameters['item'];
+        $this->idModal = $parameters['idModal'];
         $this->initForm();
     }
 

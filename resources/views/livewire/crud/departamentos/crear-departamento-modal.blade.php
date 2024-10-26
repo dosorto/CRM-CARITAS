@@ -1,18 +1,17 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="crearDepartamentoModal" class="btn btn-accent text-base-content gap-2 pl-3">
+    <label for="{{ $idModal }}" class="btn btn-accent text-base-content gap-2 pl-3">
         <span class="icon-[material-symbols--add-location-rounded] size-6"></span>
         Añadir
     </label>
 
-    <input type="checkbox" id="crearDepartamentoModal" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-2/3 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Añadir Departamento</h3>
 
-            {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
 
                 {{-- Contenedor del nombre del Departamento --}}
@@ -60,14 +59,14 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear
                 </button>
-                <label for="crearDepartamentoModal" class="btn btn-accent text-base-content">Cancelar</label>
+                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
 </div>
 @script
     <script>
-        document.getElementById('crearDepartamentoModal').addEventListener('change', function(event) {
+        document.getElementById($idModal).addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
                 $wire.initForm();
@@ -76,7 +75,7 @@
 
         $wire.on('cerrar-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('crearDepartamentoModal').checked = false;
+            document.getElementById($idModal).checked = false;
         });
     </script>
 @endscript

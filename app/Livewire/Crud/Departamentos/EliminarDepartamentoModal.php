@@ -2,23 +2,24 @@
 
 namespace App\Livewire\Crud\Departamentos;
 
-use App\Models\Departamento;
 use Livewire\Component;
 
 class EliminarDepartamentoModal extends Component
 {
-    public $depto;
+    public $item;
+    public $idModal;
 
     public function deleteItem()
     {
-        $this->depto->delete();
+        $this->item->delete();
         $this->dispatch('cerrar-modal');
         $this->dispatch('item-deleted');
     }
 
     public function mount($parameters)
     {
-        $this->depto = $parameters['item'];
+        $this->item = $parameters['item'];
+        $this->idModal = $parameters['idModal'];
     }
 
     public function initInfo(){}

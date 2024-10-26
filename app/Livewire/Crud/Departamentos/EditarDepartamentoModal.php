@@ -7,11 +7,12 @@ use Livewire\Component;
 
 class EditarDepartamentoModal extends Component
 {
-    public $depto;
+    public $item;
     public $Nombre;
     public $Codigo;
     public $IdPais;
     public $paises;
+    public $idModal;
     
     public function editItem()
     {
@@ -21,11 +22,10 @@ class EditarDepartamentoModal extends Component
             'IdPais' => 'required',
         ]);
 
-        $deptoEdited = $this->depto;
+        $deptoEdited = $this->item;
         $deptoEdited->nombre_departamento = $validated['Nombre'];
         $deptoEdited->codigo_departamento = $validated['Codigo'];
         $deptoEdited->pais_id = $validated['IdPais'];
-
         $deptoEdited->save();
         $this->dispatch('cerrar-modal');
         $this->dispatch('item-edited');
@@ -33,15 +33,16 @@ class EditarDepartamentoModal extends Component
 
     public function initForm()
     {
-        $this->Nombre = $this->depto->nombre_departamento;
-        $this->Codigo = $this->depto->codigo_departamento;
-        $this->IdPais = $this->depto->pais->id;
+        $this->Nombre = $this->item->nombre_departamento;
+        $this->Codigo = $this->item->codigo_departamento;
+        $this->IdPais = $this->item->pais->id;
         $this->paises = Pais::all();
     }
 
     public function mount($parameters)
     {
-        $this->depto = $parameters['item'];
+        $this->item = $parameters['item'];
+        $this->idModal = $parameters['idModal'];
         $this->initForm();
     }
 

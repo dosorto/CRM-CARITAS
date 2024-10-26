@@ -1,11 +1,11 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="crearCiudadModal" class="btn btn-accent text-base-content gap-2 pl-3">
+    <label for="{{ $idModal }}" class="btn btn-accent text-base-content gap-2 pl-3">
         <span class="icon-[material-symbols--add-location-rounded] size-6"></span>
         Añadir
     </label>
 
-    <input type="checkbox" id="crearCiudadModal" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-1/3 max-w-5xl bg-neutral">
 
@@ -45,14 +45,14 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear
                 </button>
-                <label for="crearCiudadModal" class="btn btn-accent text-base-content">Cancelar</label>
+                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
 </div>
 @script
     <script>
-        document.getElementById('crearCiudadModal').addEventListener('change', function(event) {
+        document.getElementById($idModal).addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
                 $wire.initForm();
@@ -61,7 +61,7 @@
 
         $wire.on('cerrar-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('crearCiudadModal').checked = false;
+            document.getElementById($idModal).checked = false;
         });
     </script>
 @endscript

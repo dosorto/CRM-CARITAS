@@ -17,7 +17,7 @@ class VerCiudades extends Component
         </div>
         HTML;
     }
-    
+
     public $fakeColNames = [
         'Nombre de la Ciudad' => 'nombre_ciudad',
     ];
@@ -36,16 +36,17 @@ class VerCiudades extends Component
         [
             'name' => 'edit',
             'component' => 'crud.ciudades.editar-ciudad-modal',
-            'params' => []
+            'parameters' => ['idModal' => 'editCiudadModal']
         ],
         [
             'name' => 'delete',
             'component' => 'crud.ciudades.eliminar-ciudad-modal',
-            'params' => []
+            'parameters' => ['idModal' => 'deleteCiudadModal']
         ],
     ];
     public $paginationSize = 50;
     public $itemClass = Ciudad::class;
+    public $idCreateModal = 'crearCiudadModal';
 
     public function render()
     {

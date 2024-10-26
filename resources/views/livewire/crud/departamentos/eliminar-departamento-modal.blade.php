@@ -1,11 +1,11 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="eliminarDepartamentoModal-{{ $depto->id }}" class="btn btn-sm btn-error text-primary-content gap-2">
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-error text-primary-content gap-2">
         <span class="icon-[mingcute--delete-2-fill] size-4"></span>
     </label>
 
     {{-- Modal --}}
-    <input type="checkbox" id="eliminarDepartamentoModal-{{ $depto->id }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-1/2 max-w-5xl bg-neutral border-2 border-accent">
 
@@ -17,15 +17,15 @@
 
                 <div class="flex gap-1">
                     <strong>Nombre del Departamento:</strong>
-                    <p> {{ $depto->nombre_departamento }} </p>
+                    <p> {{ $item->nombre_departamento }} </p>
                 </div>
                 <div class="flex gap-1">
                     <strong>Código:</strong>
-                    <p> {{ $depto->codigo_departamento }} </p>
+                    <p> {{ $item->codigo_departamento }} </p>
                 </div>
                 <div class="flex gap-1">
                     <strong>País</strong>
-                    <p> {{ $depto->pais->nombre_pais }} </p>
+                    <p> {{ $item->pais->nombre_pais }} </p>
                 </div>
             </main>
 
@@ -37,7 +37,7 @@
                     <span class="icon-[mingcute--delete-2-fill] size-5"></span>
                     Confirmar
                 </button>
-                <label for="eliminarDepartamentoModal-{{ $depto->id }}"
+                <label for="{{ $idModal }}-{{ $item->id }}"
                     class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
@@ -45,7 +45,7 @@
 </div>
 @script
     <script>
-        document.getElementById('eliminarDepartamentoModal-{{ $depto->id }}').addEventListener('change', function(event) {
+        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
                 $wire.initInfo();
@@ -53,7 +53,7 @@
         });
         $wire.on('cerrar-modal', () => {
             // Cerrar el modal desactivando el checkbox
-            document.getElementById('eliminarDepartamentoModal-{{ $depto->id }}').checked = false;
+            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });
     </script>
 @endscript
