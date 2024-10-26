@@ -51,13 +51,20 @@
                     </a>
                 </div>
 
-                
+
                 {{-- Grupo de elementos de enlace --}}
                 <div class="p-4 flex-grow text-primary-content">
                     <livewire:components.icon-link-group />
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="px-4 py-2 font-semibold text-white bg-red-600 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
+                            Cerrar Sesión
+                        </button>
+                    </form>
                 </div>
 
-                
+
                 <div class="p-4">
                     <livewire:components.theme-switcher />
                 </div>
