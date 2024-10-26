@@ -5,9 +5,10 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Paises\VerPaises;
+use App\Livewire\Login;
 use App\Livewire\Pages\Administracion;
 
-Route::get('/', Dashboard::class);
+Route::get('/inicio', Dashboard::class);
 
 Route::get('/migrantes', Dashboard::class)->name('ver-migrantes');
 
@@ -18,6 +19,8 @@ Route::get('/paises', VerPaises::class)->name('ver-paises');
 Route::get('/departamentos', VerDepartamentos::class)->name('ver-departamentos');
 
 Route::get('/ciudades', VerCiudades::class)->name('ver-ciudades');
+
+Route::get('/', Login::class)->name('login');
 
 
 Route::get('/testing', function() {return '<div class="dropdown">
