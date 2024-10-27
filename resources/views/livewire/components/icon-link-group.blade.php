@@ -20,4 +20,8 @@
         Ciudades
     </a>
 
+    <a href="{{ route('ver-mobiliarios') }}" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[tdesign--location-setting] size-5"></span>
+        Mobiliario
+    </a>
 </div>

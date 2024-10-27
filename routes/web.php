@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
+use App\Livewire\Crud\Categorias\VerCategorias;
 use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Login;
 use App\Livewire\Pages\Administracion;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use App\Livewire\Crud\SubCategorias\VerSubCategorias;
+use App\Livewire\Crud\Mobiliarios\VerMobiliarios;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -34,6 +37,12 @@ Route::get('/ciudades', VerCiudades::class)
 
 Route::get('/', Login::class)
     ->name('login');
+
+Route::get('/categorias', VerCategorias::class)->name('ver-categorias');
+
+Route::get('/subcategorias', VerSubCategorias::class)->name('ver-sub-categorias');
+
+Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
 
 
 Route::post('/logout', function () {

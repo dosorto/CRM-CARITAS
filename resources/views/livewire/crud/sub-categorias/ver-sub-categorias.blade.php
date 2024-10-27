@@ -1,7 +1,7 @@
 <div class="h-screen w-full flex flex-col px-5">
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
-        <h1 class="text-xl font-bold">Paises</h1>
+        <h1 class="text-xl font-bold">Subcategorías</h1>
         <div>
             Cosas aparte...
         </div>
@@ -18,7 +18,7 @@
         {{-- Botones --}}
         <div class="join w-[45%] flex justify-end gap-4">
             <livewire:components.limpiar-filtros />
-            <livewire:crud.paises.crear-pais-modal :idModal="$idCreateModal"/>
+            <livewire:crud.sub-categorias.crear-sub-categoria-modal :idModal="$idCreateModal"/>
         </div>
     </section>
 
