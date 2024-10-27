@@ -84,6 +84,7 @@ class CrearMobiliarioModal extends Component
 
         $validated = $this->validate([
             'Nombre' => 'required',
+            'Ubicacion' => 'required|max:10',
         ]);
 
         if ($this->Estado === "") {
@@ -95,12 +96,12 @@ class CrearMobiliarioModal extends Component
         
         $nuevo_mobiliario = new Mobiliario;
 
-        $nuevo_mobiliario->nombre_mobiliario = $validated['nombre'];
+        $nuevo_mobiliario->nombre_mobiliario = $validated['Nombre'];
         $nuevo_mobiliario->descripcion = $this->Descripcion;
-        $nuevo_mobiliario->codigo = $validated['codigo'];
+        $nuevo_mobiliario->codigo = $this->Codigo;
         $nuevo_mobiliario->estado = $estado;
-        $nuevo_mobiliario->ubicacion = $this->Ubicacion;
-        $nuevo_mobiliario->subcategoria_id = $validated['IdSubcategoria'];
+        $nuevo_mobiliario->ubicacion = $validated['Ubicacion'];
+        $nuevo_mobiliario->subcategoria_id = $this->IdSubcategoria;
 
         $nuevo_mobiliario->save();
 

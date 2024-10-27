@@ -60,7 +60,7 @@ class VerMobiliarios extends Component
             'parameters' => ['idModal' => 'infoMobiliarioModal']
         ]
     ];
-    public $paginationSize = 30;
+    public $paginationSize = 6;
     public $itemClass = Mobiliario::class;
     public $idCreateModal = "createMobiliarioModal";
 
