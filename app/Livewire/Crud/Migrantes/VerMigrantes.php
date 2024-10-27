@@ -5,10 +5,15 @@ namespace App\Livewire\Crud\Migrantes;
 use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\On;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 #[Lazy()]
 class VerMigrantes extends Component
 {
+    use WithPagination, WithoutUrlPagination;
+
     public function placeholder()
     {
         return <<<'HTML'
@@ -20,51 +25,40 @@ class VerMigrantes extends Component
 
     public $fakeColNames = [
         'Número de Identificación' => 'numero_identificacion',
-        'Nombres' => 'nombre_departamento',
-        'Apellidos' => 'codigo_departamento',
+        'Nombres' => 'nombres',
+        'Apellidos' => 'apellidos',
         'Código Familiar' => 'codigo_familiar',
     ];
 
+    public $textToFind = '';
+    public $colSelected = 'Número de Identificación';
 
-    // Nombre de los encabezados de las columnas
-    public $colNames = [
-        'Identificación',
-        'Nombre Completo',
-        'Pais',
-        'Código Familiar'
-    ];
-
-    // Atributos, deben estar en el mismo orden que las $colNames
-    public $keys = [
-        'numero_identificacion',
-        'codigo_departamento',
-        'pais.nombre_pais'
-    ];
-
-    public $actions = [
-        [
-            'name' => 'edit',
-            'component' => 'crud.migrantes.editar-migrante',
-            'parameters' => []
-            // 'parameters' => ['idModal' => 'editMigranteModal']
-        ],
-        [
-            'name' => 'delete',
-            'component' => 'crud.migrantes.eliminar-migrante-modal',
-            'parameters' => ['idModal' => 'deleteMigranteModal']
-        ],
-        [
-            'name' => 'info',
-            'component' => 'crud.migrantes.info-migrante-modal',
-            'parameters' => ['idModal' => 'deleteMigranteModal']
-        ],
-    ];
-    public $paginationSize = 20;
-    public $itemClass = Migrante::class;
-    public $idCreateModal = 'createMigranteModal';
+    public function buscar()
+    {
+        if ($this->textToFind === '')
+        {
+            return Migrante::paginate(30);
+        }
+        else
+        {
+            return Migrante::where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')->paginate(30);
+        }
+           
+            
+            
+    }
 
     public function render()
     {
-        return view('livewire.crud.migrantes.ver-migrantes');
+        $items = $this->buscar();
+        return view('livewire.crud.migrantes.ver-migrantes')
+            ->with('items', $items);
+    }
+
+    #[On('limpiar-filtros-clicked')]
+    public function limpiarFiltros()
+    {
+        $this->textToFind = '';
+        $this->colSelected = 'Número de Identificación';
     }
 }

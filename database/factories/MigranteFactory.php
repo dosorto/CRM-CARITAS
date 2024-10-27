@@ -30,7 +30,7 @@ class MigranteFactory extends Factory
             'sexo' => $sexo,
             'tipo_identificacion' => $this->faker->randomElement(['DNI', 'Pasaporte']),
             'numero_identificacion' => $this->faker->numerify('#############'),
-            'pais_id' => 3,
+            'pais_id' => 74,
             'estado_civil' => $this->faker->randomElement(['Soltero/a', 'Casado/a', 'Divorciado/a', 'Viudo/a', 'Unión Libre']),
             'codigo_familiar' => 1,
             'es_lgbt' => 0,

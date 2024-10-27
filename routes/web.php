@@ -5,10 +5,13 @@ use App\Livewire\Admin\Dashboard;
 use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
+use App\Livewire\Crud\Migrantes\VerMigrantes;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Pages\Administracion;
 
 Route::get('/', Dashboard::class);
+
+Route::get('/migrantes', VerMigrantes::class)->name('ver-migrantes');
 
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
 

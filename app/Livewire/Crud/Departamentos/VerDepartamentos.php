@@ -29,15 +29,17 @@ class VerDepartamentos extends Component
 
     // Nombre de los encabezados de las columnas
     public $colNames = [
-        'Nombre del Departamento', 
-        'Código', 
-        'Nombre del Pais'];
+        'Nombre del Departamento',
+        'Código',
+        'Nombre del Pais'
+    ];
 
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
-        'nombre_departamento', 
-        'codigo_departamento', 
-        'pais.nombre_pais'];
+        'nombre_departamento',
+        'codigo_departamento',
+        'pais.nombre_pais'
+    ];
 
     public $actions = [
         [

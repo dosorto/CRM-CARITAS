@@ -3,7 +3,7 @@
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Registrar Migrante</h1>
         <div>
-            <a href="#" class="btn btn-accent btn-sm text-base-content" type="button">
+            <a href="{{ route('ver-migrantes') }}" class="btn btn-accent btn-sm text-base-content" type="button">
                 Listado de Migrantes
             </a>
         </div>
