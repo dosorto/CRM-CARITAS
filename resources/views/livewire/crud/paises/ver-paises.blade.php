@@ -18,7 +18,7 @@
         {{-- Botones --}}
         <div class="join w-[45%] flex justify-end gap-4">
             <livewire:components.limpiar-filtros />
-            <livewire:crud.paises.crear-pais-modal :idModal = "$idCreateModal"/>
+            <livewire:crud.paises.crear-pais-modal :idModal="$idCreateModal"/>
         </div>
     </section>
 

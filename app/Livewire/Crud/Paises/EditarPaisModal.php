@@ -27,11 +27,18 @@ class EditarPaisModal extends Component
         $paisEdited->codigo_numerico = $validated['Numerico'];
 
         $paisEdited->save();
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-edited');
+
+        $this->dispatch('item-edited', id: $paisEdited->id);
+        $this->closeModal();
     }
 
-    public function initForm()
+    public function closeModal()
+    {
+        $this->resetForm();
+        $this->dispatch('close-modal');
+    }
+
+    public function resetForm()
     {
         $this->Nombre = $this->item->nombre_pais;
         $this->Alfa3 = $this->item->codigo_alfa3;
@@ -42,7 +49,7 @@ class EditarPaisModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()

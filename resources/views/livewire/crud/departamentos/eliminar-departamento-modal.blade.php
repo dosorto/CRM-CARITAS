@@ -51,7 +51,7 @@
                 $wire.initInfo();
             }
         });
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cerrar el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });

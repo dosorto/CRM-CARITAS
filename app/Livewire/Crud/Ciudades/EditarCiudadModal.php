@@ -25,11 +25,11 @@ class EditarCiudadModal extends Component
         $ciudadEdited->departamento_id = $validated['IdDepto'];
 
         $ciudadEdited->save();
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-edited');
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->Nombre = $this->item->nombre_ciudad;
         $this->IdDepto = $this->item->departamento->id;
@@ -40,7 +40,7 @@ class EditarCiudadModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()

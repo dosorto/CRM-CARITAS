@@ -3,7 +3,7 @@
         <span class="icon-[icon-park-outline--chart-histogram-two] size-5"></span>
         Estadísticas
     </a>
-    <a href="{{ route('ver-migrantes') }}" class="btn btn-primary w-full flex justify-start">
+    <a href="{{ route('registrar-migrante') }}" class="btn btn-primary w-full flex justify-start">
         <span class="icon-[mingcute--group-3-fill] size-5"></span>
         Registrar Migrante
     </a>

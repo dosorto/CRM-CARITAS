@@ -12,7 +12,7 @@ class EliminarCiudadModal extends Component
     public function deleteItem()
     {
         $this->item->delete();
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-deleted');
     }
 

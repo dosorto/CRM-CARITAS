@@ -28,11 +28,11 @@ class CrearDepartamentoModal extends Component
         $nuevoDepto->pais_id = $validated['IdPais'];
 
         $nuevoDepto->save();
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-created');
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->paises = Pais::all();
         $this->Nombre = '';
@@ -44,7 +44,7 @@ class CrearDepartamentoModal extends Component
     public function mount($idModal)
     {
         $this->idModal = $idModal;
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()

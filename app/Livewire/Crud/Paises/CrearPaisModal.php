@@ -26,8 +26,22 @@ class CrearPaisModal extends Component
         $nuevoPais->codigo_numerico = $validated['Numerico'];
 
         $nuevoPais->save();
-        $this->dispatch('cerrar-modal');
+
         $this->dispatch('item-created');
+        $this->closeModal();
+    }
+
+    public function closeModal()
+    {
+        $this->resetForm();
+        $this->dispatch('close-modal');
+    }
+
+    public function resetForm()
+    {
+        $this->Nombre = '';
+        $this->Alfa3 = '';
+        $this->Numerico = '';
     }
 
     public function mount($idModal)

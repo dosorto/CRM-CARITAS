@@ -24,8 +24,8 @@ class VerPaises extends Component
     // ]
     public $fakeColNames = [
         'Nombre del Pais' => 'nombre_pais',
-        'Codigo alfa-3' => 'codigo_alfa3',
-        'Codigo Numérico' => 'codigo_numerico',
+        'Código alfa-3' => 'codigo_alfa3',
+        'Código Numérico' => 'codigo_numerico',
     ];
 
     // Nombre de los encabezados de las columnas

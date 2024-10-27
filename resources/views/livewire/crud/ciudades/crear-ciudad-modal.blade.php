@@ -55,11 +55,11 @@
         document.getElementById($idModal).addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.initForm();
+                $wire.resetForm();
             }
         });
 
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById($idModal).checked = false;
         });

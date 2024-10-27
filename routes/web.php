@@ -10,7 +10,7 @@ use App\Livewire\Pages\Administracion;
 
 Route::get('/', Dashboard::class);
 
-Route::get('/migrantes', RegistrarMigrante::class)->name('ver-migrantes');
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
 
 Route::get('/administracion', Administracion::class)->name('administracion-general');
 

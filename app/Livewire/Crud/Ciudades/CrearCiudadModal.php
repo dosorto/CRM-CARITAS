@@ -25,11 +25,11 @@ class CrearCiudadModal extends Component
         $ciudadEdited->departamento_id = $validated['idDepto'];
 
         $ciudadEdited->save();
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-created');
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->deptos = Departamento::all();
         $this->Nombre = '';
@@ -38,7 +38,7 @@ class CrearCiudadModal extends Component
     public function mount($idModal)
     {
         $this->idModal = $idModal;
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()

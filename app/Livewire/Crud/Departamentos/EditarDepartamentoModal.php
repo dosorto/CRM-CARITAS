@@ -27,11 +27,11 @@ class EditarDepartamentoModal extends Component
         $deptoEdited->codigo_departamento = $validated['Codigo'];
         $deptoEdited->pais_id = $validated['IdPais'];
         $deptoEdited->save();
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-edited');
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->Nombre = $this->item->nombre_departamento;
         $this->Codigo = $this->item->codigo_departamento;
@@ -43,7 +43,7 @@ class EditarDepartamentoModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()
