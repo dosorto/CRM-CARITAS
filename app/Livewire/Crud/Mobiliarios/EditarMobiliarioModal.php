@@ -26,7 +26,6 @@ class EditarMobiliarioModal extends Component
 
     public function mount($parameters)
     {
-        // Cargar las categorías existentes
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
         $this->initForm();
@@ -92,12 +91,12 @@ class EditarMobiliarioModal extends Component
     {
 
         $validated = $this->validate([
-            'nombre' => 'required',
+            'Nombre' => 'required',
             'IdSubcategoria' => 'required',
-            'codigo' => 'required',
+            'Codigo' => 'required',
         ]);
 
-        $nuevo_mobiliario = new Mobiliario;
+        $nuevo_mobiliario = $this->item;
 
         $nuevo_mobiliario->nombre_mobiliario = $validated['nombre'];
         $nuevo_mobiliario->descripcion = $this->Descripcion;

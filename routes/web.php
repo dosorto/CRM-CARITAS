@@ -8,6 +8,7 @@ use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Pages\Administracion;
 use App\Livewire\Crud\SubCategorias\VerSubCategorias;
+use App\Livewire\Crud\Mobiliarios\VerMobiliarios;
 
 Route::get('/', Dashboard::class);
 
@@ -24,6 +25,8 @@ Route::get('/ciudades', VerCiudades::class)->name('ver-ciudades');
 Route::get('/categorias', VerCategorias::class)->name('ver-categorias');
 
 Route::get('/subcategorias', VerSubCategorias::class)->name('ver-sub-categorias');
+
+Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
 
 
 Route::get('/testing', function() {return '<div class="dropdown">

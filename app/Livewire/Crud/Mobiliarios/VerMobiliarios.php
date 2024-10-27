@@ -31,39 +31,38 @@ class VerMobiliarios extends Component
     public $colNames = [
         'Código',
         'Nombre del Mobiliario',
-        'Descripción',
         'Estado',
         'Ubicación',
-        'Categoría',
-        'SubCategoría',
     ];
 
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
         'codigo',
         'nombre_mobiliario',
-        'descripcion',
         'estado',
         'ubicacion',
-        'subcategoria.categoria.nombre_categoria',
-        'subcategoria.nombre_subcategoria',
     ];
 
     public $actions = [
         [
             'name' => 'edit',
             'component' => 'crud.mobiliarios.editar-mobiliario-modal',
-            'parameters' => ['idModal' => 'editPaisModal']
+            'parameters' => ['idModal' => 'editMobiliarioModal']
         ],
         [
             'name' => 'delete',
             'component' => 'crud.mobiliarios.eliminar-mobiliario-modal',
-            'parameters' => ['idModal' => 'deletePaisModal']
+            'parameters' => ['idModal' => 'deleteMobiliarioModal']
+        ],
+        [
+            'name' => 'info',
+            'component' => 'crud.mobiliarios.info-mobiliario-modal',
+            'parameters' => ['idModal' => 'infoMobiliarioModal']
         ]
     ];
     public $paginationSize = 30;
     public $itemClass = Mobiliario::class;
-    public $idCreateModal = "createPaisModal";
+    public $idCreateModal = "createMobiliarioModal";
 
     public function render()
     {
