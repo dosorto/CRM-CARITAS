@@ -21,6 +21,10 @@
                 <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
                     iconClass="icon-[vaadin--flag] size-6" route="ver-ciudades" />
             </article>
+            <article>
+                <livewire:components.link-card title="Reportes Mensuales" cardWidth=" w-full"
+                    iconClass="icon-[vaadin--flag] size-6" route="reporte-mensual" />
+            </article>
         </main>
 
         {{-- Footer fijo en la parte inferior --}}
