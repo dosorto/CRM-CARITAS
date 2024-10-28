@@ -21,7 +21,7 @@ Route::get('/inicio', Dashboard::class)
 
 Route::get('/migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
-    ->middleware('auth');;
+    ->middleware('auth');
 
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
 
