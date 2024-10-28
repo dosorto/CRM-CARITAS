@@ -6,6 +6,7 @@ use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Pages\Administracion;
+use App\Livewire\Crud\Formularios\VerFormularios;
 
 Route::get('/', Dashboard::class);
 
@@ -18,6 +19,8 @@ Route::get('/paises', VerPaises::class)->name('ver-paises');
 Route::get('/departamentos', VerDepartamentos::class)->name('ver-departamentos');
 
 Route::get('/ciudades', VerCiudades::class)->name('ver-ciudades');
+
+Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
 
 
 Route::get('/testing', function() {return '<div class="dropdown">
