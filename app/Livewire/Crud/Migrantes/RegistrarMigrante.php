@@ -10,8 +10,6 @@ use Livewire\Attributes\Lazy;
 class RegistrarMigrante extends Component
 {
 
-
-
     public function placeholder()
     {
         return <<<'HTML'
@@ -21,8 +19,10 @@ class RegistrarMigrante extends Component
         HTML;
     }
 
-    public $currentStep = 1;
+    public $currentStep = 3;
     public $identificacion;
+    public $datosPersonales;
+    public $codigoFamiliar;
 
     public function render()
     {
@@ -30,11 +30,34 @@ class RegistrarMigrante extends Component
     }
 
     #[On('identificacion-validated')]
-    public function identificacionStep($validatedData)
+    public function identificacionStep($identificacion)
     {
-        $this->identificacion = $validatedData['identificacion'];
+        $this->identificacion = $identificacion;
+        $this->currentStep++;
+    }
+
+    #[On('datos-personales-validated')]
+    public function datosPersonalesStep($datosPersonales)
+    {
+        $this->datosPersonales = $datosPersonales;
+        // $nombres = $validatedData['nombres'];
+        // $apellidos = $validatedData['apellidos'];
+        // $sexo = $validatedData['sexo'];
+        // $tipoIdentificacion = $validatedData['tipoIdentificacion'];
+        // $idPais = $validatedData['idPais'];
+        // $estadoCivil = $validatedData['estadoCivil'];
+        // $esLGBT = $validatedData['esLGBT'];
+        // $fechaNacimiento = $validatedData['fechaNacimiento'];
 
 
+
+        $this->currentStep++;
+    }
+
+    #[On('familiar-validated')]
+    public function familiarStep($codigoFamiliar)
+    {
+        $this->codigoFamiliar = $codigoFamiliar;        
         $this->currentStep++;
     }
 

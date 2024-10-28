@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('sexo');
             $table->string('tipo_identificacion')->nullable();
             $table->string('numero_identificacion', length: 20)->unique()->nullable();
-            $table->unsignedBigInteger('pais_id');
+            $table->unsignedBigInteger('pais_id')->nullable();
             $table->foreign('pais_id')->references('id')->on('paises');
             $table->string('estado_civil');
-            $table->unsignedInteger('codigo_familiar');
+            $table->unsignedInteger('codigo_familiar')->nullable();
             $table->boolean('es_lgbt');
-            $table->date('fecha_nacimiento');
+            $table->date('fecha_nacimiento')->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

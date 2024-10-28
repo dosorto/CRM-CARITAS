@@ -15,12 +15,16 @@
         @case(1)
             <livewire:crud.migrantes.form.identificacion-step :identificacion="$identificacion">
             @break
+
         @case(2)
-            <livewire:crud.migrantes.form.datos-personales-step>
+            <livewire:crud.migrantes.form.datos-personales-step :identificacion="$identificacion">
             @break
-        @default
+
+        @case(3)
+            <livewire:crud.migrantes.form.familiar-step>
+            @break
+
+            @default
     @endswitch
-
-
 
 </div>

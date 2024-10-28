@@ -23,7 +23,7 @@
                         class="w-full input join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
                         <input wire:model.live.debounce.300ms="textToFind" placeholder="Buscar..." type="text" />
 
-                        {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
+                        {{-- Lógica para mostrar el ícono de cargando o el ícono de búsqueda --}}
                         <span wire:loading.remove class="icon-[map--search] size-5 text-gray-400"></span>
                         <span wire:loading class="loading loading-dots"></span>
                     </label>

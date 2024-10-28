@@ -1,5 +1,4 @@
 <div class="flex">
-
     <div class="join w-full">
         <select wire:model.live.debounce.10ms="colSelected" class="select join-item w-min bg-accent">
             @foreach ($fakeColNames as $key => $value)

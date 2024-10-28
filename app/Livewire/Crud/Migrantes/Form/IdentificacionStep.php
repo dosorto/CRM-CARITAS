@@ -22,12 +22,11 @@ class IdentificacionStep extends Component
     // Esta funcion es llamada por $parent. en nextStepButton
     public function nextStep()
     {
-
         $validated = $this->validate([
             'identificacion' => 'required',
         ]);
 
-        $this->dispatch('identificacion-validated', ['identificacion' => $validated['identificacion']])
+        $this->dispatch('identificacion-validated', identificacion: $validated['identificacion'])
             ->to(RegistrarMigrante::class);
     }
 }

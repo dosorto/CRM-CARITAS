@@ -7,7 +7,7 @@
         <livewire:components.forms.steps :currentStep="1" :steps="4">
     </section>
 
-    <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent p-4">
+    <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent p-6">
 
         <div class="flex flex-col">
             <strong>Ingrese un número de Identificación (Pasaporte o DNI)</strong>
