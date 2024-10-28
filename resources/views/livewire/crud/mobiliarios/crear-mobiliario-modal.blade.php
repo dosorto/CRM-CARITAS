@@ -27,17 +27,46 @@
                 </div>
 
                 <div class="flex flex-col mt-4">
+                    <label class="mb-1"> Descripción </label>
+                    <input wire:model="Descripcion" class="input bg-accent" type="text"
+                        placeholder="Escribir aquí..." />
+                    <div class="mt-1 text-error-content font-bold">
+                        @error('Ubicacion')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="flex flex-col mt-4">
                     <label class="mb-1"> Ubicación </label>
-                    <input wire:model="ubicacion" class="input bg-accent" type="text"
+                    <input wire:model="Ubicacion" class="input bg-accent" type="text"
                         placeholder="Escribir aquí..." />
                 </div>
 
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Categoría </label>
                     <div class="flex gap-2">
-                        <input wire:model.live="IdCategoria" class="input bg-accent w-[72%]" type="text"
-                            placeholder="Escribir aquí..." />
-                        <livewire:crud.categorias.crear-categoria-modal :idModal="'createCategoriaModal'" >
+                        <select wire:model.live="IdCategoria" class="input bg-accent w-[72%]">
+                            <option value="">Selecciona una categoría...</option>
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}">{{ $categoria->nombre_categoria }}</option>
+                            @endforeach
+                        </select>
+                        <livewire:crud.categorias.crear-categoria-modal :idModal="'createCategoriaModal'">
+                    </div>
+                </div>
+
+                <div class="flex flex-col mt-4">
+                    <label class="mb-1"> Subcategoría </label>
+                    <div class="flex gap-2">
+                        <select wire:model.live="IdSubcategoria" class="input bg-accent w-[72%]">
+                            <option value="">Selecciona una Subcategoría...</option>
+                            @foreach ($subcategorias as $subcategoria)
+                                <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre_subcategoria }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <livewire:crud.sub-categorias.crear-sub-categoria-modal :idModal="'createSubCategoriaModal'">
                     </div>
                 </div>
 
@@ -75,6 +104,7 @@
         </div>
     </div>
 </div>
+
 @script
     <script>
         document.getElementById($idModal).addEventListener('change', function(event) {

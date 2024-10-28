@@ -26,6 +26,12 @@ class EditarMobiliarioModal extends Component
 
     public function mount($parameters)
     {
+        if ($this->Estado === "Bueno") {
+            $this->Estado = 1;
+        }
+        else {
+            $this->Estado = 0;
+        }
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
         $this->initForm();
@@ -37,6 +43,7 @@ class EditarMobiliarioModal extends Component
 
         if ($this->categorias->isNotEmpty()) {
             $this->IdCategoria = 1;
+            $this->cargarSubcategorias();
         }
         $this->Nombre = $this->item->nombre_mobiliario;
         $this->Descripcion = $this->item->descripcion;
@@ -47,7 +54,7 @@ class EditarMobiliarioModal extends Component
         $this->IdCategoria= $this->item->subcategoria->categoria->id;
     }
 
-    public function updatedCategoriaId()
+    public function updatedIdCategoria()
     {
         // Cargar las subcategorías cuando se selecciona una categoría
         $this->cargarSubcategorias();
@@ -65,45 +72,35 @@ class EditarMobiliarioModal extends Component
 
     public function generarCodigo()
     {
-        // Inicializar el correlativo base
-        $baseCodigo = "PSCCH-";
-        $this->correlativo = 1; // Reiniciar el correlativo para el nuevo código
+        $ultimoMobiliario = Mobiliario::orderBy('codigo', 'desc')->first();
 
-        // Verificar si el código ya existe y encontrar el siguiente correlativo disponible
-        do {
-            // Generar el código actual
-            $codigoActual = $baseCodigo . str_pad($this->correlativo, 6, '0', STR_PAD_LEFT);
+        if ($ultimoMobiliario) {
+            $ultimoCorrelativo = $ultimoMobiliario->codigo; // Ejemplo: "PSCCH-000002"
+            $numeroCorrelativo = intval(substr($ultimoCorrelativo, 6)); // Extrae "000002" y lo convierte a entero: 2
+        } else {
+            $numeroCorrelativo = 0; // Si no hay registros, empezará desde 0
+        }
 
-            // Verificar si ya existe en la base de datos
-            $codigoExistente = Mobiliario::where('codigo', $codigoActual)->exists();
-
-            // Si ya existe, incrementar el correlativo
-            if ($codigoExistente) {
-                $this->correlativo++;
-            }
-        } while ($codigoExistente);
-
-        // Asignar el nuevo código generado
-        $this->Codigo = $codigoActual;
+        $nuevoNumeroCorrelativo = str_pad($numeroCorrelativo + 1, 6, '0', STR_PAD_LEFT);
+        $this->Codigo = "PSCCH-" . $nuevoNumeroCorrelativo; // Genera "PSCCH-000003"
     }
 
-    public function create()
+    public function editItem()
     {
 
         $validated = $this->validate([
             'Nombre' => 'required',
-            'IdSubcategoria' => 'required',
-            'Codigo' => 'required',
+            'Ubicacion' => 'required|max:10',
         ]);
 
         $nuevo_mobiliario = $this->item;
 
-        $nuevo_mobiliario->nombre_mobiliario = $validated['nombre'];
+        $nuevo_mobiliario->nombre_mobiliario = $validated['Nombre'];
         $nuevo_mobiliario->descripcion = $this->Descripcion;
-        $nuevo_mobiliario->codigo = $validated['codigo'];
+        $nuevo_mobiliario->codigo = $this->Codigo;
         $nuevo_mobiliario->estado = $this->Estado;
-        $nuevo_mobiliario->ubicacion = $this->Ubicacion;
-        $nuevo_mobiliario->subcategoria_id = $validated['IdSubcategoria'];
+        $nuevo_mobiliario->ubicacion = $validated['Ubicacion'];
+        $nuevo_mobiliario->subcategoria_id = $this->IdSubcategoria;
 
         $nuevo_mobiliario->save();
 
