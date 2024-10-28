@@ -58,6 +58,7 @@ class ContentTable extends Component
         $this->paginationSize = $paginationSize;
         $this->itemClass = $itemClass;
         $this->actions = $actions;
+
         $this->colSelected = array_key_first($colNames);
     }
 

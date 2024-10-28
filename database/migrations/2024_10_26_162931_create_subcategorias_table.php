@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('subcategorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_categoria')->unique();
+            $table->string('nombre_subcategoria')->unique();
 
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias'); // Relación con categorías

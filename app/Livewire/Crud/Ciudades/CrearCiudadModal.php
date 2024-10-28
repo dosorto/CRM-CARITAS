@@ -20,11 +20,11 @@ class CrearCiudadModal extends Component
             'IdDepto' => 'required',
         ]);
 
-        $ciudadEdited = new Ciudad();
-        $ciudadEdited->nombre_ciudad = $validated['Nombre'];
-        $ciudadEdited->departamento_id = $validated['idDepto'];
+        $ciudadNueva = new Ciudad();
+        $ciudadNueva->nombre_ciudad = $validated['Nombre'];
+        $ciudadNueva->departamento_id = $validated['idDepto'];
 
-        $ciudadEdited->save();
+        $ciudadNueva->save();
         $this->dispatch('close-modal');
         $this->dispatch('item-created');
     }

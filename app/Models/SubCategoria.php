@@ -17,12 +17,18 @@ class SubCategoria extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class); // Relación con categorías
+        //return $this->belongsTo(Categoria::class); // Relación con categorías
+        return $this->belongsTo(Categoria::class);
     }
 
     public function articulos(): HasMany
     {
         return $this->hasMany(Articulo::class); // Relación con artículos
+    }
+
+    public function mobiliarios(): HasMany
+    {
+        return $this->hasMany(Mobiliario::class); // Relación con artículos
     }
 
 

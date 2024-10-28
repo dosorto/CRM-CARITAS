@@ -13,7 +13,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
             },
         },
     },
@@ -67,7 +67,7 @@ module.exports = {
                     "info-content":     "#3b82f6",     
                     "success":          "#16a34a",      
                     "success-content":  "#16a34a",      
-                    "warning":          "#f59e0b",     
+                    "warning":          "#f59e00",     
                     "warning-content":  "#FFFFFF",     
                     "error":            "#dc2626",   
                     "error-content":    "#EE6565",
@@ -81,6 +81,10 @@ module.exports = {
         prefix: "",
         logs: true,
         themeRoot: ":root",
+
+        
     },
     darkMode: ['class', '[data-theme="dark"]']
+
+    
 };
