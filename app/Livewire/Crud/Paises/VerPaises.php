@@ -18,6 +18,7 @@ class VerPaises extends Component
         </div>
         HTML;
     }
+
     // Esto es para el buscador
     // $fakeColNames = [
     //     'Nombre que aparece en el select' => 'nombre del atributo'
@@ -42,21 +43,24 @@ class VerPaises extends Component
         'codigo_numerico'
     ];
 
+    // datos de botones, 'name' se usará para el identificador único del modal
     public $actions = [
         [
-            'name' => 'edit',
+            'name' => 'editPais',
             'component' => 'crud.paises.editar-pais-modal',
             'parameters' => ['idModal' => 'editPaisModal']
         ],
         [
-            'name' => 'delete',
+            'name' => 'deletePais',
             'component' => 'crud.paises.eliminar-pais-modal',
             'parameters' => ['idModal' => 'deletePaisModal']
         ]
     ];
-    public $paginationSize = 30;
-    public $itemClass = Pais::class;
-    public $idCreateModal = "createPaisModal";
+
+    // Parametros adicionales para la content-table
+    public $paginationSize = 30; // Número de registros por página
+    public $itemClass = Pais::class; // Clase que se mostrará
+    public $idCreateModal = "createPaisModal"; // id del modal de crear, debido a que solo hay una instancia, se pasa normalmente.
 
     public function render()
     {
