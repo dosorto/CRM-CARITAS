@@ -42,6 +42,12 @@ class EditarCiudadModal extends Component
         $this->dispatch('item-edited')->to(ContentTable::class);
         $this->dispatch('close-modal')->self();
     }
+    
+    public function closeModal()
+    {
+        $this->resetForm();
+        $this->dispatch('close-modal')->self();
+    }
 
     public function resetForm()
     {
