@@ -38,11 +38,11 @@ class CrearArticuloModal extends Component
 
         $nuevoArticulo->save();
 
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-created');
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->categorias = Categoria::all();  // Obtener todas las categorías
         $this->subcategorias = Subcategoria::all();  // Obtener todas las categorías
@@ -57,7 +57,7 @@ class CrearArticuloModal extends Component
     public function mount($idModal)
     {
         $this->idModal = $idModal;
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()

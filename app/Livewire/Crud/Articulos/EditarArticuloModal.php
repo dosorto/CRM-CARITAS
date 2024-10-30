@@ -40,11 +40,11 @@ class EditarArticuloModal extends Component
         $articuloEdited->save();
 
         // Emitir eventos para cerrar el modal y notificar que el artículo ha sido editado
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-edited');
     }
 
-    public function initForm()
+    public function resetForm()
     {
         // Inicializar los valores del formulario con los datos actuales del artículo
         $this->nombre = $this->item->nombre;
@@ -60,7 +60,7 @@ class EditarArticuloModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
     public function render()

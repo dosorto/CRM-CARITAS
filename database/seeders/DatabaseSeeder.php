@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        Migrante::factory()->count(30)->create();
+        Migrante::factory()->count(100)->create();
 
 
     }

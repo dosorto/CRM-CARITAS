@@ -7,10 +7,10 @@ use App\Livewire\Components\ContentTable;
 
 class EditarPaisModal extends Component
 {
+    public $item;
     public $Nombre;
     public $Alfa3;
     public $Numerico;
-    public $item;
     public $idModal;
 
     // Esta funcion se ejecuta una vez, antes de renderizar el componente,

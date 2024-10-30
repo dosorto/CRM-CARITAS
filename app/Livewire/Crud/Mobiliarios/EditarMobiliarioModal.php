@@ -34,10 +34,10 @@ class EditarMobiliarioModal extends Component
         }
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->categorias = Categoria::all();
 
@@ -104,7 +104,7 @@ class EditarMobiliarioModal extends Component
 
         $nuevo_mobiliario->save();
 
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-edited');
     }
 

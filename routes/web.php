@@ -26,7 +26,7 @@ Route::get('/migrantes', VerMigrantes::class)
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
 
 Route::get('/administracion', Administracion::class)
-    ->name('administracion-general')
+    ->name('administracion')
     ->middleware('auth');
 
 Route::get('/paises', VerPaises::class)
@@ -62,6 +62,7 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
+
 
 Route::get('/testing', function () {
     return '<div class="dropdown">

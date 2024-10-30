@@ -14,10 +14,10 @@ class InfoMobiliarioModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
-    public function initForm(){}
+    public function resetForm(){}
 
 
     public function render()
