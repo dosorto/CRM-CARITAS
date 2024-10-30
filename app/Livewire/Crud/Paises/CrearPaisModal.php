@@ -53,13 +53,13 @@ class CrearPaisModal extends Component
 
         // este evento se envia en este mismo componente y se escucha en la vista con un script, 
         // que cambia el valor del checkbox del modal a 'false', cerrándolo.
-        $this->dispatch('close-modal')->self();
+        $this->closeModal();
     }
 
     public function closeModal()
     {
-        $this->resetForm();
         $this->dispatch('close-modal')->self();
+        $this->resetForm();
     }
 
     public function resetForm()

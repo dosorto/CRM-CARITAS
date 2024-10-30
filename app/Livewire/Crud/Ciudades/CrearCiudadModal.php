@@ -18,7 +18,7 @@ class CrearCiudadModal extends Component
     public function mount($idModal)
     {
         $this->idModal = $idModal;
-        $this->deptos = Departamento::select('id', 'nombre_departamento')->get();;
+        $this->deptos = Departamento::select('id', 'nombre_departamento')->get();
     }
 
     public function render()
@@ -39,19 +39,13 @@ class CrearCiudadModal extends Component
 
         $ciudadNueva->save();
 
-        $this->dispatch('close-modal')->self();
+        $this->closeModal();
         $this->dispatch('item-created')->to(ContentTable::class);
     }
 
     public function closeModal()
     {
-        $this->resetForm();
         $this->dispatch('close-modal')->self();
-    }
-
-    public function resetForm()
-    {
-        $this->deptos = Departamento::select('id', 'nombre_departamento')->get();
         $this->Nombre = '';
     }
 

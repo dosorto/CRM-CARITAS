@@ -1,4 +1,4 @@
-<label class="swap swap-rotate rounded-lg p-1.5">
+<label class="swap swap-rotate rounded-lg p-1.5 {{ $customClass }}">
 
     <!-- this hidden checkbox controls the state -->
     <input type="checkbox" class="theme-controller" value="dark" title="Cambiar Tema" name="theme-controller"/>

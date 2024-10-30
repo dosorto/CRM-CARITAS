@@ -22,18 +22,17 @@ class CrearCategoriaModal extends Component
         $nueva_categoria->save();
         
         $this->dispatch('item-created')->to(ContentTable::class);
-        $this->dispatch('close-modal')->self();
+        $this->closeModal();
     }
     
     public function closeModal()
     {
-        $this->Nombre = '';
         $this->dispatch('close-modal')->self();
+        $this->Nombre = '';
     }
 
     public function mount($idModal)
     {
-        $this->Nombre = '';
         $this->idModal = $idModal;
     }
 

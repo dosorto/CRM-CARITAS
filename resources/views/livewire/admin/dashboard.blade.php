@@ -36,13 +36,8 @@
         </main>
 
         {{-- Footer fijo en la parte inferior --}}
-        <footer class="h-auto flex justify-start bg-neutral text-base-content p-4">
-            <aside>
-                <article class="w-full">
-                    <livewire:components.link-card title="Administración" cardWidth="w-full"
-                        iconClass="icon-[fluent--text-box-settings-24-filled] size-8" route="administracion-general" />
-                </article>
-            </aside>
+        <footer class="h-auto flex flex-col justify-center bg-neutral text-base-content p-4">
+                Pie de páginaaa
         </footer>
     </div>
 </div>

@@ -1,31 +1,23 @@
 <div class="flex flex-col gap-1">
-    <a href="/" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[icon-park-outline--chart-histogram-two] size-5"></span>
+    <a href="/inicio" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[icon-park-outline--chart-histogram-two] size-6"></span>
         Estadísticas
     </a>
     <a href="{{ route('registrar-migrante') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[mingcute--group-3-fill] size-5"></span>
+        <span class="icon-[mingcute--group-3-fill] size-6"></span>
         Registrar Migrante
     </a>
-    <a href="{{ route('ver-paises') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
-        Paises
-    </a>
-    <a href="{{ route('ver-departamentos') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
-        Departamentos
-    </a>
-    <a href="{{ route('ver-ciudades') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
-        Ciudades
+    <a href="{{ route('administracion') }}" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[fluent--text-box-settings-24-filled] size-6"></span>
+        Administración
     </a>
     <a href="{{ route('ver-mobiliarios') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
+        <span class="icon-[icon-park-solid--bedside-two] size-6"></span>
         Mobiliario
     </a>
 
     <a href="{{ route('ver-articulos') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
+        <span class="icon-[material-symbols--sanitizer-rounded] size-6"></span>
         Articulos
     </a>
 </div>

@@ -16,7 +16,7 @@ class EliminarCategoriaModal extends Component
     public function deleteItem()
     {
         $this->item->delete();
-        $this->dispatch('cerrar-modal')->self();
+        $this->dispatch('close-modal')->self();
         $this->dispatch('item-deleted')->to(ContentTable::class);
     }
 

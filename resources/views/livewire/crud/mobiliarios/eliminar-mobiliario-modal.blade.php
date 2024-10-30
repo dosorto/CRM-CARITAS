@@ -68,7 +68,7 @@
             }
         });
 
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });

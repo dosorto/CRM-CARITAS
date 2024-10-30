@@ -21,14 +21,15 @@ class EditarCategoriaModal extends Component
         $nueva_categoria->nombre_categoria = $validated['Nombre'];
         $nueva_categoria->save();
         
+        $this->dispatch('update-delete-modal', id: $nueva_categoria->id)->to(EliminarCategoriaModal::class);
         $this->dispatch('item-edited')->to(ContentTable::class);
-        $this->dispatch('cerrar-modal')->self();
+        $this->dispatch('close-modal')->self();
     }
     
     public function closeModal()
     {
         $this->Nombre = $this->item->nombre_categoria;
-        $this->dispatch('cerrar-modal')->self();
+        $this->dispatch('close-modal')->self();
     }
 
     public function mount($parameters)

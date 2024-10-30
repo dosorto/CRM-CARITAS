@@ -26,7 +26,7 @@ Route::get('/migrantes', VerMigrantes::class)
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
 
 Route::get('/administracion', Administracion::class)
-    ->name('administracion-general')
+    ->name('administracion')
     ->middleware('auth');
 
 Route::get('/paises', VerPaises::class)

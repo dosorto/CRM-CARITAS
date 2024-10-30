@@ -28,12 +28,12 @@ class CrearMobiliarioModal extends Component
 
 
         $this->idModal = $idModal;
-        $this->initForm();
+        $this->resetForm();
         // llamar a la función para cargar subcategorías
         // $this->cargarSubcategorias();
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->categorias = Categoria::all();
 
@@ -105,7 +105,7 @@ class CrearMobiliarioModal extends Component
 
         $nuevo_mobiliario->save();
 
-        $this->dispatch('cerrar-modal');
+        $this->dispatch('close-modal');
         $this->dispatch('item-created');
     }
 

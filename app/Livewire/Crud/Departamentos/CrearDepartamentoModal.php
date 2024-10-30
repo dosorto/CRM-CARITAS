@@ -48,15 +48,15 @@ class CrearDepartamentoModal extends Component
         // Se envía el evento de item-created a la tabla para que actualice su contenido.
         $this->dispatch('item-created')->to(ContentTable::class);
 
-        // este evento se envia en este mismo componente y se escucha en la vista con un script, 
-        // que cambia el valor del checkbox del modal a 'false', cerrándolo.
-        $this->dispatch('close-modal')->self();
+        $this->closeModal();
     }
 
     public function closeModal()
     {
-        $this->resetForm();
+        // este evento se envia en este mismo componente y se escucha en la vista con un script, 
+        // que cambia el valor del checkbox del modal a 'false', cerrándolo.
         $this->dispatch('close-modal')->self();
+        $this->resetForm();
     }
 
     public function resetForm()
