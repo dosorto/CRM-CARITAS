@@ -45,13 +45,6 @@
 </div>
 @script 
     <script>
-        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.initInfo();
-            }
-        });
-
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

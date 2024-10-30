@@ -29,9 +29,9 @@
                 <div class="flex flex-col mt-6">
                     <label class="mb-1"> Departamento </label>
                     <select wire:model="IdDepto" class="select bg-accent text-base-content">
-                        {{-- <option value="">Seleccione...</option> --}}
                         @foreach ($deptos as $depto)
-                            <option value="{{ $depto->id }}">{{ $depto->nombre_departamento }}</option>
+                            <option wire:key="createDeptoOption-{{$depto->id}}" 
+                                value="{{ $depto->id }}">{{ $depto->nombre_departamento }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -45,23 +45,16 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear
                 </button>
-                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
 @script
     <script>
-        document.getElementById($idModal).addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.resetForm();
-            }
-        });
-
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById($idModal).checked = false;
+            document.getElementById('{{ $idModal }}').checked = false;
         });
     </script>
 @endscript
