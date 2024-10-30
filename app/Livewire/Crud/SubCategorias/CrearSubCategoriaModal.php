@@ -27,7 +27,7 @@ class CrearSubCategoriaModal extends Component
             'IdCategoria' => 'required',
         ]);
 
-        $nueva_subcategoria = new SubCategoria;
+        $nueva_subcategoria = new SubCategoria();
 
         $nueva_subcategoria->nombre_subcategoria = $validated['Nombre'];
         $nueva_subcategoria->categoria_id = $validated['IdCategoria'];

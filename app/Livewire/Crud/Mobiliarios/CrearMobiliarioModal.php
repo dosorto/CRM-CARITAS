@@ -94,7 +94,7 @@ class CrearMobiliarioModal extends Component
             $estado = 'Malo';
         }
         
-        $nuevo_mobiliario = new Mobiliario;
+        $nuevo_mobiliario = new Mobiliario();
 
         $nuevo_mobiliario->nombre_mobiliario = $validated['Nombre'];
         $nuevo_mobiliario->descripcion = $this->Descripcion;

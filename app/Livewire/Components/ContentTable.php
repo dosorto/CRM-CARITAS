@@ -6,10 +6,11 @@ use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Livewire\WithoutUrlPagination;
 
 class ContentTable extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     protected $listeners = [
         'search-text-changed' => '$refresh',

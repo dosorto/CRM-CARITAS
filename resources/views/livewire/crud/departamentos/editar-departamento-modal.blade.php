@@ -58,21 +58,13 @@
                     <span class="icon-[material-symbols--save] size-5"></span>
                     Guardar
                 </button>
-                <label for="{{ $idModal }}-{{ $item->id }}"
-                    class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
 </div>
 @script
     <script>
-        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.resetForm();
-            }
-        });
-
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

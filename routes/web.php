@@ -63,6 +63,7 @@ Route::post('/logout', function () {
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
 
+
 Route::get('/testing', function () {
     return '<div class="dropdown">
 

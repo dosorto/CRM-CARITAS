@@ -16,7 +16,7 @@ class CrearCategoriaModal extends Component
             'Nombre' => 'required',
         ]);
 
-        $nueva_categoria = new Categoria;
+        $nueva_categoria = new Categoria();
 
         $nueva_categoria->nombre_categoria = $validated['Nombre'];
 
