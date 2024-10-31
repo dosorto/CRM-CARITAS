@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Ciudades;
 
+use App\Livewire\Components\ContentTable;
 use App\Models\Departamento;
 use Livewire\Component;
 
@@ -12,7 +13,19 @@ class EditarCiudadModal extends Component
     public $IdDepto;
     public $deptos;
     public $idModal;
-    
+
+    public function mount($parameters)
+    {
+        $this->item = $parameters['item'];
+        $this->idModal = $parameters['idModal'];
+        $this->resetForm();
+    }
+
+    public function render()
+    {
+        return view('livewire.crud.ciudades.editar-ciudad-modal');
+    }
+
     public function editItem()
     {
         $validated = $this->validate([
@@ -23,28 +36,23 @@ class EditarCiudadModal extends Component
         $ciudadEdited = $this->item;
         $ciudadEdited->nombre_ciudad = $validated['Nombre'];
         $ciudadEdited->departamento_id = $validated['IdDepto'];
-
         $ciudadEdited->save();
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-edited');
+
+        $this->dispatch('update-delete-modal', id: $ciudadEdited->id)->to(EliminarCiudadModal::class);
+        $this->dispatch('item-edited')->to(ContentTable::class);
+        $this->dispatch('close-modal')->self();
+    }
+    
+    public function closeModal()
+    {
+        $this->resetForm();
+        $this->dispatch('close-modal')->self();
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->Nombre = $this->item->nombre_ciudad;
         $this->IdDepto = $this->item->departamento->id;
-        $this->deptos = Departamento::all();
-    }
-
-    public function mount($parameters)
-    {
-        $this->item = $parameters['item'];
-        $this->idModal = $parameters['idModal'];
-        $this->initForm();
-    }
-
-    public function render()
-    {
-        return view('livewire.crud.ciudades.editar-ciudad-modal');
+        $this->deptos = Departamento::select('id','nombre_departamento')->get();
     }
 }

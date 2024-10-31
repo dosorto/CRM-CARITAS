@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Migrante;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,14 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+            CategoriaSeeder::class,
+            SubCategoriaSeeder::class,
+            MobiliarioSeeder::class,
+
         ]);
+
+        Migrante::factory()->count(100)->create();
+
+
     }
 }

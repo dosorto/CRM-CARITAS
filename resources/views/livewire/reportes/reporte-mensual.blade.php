@@ -1,4 +1,20 @@
+<div  class="mt-2">
+    <div class="p-5 grid gap-6 mb-6 md:grid-cols-2">
+        <div>
+            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha inicial</label>
+            <input wire:model.live="fecha_inicio" type="date" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required />
+        </div>
+        <div>
+            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha final</label>
+            <input wire:model.live="fecha_final" type="date" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required />
+        </div>
+</div>
+<p>
+    {{ $fecha_inicio  }}
+   {{ $fecha_final}}
+</p>
 <div class=" flex justify-center w-full p-4">
+
     <div style="width: 8.5in; height: 11in; background-color: #fffcf6; font-family: Arial, Helvetica, sans-serif;">
         <!-- Logos -->
      <div class="flex w-full justify-center m-2" >
@@ -7,11 +23,13 @@
      <!-- Ubicacion -->
      <div class="flex justify-center mb-2">
         <div style="width: 70%; font-size: 18px;" class="">
-            <p style="line-height: 0.2;">
+            <p style="line-height: 0.2; color:#583d2b;">
                 <p style="color: #583d2b; font-weight: 700; ">
                     Centro de Atención Caritas "Mons. Guido Charbonneau"
                 </p>
-                Bo. El Hospital, Choluteca, Choluteca, Honduras
+                <p style="line-height: 0.8; color:#583d2b;">
+                    Bo. El Hospital, Choluteca, Choluteca, Honduras
+                </p>
             </p>
             <span style="color: #583d2b; font-weight: 700; font-family: Arial, Helvetica, sans-serif;">
                 Septiembre 24
@@ -56,7 +74,7 @@
                     <div class="text-center w-full font-extrabold" style="font-size: 20px; color: #583d2b;">
                         16
                     </div>
-                    <div class="text-center w-full mb-2">
+                    <div class="text-center w-full mb-2" style="color:#583d2b;">
                         hombres
                     </div>
                     <div class="flex justify-center">
@@ -67,7 +85,7 @@
                     <div class="text-center w-full font-extrabold" style="font-size: 20px; color: #583d2b;">
                         10
                     </div>
-                    <div class="text-center w-full mb-2">
+                    <div class="text-center w-full mb-2" style="color:#583d2b;">
                         mujeres
                     </div>
                     <div class="flex justify-center">
@@ -78,7 +96,7 @@
                     <div class="text-center w-full font-extrabold" style="font-size: 20px; color: #583d2b;">
                         5
                     </div>
-                    <div class="text-center w-full mb-2">
+                    <div class="text-center w-full mb-2" style="color:#583d2b;">
                         niños
                     </div>
                     <div class="flex justify-center">
@@ -89,7 +107,7 @@
                     <div class="text-center w-full font-extrabold" style="font-size: 20px; color: #583d2b;">
                         4
                     </div>
-                    <div class="text-center w-full mb-2">
+                    <div class="text-center w-full mb-2" style="color:#583d2b;">
                         niñas
                     </div>
                     <div class="flex justify-center">
@@ -156,3 +174,8 @@
      </div>
     </div>
   </div>
+
+
+</div>
+
+
