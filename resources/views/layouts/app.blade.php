@@ -46,8 +46,7 @@
                 {{-- Logo de la Barra Lateral --}}
                 <div class="px-4 pt-4">
                     <a href="#" class="flex items-center pl-2.5 w-full">
-                        <img id="logo" src="{{ asset('storage/images/logo-white.png') }}" class="h-16 me-6 sm:h-14"
-                            alt="Logo" />
+                        <img id="logo" src="img/logo-white.png" class="h-16 me-6 sm:h-14" alt="Logo" />
                     </a>
                 </div>
 
@@ -56,12 +55,12 @@
                 <div class="p-4 flex-grow text-primary-content">
                     <livewire:components.icon-link-group />
 
-                    
+
                 </div>
 
 
                 <div class="p-4 justify-center gap-4 flex">
-                    <livewire:components.theme-switcher :customClass="'btn btn-primary px-3'"/>
+                    <livewire:components.theme-switcher :customClass="'btn btn-primary px-3'" />
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="px-4 py-2 font-semibold btn btn-primary">
