@@ -57,13 +57,13 @@
                         <div class="join w-full">
                             <select wire:model.live.debounce.100ms="colSelected"
                                 class="select select-sm join-item w-min bg-accent">
-                                <option value="nombres">Nombres</option>
+                                <option value="nombre_completo">Nombre Completo</option>
                                 <option value="apellidos">Apellidos</option>
                                 <option value="identificacion">Identificación</option>
                             </select>
                             <label
                                 class="w-full input input-sm join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
-                                <input wire:model.live.debounce.1000ms="textToFind" placeholder="Buscar..."
+                                <input wire:model.live.debounce.200ms="textToFind" placeholder="Buscar..."
                                     type="text" />
 
                                 {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
@@ -83,7 +83,7 @@
                             <table class="table table-sm w-full table-pin-rows">
                                 <thead class="text-sm border-b-2 border-accent">
                                     <th class="bg-accent">
-                                        Nombre Completo
+                                        Nombre y Apellido
                                     </th>
                                     <th class="bg-accent">
                                         Identificación
@@ -91,32 +91,41 @@
                                     <th class="bg-accent">
                                         País
                                     </th>
-                                    <th class="bg-accent">Seleccionar</th>
+                                    <th class="bg-accent">Opciones</th>
                                 </thead>
                                 <tbody>
 
-                                    @if (!$persons)
+                                    @if (!$personas)
                                         <tr class="border-b border-accent">
                                             <td colspan="4" class="text-center py-4">
                                                 <strong>* Sonido de Grillos *</strong>
                                             </td>
                                         </tr>
                                     @else
-                                        @foreach ($persons as $person)
-                                            <tr wire:key="{{ $person->id }}" class="border-b border-accent">
+                                        @foreach ($personas as $persona)
+                                            <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
                                                 <td>
-                                                    Mario Fernando Carbajal Galo
+                                                    {{ $persona->primer_nombre . ' ' .
+                                                       $persona->segundo_nombre . ' ' .
+                                                       $persona->primer_apellido . ' ' .
+                                                       $persona->segundo_apellido}}
                                                 </td>
                                                 <td>
-                                                    0601200303381
+                                                    {{ $persona->numero_identificacion}}
                                                 </td>
                                                 <td>
-                                                    Honduras
+                                                    {{ $persona->pais->nombre_pais}}
                                                 </td>
-                                                <td class="w-max">
-                                                    <div class="tooltip w-max" data-tip="Seleccionar">
-                                                        <button wire:click="selectRelated({{ $person }})"
-                                                            class="items-center btn btn-xs btn-accent">
+                                                <td class="flex w-max gap-2">
+                                                    <div class="tooltip" data-tip="Seleccionar">
+                                                        <button
+                                                            class="items-center btn btn-xs btn-accent text-base-content">
+                                                            <span class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="tooltip" data-tip="Más Información">
+                                                        <button  wire:click="selectRelated({{ $persona }})"
+                                                            class="items-center btn btn-xs btn-accent text-base-content">
                                                             <span class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
                                                         </button>
                                                     </div>
@@ -133,6 +142,11 @@
             </div>
         </section>
         <section class="w-2/5 h-full bg-accent flex flex-col ">
+
+            @if (!$tieneFamiliar || !$viajaEnGrupo)
+                
+            @endif
+
             <div class="flex-1 overflow-auto pt-4">
                 <h4 class="text-xl text-center">
                     Datos del Familiar
@@ -140,7 +154,7 @@
             </div>
 
             <div class="p-5 text-lg">
-                <strong>Código Familiar: </strong> 1
+                <strong>Código Familiar: </strong> {{ $codigoFamiliar }}
             </div>
         </section>
     </article>

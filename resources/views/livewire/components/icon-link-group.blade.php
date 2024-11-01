@@ -4,7 +4,7 @@
         Estadísticas
     </a>
     <a href="{{ route('registrar-migrante') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[mingcute--group-3-fill] size-6"></span>
+        <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
         Registrar Migrante
     </a>
     <a href="{{ route('administracion') }}" class="btn btn-primary w-full flex justify-start">
