@@ -40,7 +40,7 @@ class VerArticulos extends Component
         'nombre',
         'codigo_barra',
         'cantidad_stock',
-        'categoriaArticulos.name_categoria'
+        'categoriaArticulo.name_categoria'
     ];
 
     public $actions = [
