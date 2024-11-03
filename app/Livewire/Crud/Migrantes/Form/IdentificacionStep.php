@@ -9,9 +9,9 @@ class IdentificacionStep extends Component
 {
     public $identificacion;
 
-    public function mount($identificacion = '')
+    public function mount()
     {
-        $this->identificacion = $identificacion;
+        $this->identificacion = session('identificacion');
     }
 
     public function render()
@@ -26,7 +26,9 @@ class IdentificacionStep extends Component
             'identificacion' => 'required',
         ]);
 
-        $this->dispatch('identificacion-validated', identificacion: $validated['identificacion'])
+        session(['identificacion' => $validated['identificacion']]);
+
+        $this->dispatch('identificacion-validated')
             ->to(RegistrarMigrante::class);
     }
 }

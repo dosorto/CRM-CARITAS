@@ -11,13 +11,13 @@
     </header>
 
     {{-- Pasos --}}
-    @switch($currentStep)
+    @switch(session('currentStep'))
         @case(1)
-            <livewire:crud.migrantes.form.identificacion-step :identificacion="$identificacion">
+            <livewire:crud.migrantes.form.identificacion-step>
             @break
 
         @case(2)
-            <livewire:crud.migrantes.form.datos-personales-step :identificacion="$identificacion">
+            <livewire:crud.migrantes.form.datos-personales-step>
             @break
 
         @case(3)

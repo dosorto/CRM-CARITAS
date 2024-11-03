@@ -8,7 +8,6 @@ use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 
 class DatosPersonalesStep extends Component
 {
-    public $identificacion;
     public $paises;
     public $nombres;
     public $apellidos;
@@ -23,6 +22,20 @@ class DatosPersonalesStep extends Component
     public function mount()
     {
         $this->paises = Pais::select('id', 'nombre_pais')->get();
+
+        // session()->flush();
+        // dd(session('datosPersonales'));
+        if (session('datosPersonales'))
+        {
+            $this->nombres = session('datosPersonales')['nombres'];
+            $this->apellidos = session('datosPersonales')['apellidos'];
+            $this->fechaNacimiento = session('datosPersonales')['fechaNacimiento'];
+            $this->estadoCivil = session('datosPersonales')['estadoCivil'];
+            $this->tipoIdentificacion = session('datosPersonales')['tipoIdentificacion'];
+            $this->idPais = session('datosPersonales')['idPais'];
+            $this->sexo = session('datosPersonales')['sexo'];
+            $this->esLGBT = session('datosPersonales')['esLGBT'];
+        }
     }
 
     public function render()
@@ -35,18 +48,18 @@ class DatosPersonalesStep extends Component
     {
         $validated = $this->validate([
             'nombres' => 'required',
-            // 'apellidos' => 'required',
-            // 'fechaNacimiento' => 'required',
-            // 'estadoCivil' => 'required',
-            // 'tipoIdentificacion' => 'required',
-            // 'idPais' => 'required',
-            // 'sexo' => 'required',
-            // 'esLGBT' => 'required',
+            'apellidos' => 'required',
+            'fechaNacimiento' => 'required',
+            'estadoCivil' => 'required',
+            'tipoIdentificacion' => 'required',
+            'idPais' => 'required',
+            'sexo' => 'required',
+            'esLGBT' => 'required',
         ]);
 
+        session(['datosPersonales' => $validated]);
 
-
-        $this->dispatch('datos-personales-validated', datosPersonales: $validated)
+        $this->dispatch('datos-personales-validated')
             ->to(RegistrarMigrante::class);
     }
 }

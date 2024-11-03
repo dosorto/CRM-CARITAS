@@ -9,7 +9,6 @@ use Livewire\Attributes\Lazy;
 #[Lazy()]
 class RegistrarMigrante extends Component
 {
-
     public function placeholder()
     {
         return <<<'HTML'
@@ -20,13 +19,20 @@ class RegistrarMigrante extends Component
     }
 
     public $currentStep;
-    public $identificacion;
     public $datosPersonales;
     public $codigoFamiliar;
 
     public function mount()
     {
-        $this->currentStep = 1;
+        // Si el paso no ha sido establecido, entonces se establece en 1
+        if (!session()->has('currentStep')) {
+            session([
+                'currentStep' => 1,
+                'totalSteps' => 4,
+            ]);
+        }
+
+        $this->currentStep = session('currentStep');
     }
 
     public function render()
@@ -35,40 +41,34 @@ class RegistrarMigrante extends Component
     }
 
     #[On('identificacion-validated')]
-    public function identificacionStep($identificacion)
+    public function identificacionStep()
     {
-        $this->identificacion = $identificacion;
-        $this->currentStep++;
+        $this->nextStep();
     }
 
     #[On('datos-personales-validated')]
-    public function datosPersonalesStep($datosPersonales)
+    public function datosPersonalesStep()
     {
-        $this->datosPersonales = $datosPersonales;
-        // $nombres = $validatedData['nombres'];
-        // $apellidos = $validatedData['apellidos'];
-        // $sexo = $validatedData['sexo'];
-        // $tipoIdentificacion = $validatedData['tipoIdentificacion'];
-        // $idPais = $validatedData['idPais'];
-        // $estadoCivil = $validatedData['estadoCivil'];
-        // $esLGBT = $validatedData['esLGBT'];
-        // $fechaNacimiento = $validatedData['fechaNacimiento'];
-
-
-
-        $this->currentStep++;
+        $this->nextStep();
     }
 
     #[On('familiar-validated')]
     public function familiarStep($codigoFamiliar)
     {
-        $this->codigoFamiliar = $codigoFamiliar;        
+        $this->codigoFamiliar = $codigoFamiliar;
         $this->currentStep++;
     }
 
     #[On('previous-step')]
     public function previousStep()
     {
-        $this->currentStep--;
+        $currentStep = session('currentStep', 0) - 1;
+        session(['currentStep' => $currentStep]);
+    }
+
+    public function nextStep()
+    {
+        $currentStep = session('currentStep', 0) + 1;
+        session(['currentStep' => $currentStep]);
     }
 }
