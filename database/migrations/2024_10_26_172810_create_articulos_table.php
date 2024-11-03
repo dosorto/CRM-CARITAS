@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('codigo_barra')->unique()->nullable();
             $table->integer('cantidad_stock');
 
-            $table->unsignedBigInteger('subcategoria_id');
-            $table->foreign('subcategoria_id')->references('id')->on('subcategorias');
+            $table->unsignedBigInteger('categoria_articulos_id');
+            $table->foreign('categoria_articulos_id')->references('id')->on('categoria_articulos');
 
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +22,8 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             SubCategoriaSeeder::class,
             MobiliarioSeeder::class,
+            CategoriaArticuloSeeder::class,
+            ArticuloSeeder::class,
 
         ]);
     }

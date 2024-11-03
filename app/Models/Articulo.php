@@ -13,8 +13,8 @@ class Articulo extends Model
 
     protected $table = "articulos";
 
-    public function subcategorias(): BelongsTo
+    public function categoriaArticulo(): BelongsTo
     {
-        return $this->belongsTo(SubCategoria::class);
+        return $this->belongsTo(CategoriaArticulo::class, 'categoria_articulos_id');
     }
 }
