@@ -19,10 +19,15 @@ class RegistrarMigrante extends Component
         HTML;
     }
 
-    public $currentStep = 3;
+    public $currentStep;
     public $identificacion;
     public $datosPersonales;
     public $codigoFamiliar;
+
+    public function mount()
+    {
+        $this->currentStep = 1;
+    }
 
     public function render()
     {

@@ -11,7 +11,6 @@
     </header>
 
     {{-- Pasos --}}
-
     @switch($currentStep)
         @case(1)
             <livewire:crud.migrantes.form.identificacion-step :identificacion="$identificacion">
@@ -24,8 +23,6 @@
         @case(3)
             <livewire:crud.migrantes.form.familiar-step>
             @break
-
-            @default
     @endswitch
 
 </div>

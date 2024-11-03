@@ -10,9 +10,7 @@ class DatosPersonalesStep extends Component
 {
     public $identificacion;
     public $paises;
-
     public $nombres;
-
     public $apellidos;
     public $fechaNacimiento;
     public $estadoCivil;
@@ -24,7 +22,7 @@ class DatosPersonalesStep extends Component
 
     public function mount()
     {
-        $this->paises = Pais::all();
+        $this->paises = Pais::select('id', 'nombre_pais')->get();
     }
 
     public function render()
