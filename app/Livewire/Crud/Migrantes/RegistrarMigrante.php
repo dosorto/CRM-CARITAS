@@ -19,8 +19,6 @@ class RegistrarMigrante extends Component
     }
 
     public $currentStep;
-    public $datosPersonales;
-    public $codigoFamiliar;
 
     public function mount()
     {
@@ -28,7 +26,7 @@ class RegistrarMigrante extends Component
         if (!session()->has('currentStep')) {
             session([
                 'currentStep' => 1,
-                'totalSteps' => 4,
+                'totalSteps' => 5,
             ]);
         }
 
@@ -53,10 +51,9 @@ class RegistrarMigrante extends Component
     }
 
     #[On('familiar-validated')]
-    public function familiarStep($codigoFamiliar)
+    public function familiarStep()
     {
-        $this->codigoFamiliar = $codigoFamiliar;
-        $this->currentStep++;
+        $this->nextStep();
     }
 
     #[On('previous-step')]

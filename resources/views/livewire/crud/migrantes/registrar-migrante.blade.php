@@ -23,6 +23,9 @@
         @case(3)
             <livewire:crud.migrantes.form.familiar-step>
             @break
+        @case(4)
+        <livewire:crud.migrantes.form.datos-migratorios-step>
+            @break
     @endswitch
 
 </div>

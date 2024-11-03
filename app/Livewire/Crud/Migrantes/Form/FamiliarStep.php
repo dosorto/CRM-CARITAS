@@ -5,6 +5,7 @@ namespace App\Livewire\Crud\Migrantes\Form;
 use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 
 class FamiliarStep extends Component
 {
@@ -22,14 +23,14 @@ class FamiliarStep extends Component
 
     public $familiar;
 
-    public function selectRelated($persona)
+    public function selectRelated($personaId)
     {
-        $this->familiar = $persona;
+        $this->familiar = Migrante::find($personaId);
     }
 
     public function filtrar()
     {
-        return Migrante::select('id', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id')
+        return Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id')
             ->when($this->colSelected === 'nombre_completo', function ($query) {
 
                 $nombreCompleto = '%' . str_replace(' ', '%', $this->textToFind) . '%';
@@ -44,8 +45,17 @@ class FamiliarStep extends Component
 
     public function mount()
     {
-        $this->viajaEnGrupo = true;
-        $this->tieneFamiliar = true;
+        if (session()->has('viajaEnGrupo') && session()->has('tieneFamiliar')) {
+            $this->viajaEnGrupo = session('viajaEnGrupo');
+            $this->tieneFamiliar = session('tieneFamiliar');
+        }
+        else
+        {
+            $this->viajaEnGrupo = false;
+            $this->tieneFamiliar = false;
+        }
+
+
         $this->colSelected = 'nombre_completo';
         $this->textToFind = '';
         $this->codigoFamiliar = Migrante::max('codigo_familiar') + 1;
@@ -61,6 +71,23 @@ class FamiliarStep extends Component
             $personas = $this->filtrar();
 
         return view('livewire.crud.migrantes.form.familiar-step')
-        ->with('personas', $personas);
+            ->with('personas', $personas);
+    }
+
+    public function nextStep()
+    {
+        if ($this->viajaEnGrupo && $this->tieneFamiliar) {
+            if ($this->familiar) {
+                session(['codigoFamiliar' => $this->familiar->codigo_familiar]);
+            }
+        }
+
+        session([
+            'viajaEnGrupo' => $this->viajaEnGrupo,
+            'tieneFamiliar' => $this->tieneFamiliar
+        ]);
+
+        $this->dispatch('familiar-validated')
+            ->to(RegistrarMigrante::class);
     }
 }

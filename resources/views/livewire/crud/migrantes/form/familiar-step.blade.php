@@ -120,7 +120,7 @@
                                                 </td>
                                                 <td class="flex w-max gap-2">
                                                     <div class="tooltip" data-tip="Seleccionar">
-                                                        <button wire:click="selectRelated({{ $persona }})"
+                                                        <button wire:click="selectRelated({{ $persona->id }})"
                                                             class="items-center btn btn-xs btn-accent text-base-content">
                                                             <span
                                                                 class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
@@ -140,9 +140,56 @@
         </section>
         <section class="w-2/5 h-full bg-accent flex flex-col ">
 
-            {{-- Caso en que no viaje en grupo --}}
-            @if (!$tieneFamiliar || !$viajaEnGrupo)
-                <div class="p-5 text-lg flex flex-col items-center justify-center size-full">
+            {{-- Caso en que viaje en grupo y ya tenga familiar registrado --}}
+            @if ($tieneFamiliar && $viajaEnGrupo)
+                @if ($familiar)
+                    <div class="flex flex-col overflow-auto p-6">
+                        <h4 class="text-xl text-center mb-4">
+                            Datos del Familiar
+                        </h4>
+                        <hr class="border border-base-100">
+                        <p class="mt-4">
+                            <strong>Nombre Completo:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->primer_nombre .
+                                ' ' .
+                                $familiar->segundo_nombre .
+                                ' ' .
+                                $familiar->primer_apellido .
+                                ' ' .
+                                $familiar->segundo_apellido }}
+                        </p>
+                        <p class="mt-4">
+                            <strong>Pais de Procedencia:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->pais->nombre_pais }}
+                        </p>
+                        <p class="mt-4">
+                            <strong>Número de Identificación:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->numero_identificacion }}
+                        </p>
+                        <p class="mt-4">
+                            <strong>Código Familiar:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->codigo_familiar }}
+                        </p>
+                    </div>
+                @else
+                    <div class="flex items-center h-full justify-center">
+
+                        <span class="icon-[material-symbols--question-mark] size-20"></span>
+                    </div>
+                    <div class="flex flex-col items-center justify-end text-center p-8 h-max">
+                        <span class="icon-[fa--long-arrow-left]"></span>
+                        Seleccione un familiar en la tabla de la izquierda
+                    </div>
+                @endif
+            @else<div class="p-5 text-lg flex flex-col items-center justify-center size-full">
                     <strong>Nuevo Código Familiar:</strong>
                     <p>{{ $codigoFamiliar }}</p>
                     <hr class="border border-base-content w-4/5 mt-6">
@@ -150,27 +197,12 @@
                         Este registro no será tomado en cuenta para datos estadísticos de familiares
                     </p>
                 </div>
-            @else
-                @if ($familiar)
-                    <div class="flex-1 overflow-auto pt-4">
-                        <h4 class="text-xl text-center">
-                            Datos del Familiar
-                        </h4>
-                    </div>
-                @else
-                    <div class="flex flex-col items-center justify-end text-center p-8 h-full">
-                        <span class="icon-[fa--long-arrow-left]"></span>
-                        Seleccione un familiar en la tabla de la izquierda
-                    </div>
-                @endif
 
             @endif
 
 
         </section>
     </article>
-
-
 
     <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
         <livewire:components.buttons.previous-step-button />
