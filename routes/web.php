@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Crud\Articulos\VerArticulos;
+use App\Livewire\Crud\CategoriaArticulos\VerCategoriaArticulos;
 use App\Livewire\Crud\Categorias\VerCategorias;
 use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
@@ -49,7 +50,14 @@ Route::get('/subcategorias', VerSubCategorias::class)
 Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
 Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
 
-Route::get('/articulos', VerArticulos::class)->name('ver-articulos');
+Route::get('/articulos', VerArticulos::class)
+    ->name('ver-articulos')
+    ->middleware('auth');
+
+Route::get('/categoriadearticulos', VerCategoriaArticulos::class)
+    ->name('ver-categoria-articulos')
+    ->middleware('auth');
+
 
 
 Route::post('/logout', function () {

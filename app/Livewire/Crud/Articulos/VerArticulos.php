@@ -30,17 +30,17 @@ class VerArticulos extends Component
     // Nombre de los encabezados de las columnas
     public $colNames = [
         'Nombre del Articulo',
-        'Descripción',
         'Código de barra',
-        'Cantidad Disponible'
+        'Cantidad Disponible',
+        'Categoria del Articulo'
     ];
 
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
         'nombre',
-        'descripcion',
         'codigo_barra',
         'cantidad_stock',
+        'categoriaArticulos.name_categoria'
     ];
 
     public $actions = [
@@ -54,9 +54,14 @@ class VerArticulos extends Component
             'component' => 'crud.articulos.eliminar-articulo-modal',
             'parameters' => ['idModal' => 'deleteArticuloModal']
         ],
+        [
+            'name' => 'info',
+            'component' => 'crud.articulos.info-articulos-modal',
+            'parameters' => ['idModal' => 'infoArticulosModal']
+        ]
     ];
 
-    public $paginationSize = 15;
+    public $paginationSize = 6;
     public $itemClass = Articulo::class;
     public $idCreateModal = 'createArticuloModal';
 
