@@ -8,7 +8,14 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js'
             ],
-            refresh: true,
+            refresh: {
+                paths: [
+                    'resources/**/*.blade.php',
+                    'resources/js/**/*.js',
+                    'resources/css/**/*.css',
+                ],
+                config: false
+            }
         }),
     ],
 });

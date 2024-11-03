@@ -63,36 +63,3 @@ Route::post('/logout', function () {
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
 
-
-Route::get('/testing', function () {
-    return '<div class="dropdown">
-
-    <div id="paises" class="dropdown-content">
-        <input type="text" placeholder="Search.." id="searching" onkeyup="filterFunction()">
-        <a href="#about">About</a>
-        <a href="#base">Base</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-        <a href="#custom">Custom</a>
-        <a href="#support">Support</a>
-        <a href="#tools">Tools</a>
-    </div>
-</div>
-<script>
-
-    function filterFunction() {
-        const input = document.getElementById("searching");
-        const filter = input.value.toUpperCase();
-        const div = document.getElementById("paises");
-        const a = div.getElementsByTagName("a");
-        for (let i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].inn erText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                a[i].style.display = "";
-            } else {
-                a[i].style.display = "none";
-            }
-        }
-    }
-</script>';
-});
