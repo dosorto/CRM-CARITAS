@@ -52,102 +52,92 @@
                 {{-- Tabla y buscador en caso de que tenga Familiar. --}}
                 <section class="mt-2  @if (!$tieneFamiliar || !$viajaEnGrupo) hidden @endif">
 
-                    <div class="flex flex-grow flex-col">
+                    {{-- Buscador --}}
+                    <div class="flex px-4 mb-4 mt-2">
+                        <div class="join w-full">
+                            <select wire:model.live.debounce.100ms="colSelected"
+                                class="select select-sm join-item w-min bg-accent">
+                                <option value="nombre_completo">Nombre</option>
+                                <option value="identificacion">Identificación</option>
+                            </select>
+                            <label
+                                class="w-full input input-sm join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
+                                <input wire:model.live.debounce.200ms="textToFind" placeholder="Buscar..."
+                                    type="text" />
 
-
-                        {{-- Buscador --}}
-                        <div class="flex px-4 mb-4 mt-2">
-                            <div class="join w-full">
-                                <select wire:model.live.debounce.100ms="colSelected"
-                                    class="select select-sm join-item w-min bg-accent">
-                                    <option value="nombre_completo">Nombre</option>
-                                    <option value="identificacion">Identificación</option>
-                                </select>
-                                <label
-                                    class="w-full input input-sm join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
-                                    <input wire:model.live.debounce.200ms="textToFind" placeholder="Buscar..."
-                                        type="text" />
-
-                                    {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
-                                    <span wire:loading.remove class="icon-[map--search] size-4 text-gray-400"></span>
-                                    <span wire:loading class="loading loading-dots"></span>
-                                    {{-- <span class="loading loading-dots loading-md"></span> --}}
-                                </label>
-                            </div>
+                                {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
+                                <span wire:loading.remove class="icon-[map--search] size-4 text-gray-400"></span>
+                                <span wire:loading class="loading loading-dots"></span>
+                                {{-- <span class="loading loading-dots loading-md"></span> --}}
+                            </label>
                         </div>
+                    </div>
 
 
-                        {{-- Tabla --}}
-                        <div class="flex flex-col">
+                    {{-- Tabla --}}
+                    <div class="flex flex-col">
 
 
-                            <div class="rounded-lg border-2 border-accent">
-                                <table class="table table-sm w-full table-pin-rows">
-                                    <thead class="text-sm border-b-2 border-accent">
-                                        <th class="bg-accent">
-                                            Nombre
-                                        </th>
-                                        <th class="bg-accent">
-                                            Identificación
-                                        </th>
-                                        <th class="bg-accent">
-                                            País
-                                        </th>
-                                        <th class="bg-accent">Opciones</th>
-                                    </thead>
-                                    <tbody>
+                        <div class="rounded-lg border-2 border-accent">
+                            <table class="table table-sm w-full table-pin-rows">
+                                <thead class="text-sm border-b-2 border-accent">
+                                    <th class="bg-accent">
+                                        Nombre
+                                    </th>
+                                    <th class="bg-accent">
+                                        Identificación
+                                    </th>
+                                    <th class="bg-accent">
+                                        País
+                                    </th>
+                                    <th class="bg-accent">Opciones</th>
+                                </thead>
+                                <tbody>
 
-                                        @if (!$personas)
-                                            <tr class="border-b border-accent">
-                                                <td colspan="4" class="text-center py-4">
-                                                    <strong>* Sonido de Grillos *</strong>
+                                    @if (!$personas)
+                                        <tr class="border-b border-accent">
+                                            <td colspan="4" class="text-center py-4">
+                                                <strong>* Sonido de Grillos *</strong>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        @foreach ($personas as $persona)
+                                            <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
+                                                <td>
+                                                    {{ $persona->primer_nombre .
+                                                        ' ' .
+                                                        $persona->segundo_nombre .
+                                                        ' ' .
+                                                        $persona->primer_apellido .
+                                                        ' ' .
+                                                        $persona->segundo_apellido }}
+                                                </td>
+                                                <td>
+                                                    {{ $persona->numero_identificacion }}
+                                                </td>
+                                                <td>
+                                                    {{ $persona->pais->nombre_pais }}
+                                                </td>
+                                                <td class="flex w-max gap-2">
+                                                    <div class="tooltip" data-tip="Seleccionar">
+                                                        <button wire:click="selectRelated({{ $persona }})"
+                                                            class="items-center btn btn-xs btn-accent text-base-content">
+                                                            <span
+                                                                class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                        @else
-                                            @foreach ($personas as $persona)
-                                                <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
-                                                    <td>
-                                                        {{ $persona->primer_nombre .
-                                                            ' ' .
-                                                            $persona->segundo_nombre .
-                                                            ' ' .
-                                                            $persona->primer_apellido .
-                                                            ' ' .
-                                                            $persona->segundo_apellido }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $persona->numero_identificacion }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $persona->pais->nombre_pais }}
-                                                    </td>
-                                                    <td class="flex w-max gap-2">
-                                                        <div class="tooltip" data-tip="Seleccionar">
-                                                            <button wire:click="selectRelated({{ $persona }})"
-                                                                class="items-center btn btn-xs btn-accent text-base-content">
-                                                                <span
-                                                                    class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-
-                            </div>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                 </section>
-                {{-- Footer fijo en el fondo --}}
-                <footer class="py-4 border-t border-accent mb-0 overflow-hidden">
-                    {{ $personas->links() }}
-                </footer>
             </div>
         </section>
-
         <section class="w-2/5 h-full bg-accent flex flex-col ">
 
             {{-- Caso en que no viaje en grupo --}}
@@ -179,6 +169,8 @@
 
         </section>
     </article>
+
+
 
     <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
         <livewire:components.buttons.previous-step-button />

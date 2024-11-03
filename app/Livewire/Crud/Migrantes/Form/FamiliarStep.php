@@ -39,7 +39,7 @@ class FamiliarStep extends Component
             })
             ->with('pais')
             ->orderBy('id', 'desc')
-            ->paginate(10);
+            ->get();
     }
 
     public function mount()
@@ -56,7 +56,7 @@ class FamiliarStep extends Component
         $this->textToFind === '' ?
             $personas = Migrante::select('id', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'numero_identificacion', 'pais_id')
             ->with('pais')
-            ->paginate(10)
+            ->get()
             :
             $personas = $this->filtrar();
 
