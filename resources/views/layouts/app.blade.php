@@ -46,7 +46,7 @@
                 {{-- Logo de la Barra Lateral --}}
                 <div class="px-4 pt-4">
                     <a href="#" class="flex items-center pl-2.5 w-full">
-                        <img id="logo" src="{{ asset('storage/images/logo-white.png') }}" class="h-16 me-6 sm:h-14"
+                        <img id="logo" src="/img/logo-white.png" class="h-16 me-6 sm:h-14"
                             alt="Logo" />
                     </a>
                 </div>
