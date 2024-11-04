@@ -69,7 +69,7 @@
                                     ' ' .
                                     $item->primer_apellido .
                                     ' ' .
-                                    $item->segundo_apelido }}
+                                    $item->segundo_apellido }}
                             </td>
                             <td>
                                 {{ $item->pais->nombre_pais }}

@@ -70,7 +70,7 @@ module.exports = {
                     "warning":          "#f59e00",     
                     "warning-content":  "#FFFFFF",     
                     "error":            "#dc2626",   
-                    "error-content":    "#EE6565",
+                    "error-content":    "#F57979",
                 },
             },
         ],

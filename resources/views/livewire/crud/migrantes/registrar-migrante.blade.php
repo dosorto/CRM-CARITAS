@@ -1,17 +1,17 @@
 <div class="h-screen w-full flex flex-col px-5">
-    @if (session()->has('message'))
-        <div class="alert alert-{{ session('type') }}">
-            {{ session('message') }}
-        </div>
-    @endif
+
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Registrar Migrante</h1>
         <div>
-            <a href="{{ route('ver-migrantes') }}" class="btn btn-accent btn-sm text-base-content h-10" type="button">
-                <span class="icon-[ph--user-list-bold] size-6"></span>
-                Listado de Migrantes
-            </a>
+            @if (session()->has('message'))
+                <div role="alert"
+                    class="alert w-max text-white pl-2 pr-4 py-1 rounded-lg shadow-lg fixed top-4 right-4 z-50 {{ session('type') }}">
+                    <span class="icon-[{{ session('alertIcon') }}]"></span>
+                    {{ session('message') }}
+
+                </div>
+            @endif
         </div>
     </header>
 

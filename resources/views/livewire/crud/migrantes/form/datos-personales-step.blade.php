@@ -135,8 +135,11 @@
 
     </section>
 
-    <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
-        <livewire:components.buttons.previous-step-button />
-        <livewire:components.buttons.next-step-button />
+    <footer class="py-4 mb-0 flex justify-between">
+        <livewire:crud.migrantes.listado-migrantes-button />
+        <div class="flex gap-4">
+            <livewire:components.buttons.previous-step-button />
+            <livewire:components.buttons.next-step-button />
+        </div>
     </footer>
 </main>

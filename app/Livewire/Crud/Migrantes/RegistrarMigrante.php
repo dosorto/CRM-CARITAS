@@ -36,13 +36,26 @@ class RegistrarMigrante extends Component
 
     public function render()
     {
+        // session(['currentStep' => 1]);
         return view('livewire.crud.migrantes.registrar-migrante');
     }
 
     #[On('identificacion-validated')]
     public function identificacionStep()
     {
-        $this->nextStep();
+        $migrante = Migrante::select('id', 'primer_nombre', 'primer_apellido')
+            ->where('numero_identificacion', session('identificacion'))
+            ->first();
+
+        if ($migrante) {
+            session(['idMigrante' => $migrante->id]);
+            session()->flash('message', '¡Nueva visita por parte de: ' . $migrante->primer_nombre . ' ' . $migrante->primer_apellido . '!');
+            session()->flash('type', 'alert-info');
+            session()->flash('alertIcon', 'akar-icons--info');
+            session(['currentStep' => 4]);
+        } else {
+            $this->nextStep();
+        }
     }
 
     #[On('datos-personales-validated')]
@@ -54,7 +67,7 @@ class RegistrarMigrante extends Component
     #[On('familiar-validated')]
     public function familiarStep()
     {
-        if (session()->has('migranteCreated')) {
+        if (!session()->has('migranteCreated')) {
             $migrante = new Migrante();
 
             $nombres = $this->dividirNombre(session('datosPersonales')['nombres']);
@@ -74,12 +87,11 @@ class RegistrarMigrante extends Component
             $migrante->estado_civil = session('datosPersonales')['estadoCivil'];
 
             $migrante->save();
-
             session(['migranteCreated' => true]);
-            session()->flash('message', 'Datos personales del migrante ingresados con éxito');
-            session()->flash('type', 'success');
+            session()->flash('alertIcon', 'si--check-circle-fill');
+            session()->flash('message', '¡Datos personales del migrante ingresados!');
+            session()->flash('type', 'alert-success');
         }
-
         $this->nextStep();
     }
 

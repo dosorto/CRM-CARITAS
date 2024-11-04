@@ -57,8 +57,11 @@
                         <div class="join w-full">
                             <select wire:model.live.debounce.100ms="colSelected"
                                 class="select select-sm join-item w-min bg-accent">
-                                <option value="nombre_completo">Nombre</option>
-                                <option value="identificacion">Identificación</option>
+                                <option value="Identificacion">Identificación</option>
+                                <option value="Nombre1">Primer Nombre</option>
+                                <option value="Nombre2">Primer Apellido</option>
+                                <option value="Apellido1">Segundo Nombre</option>
+                                <option value="Apellido2">Segundo Apellido</option>
                             </select>
                             <label
                                 class="w-full input input-sm join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
@@ -181,11 +184,20 @@
                     </div>
                 @else
                     <div class="flex items-center h-full justify-center">
-
-                        <span class="icon-[material-symbols--question-mark] size-20"></span>
+                        <span
+                            class="icon-[material-symbols--question-mark] size-20
+                        @error('familiar')
+                            text-error-content
+                        @enderror"></span>
                     </div>
-                    <div class="flex flex-col items-center justify-end text-center p-8 h-max">
+                    <div
+                        class="flex flex-col items-center justify-end text-center p-8 h-max
+                        @error('familiar')
+                            text-error-content border-2 rounded-xl border-error-content m-6
+                        @enderror">
+
                         <span class="icon-[fa--long-arrow-left]"></span>
+
                         Seleccione un familiar en la tabla de la izquierda
                     </div>
                 @endif
@@ -204,8 +216,15 @@
         </section>
     </article>
 
-    <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
-        <livewire:components.buttons.previous-step-button />
-        <livewire:components.buttons.next-step-button />
+    <footer class="py-4 mb-0 flex justify-between">
+        <livewire:crud.migrantes.listado-migrantes-button />
+        <div class="flex gap-4">
+            <livewire:components.buttons.previous-step-button />
+            {{-- <livewire:components.buttons.next-step-button /> --}}
+            <button wire:click="nextStep" class="btn btn-info">
+                <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
+                Registrar Datos Personales
+            </button>
+        </div>
     </footer>
 </main>
