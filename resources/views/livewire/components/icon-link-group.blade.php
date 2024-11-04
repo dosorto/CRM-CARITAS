@@ -25,4 +25,9 @@
         <span class="icon-[material-symbols--list-alt-add] size-6"></span>
         Crear Acta de Entrega
     </a>
+
+    <a href="{{ route('ver-formulario') }}" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[material-symbols--list-alt-add] size-6"></span>
+        Ver Expediente
+    </a>
 </div>
