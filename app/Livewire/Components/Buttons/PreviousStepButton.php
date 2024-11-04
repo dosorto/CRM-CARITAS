@@ -2,13 +2,14 @@
 
 namespace App\Livewire\Components\Buttons;
 
+use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 use Livewire\Component;
 
 class PreviousStepButton extends Component
 {
     public function previousStep()
     {
-        $this->dispatch('previous-step');
+        $this->dispatch('previous-step')->to(RegistrarMigrante::class);
     }
 
     public function render()

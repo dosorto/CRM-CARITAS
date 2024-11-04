@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 use App\Models\Migrante;
 
@@ -22,10 +23,13 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             SubCategoriaSeeder::class,
             MobiliarioSeeder::class,
+            CategoriaArticuloSeeder::class,
+            ArticuloSeeder::class,
+            ActaEntregaSeeder::class,
 
         ]);
 
-        Migrante::factory()->count(30)->create();
+        Migrante::factory()->count(100)->create();
 
 
     }

@@ -5,7 +5,9 @@
             <thead class="text-base">
                 <tr class="border-b border-l border-accent bg-accent">
                     @foreach ($colNames as $colName)
-                        <th> {{ $colName }} </th>
+                        <th wire:key="TableColName-{{$colName}}"> 
+                            {{ $colName }} 
+                        </th>
                     @endforeach
                     <th> Opciones </th>
                 </tr>
@@ -26,12 +28,12 @@
                                     }
                                 }
                             @endphp
-                            <td>{{ $value }}</td>
+                            <td wire:key="{{$item->id}}-{{$key}}">{{ $value }}</td>
                         @endforeach
                         <td class="flex gap-2">
                             @foreach ($actions as $action)
                                 <livewire:dynamic-component
-                                    :wire:key="$action['name'] . '-' . $item->id"
+                                    :key="$action['name'] . '-' . $item->id"
                                     :component="$action['component']"
                                     :parameters="array_merge(['item' => $item], $action['parameters'] ?? [])"/>
                             @endforeach

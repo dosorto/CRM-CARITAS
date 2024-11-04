@@ -41,21 +41,23 @@ class VerDepartamentos extends Component
         'pais.nombre_pais'
     ];
 
+    // Atributos de los botones (Componentes dinámicos) de cada fila (registro)
     public $actions = [
         [
-            'name' => 'edit',
+            'name' => 'editDepartamento',
             'component' => 'crud.departamentos.editar-departamento-modal',
             'parameters' => ['idModal' => 'editDepartamentoModal']
         ],
         [
-            'name' => 'delete',
+            'name' => 'deleteDepartamento',
             'component' => 'crud.departamentos.eliminar-departamento-modal',
             'parameters' => ['idModal' => 'deleteDepartamentoModal']
         ],
     ];
-    public $paginationSize = 15;
-    public $itemClass = Departamento::class;
-    public $idCreateModal = 'createDepartamentoModal';
+    public $paginationSize = 15; // Número de Registros por página
+    public $itemClass = Departamento::class; // Clase a mostrar en la tabla
+    public $idCreateModal = 'createDepartamentoModal'; // id del modal de Crear
+    // Debido a que solo es uno, se pasa por aparte
 
     public function render()
     {

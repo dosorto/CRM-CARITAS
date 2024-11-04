@@ -34,12 +34,12 @@ class VerCiudades extends Component
 
     public $actions = [
         [
-            'name' => 'edit',
+            'name' => 'editCiudad',
             'component' => 'crud.ciudades.editar-ciudad-modal',
             'parameters' => ['idModal' => 'editCiudadModal']
         ],
         [
-            'name' => 'delete',
+            'name' => 'deleteCiudad',
             'component' => 'crud.ciudades.eliminar-ciudad-modal',
             'parameters' => ['idModal' => 'deleteCiudadModal']
         ],

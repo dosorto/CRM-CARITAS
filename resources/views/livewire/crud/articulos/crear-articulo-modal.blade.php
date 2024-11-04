@@ -61,17 +61,15 @@
 
                 {{-- Subcategorías --}}
                 <div class="flex flex-col mt-4">
-                    <label class="mb-1">Subcategorías</label>
-                    <select wire:model="subcategoria_id" class="select bg-accent text-base-content">
-                        <option value="">Seleccione una subcategoría...</option>
-                        @foreach ($subcategorias as $subcategoria)
-                            <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre_subcategoria }}</option>
-                        @endforeach
-                    </select>
-                    <div class="mt-1 text-error-content font-bold">
-                        @error('subcategoria_id')
-                            {{ $message }}
-                        @enderror
+                    <label class="mb-1"> Categoría de Articulos </label>
+                    <div class="flex gap-2">
+                        <select wire:model.live="categoria_articulos_id" class="input bg-accent w-[72%]">
+                            <option value="">Selecciona una categoría...</option>
+                            @foreach ($categoria_articulos as $categoria_articulo)
+                                <option value="{{ $categoria_articulo->id }}">{{ $categoria_articulo->name_categoria }}</option>
+                            @endforeach
+                        </select>
+                        <livewire:crud.categoria-articulos.crear-categoria-articulos-modal :idModal="'createCategoriaArticulosModal'">
                     </div>
                 </div>
 
@@ -96,11 +94,11 @@
         document.getElementById($idModal).addEventListener('change', function(event) {
             if (event.target.checked) {
                 // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.initForm();
+                $wire.resetForm();
             }
         });
 
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById($idModal).checked = false;
         });

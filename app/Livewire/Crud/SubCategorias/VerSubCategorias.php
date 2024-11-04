@@ -33,12 +33,12 @@ class VerSubCategorias extends Component
 
     public $actions = [
         [
-            'name' => 'edit',
+            'name' => 'editSubcategoria',
             'component' => 'crud.sub-categorias.editar-sub-categoria-modal',
             'parameters' => ['idModal' => 'editSubCategoriaModal']
         ],
         [
-            'name' => 'delete',
+            'name' => 'deleteSubcategoria',
             'component' => 'crud.sub-categorias.eliminar-sub-categoria-modal',
             'parameters' => ['idModal' => 'deleteSubCategoriaModal']
         ],

@@ -32,7 +32,7 @@
 
                     {{-- Pregunta de Tiene Familiar --}}
                     <div class="flex flex-col w-2/3">
-                        <label>¿Tiene ya un familiar Registrado??</label>
+                        <label>¿Tiene ya un familiar Registrado?</label>
                         <div class="flex gap-2 mt-2 items-center">
 
                             <label>Si</label>
@@ -57,13 +57,15 @@
                         <div class="join w-full">
                             <select wire:model.live.debounce.100ms="colSelected"
                                 class="select select-sm join-item w-min bg-accent">
-                                <option value="nombres">Nombres</option>
-                                <option value="apellidos">Apellidos</option>
-                                <option value="identificacion">Identificación</option>
+                                <option value="Identificacion">Identificación</option>
+                                <option value="Nombre1">Primer Nombre</option>
+                                <option value="Nombre2">Primer Apellido</option>
+                                <option value="Apellido1">Segundo Nombre</option>
+                                <option value="Apellido2">Segundo Apellido</option>
                             </select>
                             <label
                                 class="w-full input input-sm join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
-                                <input wire:model.live.debounce.1000ms="textToFind" placeholder="Buscar..."
+                                <input wire:model.live.debounce.200ms="textToFind" placeholder="Buscar..."
                                     type="text" />
 
                                 {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
@@ -83,7 +85,7 @@
                             <table class="table table-sm w-full table-pin-rows">
                                 <thead class="text-sm border-b-2 border-accent">
                                     <th class="bg-accent">
-                                        Nombre Completo
+                                        Nombre
                                     </th>
                                     <th class="bg-accent">
                                         Identificación
@@ -91,33 +93,40 @@
                                     <th class="bg-accent">
                                         País
                                     </th>
-                                    <th class="bg-accent">Seleccionar</th>
+                                    <th class="bg-accent">Opciones</th>
                                 </thead>
                                 <tbody>
 
-                                    @if (!$persons)
+                                    @if (!$personas)
                                         <tr class="border-b border-accent">
                                             <td colspan="4" class="text-center py-4">
                                                 <strong>* Sonido de Grillos *</strong>
                                             </td>
                                         </tr>
                                     @else
-                                        @foreach ($persons as $person)
-                                            <tr wire:key="{{ $person->id }}" class="border-b border-accent">
+                                        @foreach ($personas as $persona)
+                                            <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
                                                 <td>
-                                                    Mario Fernando Carbajal Galo
+                                                    {{ $persona->primer_nombre .
+                                                        ' ' .
+                                                        $persona->segundo_nombre .
+                                                        ' ' .
+                                                        $persona->primer_apellido .
+                                                        ' ' .
+                                                        $persona->segundo_apellido }}
                                                 </td>
                                                 <td>
-                                                    0601200303381
+                                                    {{ $persona->numero_identificacion }}
                                                 </td>
                                                 <td>
-                                                    Honduras
+                                                    {{ $persona->pais->nombre_pais }}
                                                 </td>
-                                                <td class="w-max">
-                                                    <div class="tooltip w-max" data-tip="Seleccionar">
-                                                        <button wire:click="selectRelated({{ $person }})"
-                                                            class="items-center btn btn-xs btn-accent">
-                                                            <span class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
+                                                <td class="flex w-max gap-2">
+                                                    <div class="tooltip" data-tip="Seleccionar">
+                                                        <button wire:click="selectRelated({{ $persona->id }})"
+                                                            class="items-center btn btn-xs btn-accent text-base-content">
+                                                            <span
+                                                                class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
                                                         </button>
                                                     </div>
                                                 </td>
@@ -133,22 +142,89 @@
             </div>
         </section>
         <section class="w-2/5 h-full bg-accent flex flex-col ">
-            <div class="flex-1 overflow-auto pt-4">
-                <h4 class="text-xl text-center">
-                    Datos del Familiar
-                </h4>
-            </div>
 
-            <div class="p-5 text-lg">
-                <strong>Código Familiar: </strong> 1
-            </div>
+            {{-- Caso en que viaje en grupo y ya tenga familiar registrado --}}
+            @if ($tieneFamiliar && $viajaEnGrupo)
+                @if ($familiar)
+                    <div class="flex flex-col overflow-auto p-6">
+                        <h4 class="text-xl text-center mb-4">
+                            Datos del Familiar
+                        </h4>
+                        <hr class="border border-base-100">
+                        <p class="mt-4">
+                            <strong>Nombre Completo:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->primer_nombre .
+                                ' ' .
+                                $familiar->segundo_nombre .
+                                ' ' .
+                                $familiar->primer_apellido .
+                                ' ' .
+                                $familiar->segundo_apellido }}
+                        </p>
+                        <p class="mt-4">
+                            <strong>Pais de Procedencia:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->pais->nombre_pais }}
+                        </p>
+                        <p class="mt-4">
+                            <strong>Número de Identificación:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->numero_identificacion }}
+                        </p>
+                        <p class="mt-4">
+                            <strong>Código Familiar:</strong>
+                        </p>
+                        <p class="ml-4">
+                            {{ $familiar->codigo_familiar }}
+                        </p>
+                    </div>
+                @else
+                    <div class="flex items-center h-full justify-center">
+                        <span
+                            class="icon-[material-symbols--question-mark] size-20
+                        @error('familiar')
+                            text-error-content
+                        @enderror"></span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-end text-center p-8 h-max
+                        @error('familiar')
+                            text-error-content border-2 rounded-xl border-error-content m-6
+                        @enderror">
+
+                        <span class="icon-[fa--long-arrow-left]"></span>
+
+                        Seleccione un familiar en la tabla de la izquierda
+                    </div>
+                @endif
+            @else<div class="p-5 text-lg flex flex-col items-center justify-center size-full">
+                    <strong>Nuevo Código Familiar:</strong>
+                    <p>{{ $codigoFamiliar }}</p>
+                    <hr class="border border-base-content w-4/5 mt-6">
+                    <p class="mt-6 text-sm text-center mx-4">
+                        Este registro no será tomado en cuenta para datos estadísticos de familiares
+                    </p>
+                </div>
+
+            @endif
+
+
         </section>
     </article>
 
-
-
-    <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
-        <livewire:components.buttons.previous-step-button />
-        <livewire:components.buttons.next-step-button />
+    <footer class="py-4 mb-0 flex justify-between">
+        <livewire:crud.migrantes.listado-migrantes-button />
+        <div class="flex gap-4">
+            <livewire:components.buttons.previous-step-button />
+            {{-- <livewire:components.buttons.next-step-button /> --}}
+            <button wire:click="nextStep" class="btn btn-info">
+                <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
+                Registrar Datos Personales
+            </button>
+        </div>
     </footer>
 </main>

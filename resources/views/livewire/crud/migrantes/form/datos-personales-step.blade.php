@@ -9,7 +9,7 @@
 
     <section class="flex flex-grow flex-col overflow-y-auto rounded-lg border-2 border-accent p-6">
         <h2 class="text-center mb-6 text-lg">
-            <strong>Nuevo registro para el Número de Identificación: </strong> {{ $identificacion }}
+            <strong>Nuevo registro para el Número de Identificación: </strong> {{ session('identificacion') }}
         </h2>
 
         {{-- Nombres y Apellidos --}}
@@ -115,7 +115,7 @@
                 <div class="flex gap-2 h-full items-center">
 
                     <label>Si</label>
-                    <input wire:model="esLGBT" value="true" type="radio"
+                    <input wire:model="esLGBT" value="1" type="radio"
                         class="radio radio-sm border-2
                         @error('esLGBT')
                             border-red-500
@@ -123,7 +123,7 @@
                         name="esLGBT">
 
                     <label class="ml-3">No</label>
-                    <input wire:model="esLGBT" value="false" type="radio" class="radio radio-sm border-2 
+                    <input wire:model="esLGBT" value="0" type="radio" class="radio radio-sm border-2 
                         @error('esLGBT')
                             border-red-500
                         @enderror"
@@ -135,8 +135,11 @@
 
     </section>
 
-    <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
-        <livewire:components.buttons.previous-step-button />
-        <livewire:components.buttons.next-step-button />
+    <footer class="py-4 mb-0 flex justify-between">
+        <livewire:crud.migrantes.listado-migrantes-button />
+        <div class="flex gap-4">
+            <livewire:components.buttons.previous-step-button />
+            <livewire:components.buttons.next-step-button />
+        </div>
     </footer>
 </main>

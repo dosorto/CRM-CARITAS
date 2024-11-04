@@ -3,9 +3,7 @@
 namespace App\Livewire\Components;
 
 use Livewire\Component;
-use Livewire\Attributes\Lazy;
 
-#[Lazy()]
 class LinkCard extends Component
 {
     // Anillo de Cargando cuando el componente tarda

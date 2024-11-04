@@ -6,14 +6,11 @@ use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Livewire\WithoutUrlPagination;
 
 class ContentTable extends Component
 {
-    use WithPagination;
-
-    protected $listeners = [
-        'search-text-changed' => '$refresh',
-    ];
+    use WithPagination, WithoutUrlPagination;
 
     public $colNames;
     public $keys;
@@ -27,24 +24,6 @@ class ContentTable extends Component
 
     public function filterData()
     {
-        //Reglas de filtrado para migrantes
-        if ($this->itemClass === Migrante::class) {
-
-            if ($this->colSelected === 'nombres')
-            {
-
-            }
-            elseif ($this->colSelected === 'apellidos')
-            {
-
-            }
-
-            return $this->textToFind === '' ?
-                $this->itemClass::paginate($this->paginationSize)
-                :
-                $this->itemClass::where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%')->paginate($this->paginationSize);
-        }
-
         return $this->textToFind === '' ?
             $this->itemClass::paginate($this->paginationSize)
             :

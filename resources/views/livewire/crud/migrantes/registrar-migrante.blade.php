@@ -1,30 +1,41 @@
 <div class="h-screen w-full flex flex-col px-5">
+
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Registrar Migrante</h1>
         <div>
-            <a href="{{ route('ver-migrantes') }}" class="btn btn-accent btn-sm text-base-content" type="button">
-                Listado de Migrantes
-            </a>
+            @if (session()->has('message'))
+                <div role="alert"
+                    class="alert w-max text-white pl-2 pr-4 py-1 rounded-lg shadow-lg fixed top-4 right-4 z-50 {{ session('type') }}">
+                    <span class="icon-[{{ session('alertIcon') }}]"></span>
+                    {{ session('message') }}
+
+                </div>
+            @endif
         </div>
     </header>
 
     {{-- Pasos --}}
-
-    @switch($currentStep)
+    @switch(session('currentStep'))
         @case(1)
-            <livewire:crud.migrantes.form.identificacion-step :identificacion="$identificacion">
+            <livewire:crud.migrantes.form.identificacion-step>
             @break
 
-        @case(2)
-            <livewire:crud.migrantes.form.datos-personales-step :identificacion="$identificacion">
-            @break
+            @case(2)
+                <livewire:crud.migrantes.form.datos-personales-step>
+                @break
 
-        @case(3)
-            <livewire:crud.migrantes.form.familiar-step>
-            @break
+                @case(3)
+                    <livewire:crud.migrantes.form.familiar-step>
+                    @break
 
-            @default
-    @endswitch
+                    @case(4)
+                        <livewire:crud.migrantes.form.datos-migratorios-step>
+                        @break
+
+                        @case(5)
+                            <livewire:crud.migrantes.form.situacion-step>
+                            @break
+                        @endswitch
 
 </div>

@@ -20,7 +20,8 @@
 
     </article>
 
-    <footer class="py-4 border-t border-accent mb-0 flex gap-4 justify-end">
+    <footer class="py-4 flex gap-4 justify-between">
+        <livewire:crud.migrantes.listado-migrantes-button />
         <livewire:components.buttons.next-step-button />
     </footer>
 </main>

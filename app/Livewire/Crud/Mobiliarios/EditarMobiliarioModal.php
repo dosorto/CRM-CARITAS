@@ -7,6 +7,7 @@ use App\Models\SubCategoria;
 use App\Models\Categoria;
 use Livewire\Component;
 use Illuminate\Support\Collection;
+use App\Livewire\Components\ContentTable;
 
 class EditarMobiliarioModal extends Component
 {
@@ -26,18 +27,18 @@ class EditarMobiliarioModal extends Component
 
     public function mount($parameters)
     {
-        if ($this->Estado === "Bueno") {
-            $this->Estado = 1;
+        $this->item = $parameters['item'];
+        if ($this->item->estado === "Bueno") {
+            $this->Estado = true;
         }
         else {
-            $this->Estado = 0;
+            $this->Estado = false;
         }
-        $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
+        $this->resetForm();
     }
 
-    public function initForm()
+    public function resetForm()
     {
         $this->categorias = Categoria::all();
 
@@ -48,7 +49,6 @@ class EditarMobiliarioModal extends Component
         $this->Nombre = $this->item->nombre_mobiliario;
         $this->Descripcion = $this->item->descripcion;
         $this->Codigo = $this->item->codigo;
-        $this->Estado = $this->item->estado;
         $this->Ubicacion = $this->item->ubicacion;
         $this->IdSubcategoria= $this->item->subcategoria->id;
         $this->IdCategoria= $this->item->subcategoria->categoria->id;
@@ -93,19 +93,28 @@ class EditarMobiliarioModal extends Component
             'Ubicacion' => 'required|max:10',
         ]);
 
+        if ($this->Estado === true) {
+            $estado = 'Bueno';
+        }
+        else {
+            $estado = 'Malo';
+        }
+
         $nuevo_mobiliario = $this->item;
 
         $nuevo_mobiliario->nombre_mobiliario = $validated['Nombre'];
         $nuevo_mobiliario->descripcion = $this->Descripcion;
         $nuevo_mobiliario->codigo = $this->Codigo;
-        $nuevo_mobiliario->estado = $this->Estado;
+        $nuevo_mobiliario->estado = $estado;
         $nuevo_mobiliario->ubicacion = $validated['Ubicacion'];
         $nuevo_mobiliario->subcategoria_id = $this->IdSubcategoria;
 
         $nuevo_mobiliario->save();
 
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-edited');
+        $this->dispatch('update-delete-modal', id: $nuevo_mobiliario->id)->to(EliminarMobiliarioModal::class);
+        $this->dispatch('update-info-modal', id: $nuevo_mobiliario->id)->to(InfoMobiliarioModal::class);
+        $this->dispatch('close-modal');
+        $this->dispatch('item-edited')->to(ContentTable::class);
     }
 
     public function render()

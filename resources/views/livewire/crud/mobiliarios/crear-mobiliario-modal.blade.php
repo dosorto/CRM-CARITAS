@@ -28,19 +28,22 @@
 
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Descripción </label>
-                    <input wire:model="Descripcion" class="input bg-accent" type="text"
-                        placeholder="Escribir aquí..." />
+                    <textarea wire:model="Descripcion" class="input bg-accent h-20" 
+                            placeholder="Escribir aquí..."></textarea>
+                </div>
+
+                <div class="flex flex-col mt-4">
+                    <label class="mb-1"> Ubicación </label>
+                    <select wire:model="Ubicacion" class="input bg-accent">
+                        <option value="">Selecciona una ubicación...</option>
+                        <option value="Bodega">Bodega</option>
+                        <option value="Casa">Casa</option>
+                    </select>
                     <div class="mt-1 text-error-content font-bold">
                         @error('Ubicacion')
                             {{ $message }}
                         @enderror
                     </div>
-                </div>
-
-                <div class="flex flex-col mt-4">
-                    <label class="mb-1"> Ubicación </label>
-                    <input wire:model="Ubicacion" class="input bg-accent" type="text"
-                        placeholder="Escribir aquí..." />
                 </div>
 
                 <div class="flex flex-col mt-4">
@@ -99,7 +102,7 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear
                 </button>
-                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</button>
             </div>
         </div>
     </div>
@@ -107,16 +110,9 @@
 
 @script
     <script>
-        document.getElementById($idModal).addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.initForm();
-            }
-        });
-
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById($idModal).checked = false;
+            document.getElementById('{{$idModal}}').checked = false;
         });
     </script>
 @endscript
