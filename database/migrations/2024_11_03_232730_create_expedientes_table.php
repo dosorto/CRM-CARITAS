@@ -16,6 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('migrante_id')->nullable();
             $table->foreign('migrante_id')->references('id')->on('migrantes');
             $table->string('discapacidades')->nullable();
+            $table->string('necesidades')->nullable();
+            $table->string('frontera')->nullable();
+            $table->string('situaciones_migratorias')->nullable();
+            $table->string('observacion')->nullable();
             $table->timestamps();
         });
     }

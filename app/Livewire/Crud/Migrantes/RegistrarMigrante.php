@@ -63,6 +63,16 @@ class RegistrarMigrante extends Component
     {
         $this->nextStep();
     }
+    #[On('datos-migratorios-validated')]
+    public function datosMigratoriosStep()
+    {
+        $this->nextStep();
+    }
+    #[On('situacion-validated')]
+    public function situacionStep()
+    {
+        $this->nextStep();
+    }
 
     #[On('familiar-validated')]
     public function familiarStep()
