@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 
 use Illuminate\Database\Seeder;
+use App\Models\Migrante;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +25,12 @@ class DatabaseSeeder extends Seeder
             MobiliarioSeeder::class,
             CategoriaArticuloSeeder::class,
             ArticuloSeeder::class,
+            ActaEntregaSeeder::class,
 
         ]);
+
+        Migrante::factory()->count(100)->create();
+
+
     }
 }

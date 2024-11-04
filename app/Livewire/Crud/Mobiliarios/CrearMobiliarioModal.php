@@ -7,6 +7,8 @@ use App\Models\SubCategoria;
 use App\Models\Categoria;
 use Livewire\Component;
 use Illuminate\Support\Collection;
+use App\Livewire\Components\ContentTable;
+use Livewire\Attributes\On;
 
 class CrearMobiliarioModal extends Component
 {
@@ -21,21 +23,19 @@ class CrearMobiliarioModal extends Component
     public Collection $categorias;
     public $idModal;
 
-
     public function mount($idModal)
     {
         // Cargar las categorías existentes
-
+        $this->categorias = Categoria::all();
 
         $this->idModal = $idModal;
-        $this->initForm();
+        $this->resetForm();
         // llamar a la función para cargar subcategorías
         // $this->cargarSubcategorias();
     }
 
-    public function initForm()
+    public function resetForm()
     {
-        $this->categorias = Categoria::all();
 
         if ($this->categorias->isNotEmpty()) {
             $this->IdCategoria = 1;
@@ -45,7 +45,16 @@ class CrearMobiliarioModal extends Component
         $this->Codigo = '';
         $this->Estado = '';
         $this->Ubicacion = '';
+        $this->IdSubcategoria = 1;
         $this->generarCodigo();
+    }
+
+    public function closeModal()
+    {
+        // este evento se envia en este mismo componente y se escucha en la vista con un script, 
+        // que cambia el valor del checkbox del modal a 'false', cerrándolo.
+        $this->dispatch('close-modal')->self();
+        $this->resetForm();
     }
 
     public function updatedCategoriaId()
@@ -94,7 +103,7 @@ class CrearMobiliarioModal extends Component
             $estado = 'Malo';
         }
         
-        $nuevo_mobiliario = new Mobiliario;
+        $nuevo_mobiliario = new Mobiliario();
 
         $nuevo_mobiliario->nombre_mobiliario = $validated['Nombre'];
         $nuevo_mobiliario->descripcion = $this->Descripcion;
@@ -105,8 +114,21 @@ class CrearMobiliarioModal extends Component
 
         $nuevo_mobiliario->save();
 
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-created');
+        $this->dispatch('item-created')->to(ContentTable::class);
+
+        $this->closeModal();
+    }
+
+    #[On('update-create-modal')]
+    public function udpateData($id)
+    {
+        $this->categorias = Categoria::all();
+    }
+
+    #[On('update-createsub-modal')]
+    public function udpateData2($id)
+    {
+        $this->cargarSubcategorias();
     }
 
     public function render()

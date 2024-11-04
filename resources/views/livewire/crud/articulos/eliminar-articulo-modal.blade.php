@@ -32,7 +32,7 @@
 
 @push('scripts')
 <script>
-    @this.on('cerrar-modal', () => {
+    @this.on('close-modal', () => {
         document.getElementById('{{ $idModal }}').checked = false;
     });
 </script>

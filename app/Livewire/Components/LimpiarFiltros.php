@@ -8,7 +8,7 @@ class LimpiarFiltros extends Component
 {
     public function limpiar()
     {
-        $this->dispatch('limpiar-filtros-clicked')->to(BuscadorDinamico::class);
+        $this->dispatch('limpiar-filtros-clicked');
     }
 
     public function render()

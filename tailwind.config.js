@@ -50,7 +50,7 @@ module.exports = {
                     "base-100":         "#1F2937",  // Color de fondo de elementos varios por encima del fondo general
                     "base-content":     "#FAFAFA",  // Color de los textos e íconos de los elementos en el fondo general                              
 
-                    "base-200":         "#1961FD",              
+           
                     "base-300":         "#0f172a", 
                     
                     "accent":           "#536074",       
@@ -60,6 +60,7 @@ module.exports = {
                     "secondary":        "#AAAAAA",  
                     "secondary-content":"#AAAAAA",       
                          
+                    "base-200":         "#1961FD",   
    
                     "info":             "#172554",  
                        
@@ -69,8 +70,7 @@ module.exports = {
                     "warning":          "#f59e00",     
                     "warning-content":  "#FFFFFF",     
                     "error":            "#dc2626",   
-                    "error-content":    "#dc2626",
-                    
+                    "error-content":    "#F57979",
                 },
             },
         ],
