@@ -61,4 +61,9 @@ class SituacionStep extends Component
     {
         return view('livewire.crud.migrantes.form.situacion-step');
     }
+
+    public function cleanSession()
+    {
+        session()->flush();
+    }
 }

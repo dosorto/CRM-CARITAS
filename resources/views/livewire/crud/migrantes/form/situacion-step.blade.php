@@ -77,7 +77,7 @@
                 Ver Datos Personales
             </button>
             {{-- <livewire:components.buttons.next-step-button /> --}}
-            <button class="btn btn-info text-base-content">
+            <button wire:click="cleanSession" class="btn btn-info text-base-content">
                 <span class="icon-[lucide--save] size-5"></span>
                 Guardar Expediente
             </button>
