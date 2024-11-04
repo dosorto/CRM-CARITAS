@@ -115,7 +115,7 @@
                 <div class="flex gap-2 h-full items-center">
 
                     <label>Si</label>
-                    <input wire:model="esLGBT" value="true" type="radio"
+                    <input wire:model="esLGBT" value="1" type="radio"
                         class="radio radio-sm border-2
                         @error('esLGBT')
                             border-red-500
@@ -123,7 +123,7 @@
                         name="esLGBT">
 
                     <label class="ml-3">No</label>
-                    <input wire:model="esLGBT" value="false" type="radio" class="radio radio-sm border-2 
+                    <input wire:model="esLGBT" value="0" type="radio" class="radio radio-sm border-2 
                         @error('esLGBT')
                             border-red-500
                         @enderror"

@@ -29,19 +29,21 @@ class FamiliarStep extends Component
     }
 
     public function filtrar()
-    {
-        return Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id')
-            ->when($this->colSelected === 'nombre_completo', function ($query) {
+{
+    $colSelected = $this->colSelected === 'identificacion' ? 'numero_identificacion' : $this->colSelected;
 
-                $nombreCompleto = '%' . str_replace(' ', '%', $this->textToFind) . '%';
-                return $query->whereRaw("CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) LIKE ?", [$nombreCompleto]);
-            }, function ($query) {
-                return $query->where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%');
-            })
-            ->with('pais')
-            ->orderBy('id', 'desc')
-            ->get();
-    }
+    return Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id')
+        ->when($colSelected === 'nombre_completo', function ($query) {
+            $nombreCompleto = '%' . str_replace(' ', '%', $this->textToFind) . '%';
+            return $query->whereRaw("CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) LIKE ?", [$nombreCompleto]);
+        }, function ($query) use ($colSelected) {
+            return $query->where($colSelected, 'LIKE', '%' . $this->textToFind . '%');
+        })
+        ->with('pais')
+        ->orderBy('id', 'desc')
+        ->get();
+}
+
 
     public function mount()
     {
@@ -76,10 +78,16 @@ class FamiliarStep extends Component
 
     public function nextStep()
     {
+
+
         if ($this->viajaEnGrupo && $this->tieneFamiliar) {
             if ($this->familiar) {
                 session(['codigoFamiliar' => $this->familiar->codigo_familiar]);
             }
+        }
+        else
+        {
+            session(['codigoFamiliar' => $this->codigoFamiliar]);
         }
 
         session([

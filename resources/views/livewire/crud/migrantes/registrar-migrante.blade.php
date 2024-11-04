@@ -1,4 +1,9 @@
 <div class="h-screen w-full flex flex-col px-5">
+    @if (session()->has('message'))
+        <div class="alert alert-{{ session('type') }}">
+            {{ session('message') }}
+        </div>
+    @endif
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Registrar Migrante</h1>
@@ -16,16 +21,17 @@
             <livewire:crud.migrantes.form.identificacion-step>
             @break
 
-        @case(2)
-            <livewire:crud.migrantes.form.datos-personales-step>
-            @break
+            @case(2)
+                <livewire:crud.migrantes.form.datos-personales-step>
+                @break
 
-        @case(3)
-            <livewire:crud.migrantes.form.familiar-step>
-            @break
-        @case(4)
-        <livewire:crud.migrantes.form.datos-migratorios-step>
-            @break
-    @endswitch
+                @case(3)
+                    <livewire:crud.migrantes.form.familiar-step>
+                    @break
+
+                    @case(4)
+                        <livewire:crud.migrantes.form.datos-migratorios-step>
+                        @break
+                    @endswitch
 
 </div>
