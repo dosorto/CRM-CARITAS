@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nombre_categoria')->unique(); // Nombre único para la categoría
+            $table->string('nombre_categoria');
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

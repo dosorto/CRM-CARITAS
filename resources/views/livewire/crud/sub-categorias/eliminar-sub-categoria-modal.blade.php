@@ -20,7 +20,7 @@
                     <p> {{ $item->nombre_subcategoria }} </p>
                 </div>
                 <div class="flex gap-1">
-                    <strong>Categoría</strong>
+                    <strong>Categoría:</strong>
                     <p> {{ $item->categoria->nombre_categoria }} </p>
                 </div>
             </main>

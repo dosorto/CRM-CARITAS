@@ -6,6 +6,8 @@ use App\Livewire\Components\ContentTable;
 use App\Models\Categoria;
 use App\Models\SubCategoria;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use App\Livewire\Crud\Mobiliarios\CrearMobiliarioModal;
 
 class CrearSubCategoriaModal extends Component
 {
@@ -26,6 +28,12 @@ class CrearSubCategoriaModal extends Component
         return view('livewire.crud.sub-categorias.crear-sub-categoria-modal');
     }
 
+    #[On('update-ensubcategoria-modal')]
+    public function udpateData($id)
+    {
+        $this->categorias = Categoria::all();
+    }
+
     public function create()
     {
         $validated = $this->validate([
@@ -38,8 +46,9 @@ class CrearSubCategoriaModal extends Component
         $nueva_subcategoria->categoria_id = $validated['IdCategoria'];
         $nueva_subcategoria->save();
 
-        $this->closeModal();
+        $this->dispatch('update-createsub-modal', id: $nueva_subcategoria->id)->to(CrearMobiliarioModal::class);
         $this->dispatch('item-created')->to(ContentTable::class);
+        $this->closeModal();
     }
 
     public function closeModal()
