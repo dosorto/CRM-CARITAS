@@ -33,7 +33,7 @@
                 </div>
                 <div class="flex gap-1">
                     <strong>Categoría:</strong>
-                    <p> {{ $item->categoria_articulo_id }} </p>
+                    <p> {{ $item->categoriaArticulo->name_categoria }} </p>
                 </div>
             </main>
 
