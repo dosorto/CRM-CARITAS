@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             SubCategoriaSeeder::class,
             MobiliarioSeeder::class,
+            ActaEntregaSeeder::class,
 
         ]);
 

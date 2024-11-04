@@ -20,4 +20,9 @@
         <span class="icon-[material-symbols--sanitizer-rounded] size-6"></span>
         Articulos
     </a>
+
+    <a href="{{ route('crear-acta-entrega') }}" class="btn btn-primary w-full flex justify-start">
+        <span class="icon-[material-symbols--list-alt-add] size-6"></span>
+        Crear Acta de Entrega
+    </a>
 </div>
