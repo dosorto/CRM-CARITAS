@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Auth as FacadesAuth;
 use App\Livewire\Crud\SubCategorias\VerSubCategorias;
 use App\Livewire\Crud\Mobiliarios\VerMobiliarios;
 use App\Livewire\Crud\Formularios\VerFormularios;
+use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
+use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
+use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -54,6 +57,18 @@ Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
 Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
 
 Route::get('/articulos', VerArticulos::class)->name('ver-articulos');
+
+Route::get('/actas-entrega', VerActasEntrega::class)
+    ->name('ver-actas-entrega')
+    ->middleware('auth');
+
+Route::get('/crear-acta-entrega', CrearActaEntrega::class)
+    ->name('crear-acta-entrega')
+    ->middleware('auth');
+
+Route::get('/info-acta-entrega', InfoActaEntrega::class)
+    ->name('info-acta-entrega')
+    ->middleware('auth');
 
 
 Route::post('/logout', function () {
