@@ -25,32 +25,32 @@ class VerMigrantes extends Component
 
     public $fakeColNames = [
         'Número de Identificación' => 'numero_identificacion',
-        'Nombres' => 'nombres',
-        'Apellidos' => 'apellidos',
+        'Primer Nombre' => 'primer_nombre',
+        'Segundo Nombre' => 'segundo_nombre',
+        'Primer Apellido' => 'primer_apellido',
+        'Segundo Apellido' => 'segundo_apellido',
         'Código Familiar' => 'codigo_familiar',
     ];
 
     public $textToFind = '';
     public $colSelected = 'Número de Identificación';
 
-    public function buscar()
+    public function filtrar()
     {
-        if ($this->textToFind === '')
-        {
-            return Migrante::paginate(30);
-        }
-        else
-        {
-            return Migrante::where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')->paginate(30);
-        }
-           
-            
-            
+        return $this->textToFind === '' ?
+            Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id', 'codigo_familiar')
+            ->with('pais')
+            ->paginate(30)
+            :
+            Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id', 'codigo_familiar')
+            ->with('pais')
+            ->where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')
+            ->paginate(30);
     }
 
     public function render()
     {
-        $items = $this->buscar();
+        $items = $this->filtrar();
         return view('livewire.crud.migrantes.ver-migrantes')
             ->with('items', $items);
     }

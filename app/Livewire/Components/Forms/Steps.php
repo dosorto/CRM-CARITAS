@@ -9,10 +9,10 @@ class Steps extends Component
     public $currentStep;
     public $stepsLeft;
     
-    public function mount($currentStep, $steps)
+    public function mount()
     {
-        $this->currentStep = $currentStep;
-        $this->stepsLeft = $steps - $currentStep;
+        $this->currentStep = session('currentStep');
+        $this->stepsLeft = session('totalSteps') - $this->currentStep;
     }
 
     public function render()

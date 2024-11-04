@@ -12,10 +12,6 @@ class ContentTable extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    protected $listeners = [
-        'search-text-changed' => '$refresh',
-    ];
-
     public $colNames;
     public $keys;
     public $paginationSize;
@@ -28,24 +24,6 @@ class ContentTable extends Component
 
     public function filterData()
     {
-        //Reglas de filtrado para migrantes
-        if ($this->itemClass === Migrante::class) {
-
-            if ($this->colSelected === 'nombres')
-            {
-
-            }
-            elseif ($this->colSelected === 'apellidos')
-            {
-
-            }
-
-            return $this->textToFind === '' ?
-                $this->itemClass::paginate($this->paginationSize)
-                :
-                $this->itemClass::where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%')->paginate($this->paginationSize);
-        }
-
         return $this->textToFind === '' ?
             $this->itemClass::paginate($this->paginationSize)
             :
