@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Crud\Discapacidades;
-use App\Models\Discapacidad;
-use App\Livewire\Components\ContentTable;
+namespace App\Livewire\Crud\SituacionesMigratorias;
 
+use App\Livewire\Components\ContentTable;
+use App\Models\SituacionMigratoria;
 use Livewire\Component;
 
-class CrearDiscapacidadModal extends Component
+class CrearSituacionMigratoriaModal extends Component
 {
-    public $Discapacidad;
+    public $Situacion;
     public $idModal;
 
     public function mount($idModal)
@@ -18,18 +18,18 @@ class CrearDiscapacidadModal extends Component
 
     public function render()
     {
-        return view('livewire.crud.discapacidades.crear-discapacidad-modal');
+        return view('livewire.crud.situaciones-migratorias.crear-situacion-migratoria-modal');
     }
 
     public function create()
     {
         $validated = $this->validate([
-            'Discapacidad' => 'required',
+            'Situacion' => 'required',
         ]);
 
-        $discapacidad = new Discapacidad();
-        $discapacidad->discapacidad = $validated['Discapacidad'];
-        $discapacidad->save();
+        $situacion = new SituacionMigratoria();
+        $situacion->situacion_migratoria = $validated['Situacion'];
+        $situacion->save();
 
         $this->dispatch('item-created')->to(ContentTable::class);
 
@@ -44,6 +44,6 @@ class CrearDiscapacidadModal extends Component
 
     public function resetForm()
     {
-        $this->Discapacidad = '';
+        $this->Situacion = '';
     }
 }

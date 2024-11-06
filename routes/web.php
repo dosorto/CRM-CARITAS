@@ -22,6 +22,7 @@ use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
+use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -94,3 +95,6 @@ Route::get('/discapacidades', VerDiscapacidades::class)
     ->name('ver-discapacidades')
     ->middleware('auth');
 
+Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
+    ->name('ver-situaciones-migratorias')
+    ->middleware('auth');

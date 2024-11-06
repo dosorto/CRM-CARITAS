@@ -27,12 +27,9 @@ class DatabaseSeeder extends Seeder
             ArticuloSeeder::class,
             ActaEntregaSeeder::class,
             DiscapacidadSeeder::class,
-            SituacionMigratoria::class,
-
+            SituacionMigratoriaSeeder::class,
         ]);
 
-        Migrante::factory()->count(100)->create();
-
-
+        Migrante::factory()->count(10)->create();
     }
 }

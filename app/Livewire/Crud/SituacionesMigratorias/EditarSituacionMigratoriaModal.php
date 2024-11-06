@@ -1,39 +1,39 @@
 <?php
 
-namespace App\Livewire\Crud\Discapacidades;
+namespace App\Livewire\Crud\SituacionesMigratorias;
 
 use Livewire\Component;
 use App\Livewire\Components\ContentTable;
 
-class EditarDiscapacidadModal extends Component
+class EditarSituacionMigratoriaModal extends Component
 {
     public $item;
-    public $Discapacidad;
+    public $Situacion;
     public $idModal;
-    
+
     public function mount($parameters)
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
         $this->resetForm();
     }
-    
+
     public function render()
     {
-        return view('livewire.crud.discapacidades.editar-discapacidad-modal');
+        return view('livewire.crud.situaciones-migratorias.editar-situacion-migratoria-modal');
     }
 
     public function  editItem()
     {
         $validated = $this->validate([
-            'Discapacidad' => 'required',
+            'Situacion' => 'required',
         ]);
 
-        $discapacidad = $this->item;
-        $discapacidad->discapacidad = $validated['Discapacidad'];
-        $discapacidad->save();
+        $situacion = $this->item;
+        $situacion->situacion_migratoria = $validated['Situacion'];
+        $situacion->save();
 
-        $this->dispatch('update-delete-modal', id: $discapacidad->id)->to(EliminarDiscapacidadModal::class);
+        $this->dispatch('update-delete-modal', id: $situacion->id)->to(EliminarSituacionMigratoriaModal::class);
 
         $this->dispatch('item-edited')->to(ContentTable::class);
 
@@ -42,7 +42,7 @@ class EditarDiscapacidadModal extends Component
 
     public function resetForm()
     {
-        $this->Discapacidad = $this->item->discapacidad;
+        $this->Situacion = $this->item->situacion_migratoria;
     }
 
     public function closeModal()

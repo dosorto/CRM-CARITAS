@@ -17,9 +17,9 @@ class SituacionMigratoriaSeeder extends Seeder
             'Protección Internacional',
             'Retornado',
             'Solicitante de asilo',
-            'NA',
             'Desplazado por violencia interna',
-            'Refugiado'
+            'Refugiado',
+            'N/A',
         ];
 
         foreach ($situacionesMigratorias as $situacion) {
