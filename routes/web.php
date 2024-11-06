@@ -23,6 +23,7 @@ use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
+use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 
 Route::get('/inicio', Dashboard::class)
@@ -102,4 +103,8 @@ Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
 
 Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
     ->name('ver-asesores-migratorios')
+    ->middleware('auth');
+
+Route::get('/fronteras', VerFronteras::class)
+    ->name('ver-fronteras')
     ->middleware('auth');

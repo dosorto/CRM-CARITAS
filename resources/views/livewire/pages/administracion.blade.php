@@ -41,9 +41,13 @@
                         iconClass="icon-[fa6-solid--person-walking-luggage] size-6"
                         route="ver-asesores-migratorios" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="Fronteras" cardWidth=" w-full"
+                        iconClass="icon-[fa6-solid--person-walking-luggage] size-6"
+                        route="ver-fronteras" />
+                </article>
             </div>
         </main>
-
 
         {{-- Footer fijo en la parte inferior --}}
         <footer class="h-auto flex justify-start bg-neutral text-base-content p-4">
