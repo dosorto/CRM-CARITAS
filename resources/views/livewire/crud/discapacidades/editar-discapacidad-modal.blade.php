@@ -7,7 +7,7 @@
     {{-- Modal --}}
     <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/3 max-w-5xl bg-neutral">
+        <div class="modal-box w-2/5 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Editar Discapacidad</h3>

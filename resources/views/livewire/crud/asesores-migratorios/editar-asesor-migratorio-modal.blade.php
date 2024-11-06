@@ -10,18 +10,18 @@
         <div class="modal-box w-2/5 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
-            <h3 class="text-lg font-bold text-center">Editar Situación Migratoria</h3>
+            <h3 class="text-lg font-bold text-center">Editar Asesor Migratorio</h3>
 
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
 
                 {{-- Contenedor del nombre del País --}}
                 <div class="flex flex-col mt-6">
-                    <label class="mb-1"> Situación Migratoria </label>
-                    <input wire:model="Situacion" class="input bg-accent" type="text"
+                    <label class="mb-1">  Asesor Migratorio  </label>
+                    <input wire:model="Asesor" class="input bg-accent" type="text"
                         placeholder="Escribir aquí..." />
                     <div class="mt-1 text-error-content font-bold">
-                        @error('Situacion')
+                        @error('Asesor')
                             {{ $message }}
                         @enderror
                     </div>

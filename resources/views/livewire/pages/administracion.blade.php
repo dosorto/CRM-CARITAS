@@ -36,6 +36,11 @@
                         iconClass="icon-[fa6-solid--person-walking-luggage] size-6"
                         route="ver-situaciones-migratorias" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="Asesores Migratorios" cardWidth=" w-full"
+                        iconClass="icon-[fa6-solid--person-walking-luggage] size-6"
+                        route="ver-asesores-migratorios" />
+                </article>
             </div>
         </main>
 

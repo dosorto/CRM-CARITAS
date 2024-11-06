@@ -7,16 +7,16 @@
     {{-- Modal --}}
     <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/5 max-w-5xl bg-neutral border-2 border-accent">
+        <div class="modal-box w-1/2 max-w-5xl bg-neutral border-2 border-accent">
 
             {{-- Título del Modal --}}
-            <h3 class="text-xl font-bold text-center mb-5">¿Desea eliminar este Registro?</h3>
+            <h3 class="text-xl font-bold text-center mb-5">¿Está seguro de que desea eliminar este registro?</h3>
 
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full gap-2">
 
                 <div class="flex items-center justify-center gap-1">
-                    <strong>Situación Migratoria: </strong> {{ $item->situacion_migratoria }}
+                    <strong>Asesor Migratorio: </strong> {{ $item->asesor_migratorio }}
                 </div>
             </main>
 
