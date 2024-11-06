@@ -63,10 +63,9 @@ Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
     ->middleware('auth');
 
-Route::get('/categoriadearticulos', VerCategoriaArticulos::class)
+Route::get('/categoria-articulos', VerCategoriaArticulos::class)
     ->name('ver-categoria-articulos')
     ->middleware('auth');
-
 
 Route::get('/actas-entrega', VerActasEntrega::class)
     ->name('ver-actas-entrega')

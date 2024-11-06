@@ -6,6 +6,7 @@ use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Lazy;
+use Illuminate\Support\Facades\Auth;
 
 #[Lazy()]
 class RegistrarMigrante extends Component
@@ -19,10 +20,12 @@ class RegistrarMigrante extends Component
         HTML;
     }
 
-    public $currentStep;
 
     public function mount()
     {
+        // Asi se obtiene el usuario
+        // dd(Auth::user());
+
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
             session([
@@ -30,8 +33,7 @@ class RegistrarMigrante extends Component
                 'totalSteps' => 5,
             ]);
         }
-
-        $this->currentStep = session('currentStep');
+        session(['titulo' => 'Registrar Migrante']);
     }
 
     public function render()
@@ -50,9 +52,11 @@ class RegistrarMigrante extends Component
         if ($migrante) {
             session(['idMigrante' => $migrante->id]);
             session()->flash('message', '¡Nueva visita por parte de: ' . $migrante->primer_nombre . ' ' . $migrante->primer_apellido . '!');
-            session()->flash('type', 'alert-info');
+            session()->flash('type', 'alert-success');  // O alert-success, alert-warning, alert-error para DaisyUI
             session()->flash('alertIcon', 'akar-icons--info');
             session(['currentStep' => 4]);
+
+            session(['titulo' => 'Registrar Nuevo Expediente: ']);
         } else {
             $this->nextStep();
         }
@@ -102,6 +106,7 @@ class RegistrarMigrante extends Component
             session()->flash('message', '¡Datos personales del migrante ingresados!');
             session()->flash('type', 'alert-success');
         }
+        session(['titulo' => 'Registrar Nuevo Expediente: ']);
         $this->nextStep();
     }
 
