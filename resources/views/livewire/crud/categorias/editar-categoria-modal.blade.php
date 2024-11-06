@@ -35,7 +35,7 @@
                     <span class="icon-[material-symbols--save] size-5"></span>
                     Guardar
                 </button>
-                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</button>
             </div>
         </div>
     </div>

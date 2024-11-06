@@ -1,27 +1,27 @@
 <div>
     {{-- Botón para activar el Modal --}}
     <label for="{{ $idModal }}" class="btn btn-accent text-base-content gap-2 pl-3">
-        <span class="icon-[mdi--plus-circle] size-5"></span>
+        <span class="icon-[mdi--plus-circle] size-6"></span>
         Añadir
     </label>
 
     {{-- Modal --}}
     <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/3 max-w-5xl bg-neutral">
+        <div class="modal-box w-2/5 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
-            <h3 class="text-lg font-bold text-center">Añadir Categoría</h3>
+            <h3 class="text-lg font-bold text-center">Añadir Discapacidad</h3>
 
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
 
                 {{-- Contenedor del nombre del País --}}
                 <div class="flex flex-col mt-6">
-                    <label class="mb-1"> Nombre de la Categoría </label>
-                    <input wire:model="Nombre" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
+                    <label class="mb-1"> Nombre Discapacidad </label>
+                    <input wire:model="Discapacidad" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
                     <div class="mt-1 text-error-content font-bold">
-                        @error('Nombre')
+                        @error('Discapacidad')
                             {{ $message }}
                         @enderror
                     </div>

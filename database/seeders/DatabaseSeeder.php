@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-
 use Illuminate\Database\Seeder;
 use App\Models\Migrante;
+use App\Models\SituacionMigratoria;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             CategoriaArticuloSeeder::class,
             ArticuloSeeder::class,
             ActaEntregaSeeder::class,
+            DiscapacidadSeeder::class,
+            SituacionMigratoria::class,
 
         ]);
 

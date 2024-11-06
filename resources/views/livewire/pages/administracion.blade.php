@@ -9,21 +9,25 @@
     <div class="flex flex-col justify-between h-full">
         <main class="h-full overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
             <article>
-                <livewire:components.link-card title="Paises" cardWidth=" w-full"
-                    iconClass="icon-[vaadin--flag] size-6" route="ver-paises" />
+                <livewire:components.link-card title="Paises" cardWidth=" w-full" iconClass="icon-[vaadin--flag] size-6"
+                    route="ver-paises" />
             </article>
 
             <article>
                 <livewire:components.link-card title="Departamentos" cardWidth=" w-full"
-                    iconClass="icon-[vaadin--flag] size-6" route="ver-departamentos" />
+                    iconClass="icon-[fluent--location-ripple-16-filled] size-6" route="ver-departamentos" />
             </article>
             <article>
                 <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
-                    iconClass="icon-[vaadin--flag] size-6" route="ver-ciudades" />
+                    iconClass="icon-[solar--city-bold] size-6" route="ver-ciudades" />
             </article>
             <article>
                 <livewire:components.link-card title="Reportes Mensuales" cardWidth=" w-full"
-                    iconClass="icon-[vaadin--flag] size-6" route="reporte-mensual" />
+                    iconClass="icon-[bxs--report] size-6" route="reporte-mensual" />
+            </article>
+            <article>
+                <livewire:components.link-card title="Discapacidades" cardWidth=" w-full"
+                    iconClass="icon-[material-symbols--accessibility-rounded] size-6" route="ver-discapacidades" />
             </article>
         </main>
 

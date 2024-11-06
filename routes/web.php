@@ -21,6 +21,7 @@ use App\Livewire\Reportes\ReporteMensual;
 use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
+use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -88,4 +89,8 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
+
+Route::get('/discapacidades', VerDiscapacidades::class)
+    ->name('ver-discapacidades')
+    ->middleware('auth');
 

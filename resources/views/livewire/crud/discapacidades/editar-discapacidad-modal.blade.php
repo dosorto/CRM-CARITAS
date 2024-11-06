@@ -4,48 +4,26 @@
         <span class="icon-[line-md--edit] size-4"></span>
     </label>
 
+    {{-- Modal --}}
     <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-2/3 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
-            <h3 class="text-lg font-bold text-center">Editar Departamento</h3>
+            <h3 class="text-lg font-bold text-center">Editar Discapacidad</h3>
 
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
 
-                {{-- Contenedor del nombre del Departamento --}}
+                {{-- Contenedor del nombre del País --}}
                 <div class="flex flex-col mt-6">
-                    <label class="mb-1"> Nombre del Departamento </label>
-                    <input wire:model="Nombre" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
+                    <label class="mb-1"> Nombre Discapacidad </label>
+                    <input wire:model="Discapacidad" class="input bg-accent" type="text"
+                        placeholder="Escribir aquí..." />
                     <div class="mt-1 text-error-content font-bold">
-                        @error('Nombre')
+                        @error('Discapacidad')
                             {{ $message }}
                         @enderror
-                    </div>
-                </div>
-
-                {{-- Inputs de Codigo de Depto y Pais Seleccionado --}}
-                <div class="flex flex-row w-full justify-between mt-6">
-                    <div class="w-[47%] flex flex-col">
-                        <label class="mb-1">Código</label>
-                        <input wire:model="Codigo" class="input bg-accent" type="text"
-                            placeholder="Escribir aquí..." />
-                        <div class="mt-1 text-error-content font-bold">
-                            @error('Codigo')
-                                {{ $message }}
-                            @enderror
-                        </div>
-                    </div>
-
-                    {{-- País --}}
-                    <div class="w-[47%] flex flex-col">
-                        <label class="mb-1">País</label>
-                        <select wire:model="IdPais" class="select bg-accent text-base-content">
-                            @foreach ($paises as $pais)
-                                <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
-                            @endforeach
-                        </select>
                     </div>
                 </div>
             </main>

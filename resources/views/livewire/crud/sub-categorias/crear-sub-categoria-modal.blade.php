@@ -46,7 +46,7 @@
                     <span class="icon-[mdi--plus-circle] size-5"></span>
                     Crear
                 </button>
-                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</button>
             </div>
         </div>
     </div>
