@@ -191,4 +191,31 @@
     </div>
 
 
+<style>
+    .fondo {
+        background-color: #ad342b !important;
+    }
+  @media print {
+    /* Ocultar todo lo que no esté en la sección de impresión */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Solo mostrar el contenido de print-section */
+    .print-section, .print-section * {
+        visibility: visible;
+    }
+
+    /* Asegurar que print-section ocupe toda la página impresa */
+    .print-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+
+}
+</style>
+
 </div>
