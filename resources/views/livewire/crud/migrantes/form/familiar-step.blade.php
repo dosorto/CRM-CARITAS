@@ -79,8 +79,6 @@
 
                     {{-- Tabla --}}
                     <div class="flex flex-col">
-
-
                         <div class="rounded-lg border-2 border-accent">
                             <table class="table table-sm w-full table-pin-rows">
                                 <thead class="text-sm border-b-2 border-accent">
@@ -141,8 +139,9 @@
                 </section>
             </div>
         </section>
-        <section class="w-2/5 h-full bg-accent flex flex-col ">
 
+
+        <section class="w-2/5 h-full bg-accent flex flex-col ">
             {{-- Caso en que viaje en grupo y ya tenga familiar registrado --}}
             @if ($tieneFamiliar && $viajaEnGrupo)
                 @if ($familiar)
@@ -220,11 +219,97 @@
         <livewire:crud.migrantes.listado-migrantes-button />
         <div class="flex gap-4">
             <livewire:components.buttons.previous-step-button />
-            {{-- <livewire:components.buttons.next-step-button /> --}}
-            <button wire:click="nextStep" class="btn btn-info">
-                <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
-                Registrar Datos Personales
-            </button>
+
+
+            {{-- Modal para mostrar los datos antes de Continuar --}}
+
+            <div>
+                <!-- Botón para abrir el modal -->
+                <label for="inforDatosPersonalesModal" class="btn btn-info">
+                    <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
+                    Registrar Datos Personales
+                </label>
+
+                <!-- Modal (colócalo antes de la etiqueta </body>) -->
+                <input type="checkbox" id="inforDatosPersonalesModal" class="modal-toggle" />
+                <div class="modal" role="dialog">
+                    <div class="modal-box w-2/3 max-w-5xl bg-neutral">
+
+                        {{-- Título del Modal --}}
+                        <h3 class="text-xl font-bold text-center mb-5">Se guardarán los siguientes Datos Personales del Migrante:</h3>
+
+                        {{-- Contenido --}}
+                        <main class="h-max flex flex-col w-full gap-2">
+
+                            <div class="flex gap-1">
+                                <strong>Nombre Completo:</strong>
+                                <p> {{ session('datosPersonales')['nombres'] . ' ' . session('datosPersonales')['apellidos'] }}
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>Número de Identificación:</strong>
+                                <p> {{ session('identificacion') . ' - (' . session('datosPersonales')['tipoIdentificacion'] . ')' }}
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>País de Procedencia:</strong>
+                                <p> {{ $pais }}
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>Sexo:</strong>
+                                <p> {{ session('datosPersonales')['sexo'] }}
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>Estado Civil:</strong>
+                                <p> {{ session('datosPersonales')['estadoCivil'] }}
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>Fecha de Nacimiento:</strong>
+                                <p> {{ session('datosPersonales')['fechaNacimiento'] }}
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>Es LGBT:</strong>
+                                <p>
+                                    @if (session('datosPersonales')['esLGBT'])
+                                        Si
+                                    @else
+                                        No
+                                    @endif
+                                </p>
+                            </div>
+                            <div class="flex gap-1">
+                                <strong>Código Familiar: </strong>
+                                <p> {{ $codigoFamiliar }}
+                                    @if (!$familiar) <span class="text-success text-sm font-bold">- Nuevo -</span>@endif
+                                </p>
+                            </div>
+
+                            @if (!$familiar)
+                                <div class="flex flex-col items-center text-warning p-2 border border-warning rounded-lg mt-4">
+                                    <span class="icon-[typcn--warning] size-8"></span>
+                                    <p class="text-center mt-2">
+                                        No se ha seleccionado ningún familiar, este registro no será tomado en cuenta
+                                        para datos estadísticos de familias.
+                                    </p>
+                                </div>
+                            @endif
+                        </main>
+
+                        <div class="modal-action">
+                            <button wire:click="nextStep" class="btn btn-success text-base-content">
+                                <span class="icon-[fa-solid--check] size-6"></span>
+                                Confirmar
+                            </button>
+                            <label for="inforDatosPersonalesModal"
+                                class="btn btn-error text-base-content">Cancelar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 </main>

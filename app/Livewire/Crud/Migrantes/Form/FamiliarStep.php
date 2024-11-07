@@ -6,6 +6,7 @@ use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
+use App\Models\Pais;
 use Illuminate\Validation\ValidationException;
 
 class FamiliarStep extends Component
@@ -17,6 +18,8 @@ class FamiliarStep extends Component
 
     public $colSelected;
     public $textToFind;
+
+    // Para el buscador
     public $fakeColNames =
     [
         'Identificacion' => 'numero_identificacion',
@@ -31,9 +34,12 @@ class FamiliarStep extends Component
 
     public $familiar;
 
+    public $pais;
+
     public function selectRelated($personaId)
     {
         $this->familiar = Migrante::find($personaId);
+        $this->codigoFamiliar = $this->familiar->codigo_familiar;
     }
 
     public function filtrar()
@@ -43,24 +49,6 @@ class FamiliarStep extends Component
             ->with('pais')
             ->where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')
             ->get();
-
-        // $colSelected = $this->colSelected === 'identificacion' ?
-        //     'numero_identificacion'
-        //     :
-        //     $this->colSelected;
-
-
-        // return Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id')
-        //     ->when($colSelected === 'nombre_completo', function ($query) {
-
-        //         $nombreCompleto = '%' . str_replace(' ', '%', $this->textToFind) . '%';
-        //         return $query->whereRaw("CONCAT(primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) LIKE ?", [$nombreCompleto]);
-        //     }, function ($query) use ($colSelected) {
-        //         return $query->where($colSelected, 'LIKE', '%' . $this->textToFind . '%');
-        //     })
-        //     ->with('pais')
-        //     ->orderBy('id', 'desc')
-        //     ->get();
     }
 
     public function mount()
@@ -77,6 +65,12 @@ class FamiliarStep extends Component
         $this->colSelected = 'Identificacion';
         $this->textToFind = '';
         $this->codigoFamiliar = Migrante::max('codigo_familiar') + 1;
+
+        // session(['codigoFamiliar' => $this->codigoFamiliar]);
+
+        // Esto es para mostrar el nombre del pais en el modal de confirmacion
+        $pais = Pais::select('nombre_pais')->where('id', session('datosPersonales')['idPais'])->get()->first();
+        $this->pais = $pais->nombre_pais;
     }
 
     public function render()
