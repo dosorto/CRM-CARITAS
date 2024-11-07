@@ -30,11 +30,15 @@ class VerFronteras extends Component
     // Nombre de los encabezados de las columnas
     public $colNames = [
         'Frontera',
+        'Pais',
+        'Departamento',
     ];
 
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
         'frontera',
+        'departamento.pais.nombre_pais',
+        'departamento.nombre_departamento',
     ];
 
     // datos de botones, 'name' se usará para el identificador único del modal

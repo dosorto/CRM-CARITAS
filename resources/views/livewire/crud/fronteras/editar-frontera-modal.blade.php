@@ -15,7 +15,7 @@
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full">
 
-                {{-- Contenedor del nombre del País --}}
+                {{-- Contenedor del nombre de la frontera --}}
                 <div class="flex flex-col mt-6">
                     <label class="mb-1"> Frontera </label>
                     <input wire:model="Frontera" class="input bg-accent" type="text"
@@ -26,6 +26,41 @@
                         @enderror
                     </div>
                 </div>
+                <div class="flex mt-6 gap-4">
+                    {{-- Contenedor del nombre del País --}}
+                    <div class="flex flex-col w-5/12">
+                        <label class="mb-1"> País </label>
+                        <select wire:model.live.debounce.100ms="idPais" class="input bg-accent" type="text"
+                            placeholder="Escribir aquí...">
+                            @foreach ($paises as $pais)
+                                <div wire:key="{{ $pais->id }}">
+                                    <option value="{{ $pais->id }}"> {{ $pais->nombre_pais }} </option>
+                                </div>
+                            @endforeach
+                        </select>
+                        <div class="mt-1 text-error-content font-bold">
+                            @error('idPais')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+                    {{-- Contenedor del nombre del País --}}
+                    <div class="flex flex-col w-7/12">
+                        <label class="mb-1"> Departamento </label>
+                        <select wire:model="idDepartamento" class="input bg-accent" type="text"
+                            placeholder="Escribir aquí..." id="idDepartamento" name="idDepartamento">
+                            @foreach ($departamentos as $depto)
+                                <option value="{{ $depto->id }}"> {{ $depto->nombre_departamento }} </option>
+                            @endforeach
+                        </select>
+                        <div class="mt-1 text-error-content font-bold">
+                            @error('idDepartamento')
+                                Faltan departamentos...
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
             </main>
 
             <div class="modal-action">

@@ -12,7 +12,7 @@
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
                 <article>
                     <livewire:components.link-card title="Paises" cardWidth=" w-full"
-                        iconClass="icon-[vaadin--flag] size-6" route="ver-paises" />
+                        iconClass="icon-[vaadin--flag] size-" route="ver-paises" />
                 </article>
 
                 <article>
@@ -43,7 +43,7 @@
                 </article>
                 <article>
                     <livewire:components.link-card title="Fronteras" cardWidth=" w-full"
-                        iconClass="icon-[fa6-solid--person-walking-luggage] size-6"
+                        iconClass="icon-[maki--police] size-6"
                         route="ver-fronteras" />
                 </article>
             </div>

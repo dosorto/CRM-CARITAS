@@ -3,21 +3,36 @@
 namespace App\Livewire\Crud\Fronteras;
 
 use App\Livewire\Components\ContentTable;
+use App\Models\Departamento;
 use App\Models\Frontera;
+use App\Models\Pais;
 use Livewire\Component;
 
 class CrearFronteraModal extends Component
 {
     public $Frontera;
+
+    // Select de Paises
+    public $idPais = 74;
+    public $paises;
+    
+    // Select de Departamentos
+    public $idDepartamento = 18;
+    public $departamentos;
+
     public $idModal;
 
     public function mount($idModal)
     {
         $this->idModal = $idModal;
+        $this->paises = Pais::select('id','nombre_pais')->get();
     }
 
     public function render()
     {
+        $this->departamentos = Departamento::select('id', 'nombre_departamento')
+            ->where('pais_id', $this->idPais)->get();
+
         return view('livewire.crud.fronteras.crear-frontera-modal');
     }
 
@@ -25,10 +40,13 @@ class CrearFronteraModal extends Component
     {
         $validated = $this->validate([
             'Frontera' => 'required',
+            'idPais' => 'required|numeric',
+            'idDepartamento' => 'required|numeric',
         ]);
 
         $frontera = new Frontera();
         $frontera->frontera = $validated['Frontera'];
+        $frontera->departamento_id = $validated['idDepartamento'];
         $frontera->save();
 
         $this->dispatch('item-created')->to(ContentTable::class);

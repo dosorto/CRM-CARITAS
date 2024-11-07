@@ -24,7 +24,8 @@
         <div style="width: 8.5in; height: 11in; background-color: #fffcf6; font-family: Arial, Helvetica, sans-serif;">
             <!-- Logos -->
             <div class="flex w-full justify-center m-2">
-                <img class="h-16" src="{{ asset('imagenes/reportes/Recurso 1.png') }}" alt="">
+                <img class="h-16" src="{{ asset('img/reportes/Recurso 1.png') }}" alt="">
+
             </div>
             <!-- Ubicacion -->
             <div class="flex justify-center mb-2">
@@ -67,7 +68,7 @@
                 <div style="width: 80%;" class="grid grid-cols-3 md:grid-cols-3 gap-4">
                     <div class="col-span-1  flex flex-col">
                         <div class="flex justify-center">
-                            <img class="h-28" src="{{ asset('imagenes/reportes/family.png') }}" alt="">
+                            <img class="h-28" src="{{ asset('img/reportes/family.png') }}" alt="">
                         </div>
                         <p style="color: #583d2b; font-size: 24px;" class="flex justify-center font-extrabold">
                             35
@@ -87,7 +88,7 @@
                                 hombres
                             </div>
                             <div class="flex justify-center">
-                                <img src="{{ asset('imagenes/reportes/icon-man.png') }}" alt="">
+                                <img src="{{ asset('img/reportes/icon-man.png') }}" alt="">
                             </div>
                         </div>
                         <div>
@@ -98,7 +99,7 @@
                                 mujeres
                             </div>
                             <div class="flex justify-center">
-                                <img src="{{ asset('imagenes/reportes/icon-woman.png') }}" alt="">
+                                <img src="{{ asset('img/reportes/icon-woman.png') }}" alt="">
                             </div>
                         </div>
                         <div>
@@ -109,7 +110,7 @@
                                 niños
                             </div>
                             <div class="flex justify-center">
-                                <img src="{{ asset('imagenes/reportes/icon-boy.png') }}" alt="">
+                                <img src="{{ asset('img/reportes/icon-boy.png') }}" alt="">
                             </div>
                         </div>
                         <div>
@@ -120,7 +121,7 @@
                                 niñas
                             </div>
                             <div class="flex justify-center">
-                                <img src="{{ asset('imagenes/reportes/icon-girl.png') }}" alt="">
+                                <img src="{{ asset('img/reportes/icon-girl.png') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -141,8 +142,8 @@
                     Nacionalidad
                 </p>
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
-                    <div class="flex justify-end">
-                        <!-- Aqui iria el grafico -->
+                    <div class="flex justify-center items-center text-black">
+                        Gráfico...
                         <img src="" alt="" class="h-72">
                     </div>
                     <div class="grid justify-start items-end" style="padding-bottom: 65px;">
@@ -176,7 +177,7 @@
 
                 </div>
                 <div class="p-3">
-                    <img width="250px" src=" {{ asset('imagenes/reportes/inmigrante.png') }}" alt="">
+                    <img width="250px" src=" {{ asset('img/reportes/inmigrante.png') }}" alt="">
                 </div>
             </div>
             <!-- Pie de hoja -->
