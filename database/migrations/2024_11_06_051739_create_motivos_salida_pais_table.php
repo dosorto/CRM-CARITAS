@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('motivos_salida_pais', function (Blueprint $table) {
-            $table->id();            
-            $table->string('situacion_migratoria');
+            $table->id();        
+            $table->string('motivo_salida_pais');
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

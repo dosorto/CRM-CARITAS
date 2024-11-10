@@ -3,23 +3,26 @@
 namespace App\Livewire\Crud\Migrantes\Form;
 
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
+use App\Models\AsesorMigratorio;
+use App\Models\Frontera;
+use App\Models\MotivoSalidaPais;
+use App\Models\SituacionMigratoria;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 
 class DatosMigratoriosStep extends Component
 {
-    public $fronteraIngreso;
-    public $situacionEncontrada;
-    public $entidadReferencia;
-    public $motivosSalidaPais = [
-        'Amenazas',
-        'Ayudar a la Familia',
-        'Aspiración a Mejor Estudio',
-        'Conflicto Armado',
-        'Corrupción Política',
-        'Crisis Económica',
-        'Dictadura',
-    ];
+    
+    public $fronteras = [];
+    public $situaciones = [];
+    public $asesoresMigratorios = [];
+
+    public $fronteraId;
+    public $situacionId;
+    public $entidadId;
+
+
+    public $motivosSalidaPais = [];
     public $motivosSeleccionados = [];
 
     public function render()
@@ -31,22 +34,30 @@ class DatosMigratoriosStep extends Component
     {
         if (session()->has('datosMigratorios'))
         {
-            $this->fronteraIngreso = session('datosMigratorios')['fronteraIngreso'];
-            $this->situacionEncontrada = session('datosMigratorios')['situacionEncontrada'];
-            $this->entidadReferencia = session('datosMigratorios')['entidadReferencia'];
+            $this->fronteraId = session('datosMigratorios')['fronteraId'];
+            $this->situacionId = session('datosMigratorios')['situacionId'];
+            $this->entidadId = session('datosMigratorios')['entidadReferencia'];
             $this->motivosSeleccionados = session('datosMigratorios')['motivosSeleccionados'];
         }
+
+        $this->fronteras = Frontera::select('id','frontera')->get();
+        $this->situaciones = SituacionMigratoria::select('id','situacion_migratoria')->get();
+        $this->asesoresMigratorios = AsesorMigratorio::select('id','asesor_migratorio')->get();
+        $this->motivosSalidaPais = MotivoSalidaPais::select('id','motivo_salida_pais')->get();
     }
 
     public function nextStep()
     {
         $validated = $this->validate([
-            'fronteraIngreso' => 'required',
-            'situacionEncontrada' => 'required',
-            'entidadReferencia' => 'required',
+            'fronteraId' => 'required',
+            'situacionId' => 'required',
+            'entidadId' => 'required',
+
             'motivosSeleccionados' => 'required|array|min:1',
             'motivosSeleccionados.*' => Rule::in($this->motivosSalidaPais),
+        
         ]);
+        dd($validated['motivosSeleccionados']);
 
         session(['datosMigratorios' => $validated]);
 
