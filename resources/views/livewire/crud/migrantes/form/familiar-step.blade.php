@@ -230,13 +230,14 @@
                     Registrar Datos Personales
                 </label>
 
-                <!-- Modal (colócalo antes de la etiqueta </body>) -->
+                {{-- Cuerpo del Modal --}}
                 <input type="checkbox" id="inforDatosPersonalesModal" class="modal-toggle" />
                 <div class="modal" role="dialog">
                     <div class="modal-box w-2/3 max-w-5xl bg-neutral">
 
                         {{-- Título del Modal --}}
-                        <h3 class="text-xl font-bold text-center mb-5">Se guardarán los siguientes Datos Personales del Migrante:</h3>
+                        <h3 class="text-xl font-bold text-center mb-5">Se guardarán los siguientes Datos Personales del
+                            Migrante:</h3>
 
                         {{-- Contenido --}}
                         <main class="h-max flex flex-col w-full gap-2">
@@ -284,12 +285,15 @@
                             <div class="flex gap-1">
                                 <strong>Código Familiar: </strong>
                                 <p> {{ $codigoFamiliar }}
-                                    @if (!$familiar) <span class="text-success text-sm font-bold">- Nuevo -</span>@endif
+                                    @if (!$familiar)
+                                        <span class="text-success text-sm font-bold">- Nuevo -</span>
+                                    @endif
                                 </p>
                             </div>
 
                             @if (!$familiar)
-                                <div class="flex flex-col items-center text-warning p-2 border border-warning rounded-lg mt-4">
+                                <div
+                                    class="flex flex-col items-center text-warning p-2 border border-warning rounded-lg mt-4">
                                     <span class="icon-[typcn--warning] size-8"></span>
                                     <p class="text-center mt-2">
                                         No se ha seleccionado ningún familiar, este registro no será tomado en cuenta

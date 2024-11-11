@@ -36,6 +36,19 @@ class FamiliarStep extends Component
 
     public $pais;
 
+
+    public function updated($property)
+    {
+        if ($property === 'viajaEnGrupo' || $property === 'tieneFamiliar')
+        {
+            if (!$this->viajaEnGrupo || !$this->tieneFamiliar)
+            {
+                $this->codigoFamiliar = Migrante::max('codigo_familiar') + 1;
+                $this->familiar = null;
+            }
+        }
+    }
+
     public function selectRelated($personaId)
     {
         $this->familiar = Migrante::find($personaId);
@@ -44,7 +57,6 @@ class FamiliarStep extends Component
 
     public function filtrar()
     {
-
         return Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id')
             ->with('pais')
             ->where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')
