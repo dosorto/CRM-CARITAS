@@ -11,7 +11,7 @@ class IdentificacionStep extends Component
 
     public function mount()
     {
-        $this->identificacion = session('identificacion');
+        $this->identificacion = session()->get('datosPersonales.identificacion', '');
     }
 
     public function render()
@@ -26,7 +26,12 @@ class IdentificacionStep extends Component
             'identificacion' => 'required',
         ]);
 
-        session(['identificacion' => $validated['identificacion']]);
+        // Inicializar 'datosPersonales' en la sesión si no existe
+        if (!session()->has('datosPersonales')) {
+            session(['datosPersonales' => []]);
+        }
+
+        session()->put('datosPersonales.identificacion', $validated['identificacion']);
 
         $this->dispatch('identificacion-validated')
             ->to(RegistrarMigrante::class);

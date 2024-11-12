@@ -3,14 +3,17 @@
 namespace App\Livewire\Crud\Migrantes;
 
 use App\Models\Migrante;
+use App\Services\MigranteService;
+use Exception;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Lazy;
-use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Locked;
 
 #[Lazy()]
 class RegistrarMigrante extends Component
 {
+
     public function placeholder()
     {
         return <<<'HTML'
@@ -23,9 +26,6 @@ class RegistrarMigrante extends Component
 
     public function mount()
     {
-        // Asi se obtiene el usuario
-        // dd(Auth::user());
-
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
             session([
@@ -33,30 +33,35 @@ class RegistrarMigrante extends Component
                 'totalSteps' => 5,
             ]);
         }
-        session(['titulo' => 'Registrar Migrante']);
+
+        // Verifica si ya tiene titulo, si no, asigna el inicial.
+        if (!session()->has('tituloRegistrarMigrante')) {
+            session(['tituloRegistrarMigrante' => 'Registrar Migrante']);
+        }
     }
 
     public function render()
     {
-        // session(['currentStep' => 1]);
+
         return view('livewire.crud.migrantes.registrar-migrante');
     }
+
+
 
     #[On('identificacion-validated')]
     public function identificacionStep()
     {
+
         $migrante = Migrante::select('id', 'primer_nombre', 'primer_apellido')
             ->where('numero_identificacion', session('identificacion'))
             ->first();
 
         if ($migrante) {
-            session(['idMigrante' => $migrante->id]);
-            session()->flash('message', '¡Nueva visita por parte de: ' . $migrante->primer_nombre . ' ' . $migrante->primer_apellido . '!');
-            session()->flash('type', 'alert-success');  // O alert-success, alert-warning, alert-error para DaisyUI
-            session()->flash('alertIcon', 'akar-icons--info');
-            session(['currentStep' => 4]);
 
-            session(['titulo' => 'Registrar Nuevo Expediente: ']);
+            // Si ya existe el migrante, ingresar nuevo expediente.
+
+            session(['idMigrante' => $migrante->id]);
+            session(['currentStep' => 4]);
         } else {
             $this->nextStep();
         }
@@ -81,33 +86,35 @@ class RegistrarMigrante extends Component
     #[On('familiar-validated')]
     public function familiarStep()
     {
-        if (!session()->has('migranteCreated')) {
-            $migrante = new Migrante();
+        // Obtener los datos actuales de la sesión
+        $datosActuales = session('datosPersonales');
 
-            $nombres = $this->dividirNombre(session('datosPersonales')['nombres']);
-            $apellidos = $this->dividirNombre(session('datosPersonales')['apellidos']);
+        // Separar nombres y apellidos
+        $nombres = $this->getMigranteService()->separarNombres($datosActuales['nombres']);
+        $apellidos = $this->getMigranteService()->separarNombres($datosActuales['apellidos']);
 
-            $migrante->primer_nombre = $nombres[0];
-            $migrante->segundo_nombre = $nombres[1];
-            $migrante->primer_apellido = $apellidos[0];
-            $migrante->segundo_apellido = $apellidos[1];
-            $migrante->sexo = session('datosPersonales')['sexo'];
-            $migrante->tipo_identificacion = session('datosPersonales')['tipoIdentificacion'];
-            $migrante->numero_identificacion = session('identificacion');
-            $migrante->pais_id = session('datosPersonales')['idPais'];
-            $migrante->codigo_familiar = session('codigoFamiliar');
-            $migrante->fecha_nacimiento = session('datosPersonales')['fechaNacimiento'];
-            $migrante->es_lgbt = session('datosPersonales')['esLGBT'];
-            $migrante->estado_civil = session('datosPersonales')['estadoCivil'];
+        // Eliminar los campos originales y añadir los nuevos
+        unset($datosActuales['nombres']);
+        unset($datosActuales['apellidos']);
 
-            $migrante->save();
-            session(['migranteCreated' => true]);
-            session()->flash('alertIcon', 'si--check-circle-fill');
-            session()->flash('message', '¡Datos personales del migrante ingresados!');
-            session()->flash('type', 'alert-success');
+        $datosActuales = array_merge($datosActuales, [
+            'primerNombre' => $nombres[0],
+            'segundoNombre' => $nombres[1],
+            'primerApellido' => $apellidos[0],
+            'segundoApellido' => $apellidos[1]
+        ]);
+
+        try {
+            if ($this->getMigranteService()->guardarDatosPersonales($datosActuales)) {
+                session()->flush();
+                session(['nombreMigrante' => $datosActuales['primerNombre'] . ' ' . $datosActuales['primerApellido']]);
+                session(['identificacion' => $datosActuales['identificacion']]);
+
+                $this->nextStep();
+            }
+        } catch (Exception $e) {
+            dump('ha ocurrido un error al guardar datos personales');
         }
-        session(['titulo' => 'Registrar Nuevo Expediente: ']);
-        $this->nextStep();
     }
 
     #[On('previous-step')]
@@ -123,12 +130,8 @@ class RegistrarMigrante extends Component
         session(['currentStep' => $currentStep]);
     }
 
-    function dividirNombre($cadena)
+    public function getMigranteService()
     {
-        $partes = explode(' ', $cadena, 2); // Divide en 2 partes, donde el primer elemento es el primero
-        $primero = $partes[0]; // Primer palabra es el primer nombre o apellido
-        $segundo = isset($partes[1]) ? $partes[1] : ''; // Resto del string es el segundo nombre o apellido (o vacío si no hay)
-
-        return [$primero, $segundo];
+        return app(MigranteService::class);
     }
 }
