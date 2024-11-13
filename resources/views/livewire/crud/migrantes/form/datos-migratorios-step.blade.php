@@ -45,15 +45,20 @@
             </div>
 
             <label class="label mt-2"> Seleccione su situación migratoria: </label>
-            <select wire:model="situacionEncontrada"
-                class="select bg-accent w-full
+            <div class="flex gap-2">
+                <select wire:model="situacionEncontrada"
+                    class="select bg-accent w-full
             @error('situacionEncontrada')
                 border-2 border-error-content
             @enderror">
-                @foreach ($situaciones as $situacion)
-                    <option value="{{ $situacion->id }}">{{ $situacion->situacion_migratoria }}</option>
-                @endforeach
-            </select>
+                    @foreach ($situaciones as $situacion)
+                        <option value="{{ $situacion->id }}">{{ $situacion->situacion_migratoria }}</option>
+                    @endforeach
+                </select>
+
+                {{-- Botón de añadir entidad --}}
+                <livewire:crud.situaciones-migratorias.crear-situacion-migratoria-modal :idModal="'createSituacion-RegMigrante'" />
+            </div>
         </section>
         <section class="w-1/2 h-full overflow-y-auto">
             <label class="label font-bold">Seleccione los motivos por los que salió del país</label>

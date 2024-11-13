@@ -3,6 +3,7 @@
 namespace App\Livewire\Crud\SituacionesMigratorias;
 
 use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Migrantes\Form\DatosMigratoriosStep;
 use App\Models\SituacionMigratoria;
 use Livewire\Component;
 
@@ -32,6 +33,7 @@ class CrearSituacionMigratoriaModal extends Component
         $situacion->save();
 
         $this->dispatch('item-created')->to(ContentTable::class);
+        $this->dispatch('situacion-created', newId: $situacion->id)->to(DatosMigratoriosStep::class);
 
         $this->closeModal();
     }

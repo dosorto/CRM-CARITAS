@@ -95,4 +95,19 @@ class DatosMigratoriosStep extends Component
         // Finalmente forzamos la actualización
         $this->dispatch('refresh');
     }
+
+    #[On('situacion-created')]
+    public function updateSituacionField($newId)
+    {
+        // Primero actualizamos el ID
+        $this->situacionId = $newId;
+
+        // Luego obtenemos la lista ordenando por ID descendente para que el nuevo aparezca primero
+        $this->situaciones = SituacionMigratoria::select('id', 'situacion_migratoria')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        // Finalmente forzamos la actualización
+        $this->dispatch('refresh');
+    }
 }
