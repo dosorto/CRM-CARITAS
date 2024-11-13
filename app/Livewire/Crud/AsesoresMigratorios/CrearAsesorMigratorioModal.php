@@ -5,6 +5,7 @@ namespace App\Livewire\Crud\AsesoresMigratorios;
 use Livewire\Component;
 use App\Models\AsesorMigratorio;
 use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Migrantes\Form\DatosMigratoriosStep;
 
 class CrearAsesorMigratorioModal extends Component
 {
@@ -19,14 +20,15 @@ class CrearAsesorMigratorioModal extends Component
     public function create()
     {
         $validated = $this->validate([
-            'Discapacidad' => 'required',
+            'Asesor' => 'required',
         ]);
 
-        $discapacidad = new AsesorMigratorio();
-        $discapacidad->asesor_migratorio = $validated['Discapacidad'];
-        $discapacidad->save();
+        $asesor = new AsesorMigratorio();
+        $asesor->asesor_migratorio = $validated['Asesor'];
+        $asesor->save();
 
         $this->dispatch('item-created')->to(ContentTable::class);
+        $this->dispatch('asesor-created', newId: $asesor->id)->to(DatosMigratoriosStep::class);
 
         $this->closeModal();
     }

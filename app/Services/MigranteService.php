@@ -7,11 +7,6 @@ use App\Models\Migrante;
 class MigranteService
 {
 
-    public function test()
-    {
-        return 1;
-    }
-
     public function guardarDatosPersonales($datosPersonales)
     {
         $nuevoMigrante = new Migrante();
@@ -29,6 +24,24 @@ class MigranteService
         $nuevoMigrante->es_lgbt = $datosPersonales['esLGBT'];
 
         return $nuevoMigrante->save();
+    }
+
+    public function obtenerDatosNombresSeparados($datos)
+    {
+        // Separar nombres y apellidos
+        $nombres = $this->separarNombres($datos['nombres']);
+        $apellidos = $this->separarNombres($datos['apellidos']);
+
+        // Eliminar los campos originales y añadir los nuevos
+        unset($datos['nombres']);
+        unset($datos['apellidos']);
+
+        return array_merge($datos, [
+            'primerNombre' => $nombres[0],
+            'segundoNombre' => $nombres[1],
+            'primerApellido' => $apellidos[0],
+            'segundoApellido' => $apellidos[1]
+        ]);
     }
 
     public function separarNombres($cadena)
@@ -83,8 +96,31 @@ class MigranteService
             ->get();
     }
 
+    public function buscar($col, $text)
+    {
+        return Migrante::select(
+            'id',
+            'codigo_familiar',
+            'primer_nombre',
+            'primer_apellido',
+            'segundo_nombre',
+            'segundo_apellido',
+            'numero_identificacion',
+            'tipo_identificacion',
+            'fecha_nacimiento',
+            'pais_id',
+            'es_lgbt',
+            'estado_civil',
+            'sexo'
+        )
+            ->with('pais')
+            ->where($col, $text)
+            ->first();
+    }
+
     public function generateNewFamiliarCode()
     {
         return Migrante::max('codigo_familiar') + 1;
     }
+
 }

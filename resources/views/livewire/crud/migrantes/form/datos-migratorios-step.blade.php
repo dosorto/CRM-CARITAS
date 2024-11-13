@@ -13,7 +13,7 @@
         <section class="w-1/2 h-full">
             <label class="label">Seleccione la entidad que lo guió al centro: </label>
             <div class="flex gap-2">
-                <select wire:model="entidadReferencia"
+                <select wire:model.live="asesorId"
                     class="select bg-accent w-full
                 @error('entidadReferencia')
                     border-2 border-error-content

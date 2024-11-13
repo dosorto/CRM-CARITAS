@@ -33,11 +33,6 @@ class RegistrarMigrante extends Component
                 'totalSteps' => 5,
             ]);
         }
-
-        // Verifica si ya tiene titulo, si no, asigna el inicial.
-        if (!session()->has('tituloRegistrarMigrante')) {
-            session(['tituloRegistrarMigrante' => 'Registrar Migrante']);
-        }
     }
 
     public function render()
@@ -52,16 +47,16 @@ class RegistrarMigrante extends Component
     public function identificacionStep()
     {
 
-        $migrante = Migrante::select('id', 'primer_nombre', 'primer_apellido')
-            ->where('numero_identificacion', session('identificacion'))
-            ->first();
+        $migrante = $this->getMigranteService()->buscar('numero_identificacion', session('datosPersonales')['identificacion']);
 
         if ($migrante) {
 
-            // Si ya existe el migrante, ingresar nuevo expediente.
-
-            session(['idMigrante' => $migrante->id]);
+            // Si ya existe el migrante, saltarse los pasos datos Personales.
+            session()->forget(['datosPersonales']);
+            session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
+            session(['identificacion' => $migrante->numero_identificacion]);
             session(['currentStep' => 4]);
+
         } else {
             $this->nextStep();
         }
@@ -87,28 +82,15 @@ class RegistrarMigrante extends Component
     public function familiarStep()
     {
         // Obtener los datos actuales de la sesión
-        $datosActuales = session('datosPersonales');
-
-        // Separar nombres y apellidos
-        $nombres = $this->getMigranteService()->separarNombres($datosActuales['nombres']);
-        $apellidos = $this->getMigranteService()->separarNombres($datosActuales['apellidos']);
-
-        // Eliminar los campos originales y añadir los nuevos
-        unset($datosActuales['nombres']);
-        unset($datosActuales['apellidos']);
-
-        $datosActuales = array_merge($datosActuales, [
-            'primerNombre' => $nombres[0],
-            'segundoNombre' => $nombres[1],
-            'primerApellido' => $apellidos[0],
-            'segundoApellido' => $apellidos[1]
-        ]);
+        $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
 
         try {
-            if ($this->getMigranteService()->guardarDatosPersonales($datosActuales)) {
-                session()->flush();
-                session(['nombreMigrante' => $datosActuales['primerNombre'] . ' ' . $datosActuales['primerApellido']]);
-                session(['identificacion' => $datosActuales['identificacion']]);
+            if ($this->getMigranteService()->guardarDatosPersonales($datos)) {
+                
+                session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
+
+                session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
+                session(['identificacion' => $datos['identificacion']]);
 
                 $this->nextStep();
             }

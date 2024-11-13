@@ -9,17 +9,18 @@ use App\Models\MotivoSalidaPais;
 use App\Models\SituacionMigratoria;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use Livewire\Attributes\On;
 
 class DatosMigratoriosStep extends Component
 {
-    
+
     public $fronteras = [];
     public $situaciones = [];
     public $asesoresMigratorios = [];
 
     public $fronteraId;
     public $situacionId;
-    public $entidadId;
+    public $asesorId;
 
 
     public $motivosSalidaPais = [];
@@ -32,18 +33,17 @@ class DatosMigratoriosStep extends Component
 
     public function mount()
     {
-        if (session()->has('datosMigratorios'))
-        {
+        if (session()->has('datosMigratorios')) {
             $this->fronteraId = session('datosMigratorios')['fronteraId'];
             $this->situacionId = session('datosMigratorios')['situacionId'];
-            $this->entidadId = session('datosMigratorios')['entidadReferencia'];
+            $this->asesorId = session('datosMigratorios')['entidadReferencia'];
             $this->motivosSeleccionados = session('datosMigratorios')['motivosSeleccionados'];
         }
 
-        $this->fronteras = Frontera::select('id','frontera')->get();
-        $this->situaciones = SituacionMigratoria::select('id','situacion_migratoria')->get();
-        $this->asesoresMigratorios = AsesorMigratorio::select('id','asesor_migratorio')->get();
-        $this->motivosSalidaPais = MotivoSalidaPais::select('id','motivo_salida_pais')->get();
+        $this->fronteras = Frontera::select('id', 'frontera')->get();
+        $this->situaciones = SituacionMigratoria::select('id', 'situacion_migratoria')->get();
+        $this->asesoresMigratorios = AsesorMigratorio::select('id', 'asesor_migratorio')->get();
+        $this->motivosSalidaPais = MotivoSalidaPais::select('id', 'motivo_salida_pais')->get();
     }
 
     public function nextStep()
@@ -55,7 +55,7 @@ class DatosMigratoriosStep extends Component
 
             'motivosSeleccionados' => 'required|array|min:1',
             'motivosSeleccionados.*' => Rule::in($this->motivosSalidaPais),
-        
+
         ]);
         dd($validated['motivosSeleccionados']);
 
@@ -63,5 +63,21 @@ class DatosMigratoriosStep extends Component
 
         $this->dispatch('datos-migratorios-validated')
             ->to(RegistrarMigrante::class);
+    }
+
+
+    #[On('asesor-created')]
+    public function updateAsesorField($newId)
+    {
+        // Primero actualizamos el ID
+        $this->asesorId = $newId;
+
+        // Luego obtenemos la lista ordenando por ID descendente para que el nuevo aparezca primero
+        $this->asesoresMigratorios = AsesorMigratorio::select('id', 'asesor_migratorio')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        // Finalmente forzamos la actualización
+        $this->dispatch('refresh');
     }
 }
