@@ -13,7 +13,7 @@
         <section class="w-1/2 h-full">
             <label class="label">Seleccione la entidad que lo guió al centro: </label>
             <div class="flex gap-2">
-                <select wire:model.live="asesorId"
+                <select wire:model="asesorId"
                     class="select bg-accent w-full
                 @error('entidadReferencia')
                     border-2 border-error-content
@@ -22,22 +22,27 @@
                         <option value="{{ $asesor->id }}">{{ $asesor->asesor_migratorio }}</option>
                     @endforeach
                 </select>
-                
+
                 {{-- Botón de añadir entidad --}}
-                <livewire:crud.asesores-migratorios.crear-asesor-migratorio-modal  :idModal="'createAsesorMigratorioModalMigrante'"/>
+                <livewire:crud.asesores-migratorios.crear-asesor-migratorio-modal :idModal="'createAsesor-RegMigrante'" />
 
             </div>
 
             <label class="label mt-2"> Seleccione la Frontera por la que ingresó al país: </label>
-            <select wire:model="fronteraIngreso"
-                class="select bg-accent w-full
+            <div class="flex gap-2">
+                <select wire:model="fronteraIngreso"
+                    class="select bg-accent w-full
             @error('fronteraIngreso')
                 border-2 border-error-content
             @enderror">
-                @foreach ($fronteras as $frontera)
-                    <option value="{{ $frontera->id }}"> {{ $frontera->frontera }} </option>
-                @endforeach
-            </select>
+                    @foreach ($fronteras as $frontera)
+                        <option value="{{ $frontera->id }}"> {{ $frontera->frontera }} </option>
+                    @endforeach
+                </select>
+
+                {{-- Botón de añadir entidad --}}
+                <livewire:crud.fronteras.crear-frontera-modal :idModal="'createFrontera-RegMigrante'" />
+            </div>
 
             <label class="label mt-2"> Seleccione su situación migratoria: </label>
             <select wire:model="situacionEncontrada"

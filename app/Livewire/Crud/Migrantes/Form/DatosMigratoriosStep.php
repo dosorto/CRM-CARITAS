@@ -80,4 +80,19 @@ class DatosMigratoriosStep extends Component
         // Finalmente forzamos la actualización
         $this->dispatch('refresh');
     }
+
+    #[On('frontera-created')]
+    public function updateFronteraField($newId)
+    {
+        // Primero actualizamos el ID
+        $this->fronteraId = $newId;
+
+        // Luego obtenemos la lista ordenando por ID descendente para que el nuevo aparezca primero
+        $this->fronteras = Frontera::select('id', 'frontera')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        // Finalmente forzamos la actualización
+        $this->dispatch('refresh');
+    }
 }
