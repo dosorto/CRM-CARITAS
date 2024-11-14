@@ -54,7 +54,7 @@
                                 <option value="{{ $categoria->id }}">{{ $categoria->nombre_categoria }}</option>
                             @endforeach
                         </select>
-                        <livewire:crud.categorias.crear-categoria-modal :idModal="'createCategoriaModalEdit'">
+                        <livewire:crud.categorias.crear-categoria-modal :idModal="'createCategoriaModalEdit' . $item->id">
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <livewire:crud.sub-categorias.crear-sub-categoria-modal :idModal="'createSubCategoriaModalEdit'">
+                        <livewire:crud.sub-categorias.crear-sub-categoria-modal :idModal="'createSubCategoriaModalEdit' . $item->id">
                     </div>
                 </div>
 
