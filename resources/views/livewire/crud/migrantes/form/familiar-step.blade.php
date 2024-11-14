@@ -270,7 +270,7 @@
                                 </p>
                             </div>
                             <div class="flex gap-1">
-                                <strong>Es LGBT:</strong>
+                                <strong>Es LGBTQI+:</strong>
                                 <p>
                                     @if (session('datosPersonales')['esLGBT'])
                                         Si

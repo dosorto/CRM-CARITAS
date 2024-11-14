@@ -58,7 +58,7 @@ class DatosMigratoriosStep extends Component
             'motivosSeleccionados.*' => 'required',
         ]);
 
-        dd($validated['motivosSeleccionados']);
+        // dd($validated['motivosSeleccionados']);
 
         session(['datosMigratorios' => $validated]);
 
