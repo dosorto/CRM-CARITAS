@@ -9,7 +9,7 @@
 
     <section class="flex flex-grow flex-col overflow-y-auto rounded-lg border-2 border-accent p-6">
         <h2 class="text-center mb-6 text-lg">
-            <strong>Nuevo registro para el Número de Identificación: </strong> {{ session('identificacion') }}
+            <strong>Nuevo registro para el Número de Identificación: </strong> {{ session('datosPersonales')['identificacion'] }}
         </h2>
 
         {{-- Nombres y Apellidos --}}
