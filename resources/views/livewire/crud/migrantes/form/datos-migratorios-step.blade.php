@@ -15,7 +15,7 @@
             <div class="flex gap-2">
                 <select wire:model="asesorId"
                     class="select bg-accent w-full
-                @error('entidadReferencia')
+                @error('asesorMigratorio')
                     border-2 border-error-content
                 @enderror">
                     @foreach ($asesoresMigratorios as $asesor)
@@ -23,14 +23,14 @@
                     @endforeach
                 </select>
 
-                {{-- Botón de añadir entidad --}}
+                {{-- Botón de añadir asesor migratorio --}}
                 <livewire:crud.asesores-migratorios.crear-asesor-migratorio-modal :idModal="'createAsesor-RegMigrante'" />
 
             </div>
 
             <label class="label mt-2"> Seleccione la Frontera por la que ingresó al país: </label>
             <div class="flex gap-2">
-                <select wire:model="fronteraIngreso"
+                <select wire:model="fronteraId"
                     class="select bg-accent w-full
             @error('fronteraIngreso')
                 border-2 border-error-content
@@ -40,13 +40,13 @@
                     @endforeach
                 </select>
 
-                {{-- Botón de añadir entidad --}}
+                {{-- Botón de añadir frontera --}}
                 <livewire:crud.fronteras.crear-frontera-modal :idModal="'createFrontera-RegMigrante'" />
             </div>
 
             <label class="label mt-2"> Seleccione su situación migratoria: </label>
             <div class="flex gap-2">
-                <select wire:model="situacionEncontrada"
+                <select wire:model="situacionId"
                     class="select bg-accent w-full
             @error('situacionEncontrada')
                 border-2 border-error-content
@@ -56,7 +56,7 @@
                     @endforeach
                 </select>
 
-                {{-- Botón de añadir entidad --}}
+                {{-- Botón de añadir situacion migratoria --}}
                 <livewire:crud.situaciones-migratorias.crear-situacion-migratoria-modal :idModal="'createSituacion-RegMigrante'" />
             </div>
         </section>

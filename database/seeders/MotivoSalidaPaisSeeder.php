@@ -14,7 +14,6 @@ class MotivoSalidaPaisSeeder extends Seeder
     public function run(): void
     {
         $motivos = [
-            'N/A',
             'Persecución política',
             'Mejor oportunidad de vida', 
             'Violencia y amenazas',
