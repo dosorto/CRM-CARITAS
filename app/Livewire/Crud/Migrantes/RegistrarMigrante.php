@@ -106,9 +106,7 @@ class RegistrarMigrante extends Component
     {
         // guardar Expediente
 
-        // dd(session()->all());
-
-
+        dd(':)');
 
         $this->getMigranteService()->guardarExpediente(
             session('migranteId'),
@@ -120,7 +118,6 @@ class RegistrarMigrante extends Component
             session('datosMigratorios.situacionId'),
             session('datosMigratorios.observacion'),
         );
-
 
 
         $this->nextStep();

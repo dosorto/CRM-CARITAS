@@ -50,6 +50,7 @@
                             Número de Identificación:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
                             {{-- {{ $identificacion }} --}}
+                            0601200303381
                         </label>
                     </div>
 
@@ -123,7 +124,7 @@
                 <!-- Situacion migratoria -->
                 <div class="flex flex-col mt-4 items-start justify-center">
                     <label class="text-gray-600 mb-1 text-nowrap">Capacidades Especiales:
-                        (DiscapacidadesFísicas)</label>
+                        (Discapacidades Físicas)</label>
                     <label class="px-4 w-full border-b-2 border-gray-600">
                         Baja Visión, Autismo</label>
                 </div>
@@ -131,7 +132,7 @@
 
 
             <!-- Texto final -->
-            <div class="flex flex-col mb-2">
+            <div class="flex flex-col">
                 <p class="text-justify text-gray-700">
 
                     Solicito estadía temporal en el "Centro de Atención Cáritas Mons. Guido Charbonneau". Declaro
@@ -148,8 +149,8 @@
             </div>
 
             <!-- Firma Ingreso -->
-            <div class="flex flex-col mb-2">
-                <div class="w-full items-center flex justify-center flex-col mb-12">
+            <div class="flex flex-col">
+                <div class="w-full items-center flex justify-center flex-col mb-12 mt-12">
                     <hr class="border border-gray-500 w-1/3">
                     <label for="firma" class="text-gray-600">Firma Ingreso:</label>
                 </div>
@@ -208,4 +209,4 @@
         }
     </style>
 </main>
-¿
+
