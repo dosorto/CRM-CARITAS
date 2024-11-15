@@ -22,10 +22,8 @@ class DatosMigratoriosStep extends Component
     public $situacionId;
     public $asesorId;
 
-    public $counter = 0;
-
     public $motivosSalidaPais = [];
-    public $motivosSeleccionados = [];
+    public array $motivosSeleccionados = [];
 
     public function render()
     {
@@ -34,7 +32,7 @@ class DatosMigratoriosStep extends Component
 
     public function mount()
     {
-        // obtiene los valores de la sesion, en casi de que exista, si no, asigna por defecto el segundo parametro de session()
+        // obtiene los valores de la sesion, en caso de que exista, si no, asigna por defecto el segundo parametro de session()
         $this->asesorId = session('datosMigratorios.asesorId', 1);
         $this->fronteraId = session('datosMigratorios.fronteraId', 1);
         $this->situacionId = session('datosMigratorios.situacionId', 1);
@@ -58,39 +56,67 @@ class DatosMigratoriosStep extends Component
             'motivosSeleccionados.*' => 'required',
         ]);
 
-        // dd($validated['motivosSeleccionados']);
-
-        session(['datosMigratorios' => $validated]);
+        // session(['datosMigratorios' => $validated]);
 
         $this->dispatch('datos-migratorios-validated')
             ->to(RegistrarMigrante::class);
+    }
+
+    public function updated($name, $value)
+    {
+        switch ($name) {
+            case 'asesorId':
+                session()->put('datosMigratorios.asesorId', $value);
+                break;
+            case 'fronteraId':
+                session()->put('datosMigratorios.fronteraId', $value);
+                break;
+            case 'situacionId':
+                session()->put('datosMigratorios.situacionId', $value);
+                break;
+            default:
+                break;
+        }
+    }
+    public function updatedMotivosSeleccionados()
+    {
+        session()->put('datosMigratorios.motivosSeleccionados', $this->motivosSeleccionados);
     }
 
 
     #[On('asesor-created')]
     public function updateAsesorField()
     {
-        // Primero, actualizamos la lista de asesores
+        // Se actualiza la lista de manera descendente para que el recien creado quede de primero.
         $this->asesoresMigratorios = AsesorMigratorio::select('id', 'asesor_migratorio')
             ->orderBy('id', 'desc')
             ->get();
+
+        $asesorId = $this->asesoresMigratorios[0]->id;
+        $this->asesorId =  $asesorId;
+        session()->put('datosMigratorios.asesorId', $asesorId);
     }
 
     #[On('frontera-created')]
     public function updateFronteraField($newId)
     {
-        // Luego obtenemos la lista ordenando por ID descendente para que el nuevo aparezca primero
         $this->fronteras = Frontera::select('id', 'frontera')
             ->orderBy('id', 'desc')
             ->get();
+        $fronteraId = $this->fronteras[0]->id;
+        $this->fronteraId = $fronteraId;
+        session()->put('datosMigratorios.fronteraId', $fronteraId);
     }
 
     #[On('situacion-created')]
     public function updateSituacionField($newId)
     {
-        // Luego obtenemos la lista ordenando por ID descendente para que el nuevo aparezca primero
         $this->situaciones = SituacionMigratoria::select('id', 'situacion_migratoria')
             ->orderBy('id', 'desc')
             ->get();
+        $this->situacionId =
+        $situacionId =  $this->situaciones[0]->id;
+        $this->situacionId = $situacionId;
+        session()->put('datosMigratorios.situacionId', $situacionId);
     }
 }

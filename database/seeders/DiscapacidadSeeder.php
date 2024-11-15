@@ -13,7 +13,6 @@ class DiscapacidadSeeder extends Seeder
     public function run(): void
     {
         $discapacidades = [
-            'N/A',
             'Visual',
             'Auditiva',
             'Motriz',

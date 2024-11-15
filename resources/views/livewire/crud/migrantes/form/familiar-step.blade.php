@@ -204,7 +204,8 @@
                     <p>{{ $nuevoCodigoFamiliar }}</p>
                     <hr class="border border-base-content w-4/5 mt-6">
                     <p class="mt-6 text-sm text-center mx-4">
-                        Este registro no será tomado en cuenta para datos estadísticos de familias.
+                        Este registro no será tomado en cuenta para datos estadísticos de familias,
+                        hasta que se registre otra persona como familiar de esta.
                     </p>
                 </div>
 

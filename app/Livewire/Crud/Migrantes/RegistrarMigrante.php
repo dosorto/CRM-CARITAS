@@ -46,7 +46,6 @@ class RegistrarMigrante extends Component
     #[On('identificacion-validated')]
     public function identificacionStep()
     {
-
         $migrante = $this->getMigranteService()->buscar('numero_identificacion', session('datosPersonales')['identificacion']);
 
         if ($migrante) {
@@ -55,6 +54,7 @@ class RegistrarMigrante extends Component
             session()->forget(['datosPersonales']);
             session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
             session(['identificacion' => $migrante->numero_identificacion]);
+            session(['migranteId' => $migrante->id]);
             session(['currentStep' => 4]);
 
         } else {
@@ -67,16 +67,6 @@ class RegistrarMigrante extends Component
     {
         $this->nextStep();
     }
-    #[On('datos-migratorios-validated')]
-    public function datosMigratoriosStep()
-    {
-        $this->nextStep();
-    }
-    #[On('situacion-validated')]
-    public function situacionStep()
-    {
-        $this->nextStep();
-    }
 
     #[On('familiar-validated')]
     public function familiarStep()
@@ -86,7 +76,7 @@ class RegistrarMigrante extends Component
 
         try {
             if ($this->getMigranteService()->guardarDatosPersonales($datos)) {
-                
+
                 session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
 
                 session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
@@ -98,6 +88,26 @@ class RegistrarMigrante extends Component
             dump('ha ocurrido un error al guardar datos personales');
         }
     }
+
+
+    #[On('datos-migratorios-validated')]
+    public function datosMigratoriosStep()
+    {
+        $this->nextStep();
+    }
+
+    #[On('situacion-validated')]
+    public function situacionStep()
+    {
+        // guardar Expediente
+
+        dd(session()->all());
+
+        // $this->getMigranteService()->guardarExpediente();
+
+        $this->nextStep();
+    }
+
 
     #[On('previous-step')]
     public function previousStep()
