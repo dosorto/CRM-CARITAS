@@ -17,4 +17,10 @@ class Articulo extends Model
     {
         return $this->belongsTo(CategoriaArticulo::class, 'categoria_articulos_id');
     }
+    public function donaciones()
+    {
+        return $this->belongsToMany(Donacion::class, 'articulo_donacion')
+                    ->withPivot('cantidad_donacion');
+    }
+
 }

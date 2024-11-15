@@ -7,12 +7,15 @@ use App\Livewire\Crud\CategoriaArticulos\VerCategoriaArticulos;
 use App\Livewire\Crud\Categorias\VerCategorias;
 use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
+use App\Livewire\Crud\Donaciones\VerDonaciones;
+use App\Livewire\Crud\Donantes\VerDonantes;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Login;
 use App\Livewire\Pages\Administracion;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use App\Livewire\Crud\SubCategorias\VerSubCategorias;
 use App\Livewire\Crud\Mobiliarios\VerMobiliarios;
+use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -51,6 +54,17 @@ Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
     ->middleware('auth');
+Route::get('/tipodonantes', VerTipoDonantes::class)
+    ->name('ver-tipo-donantes')
+    ->middleware('auth');
+Route::get('/donantes', VerDonantes::class)
+    ->name('ver-donantes')
+    ->middleware('auth');
+Route::get('/donaciones', VerDonaciones::class)
+    ->name('ver-donaciones')
+    ->middleware('auth');
+
+
 
 Route::get('/categoriadearticulos', VerCategoriaArticulos::class)
     ->name('ver-categoria-articulos')

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             MobiliarioSeeder::class,
             CategoriaArticuloSeeder::class,
             ArticuloSeeder::class,
-
+            TipoDonanteSeeder::class,
         ]);
     }
 }
