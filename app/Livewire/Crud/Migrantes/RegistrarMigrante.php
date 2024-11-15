@@ -25,7 +25,8 @@ class RegistrarMigrante extends Component
 
 
     public function mount()
-    {
+    {   
+
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
             session([
@@ -75,12 +76,16 @@ class RegistrarMigrante extends Component
         $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
 
         try {
-            if ($this->getMigranteService()->guardarDatosPersonales($datos)) {
+
+            $idMigrante = $this->getMigranteService()->guardarDatosPersonales($datos);
+
+            if ($idMigrante) {
 
                 session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
 
                 session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
                 session(['identificacion' => $datos['identificacion']]);
+                session(['migranteId' => $idMigrante]);
 
                 $this->nextStep();
             }
@@ -101,9 +106,22 @@ class RegistrarMigrante extends Component
     {
         // guardar Expediente
 
-        dd(session()->all());
+        // dd(session()->all());
 
-        // $this->getMigranteService()->guardarExpediente();
+
+
+        $this->getMigranteService()->guardarExpediente(
+            session('migranteId'),
+            session('datosMigratorios.motivosSelected'),
+            session('datosMigratorios.necesidadesSelected'),
+            session('datosMigratorios.discapacidadesSelected'),
+            session('datosMigratorios.fronteraId'),
+            session('datosMigratorios.asesorId'),
+            session('datosMigratorios.situacionId'),
+            session('datosMigratorios.observacion'),
+        );
+
+
 
         $this->nextStep();
     }

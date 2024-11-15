@@ -23,7 +23,7 @@ class Expediente extends Model
         );
     }
 
-    public function motivos_salida_pais(): BelongsToMany
+    public function motivosSalidaPais(): BelongsToMany
     {
         return $this->belongsToMany(
             MotivoSalidaPais::class,
@@ -43,13 +43,13 @@ class Expediente extends Model
         );
     }
 
-    public function situaciones_migratorias(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            SituacionMigratoria::class,
-            'expedientes_situaciones_migratorias',
-            'expediente_id',               // Foreign key en la tabla pivote hacia este modelo (Expediente)
-            'situacion_migratoria_id'
-        );
-    }
+    // public function situaciones_migratorias(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(
+    //         SituacionMigratoria::class,
+    //         'expedientes_situaciones_migratorias',
+    //         'expediente_id',               // Foreign key en la tabla pivote hacia este modelo (Expediente)
+    //         'situacion_migratoria_id'
+    //     );
+    // }
 }

@@ -25,7 +25,10 @@ return new class extends Migration
             $table->unsignedBigInteger('situacion_migratoria_id')->nullable();
             $table->foreign('situacion_migratoria_id')->references('id')->on('situaciones_migratorias');
 
+            $table->boolean('fallecimiento')->default(false);
+
             $table->string('observacion')->nullable();
+            
             $table->timestamps();
         });
     }

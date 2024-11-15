@@ -23,7 +23,7 @@ class DatosMigratoriosStep extends Component
     public $asesorId;
 
     public $motivosSalidaPais = [];
-    public array $motivosSeleccionados = [];
+    public array $motivosSelected = [];
 
     public function render()
     {
@@ -36,7 +36,7 @@ class DatosMigratoriosStep extends Component
         $this->asesorId = session('datosMigratorios.asesorId', 1);
         $this->fronteraId = session('datosMigratorios.fronteraId', 1);
         $this->situacionId = session('datosMigratorios.situacionId', 1);
-        $this->motivosSeleccionados = session('datosMigratorios.motivosSeleccionados', []);
+        $this->motivosSelected = session('datosMigratorios.motivosSelected', []);
 
 
         $this->fronteras = Frontera::select('id', 'frontera')->get();
@@ -52,8 +52,8 @@ class DatosMigratoriosStep extends Component
             'situacionId' => 'required',
             'asesorId' => 'required',
 
-            'motivosSeleccionados' => 'required|array|min:1',
-            'motivosSeleccionados.*' => 'required',
+            'motivosSelected' => 'required|array|min:1',
+            'motivosSelected.*' => 'required',
         ]);
 
         // session(['datosMigratorios' => $validated]);
@@ -78,9 +78,9 @@ class DatosMigratoriosStep extends Component
                 break;
         }
     }
-    public function updatedMotivosSeleccionados()
+    public function updatedMotivosSelected()
     {
-        session()->put('datosMigratorios.motivosSeleccionados', $this->motivosSeleccionados);
+        session()->put('datosMigratorios.motivosSelected', $this->motivosSelected);
     }
 
 

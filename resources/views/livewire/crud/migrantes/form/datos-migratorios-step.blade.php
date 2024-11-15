@@ -77,13 +77,13 @@
         </section>
         <section class="w-1/2 h-full overflow-y-auto">
             <label class="label font-bold">Seleccione los motivos por los que salió del país</label>
-            @error('motivosSeleccionados')
+            @error('motivosSelected')
                 <p class="font-semibold text-error-content mb-4">* Seleccione al menos una opción</p>
             @enderror
             <div class="flex flex-col gap-2">
                 @foreach ($motivosSalidaPais as $motivo)
                     <div class="flex gap-1">
-                        <input class="checkbox checkbox-sm" type="checkbox" wire:model.live="motivosSeleccionados"
+                        <input class="checkbox checkbox-sm" type="checkbox" wire:model.live="motivosSelected"
                             value="{{ $motivo->id }}">
                         {{ $motivo->motivo_salida_pais }}
                     </div>
