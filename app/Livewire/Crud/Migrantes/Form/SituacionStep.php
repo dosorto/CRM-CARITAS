@@ -51,8 +51,8 @@ class SituacionStep extends Component
             // 'situacionesSelected' => 'required|array|min:1',
             // 'situacionesSelected.*' => 'required',
 
-            'discapacidadesSelected' => 'required|array|min:1',
-            'discapacidadesSelected.*' => 'required',
+            // 'discapacidadesSelected' => 'required|array|min:1',
+            // 'discapacidadesSelected.*' => 'required',
         ]);
 
         $this->dispatch('situacion-validated')

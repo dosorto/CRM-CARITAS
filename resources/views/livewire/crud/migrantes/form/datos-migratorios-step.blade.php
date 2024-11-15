@@ -100,6 +100,7 @@
                 <span class="icon-[mingcute--user-info-fill] size-6"></span>
                 Ver Datos Personales
             </button> --}}
+            <livewire:components.buttons.previous-step-button />
             <livewire:components.buttons.next-step-button />
         </div>
     </footer>

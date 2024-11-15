@@ -25,7 +25,7 @@ class RegistrarMigrante extends Component
 
 
     public function mount()
-    {   
+    {
 
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
@@ -52,12 +52,11 @@ class RegistrarMigrante extends Component
         if ($migrante) {
 
             // Si ya existe el migrante, saltarse los pasos datos Personales.
-            session()->forget(['datosPersonales']);
+            // session()->forget(['datosPersonales']);
             session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
             session(['identificacion' => $migrante->numero_identificacion]);
             session(['migranteId' => $migrante->id]);
             session(['currentStep' => 4]);
-
         } else {
             $this->nextStep();
         }
@@ -72,25 +71,32 @@ class RegistrarMigrante extends Component
     #[On('familiar-validated')]
     public function familiarStep()
     {
-        // Obtener los datos actuales de la sesión
-        $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
 
-        try {
+        if (session('migranteCreado')) {
+            $this->nextStep();
+        } else {
+            // Obtener los datos actuales de la sesión
+            $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
 
-            $idMigrante = $this->getMigranteService()->guardarDatosPersonales($datos);
+            try {
 
-            if ($idMigrante) {
+                $idMigrante = $this->getMigranteService()->guardarDatosPersonales($datos);
 
-                session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
+                if ($idMigrante) {
 
-                session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
-                session(['identificacion' => $datos['identificacion']]);
-                session(['migranteId' => $idMigrante]);
+                    // session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
 
-                $this->nextStep();
+                    session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
+                    session(['identificacion' => $datos['identificacion']]);
+                    session(['migranteId' => $idMigrante]);
+
+                    session(['migranteCreado' => true]);
+
+                    $this->nextStep();
+                }
+            } catch (Exception $e) {
+                dump('ha ocurrido un error al guardar datos personales');
             }
-        } catch (Exception $e) {
-            dump('ha ocurrido un error al guardar datos personales');
         }
     }
 

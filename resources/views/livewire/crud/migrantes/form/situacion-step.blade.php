@@ -86,10 +86,29 @@
                 Ver Datos Personales
             </button> --}}
             {{-- <livewire:components.buttons.next-step-button /> --}}
-            <button wire:click="saveExpediente" class="btn btn-info text-base-content">
+
+            <!-- Open the modal using ID.showModal() method -->
+            <button class="btn btn-info text-base-content" onclick="my_modal_1.showModal()">
                 <span class="icon-[lucide--save] size-5"></span>
                 Guardar Expediente
             </button>
+            <dialog id="my_modal_1" class="modal">
+                <div class="modal-box bg-neutral text-center">
+                    <h3 class="text-lg font-bold">Confirmación</h3>
+                    <p class="py-4">¡Expediente Guardado exitosamente!</p>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn btn-accent text-base-content">Cerrar</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+            {{-- <button wire:click="saveExpediente" class="btn btn-info text-base-content">
+                <span class="icon-[lucide--save] size-5"></span>
+                Guardar Expediente
+            </button> --}}
         </div>
     </footer>
 </main>
