@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class CrearTipoDonantesModal extends Component
 {
-    public $descripcion;  // Atributo para la descripción del tipo de donante
+    public $descripcion;  
     public $idModal;
 
 

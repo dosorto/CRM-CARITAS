@@ -40,7 +40,7 @@
 
 @push('scripts')
 <script>
-    // Escuchar evento para cerrar el modal
+   
     document.addEventListener('DOMContentLoaded', () => {
         @this.on('cerrar-modal', () => {
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

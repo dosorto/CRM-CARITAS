@@ -20,7 +20,7 @@ class Articulo extends Model
     public function donaciones()
     {
         return $this->belongsToMany(Donacion::class, 'donacion_articulo', 'id_articulo', 'id_donacion')
-                    ->withPivot('cantidad_donada') // Incluye columnas adicionales
+                    ->withPivot('cantidad_donada') 
                     ->withTimestamps();
     }
 

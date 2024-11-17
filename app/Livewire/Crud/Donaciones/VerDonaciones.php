@@ -19,26 +19,22 @@ class VerDonaciones extends Component
         HTML;
     }
 
-    // Esto es para el buscador
     public $fakeColNames = [
         'Identificador del Donante' => 'id_donante',
         'Fecha de Donación' => 'fecha_donacion',
         
     ];
 
-    // Nombres de los encabezados de las columnas
     public $colNames = [
         'Nombre del Donante', 
         'Fecha de Donación',
     ];
 
-    // Atributos de la base de datos que corresponden a los encabezados
     public $keys = [
        'donante.nombre_donante',
         'fecha_donacion',
     ];
 
-    // Acciones disponibles para cada fila de la tabla
     public $actions = [
         [
             'name' => 'edit',
@@ -58,17 +54,13 @@ class VerDonaciones extends Component
 
     ];
 
-    // Tamaño de la paginación
-    public $paginationSize = 9;
-
     
+    public $paginationSize = 9;
     public $itemClass = Donacion::class;
-
-    // Modal para crear una nueva donación
     public $idCreateModal = 'createDonacionModal';
 
     
-    // Método renderizado de la vista
+    
     public function render()
     {
         return view('livewire.crud.donaciones.ver-donaciones');

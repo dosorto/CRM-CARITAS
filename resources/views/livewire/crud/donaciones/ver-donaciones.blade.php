@@ -7,22 +7,22 @@
         </div>
     </header>
 
-    {{-- Contenedor encima de la tabla --}}
+    
     <section class="flex justify-between py-4 h-max">
 
-        {{-- Buscador --}}
+        
         <div class="w-[55%]">
             <livewire:components.buscador-dinamico :fakeColNames="$fakeColNames" />
         </div>
 
-        {{-- Botones --}}
+       
         <div class="join w-[45%] flex justify-end gap-4">
             <livewire:components.limpiar-filtros />
             <livewire:crud.donaciones.crear-donaciones-modal :idModal="$idCreateModal" />
         </div>
     </section>
 
-    {{-- Tabla de contenido --}}
+   
     <livewire:components.content-table
         :colNames="$colNames"
         :keys="$keys"

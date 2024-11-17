@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('donacion_articulo', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_donacion');  // Relación con la tabla 'donaciones'
-            $table->unsignedBigInteger('id_articulo');  // Relación con la tabla 'articulos'
-            $table->integer('cantidad_donada');  // Cantidad de artículos donados
+            $table->unsignedBigInteger('id_donacion');  
+            $table->unsignedBigInteger('id_articulo');  
+            $table->integer('cantidad_donada');  
            
-
-            // Claves foráneas
             $table->foreign('id_donacion')->references('id')->on('donaciones')->onDelete('cascade');
             $table->foreign('id_articulo')->references('id')->on('articulos')->onDelete('cascade');
             $table->timestamps();

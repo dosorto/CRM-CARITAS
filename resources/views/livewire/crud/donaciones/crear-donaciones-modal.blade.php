@@ -90,8 +90,7 @@
 
 @script
     <script>
-        // Escuchar el evento para cerrar el modal de "Crear Donación" solo cuando se emita de este componente
-        
+              
         document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
             if (event.target.checked) {
                 $wire.initForm();

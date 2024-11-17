@@ -21,12 +21,9 @@
                     <p>{{ $item->donante->nombre_donante }}</p> 
                 </div>
 
-                <!-- Fecha de Donación -->
                 <div class="flex gap-1">
                     <strong>Fecha de Donación:</strong>
                     <p>{{ $item->fecha_donacion }}</p> 
-
-                <!-- Artículos Donados -->
                 <div class="flex gap-1">
                     <strong>Artículos Donados:</strong>
                     <ul>
