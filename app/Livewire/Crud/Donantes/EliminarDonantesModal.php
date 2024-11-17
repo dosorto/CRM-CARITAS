@@ -11,9 +11,9 @@ class EliminarDonantesModal extends Component
 
     public function deleteItem()
     {
-        $this->item->delete();  // Eliminar el donante
-        $this->dispatch('cerrar-modal');  // Emitir evento para cerrar el modal
-        $this->dispatch('item-deleted');  // Emitir evento para notificar la eliminación
+        $this->item->delete();  
+        $this->dispatch('cerrar-modal'); 
+        $this->dispatch('item-deleted'); 
     }
 
     public function mount($parameters)
@@ -21,7 +21,7 @@ class EliminarDonantesModal extends Component
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
     }
-
+    public function initInfo() {}
     public function render()
     {
         return view('livewire.crud.donantes.eliminar-donantes-modal');

@@ -17,8 +17,10 @@ class TipoDonante extends Model
         'descripcion',
     ];
 
-    public function donantes()
+    
+    public function donantes(): HasMany
     {
-        return $this->hasMany(Donante::class, 'tipo_donante_id');
+        return $this->hasMany(Donante::class); // Relación con artículos
     }
+   
 }

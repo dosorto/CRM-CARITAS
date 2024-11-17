@@ -1,9 +1,11 @@
 <div>
-    <label for="{{ $idModal }}" class="btn btn-sm btn-error text-primary-content gap-2">
+    {{-- Botón para activar el Modal --}}
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-error text-primary-content gap-2">
         <span class="icon-[mingcute--delete-2-fill] size-4"></span>
     </label>
 
-    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
+    {{-- Modal --}}
+    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-1/3 max-w-5xl bg-neutral">
             <h3 class="text-lg font-bold text-center">Eliminar Donante</h3>
@@ -14,20 +16,29 @@
             </main>
 
             <div class="modal-action">
+                {{-- Botón para confirmar eliminación --}}
                 <button type="button" wire:click="deleteItem" class="btn btn-error text-base-content gap-1 pl-3">
                     <span class="icon-[material-symbols--delete] size-5"></span>
                     Confirmar
                 </button>
-                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
+                {{-- Botón para cancelar y cerrar el modal --}}
+                <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
 </div>
 
-@push('scripts')
+@script
     <script>
-        @this.on('cerrar-modal', () => {
-            document.getElementById('{{ $idModal }}').checked = false;
+        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
+            if (event.target.checked) {
+                // Llama a la función `resetForm` del componente para restablecer los valores
+                $wire.initInfo();
+            }
+        });
+        $wire.on('cerrar-modal', () => {
+            // Cerrar el modal desactivando el checkbox
+            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });
     </script>
-@endpush
+@endscript

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Donante extends Model
 {
@@ -18,7 +20,7 @@ class Donante extends Model
         'tipo_donante_id',
     ];
 
-    public function tipoDonante()
+    public function tipoDonante(): BelongsTo
     {
         return $this->belongsTo(TipoDonante::class, 'tipo_donante_id');
     }
@@ -27,4 +29,5 @@ class Donante extends Model
     {
         return $this->hasMany(Donacion::class, 'id_donante');
     }
+   
 }

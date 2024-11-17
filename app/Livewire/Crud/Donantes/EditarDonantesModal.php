@@ -8,12 +8,15 @@ use Livewire\Component;
 
 class EditarDonantesModal extends Component
 {
-    public $item;
     public $nombre_donante;
     public $tipo_donante_id;
     public $tipos_donante;
     public $idModal;
+    public $item;
 
+    /**
+     * Método para guardar los cambios del donante.
+     */
     public function editItem()
     {
         $validated = $this->validate([
@@ -21,16 +24,18 @@ class EditarDonantesModal extends Component
             'tipo_donante_id' => 'required|exists:tipo_donante,id',
         ]);
 
-        $donanteEdited = $this->item;
-        $donanteEdited->nombre_donante = $validated['nombre_donante'];
-        $donanteEdited->tipo_donante_id = $validated['tipo_donante_id'];
+        $this->item->nombre_donante = $validated['nombre_donante'];
+        $this->item->tipo_donante_id = $validated['tipo_donante_id'];
+        $this->item->save();
 
-        $donanteEdited->save();
-
+        // Emitir eventos para cerrar el modal y notificar la edición
         $this->dispatch('cerrar-modal');
         $this->dispatch('item-edited');
     }
 
+    /**
+     * Método para inicializar el formulario con los datos del donante.
+     */
     public function initForm()
     {
         $this->nombre_donante = $this->item->nombre_donante;
@@ -38,6 +43,9 @@ class EditarDonantesModal extends Component
         $this->tipos_donante = TipoDonante::all();
     }
 
+    /**
+     * Método que se ejecuta al montar el componente.
+     */
     public function mount($parameters)
     {
         $this->item = $parameters['item'];
@@ -45,6 +53,9 @@ class EditarDonantesModal extends Component
         $this->initForm();
     }
 
+    /**
+     * Renderiza la vista del componente.
+     */
     public function render()
     {
         return view('livewire.crud.donantes.editar-donantes-modal');

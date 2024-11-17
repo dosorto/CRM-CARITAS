@@ -1,11 +1,11 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}" class="btn btn-sm btn-error text-primary-content gap-2">
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-error text-primary-content gap-2">
         <span class="icon-[mingcute--delete-2-fill] size-4"></span>
     </label>
 
     {{-- Modal de Confirmación --}}
-    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-1/3 max-w-5xl bg-neutral">
 
@@ -30,10 +30,18 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    @this.on('cerrar-modal', () => {
-        document.getElementById('{{ $idModal }}').checked = false;
-    });
-</script>
-@endpush
+@script
+    <script>
+        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
+            if (event.target.checked) {
+                // Llama a la función `initForm` del componente para restablecer los valores
+                $wire.initInfo();
+            }
+        });
+
+        $wire.on('cerrar-modal', () => {
+            // Cierra el modal desactivando el checkbox
+            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
+        });
+    </script>
+@endscript

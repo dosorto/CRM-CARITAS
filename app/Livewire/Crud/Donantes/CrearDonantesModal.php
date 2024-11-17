@@ -33,6 +33,7 @@ class CrearDonantesModal extends Component
     {
         $this->tiposDonantes = TipoDonante::all();
         $this->nombre_donante = '';
+        $this->tipo_donante_id = null;
 
     }
 

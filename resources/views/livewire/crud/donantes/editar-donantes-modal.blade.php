@@ -1,11 +1,11 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
         <span class="icon-[line-md--edit] size-4"></span>
     </label>
 
     {{-- Modal --}}
-    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-2/3 max-w-5xl bg-neutral">
             <h3 class="text-lg font-bold text-center">Editar Donante</h3>
@@ -44,23 +44,25 @@
                     <span class="icon-[material-symbols--save] size-5"></span>
                     Guardar
                 </button>
-                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
+                <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
 </div>
 
 {{-- Script para manejar la apertura y cierre del modal --}}
-@push('scripts')
+@script
     <script>
-        document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
+        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
             if (event.target.checked) {
-                @this.initForm(); // Inicia el formulario al abrir el modal
+                // Llama a la función `resetForm` del componente para restablecer los valores
+                $wire.initForm();
             }
         });
 
-        Livewire.on('cerrar-modal', () => {
-            document.getElementById('{{ $idModal }}').checked = false;
+        $wire.on('cerrar-modal', () => {
+            // Cierra el modal desactivando el checkbox
+            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });
     </script>
-@endpush
+@endscript

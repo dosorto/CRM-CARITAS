@@ -4,7 +4,7 @@ namespace App\Livewire\Crud\Donantes;
 
 use App\Models\Donante;
 use Livewire\Component;
-
+#[Lazy()]
 class VerDonantes extends Component
 {
     public function placeholder()
@@ -18,7 +18,6 @@ class VerDonantes extends Component
 
     public $fakeColNames = [
         'Nombre del Donante' => 'nombre_donante',
-        'Tipo de Donante' => 'tipoDonante.descripcion',
     ];
 
     public $colNames = [
@@ -41,7 +40,7 @@ class VerDonantes extends Component
             'name' => 'delete',
             'component' => 'crud.donantes.eliminar-donantes-modal',
             'parameters' => ['idModal' => 'deleteDonanteModal']
-        ],
+        ]
 
     ];
 

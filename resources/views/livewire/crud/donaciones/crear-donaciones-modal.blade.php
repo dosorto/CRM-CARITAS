@@ -7,7 +7,7 @@
 
     <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-1/3 max-w-5xl bg-neutral">
+        <div class="modal-box w-2/3 max-w-5xl bg-neutral">  <!-- Modificado aquí a w-2/3 -->
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Crear Donación</h3>
@@ -16,19 +16,22 @@
             <main class="h-max flex flex-col w-full">
 
                 {{-- Contenedor del Donante --}}
-                <div class="flex flex-col mt-4">
+                <div class="flex items-center gap-4 mt-4">
                     <label class="mb-1">Donante</label>
-                    <select wire:model="id_donante" class="input bg-accent" required>
+                    <select wire:model.live="id_donante" class="input bg-accent" required>
                         <option value="">Selecciona un Donante...</option>
                         @foreach ($donantes as $donante)
                             <option value="{{ $donante->id }}">{{ $donante->nombre_donante }}</option>
                         @endforeach
                     </select>
-                    <div class="mt-1 text-error-content font-bold">
-                        @error('id_donante')
-                            {{ $message }}
-                        @enderror
-                    </div>
+
+                    <livewire:crud.donantes.crear-donantes-modal :idModal="'createDonantesModal'" />
+                </div>
+
+                <div class="mt-1 text-error-content font-bold">
+                    @error('id_donante')
+                        {{ $message }}
+                    @enderror
                 </div>
 
                 {{-- Contenedor de los Artículos --}}
@@ -36,24 +39,13 @@
                     <label class="mb-1">Artículos a Donar</label>
                     @foreach ($articulos as $articulo)
                         <div class="flex items-center mb-2">
-                            <input
-                                type="checkbox"
-                                wire:model="selectedArticulos"
-                                value="{{ $articulo->id }}"
-                                id="articulo_{{ $articulo->id }}"
-                                class="mr-2"
-                            />
+                            <input type="checkbox" wire:model.live="selectedArticulos" value="{{ $articulo->id }}" id="articulo_{{ $articulo->id }}"
+                                class="mr-2" />
                             <label for="articulo_{{ $articulo->id }}" class="flex-1">{{ $articulo->nombre }}</label>
 
                             {{-- Campo de cantidad --}}
-                            <input
-                                wire:model="cantidad.{{ $articulo->id }}"
-                                type="number"
-                                placeholder="Cantidad"
-                                class="input bg-accent w-20"
-                                min="1"
-                                :disabled="!in_array($articulo->id, $selectedArticulos)" {{-- Deshabilitado si no está seleccionado --}}
-                            />
+                            <input wire:model.live="cantidad.{{ $articulo->id }}" type="number" placeholder="Cantidad"
+                                class="input bg-accent w-20" min="1" :disabled="!in_array($articulo->id, $selectedArticulos)" />
                         </div>
                     @endforeach
                     <div class="mt-1 text-error-content font-bold">
@@ -61,6 +53,7 @@
                             {{ $message }}
                         @enderror
                     </div>
+                    <livewire:crud.articulos.crear-articulo-modal :idModal="'createArticuloModal'" />
                 </div>
 
                 {{-- Contenedor de la Fecha --}}
@@ -81,7 +74,6 @@
 
             </main>
 
-            {{-- Acción del Modal --}}
             <div class="modal-action">
                 <div wire:loading class="flex items-center p-2 justify-start size-full">
                     <span class="loading loading-spinner loading-md text-gray-400"></span>
@@ -96,19 +88,14 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    // Resetear el formulario al abrir el modal
-    document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
-        if (event.target.checked) {
-            // Llama a la función `initForm` del componente para restablecer los valores
-            $wire.initForm();
-        }
-    });
-
-    // Cerrar el modal cuando se recibe el evento 'cerrar-modal'
-    $wire.on('cerrar-modal', () => {
-        document.getElementById('{{ $idModal }}').checked = false;
-    });
-</script>
-@endpush
+@script
+    <script>
+        // Escuchar el evento para cerrar el modal de "Crear Donación" solo cuando se emita de este componente
+        
+        document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
+            if (event.target.checked) {
+                $wire.initForm();
+            }
+        });
+    </script>
+@endscript

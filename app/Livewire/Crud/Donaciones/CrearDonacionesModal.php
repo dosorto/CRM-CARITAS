@@ -5,6 +5,7 @@ namespace App\Livewire\Crud\Donaciones;
 use App\Models\Articulo;
 use App\Models\Donante;
 use App\Models\Donacion;
+use App\Models\DonacionArticulo;  // Importa el modelo de la tabla intermedia
 use Livewire\Component;
 
 class CrearDonacionesModal extends Component
@@ -28,21 +29,34 @@ class CrearDonacionesModal extends Component
             'fecha_donacion' => 'required|date',  // Validar la fecha
         ]);
 
-        // Crear una donación por cada artículo seleccionado
+        // Crear el registro de la donación
+        $donacion = Donacion::create([
+            'id_donante' => $this->id_donante,
+            'fecha_donacion' => $this->fecha_donacion,
+        ]);
+
+        // Guardar las relaciones de los artículos donados
         foreach ($this->selectedArticulos as $articuloId) {
-            // Verificar que la cantidad existe para este artículo antes de intentar crear la donación
+            // Verificar que la cantidad existe para este artículo antes de intentar crear la relación
             if (isset($this->cantidad[$articuloId]) && $this->cantidad[$articuloId] > 0) {
-                Donacion::create([
-                    'id_donante' => $this->id_donante,
+                // Crear la relación en la tabla intermedia donacion_articulo
+                DonacionArticulo::create([
+                    'id_donacion' => $donacion->id,
                     'id_articulo' => $articuloId,
-                    'cantidad_donacion' => $this->cantidad[$articuloId],  // Usar la cantidad de cada artículo
-                    'fecha_donacion' => $this->fecha_donacion,
+                    'cantidad_donada' => $this->cantidad[$articuloId],  // Usar la cantidad de cada artículo
                 ]);
+
+                // Actualizar el stock del artículo sumando la cantidad donada
+                $articulo = Articulo::find($articuloId);
+                if ($articulo) {
+                    $articulo->cantidad_stock += $this->cantidad[$articuloId];  // Sumar la cantidad donada al stock
+                    $articulo->save();
+                }
             }
         }
 
         // Emitir eventos para cerrar el modal y notificar la creación
-        $this->dispatch('cerrar-modal');
+       
         $this->dispatch('item-created');
     }
 

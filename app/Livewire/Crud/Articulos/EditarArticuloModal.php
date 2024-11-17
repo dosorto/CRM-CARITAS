@@ -4,7 +4,7 @@ namespace App\Livewire\Crud\Articulos;
 
 use App\Models\Articulo;
 use App\Models\Categoria;
-use App\Models\SubCategoria;
+use App\Models\CategoriaArticulo;
 use Livewire\Component;
 
 class EditarArticuloModal extends Component
@@ -14,11 +14,11 @@ class EditarArticuloModal extends Component
     public $descripcion;
     public $codigo_barra;
     public $cantidad_stock;
-    public $subcategoria_id;
+    public $categoria_articulos_id;
     public $categorias;
     public $subcategorias;
     public $idModal;
-
+    public $categoria_articulos;
     public function editItem()
     {
         $validated = $this->validate([
@@ -26,7 +26,7 @@ class EditarArticuloModal extends Component
             'descripcion' => 'nullable|string',
             'codigo_barra' => 'required|string|max:255',
             'cantidad_stock' => 'required|integer|min:0',
-            'subcategoria_id' => 'required|exists:subcategorias,id',
+            'categoria_articulos_id' => 'required|exists:categoria_articulos,id',
         ]);
 
         // Actualizar los valores del artículo
@@ -35,7 +35,7 @@ class EditarArticuloModal extends Component
         $articuloEdited->descripcion = $validated['descripcion'];
         $articuloEdited->codigo_barra = $validated['codigo_barra'];
         $articuloEdited->cantidad_stock = $validated['cantidad_stock'];
-        $articuloEdited->subcategoria_id = $validated['subcategoria_id'];
+        $articuloEdited->categoria_articulos_id = $validated['categoria_articulos_id'];
 
         $articuloEdited->save();
 
@@ -51,9 +51,8 @@ class EditarArticuloModal extends Component
         $this->descripcion = $this->item->descripcion;
         $this->codigo_barra = $this->item->codigo_barra;
         $this->cantidad_stock = $this->item->cantidad_stock;
-        $this->subcategoria_id = $this->item->subcategoria_id;
-        $this->categorias = Categoria::all();  // Obtener todas las categorías para el selector
-        $this->subcategorias = SubCategoria::all();  // Obtener todas las subcategorías para el selector
+        $this->categoria_articulos_id= $this->item->categoria_articulos_id;
+        $this->categoria_articulos= CategoriaArticulo::all();  // Obtener todas las subcategorías para el selector
     }
 
     public function mount($parameters)

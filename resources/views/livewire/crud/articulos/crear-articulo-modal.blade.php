@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                {{-- Subcategorías --}}
+                
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Categoría de Articulos </label>
                     <div class="flex gap-2">

@@ -25,8 +25,13 @@ class Donacion extends Model
         return $this->belongsTo(Donante::class, 'id_donante');
     }
 
-    public function articulo()
+    public function articulos()
     {
-        return $this->belongsTo(Articulo::class, 'id_articulo');
+        return $this->belongsToMany(Articulo::class, 'donacion_articulo', 'id_donacion', 'id_articulo')
+                    ->withPivot('cantidad_donada') // Incluye columnas adicionales
+                    ->withTimestamps();
     }
+
+    
+    
 }

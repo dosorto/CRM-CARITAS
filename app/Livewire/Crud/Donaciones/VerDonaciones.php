@@ -21,24 +21,20 @@ class VerDonaciones extends Component
 
     // Esto es para el buscador
     public $fakeColNames = [
-        'Nombre del Artículo' => 'articulo.nombre',
-        'Código de Barra' => 'articulo.codigo_barra',
+        'Identificador del Donante' => 'id_donante',
         'Fecha de Donación' => 'fecha_donacion',
+        
     ];
 
     // Nombres de los encabezados de las columnas
     public $colNames = [
-        'Nombre del Artículo',
-        'Código de Barra',
-        'Cantidad Donada',
+        'Nombre del Donante', 
         'Fecha de Donación',
     ];
 
     // Atributos de la base de datos que corresponden a los encabezados
     public $keys = [
-        'articulo.nombre',
-        'articulo.codigo_barra',
-        'cantidad_donacion',
+       'donante.nombre_donante',
         'fecha_donacion',
     ];
 
@@ -54,40 +50,27 @@ class VerDonaciones extends Component
             'component' => 'crud.donaciones.eliminar-donaciones-modal',
             'parameters' => ['idModal' => 'deleteDonacionModal'],
         ],
+        [
+            'name' => 'info',
+            'component' => 'crud.donaciones.info-donaciones',
+            'parameters' => ['idModal' => 'infoDonaciones']
+        ]
 
     ];
 
     // Tamaño de la paginación
-    public $paginationSize = 6;
+    public $paginationSize = 9;
 
-    // Clase del modelo Donación
+    
     public $itemClass = Donacion::class;
 
     // Modal para crear una nueva donación
     public $idCreateModal = 'createDonacionModal';
 
-    // Propiedad para la búsqueda
-    public $search = '';
-
-    // Método para obtener las donaciones con filtros
-    public function getDonacionesQueryProperty()
-    {
-        return Donacion::query()
-            ->with('articulo') // Relacionamos con el artículo
-            ->when($this->search, function ($query) {
-                $query->whereHas('articulo', function ($query) {
-                    $query->where('nombre', 'like', '%'.$this->search.'%')
-                          ->orWhere('codigo_barra', 'like', '%'.$this->search.'%');
-                });
-            });
-    }
-
+    
     // Método renderizado de la vista
     public function render()
     {
-        $donaciones = $this->getDonacionesQueryProperty()
-            ->paginate($this->paginationSize);
-
-        return view('livewire.crud.donaciones.ver-donaciones', compact('donaciones'));
+        return view('livewire.crud.donaciones.ver-donaciones');
     }
 }
