@@ -38,6 +38,8 @@ module.exports = {
                     "accent-content":   "#F6EFEF",  // Color del cuerpo de las tablas y elementos de formulario comunes
                     
                     "error-content":    "#dc2626", // Color de alertas de validacion de formularios
+
+                    "warning":          "#DA9C2B", 
                 },
                 dark: {
                     ...require("daisyui/src/theming/themes")["dark"],
@@ -67,7 +69,7 @@ module.exports = {
                     "info-content":     "#3b82f6",     
                     "success":          "#16a34a",      
                     "success-content":  "#16a34a",      
-                    "warning":          "#f59e00",     
+                    "warning":          "#FEC359",     
                     "warning-content":  "#FFFFFF",     
                     "error":            "#dc2626",   
                     "error-content":    "#F57979",

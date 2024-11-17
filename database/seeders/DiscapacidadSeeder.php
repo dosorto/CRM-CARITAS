@@ -12,7 +12,7 @@ class DiscapacidadSeeder extends Seeder
      */
     public function run(): void
     {
-        $condiciones = [
+        $discapacidades = [
             'Visual',
             'Auditiva',
             'Motriz',
@@ -22,9 +22,9 @@ class DiscapacidadSeeder extends Seeder
             'Múltiple',
         ];
 
-        foreach ($condiciones as $condicion) {
+        foreach ($discapacidades as $discapacidad) {
             DB::table('discapacidades')->insert([
-                'discapacidad' => $condicion,
+                'discapacidad' => $discapacidad,
             ]);
         }
     }
