@@ -39,28 +39,21 @@
             </main>
 
             <div class="modal-action">
-                <div wire:loading class="flex items-center p-3">
-                    <span class="loading loading-dots loading-sm size-6 text-gray-500"></span>
+                <div wire:loading class="flex items-center p-2 justify-start size-full">
+                    <span class="loading loading-spinner loading-md text-gray-400"></span>
                 </div>
                 <button type="button" wire:click="create" class="btn btn-success text-base-content gap-1 pl-3">
                     <span class="icon-[mdi--plus-circle] size-5"></span>
                     Crear
                 </button>
-                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</button>
             </div>
         </div>
     </div>
 </div>
 @script
     <script>
-        document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.initForm();
-            }
-        });
-
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cerrar el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}').checked = false;
         });

@@ -25,21 +25,25 @@ class VerCiudades extends Component
     // Nombre de los encabezados de las columnas
     public $colNames = [
         'Nombre de la Ciudad', 
-        'Departamento'];
+        'Pais',
+        'Departamento',
+    ];
 
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
         'nombre_ciudad', 
-        'departamento.nombre_departamento',];
+        'departamento.pais.nombre_pais',
+        'departamento.nombre_departamento',
+    ];
 
     public $actions = [
         [
-            'name' => 'edit',
+            'name' => 'editCiudad',
             'component' => 'crud.ciudades.editar-ciudad-modal',
             'parameters' => ['idModal' => 'editCiudadModal']
         ],
         [
-            'name' => 'delete',
+            'name' => 'deleteCiudad',
             'component' => 'crud.ciudades.eliminar-ciudad-modal',
             'parameters' => ['idModal' => 'deleteCiudadModal']
         ],

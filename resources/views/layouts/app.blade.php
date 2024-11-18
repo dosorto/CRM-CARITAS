@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/theme-switcher.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 
@@ -46,8 +46,7 @@
                 {{-- Logo de la Barra Lateral --}}
                 <div class="px-4 pt-4">
                     <a href="#" class="flex items-center pl-2.5 w-full">
-                        <img id="logo" src="{{ asset('storage/images/logo-white.png') }}" class="h-16 me-6 sm:h-14"
-                            alt="Logo" />
+                        <img id="logo" src="/img/logo-white.png" class="h-16 me-6 sm:h-14" alt="Logo" />
                     </a>
                 </div>
 
@@ -56,44 +55,24 @@
                 <div class="p-4 flex-grow text-primary-content">
                     <livewire:components.icon-link-group />
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="px-4 py-2 font-semibold text-white bg-red-600 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500">
-                            Cerrar Sesión
-                        </button>
-                    </form>
+
                 </div>
 
 
-                <div class="p-4">
-                    <livewire:components.theme-switcher />
+                <div class="p-4 justify-center gap-4 flex">
+                    <livewire:components.theme-switcher :customClass="'btn btn-primary px-3'" />
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="px-4 py-2 font-semibold btn btn-primary">
+                            <span class="icon-[line-md--logout] size-7"></span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
 
     </div>
-
-    <script>
-        // Immediately set initial theme to prevent flash of wrong theme
-        (function() {
-            function getTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                if (savedTheme) {
-                    return savedTheme === 'dark';
-                }
-                return window.matchMedia('(prefers-color-scheme: dark)').matches;
-            }
-
-            const isDark = getTheme();
-            if (isDark) {
-                document.documentElement.classList.add('dark');
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

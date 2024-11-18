@@ -27,14 +27,22 @@
 
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Descripción </label>
-                    <input wire:model="Descripcion" class="input bg-accent" type="text"
-                        placeholder="Escribir aquí..." />
+                    <textarea wire:model="Descripcion" class="input bg-accent h-20" 
+                            placeholder="Escribir aquí..."></textarea>
                 </div>
 
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Ubicación </label>
-                    <input wire:model="Ubicacion" class="input bg-accent" type="text"
-                        placeholder="Escribir aquí..." />
+                    <select wire:model="Ubicacion" class="input bg-accent">
+                        <option value="">Selecciona una ubicación...</option>
+                        <option value="Bodega">Bodega</option>
+                        <option value="Casa">Casa</option>
+                    </select>
+                    <div class="mt-1 text-error-content font-bold">
+                        @error('Ubicacion')
+                            {{ $message }}
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="flex flex-col mt-4">
@@ -46,7 +54,7 @@
                                 <option value="{{ $categoria->id }}">{{ $categoria->nombre_categoria }}</option>
                             @endforeach
                         </select>
-                        <livewire:crud.categorias.crear-categoria-modal :idModal="'createCategoriaModal'">
+                        <livewire:crud.categorias.crear-categoria-modal :idModal="'createCategoriaModalEdit' . $item->id">
                     </div>
                 </div>
 
@@ -60,7 +68,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        <livewire:crud.sub-categorias.crear-sub-categoria-modal :idModal="'createSubCategoriaModal'">
+                        <livewire:crud.sub-categorias.crear-sub-categoria-modal :idModal="'createSubCategoriaModalEdit' . $item->id">
                     </div>
                 </div>
 
@@ -98,14 +106,7 @@
 </div>
 @script
     <script>
-        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.initForm();
-            }
-        });
-
-        $wire.on('cerrar-modal', () => {
+        $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
         });

@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-
 use Illuminate\Database\Seeder;
+use App\Models\Migrante;
+use App\Models\MotivoSalidaPais;
+use App\Models\SituacionMigratoria;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +26,14 @@ class DatabaseSeeder extends Seeder
             MobiliarioSeeder::class,
             CategoriaArticuloSeeder::class,
             ArticuloSeeder::class,
-            TipoDonanteSeeder::class,
+            TipoDonanteSeeder::class,            ActaEntregaSeeder::class,
+            DiscapacidadSeeder::class,
+            SituacionMigratoriaSeeder::class,
+            AsesorMigratorioSeeder::class,
+            FronteraSeeder::class,
+            MotivoSalidaPaisSeeder::class,
         ]);
+
+        Migrante::factory()->count(10)->create();
     }
 }

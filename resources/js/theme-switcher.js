@@ -1,8 +1,32 @@
+// resources/js/theme-switcher.js
+
+// Función inmediata para prevenir flash
+(function() {
+    function getTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            return savedTheme === 'dark';
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    const isDark = getTheme();
+    if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+})();
+
+// Código del controlador del tema
 document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-controller');
+    if (!themeToggle) return; // Prevenir errores si el toggle no existe
+
     const htmlElement = document.documentElement;
 
-    // Function to set theme
     function setTheme(isDark) {
         if (isDark) {
             htmlElement.classList.add('dark');
@@ -15,36 +39,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to get the current theme
     function getTheme() {
-        // First, check localStorage
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             return savedTheme === 'dark';
         }
-        // If no saved preference, return false for light theme
         return false;
     }
 
-    // Set initial theme
     const isDarkTheme = getTheme();
     setTheme(isDarkTheme);
-
-    // Update checkbox state
     themeToggle.checked = isDarkTheme;
 
-    // Listen for checkbox changes
     themeToggle.addEventListener('change', (e) => {
         setTheme(e.target.checked);
     });
 
-    // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (localStorage.getItem('theme') === null) {
-            setTheme(false);  // Always set to light if no preference
+            setTheme(false);
             themeToggle.checked = false;
         }
     });
-
-    console.log('Xdddd')
 });

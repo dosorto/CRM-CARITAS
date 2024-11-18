@@ -12,7 +12,7 @@ class EliminarArticuloModal extends Component
     public function deleteItem()
     {
         $this->item->delete();  // Eliminar el artículo
-        $this->dispatch('cerrar-modal');  // Emitir evento para cerrar el modal
+        $this->dispatch('close-modal');  // Emitir evento para cerrar el modal
         $this->dispatch('item-deleted');  // Emitir evento para notificar la eliminación
     }
 

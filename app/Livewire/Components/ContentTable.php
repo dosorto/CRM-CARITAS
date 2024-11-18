@@ -2,17 +2,15 @@
 
 namespace App\Livewire\Components;
 
+use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
+use Livewire\WithoutUrlPagination;
 
 class ContentTable extends Component
 {
-    use WithPagination;
-
-    protected $listeners = [
-        'search-text-changed' => '$refresh',
-    ];
+    use WithPagination, WithoutUrlPagination;
 
     public $colNames;
     public $keys;
@@ -42,8 +40,6 @@ class ContentTable extends Component
 
         $this->colSelected = array_key_first($colNames);
     }
-
-    
 
     public function render()
     {

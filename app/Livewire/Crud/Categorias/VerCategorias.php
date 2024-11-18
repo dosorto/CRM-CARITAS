@@ -3,7 +3,6 @@
 namespace App\Livewire\Crud\Categorias;
 
 use App\Models\Categoria;
-use App\Models\Pais;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 
@@ -38,12 +37,12 @@ class VerCategorias extends Component
 
     public $actions = [
         [
-            'name' => 'edit',
+            'name' => 'editCategoria',
             'component' => 'crud.categorias.editar-categoria-modal',
             'parameters' => ['idModal' => 'editCategoriaModal']
         ],
         [
-            'name' => 'delete',
+            'name' => 'deleteCategoria',
             'component' => 'crud.categorias.eliminar-categoria-modal',
             'parameters' => ['idModal' => 'deleteCategoriaModal']
         ]
