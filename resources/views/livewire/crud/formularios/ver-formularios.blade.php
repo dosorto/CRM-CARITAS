@@ -28,16 +28,15 @@
                     <div class="flex mb-2 w-2/3">
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">Nombre completo:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            {{-- {{ $nombreCompleto }} --}}
-                            Mario Fernando Carbajal Galo
+                            {{ $nombreCompleto }}
+                            {{-- Mario Fernando Carbajal Galo --}}
                         </label>
                     </div>
                     <!-- Fecha de ingreso -->
                     <div class="flex mb-2 w-1/3">
                         <label for="fechaIngreso" class="text-gray-600 mb-1 text-nowrap">Fecha de ingreso:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            {{-- {{ $fechaIngreso }} --}}
-                            15/11/2024
+                            {{ $fechaIngreso }}
                         </label>
                     </div>
                 </div>
@@ -49,8 +48,7 @@
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
                             Número de Identificación:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            {{-- {{ $identificacion }} --}}
-                            0601200303381
+                            {{ $identificacion }}
                         </label>
                     </div>
 
@@ -60,8 +58,8 @@
                             Documento:
                         </label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            {{-- {{ $tipoIdentificacion }} --}}
-                            DNI
+                            {{ $tipoIdentificacion }}
+                            {{-- DNI --}}
                         </label>
                     </div>
                 </div>
@@ -73,21 +71,22 @@
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
                             Edad:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            21</label>
+                            {{ $edad }}
+                        </label>
                     </div>
                     <!-- Sexo -->
                     <div class="flex mb-2 w-2/6">
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
                             Sexo:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            Masculino</label>
+                            {{ $sexo }}</label>
                     </div>
                     <!-- Fecha de Nacimiento -->
                     <div class="flex mb-2 w-3/6">
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
                             Fecha de Nacimiento:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            02/09/2003</label>
+                            {{ $fechaNacimiento }}</label>
                     </div>
                 </div>
 
@@ -98,14 +97,14 @@
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
                             País de Procedencia:</label>
                         <label class="px-4  w-full border-b-2 border-gray-600">
-                            Honduras</label>
+                            {{ $pais }}</label>
                     </div>
 
                     <!-- Nacionalidad -->
                     <div class="flex mb-2 w-1/2 items-center justify-center gap-2">
                         <label class="text-gray-600 mb-1 text-nowrap">¿Pertenece a LGBTQI+?: </label>
                         <label class="px-4 border-b-2 border-gray-600">
-                            NO</label>
+                            {{ $esLGBT }}</label>
                         <span class="icon-[circle-flags--lgbt] size-7"></span>
                     </div>
                 </div>
@@ -119,14 +118,14 @@
                 <div class="flex flex-col mt-2 items-start justify-center">
                     <label class="text-gray-600 mb-1 text-nowrap">Situación Migratoria en la que se Encuentra: </label>
                     <label class="px-4 w-full border-b-2 border-gray-600">
-                        Persona con necesidad de Protección Internacional</label>
+                        {{ $situacion }}</label>
                 </div>
                 <!-- Situacion migratoria -->
                 <div class="flex flex-col mt-4 items-start justify-center">
-                    <label class="text-gray-600 mb-1 text-nowrap">Capacidades Especiales:
-                        (Discapacidades Físicas)</label>
+                    <label class="text-gray-600 mb-1 text-nowrap">
+                        Capacidades Especiales / Discapacidades Físicas</label>
                     <label class="px-4 w-full border-b-2 border-gray-600">
-                        Baja Visión, Autismo</label>
+                        {{ $discapacidades }}</label>
                 </div>
             </div>
 
@@ -209,4 +208,3 @@
         }
     </style>
 </main>
-

@@ -145,6 +145,7 @@ class MigranteService
             $expediente->asesor_migratorio_id = $asesorMigratorioId;
             $expediente->situacion_migratoria_id = $situacionMigratoriaId;
             $expediente->observacion = $observacion;
+            $expediente->fecha_ingreso = date('Y-m-d');
             $expediente->save();
             $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
             $expediente->necesidades()->sync($necesidades);

@@ -123,6 +123,8 @@ class RegistrarMigrante extends Component
         if ($newExpedienteId) {
             session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
             session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
+            
+            // dd($newExpedienteId);
             session(['expedienteId' => $newExpedienteId]);
         }
 
