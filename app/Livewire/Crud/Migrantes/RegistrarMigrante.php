@@ -2,13 +2,11 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
-use App\Models\Migrante;
 use App\Services\MigranteService;
 use Exception;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Lazy;
-use Livewire\Attributes\Locked;
 
 #[Lazy()]
 class RegistrarMigrante extends Component
@@ -26,6 +24,7 @@ class RegistrarMigrante extends Component
 
     public function mount()
     {
+
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
             session([
@@ -46,17 +45,16 @@ class RegistrarMigrante extends Component
     #[On('identificacion-validated')]
     public function identificacionStep()
     {
-
         $migrante = $this->getMigranteService()->buscar('numero_identificacion', session('datosPersonales')['identificacion']);
 
         if ($migrante) {
 
             // Si ya existe el migrante, saltarse los pasos datos Personales.
-            session()->forget(['datosPersonales']);
+            // session()->forget(['datosPersonales']);
             session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
             session(['identificacion' => $migrante->numero_identificacion]);
+            session(['migranteId' => $migrante->id]);
             session(['currentStep' => 4]);
-
         } else {
             $this->nextStep();
         }
@@ -67,37 +65,74 @@ class RegistrarMigrante extends Component
     {
         $this->nextStep();
     }
+
+    #[On('familiar-validated')]
+    public function familiarStep()
+    {
+
+        if (session('migranteCreado')) {
+            $this->nextStep();
+        } else {
+            // Obtener los datos actuales de la sesión
+            $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
+
+            try {
+
+                $idMigrante = $this->getMigranteService()->guardarDatosPersonales($datos);
+
+                if ($idMigrante) {
+
+
+                    session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
+                    session(['identificacion' => $datos['identificacion']]);
+                    session(['migranteId' => $idMigrante]);
+
+                    session(['migranteCreado' => true]);
+
+                    $this->nextStep();
+                }
+            } catch (Exception $e) {
+                dump('ha ocurrido un error al guardar datos personales');
+            }
+        }
+    }
+
+
     #[On('datos-migratorios-validated')]
     public function datosMigratoriosStep()
     {
         $this->nextStep();
     }
+
     #[On('situacion-validated')]
     public function situacionStep()
     {
-        $this->nextStep();
-    }
+        // guardar Expediente
+        $newExpedienteId = $this->getMigranteService()->guardarExpediente(
+            session('migranteId'),
+            session('datosMigratorios.motivosSelected'),
+            session('datosMigratorios.necesidadesSelected'),
+            session('datosMigratorios.discapacidadesSelected'),
+            session('datosMigratorios.fronteraId'),
+            session('datosMigratorios.asesorId'),
+            session('datosMigratorios.situacionId'),
+            session('datosMigratorios.observacion'),
+        );
 
-    #[On('familiar-validated')]
-    public function familiarStep()
-    {
-        // Obtener los datos actuales de la sesión
-        $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
 
-        try {
-            if ($this->getMigranteService()->guardarDatosPersonales($datos)) {
-                
-                session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
-
-                session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
-                session(['identificacion' => $datos['identificacion']]);
-
-                $this->nextStep();
-            }
-        } catch (Exception $e) {
-            dump('ha ocurrido un error al guardar datos personales');
+        if ($newExpedienteId) {
+            session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
+            session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
+            
+            // dd($newExpedienteId);
+            session(['expedienteId' => $newExpedienteId]);
         }
+
+        $this->redirect(route('ver-expediente'));
     }
+
+
+
 
     #[On('previous-step')]
     public function previousStep()

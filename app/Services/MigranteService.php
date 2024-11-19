@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Models\Expediente;
 use App\Models\Migrante;
+use Exception;
 
 class MigranteService
 {
@@ -23,7 +25,9 @@ class MigranteService
         $nuevoMigrante->estado_civil = $datosPersonales['estadoCivil'];
         $nuevoMigrante->es_lgbt = $datosPersonales['esLGBT'];
 
-        return $nuevoMigrante->save();
+        $nuevoMigrante->save();
+
+        return $nuevoMigrante->id;
     }
 
     public function obtenerDatosNombresSeparados($datos)
@@ -123,4 +127,33 @@ class MigranteService
         return Migrante::max('codigo_familiar') + 1;
     }
 
+    public function guardarExpediente(
+        $migranteId,
+        $motivosSalidaPais = [],
+        $necesidades = [],
+        $discapacidades = [],
+        $fronteraId = 1,
+        $asesorMigratorioId = 1,
+        $situacionMigratoriaId = 1,
+        $observacion = ''
+    ) {
+        try {
+            // guardar expediente
+            $expediente = new Expediente();
+            $expediente->migrante_id = $migranteId;
+            $expediente->frontera_id = $fronteraId;
+            $expediente->asesor_migratorio_id = $asesorMigratorioId;
+            $expediente->situacion_migratoria_id = $situacionMigratoriaId;
+            $expediente->observacion = $observacion;
+            $expediente->fecha_ingreso = date('Y-m-d');
+            $expediente->save();
+            $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
+            $expediente->necesidades()->sync($necesidades);
+            $expediente->discapacidades()->sync($discapacidades);
+            return $expediente->id;
+        } catch (Exception $e) {
+            dump('ocurrió un error al guardar el expediente', $e->getMessage());
+            return false;
+        }
+    }
 }

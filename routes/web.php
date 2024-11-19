@@ -36,7 +36,7 @@ Route::get('/migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
 
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
@@ -58,13 +58,13 @@ Route::get('/', Login::class)
     ->name('login');
 
 Route::get('/categorias', VerCategorias::class)
-    ->name('ver-categorias');
+    ->name('ver-categorias')->middleware('auth');
 
 Route::get('/subcategorias', VerSubCategorias::class)
-    ->name('ver-sub-categorias');
+    ->name('ver-sub-categorias')->middleware('auth');
 
-Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
-Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
+Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
+Route::get('/ver-expediente', VerFormularios::class)->name('ver-expediente')->middleware('auth');
 
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
@@ -97,7 +97,7 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->name('info-acta-entrega')
     ->middleware('auth');
 
-Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual');
+Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual')->middleware('auth');
 
 
 Route::post('/logout', function () {
