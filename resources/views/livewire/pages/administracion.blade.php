@@ -46,6 +46,11 @@
                         iconClass="icon-[maki--police] size-6"
                         route="ver-fronteras" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="TipoDonantes" cardWidth=" w-full"
+                        iconClass="icon-[fa-solid--hands-helping] size-6"
+                        route="ver-tipo-donantes" />
+                </article>
             </div>
         </main>
 

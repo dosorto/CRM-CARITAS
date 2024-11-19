@@ -25,16 +25,8 @@
         <span class="icon-[material-symbols--list-alt-add] size-6"></span>
         Crear Acta de Entrega
     </a>
-    <a href="{{ route('ver-tipo-donantes') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
-        Tipo de donante
-    </a>
-    <a href="{{ route('ver-donantes') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
-        Donantes
-    </a>
     <a href="{{ route('ver-donaciones') }}" class="btn btn-primary w-full flex justify-start">
-        <span class="icon-[tdesign--location-setting] size-5"></span>
+        <span class="icon-[fa-solid--hands-helping] size-5"></span>
         Donaciones
     </a>
 </div>

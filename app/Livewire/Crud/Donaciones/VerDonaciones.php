@@ -22,11 +22,11 @@ class VerDonaciones extends Component
     public $fakeColNames = [
         'Identificador del Donante' => 'id_donante',
         'Fecha de Donación' => 'fecha_donacion',
-        
+
     ];
 
     public $colNames = [
-        'Nombre del Donante', 
+        'Nombre del Donante',
         'Fecha de Donación',
     ];
 
@@ -37,6 +37,11 @@ class VerDonaciones extends Component
 
     public $actions = [
         [
+            'name' => 'info',
+            'component' => 'crud.donaciones.info-donaciones',
+            'parameters' => ['idModal' => 'infoDonaciones']
+        ],
+        [
             'name' => 'edit',
             'component' => 'crud.donaciones.editar-donaciones-modal',
             'parameters' => ['idModal' => 'editDonacionModal'],
@@ -46,21 +51,16 @@ class VerDonaciones extends Component
             'component' => 'crud.donaciones.eliminar-donaciones-modal',
             'parameters' => ['idModal' => 'deleteDonacionModal'],
         ],
-        [
-            'name' => 'info',
-            'component' => 'crud.donaciones.info-donaciones',
-            'parameters' => ['idModal' => 'infoDonaciones']
-        ]
 
     ];
 
-    
+
     public $paginationSize = 9;
     public $itemClass = Donacion::class;
     public $idCreateModal = 'createDonacionModal';
 
-    
-    
+
+
     public function render()
     {
         return view('livewire.crud.donaciones.ver-donaciones');

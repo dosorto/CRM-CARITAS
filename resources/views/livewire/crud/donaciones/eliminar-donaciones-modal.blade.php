@@ -15,7 +15,7 @@
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full text-center">
                 <p>¿Estás seguro de que deseas eliminar esta donación?</p>
-                <p class="font-bold mt-2">{{ $item->donante->nombre_donante }} - {{ $item->fecha_donacion }}</p>
+                <p class="font-bold mt-2">{{ $item->donante->nombre_donante }} del {{ $item->fecha_donacion }}</p>
             </main>
 
             {{-- Acciones del Modal --}}
@@ -40,7 +40,7 @@
 
 @push('scripts')
 <script>
-   
+
     document.addEventListener('DOMContentLoaded', () => {
         @this.on('cerrar-modal', () => {
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

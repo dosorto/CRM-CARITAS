@@ -18,13 +18,13 @@
                 <!-- Información del Donante -->
                 <div class="flex gap-1">
                     <strong>Donante:</strong>
-                    <p>{{ $item->donante->nombre_donante }}</p> 
+                    <p>{{ $item->donante->nombre_donante }}</p>
                 </div>
 
-                <div class="flex gap-1">
+                <div class="flex-col gap-1">
                     <strong>Fecha de Donación:</strong>
-                    <p>{{ $item->fecha_donacion }}</p> 
-                <div class="flex gap-1">
+                    <p>{{ $item->fecha_donacion }}</p>
+                <div class="flex-col gap-1">
                     <strong>Artículos Donados:</strong>
                     <ul>
                         @foreach ($item->articulos as $articulo)
