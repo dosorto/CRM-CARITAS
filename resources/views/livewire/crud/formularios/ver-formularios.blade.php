@@ -10,7 +10,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
-        
+
         /* Configuración para usar la tipografía Figtree */
         body {
             font-family: 'Figtree', sans-serif;
@@ -54,82 +54,94 @@
 
         <!-- Formulario de Registro -->
         <form id="registroForm" class="space-y-6">
-        
+
             <!-- Sección: Datos Generales -->
             <div>
                 <p class="text-lg font-semibold text-gray-700 mb-4">I. Datos Generales</p>
 
-                <!-- Fecha de ingreso -->
-                <div class="flex flex-col mb-2">
-                    <label for="fechaIngreso" class="text-gray-600 mb-1">Fecha de ingreso:</label>
-                    <input type="date" id="fechaIngreso" name="fechaIngreso" class="px-4 py-1 border rounded-lg">
+                <div class="flex flex-row gap-6 w-full mb-4">
+                    <!-- Nombre completo -->
+                    <div class="flex mb-2 w-2/3">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">Nombre completo:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $nombreCompleto }}
+                            {{-- Mario Fernando Carbajal Galo --}}
+                        </label>
+                    </div>
+                    <!-- Fecha de ingreso -->
+                    <div class="flex mb-2 w-1/3">
+                        <label for="fechaIngreso" class="text-gray-600 mb-1 text-nowrap">Fecha de ingreso:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $fechaIngreso }}
+                        </label>
+                    </div>
                 </div>
 
-                <!-- Nombre completo -->
-                <div class="flex flex-col mb-2">
-                    <label for="nombreCompleto" class="text-gray-600 mb-1">Nombre completo:</label>
-                    <input type="text" id="nombreCompleto" name="nombreCompleto" class="px-4 py-1 border rounded-lg w-full">
-                </div>
 
-                <!-- Número de identificación -->
-                <div class="flex flex-col mb-2">
-                    <label for="numeroIdentificacion" class="text-gray-600 mb-1">Número de Identificación:</label>
-                    <input type="text" id="numeroIdentificacion" name="numeroIdentificacion" class="px-4 py-1 border rounded-lg w-3/4">
-                </div>
+                <div class="flex flex-row gap-6 w-full mb-4">
+                    <!-- Número de Identificacion -->
+                    <div class="flex mb-2 w-2/3">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
+                            Número de Identificación:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $identificacion }}
+                        </label>
+                    </div>
 
-                <!-- Tipo de documento -->
-                <label for="tipoDocumento" class="text-gray-600 mb-2">Tipo de documento:</label>
-                <div class="flex gap-4 mb-2">
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" id="cedula" name="tipoDocumento" value="Cédula" class="rounded">
-                        <label for="cedula">Cédula</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" id="pasaporte" name="tipoDocumento" value="Pasaporte" class="rounded">
-                        <label for="pasaporte">Pasaporte</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" id="otro" name="tipoDocumento" value="Otro" class="rounded">
-                        <label for="otro">Otro</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="checkbox" id="noDocumento" name="tipoDocumento" value="No tiene documento" class="rounded">
-                        <label for="noDocumento">No tiene documento</label>
+                    <!-- Tipo de Documento de Identificación -->
+                    <div class="flex mb-2 w-1/3">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
+                            Documento:
+                        </label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $tipoIdentificacion }}
+                            {{-- DNI --}}
+                        </label>
                     </div>
                 </div>
 
                 <!-- Edad, sexo y fecha de nacimiento -->
-                <div class="grid grid-cols-3 gap-4 mb-2">
-                    <div class="flex flex-col">
-                        <label for="edad" class="text-gray-600 mb-1">Edad:</label>
-                        <input type="number" id="edad" name="edad" class="px-4 py-1 border rounded-lg">
+                <div class="flex gap-4 mb-4 w-full">
+                    <!-- Edad -->
+                    <div class="flex mb-2 w-1/6">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
+                            Edad:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $edad }}
+                        </label>
                     </div>
-                    <div class="flex flex-col">
-                        <label for="sexo" class="text-gray-600 mb-1">Sexo:</label>
-                        <input type="text" id="sexo" name="sexo" class="px-4 py-1 border rounded-lg">
+                    <!-- Sexo -->
+                    <div class="flex mb-2 w-2/6">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
+                            Sexo:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $sexo }}</label>
                     </div>
-                    <div class="flex flex-col">
-                        <label for="fechaNacimiento" class="text-gray-600 mb-1">Fecha de nacimiento:</label>
-                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" class="px-4 py-1 border rounded-lg">
+                    <!-- Fecha de Nacimiento -->
+                    <div class="flex mb-2 w-3/6">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
+                            Fecha de Nacimiento:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $fechaNacimiento }}</label>
                     </div>
                 </div>
 
-                <!-- Nacionalidad y LGTBIQ+ -->
-                <div class="flex flex-col mb-2">
-                    <label for="nacionalidad" class="text-gray-600 mb-1">Nacionalidad:</label>
-                    <input type="text" id="nacionalidad" name="nacionalidad" class="px-4 py-1 border rounded-lg w-3/4">
-                </div>
+                <div class="flex w-full gap-6">
 
-                <!-- LGTBIQ+ -->
-                <label for="lgtbiq" class="text-gray-600 mb-2">LGTBIQ+:</label>
-                <div class="flex gap-4 mb-2">
-                    <div class="flex items-center gap-2">
-                        <input type="radio" id="lgtbiqSi" name="lgtbiq" value="Sí" class="rounded">
-                        <label for="lgtbiqSi">Sí</label>
+                    <!-- Nacionalidad -->
+                    <div class="flex mb-2 w-1/2">
+                        <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">
+                            País de Procedencia:</label>
+                        <label class="px-4  w-full border-b-2 border-gray-600">
+                            {{ $pais }}</label>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <input type="radio" id="lgtbiqNo" name="lgtbiq" value="No" class="rounded">
-                        <label for="lgtbiqNo">No</label>
+
+                    <!-- Nacionalidad -->
+                    <div class="flex mb-2 w-1/2 items-center justify-center gap-2">
+                        <label class="text-gray-600 mb-1 text-nowrap">¿Pertenece a LGBTQI+?: </label>
+                        <label class="px-4 border-b-2 border-gray-600">
+                            {{ $esLGBT }}</label>
+                        <span class="icon-[circle-flags--lgbt] size-7"></span>
                     </div>
                 </div>
             </div>
@@ -137,26 +149,20 @@
             <!-- Sección: Situación Encontrada -->
             <div>
                 <p class="text-lg font-semibold text-gray-700 mb-2">II. Situación Encontrada</p>
-                <label for="situacion" class="text-gray-600 mb-2">Seleccione la situación:</label>
-                <select id="situacion" name="situacion" class="px-4 py-2 border rounded-lg w-full">
-                    <option value="Protección Internacional">Persona con necesidad de Protección Internacional</option>
-                    <option value="Refugiados">Refugiados</option>
-                    <option value="Solicitantes de asilo">Solicitantes de Asilo</option>
-                    <option value="Migrante en tránsito">Migrante en tránsito</option>
-                    <option value="Otro">Otro</option>
-                </select>
-            </div>
 
-            <!-- Capacidad especial -->
-            <div class="flex flex-col mb-2">
-                <label for="capacidadEspecial" class="text-gray-600 mb-1">Capacidad especial:</label>
-                <input type="text" id="capacidadEspecial" name="capacidadEspecial" class="px-4 py-1 border rounded-lg w-3/4">
-            </div>
-
-            <!-- Personas acompañantes -->
-            <div class="flex flex-col mb-2">
-                <label for="acompanantes" class="text-gray-600 mb-1">Acompañantes (si aplica):</label>
-                <input type="text" id="acompanantes" name="acompanantes" class="px-4 py-1 border rounded-lg w-full">
+                <!-- Situacion migratoria -->
+                <div class="flex flex-col mt-2 items-start justify-center">
+                    <label class="text-gray-600 mb-1 text-nowrap">Situación Migratoria en la que se Encuentra: </label>
+                    <label class="px-4 w-full border-b-2 border-gray-600">
+                        {{ $situacion }}</label>
+                </div>
+                <!-- Situacion migratoria -->
+                <div class="flex flex-col mt-4 items-start justify-center">
+                    <label class="text-gray-600 mb-1 text-nowrap">
+                        Capacidades Especiales / Discapacidades Físicas</label>
+                    <label class="px-4 w-full border-b-2 border-gray-600">
+                        {{ $discapacidades }}</label>
+                </div>
             </div>
 
             <!-- Texto final -->
@@ -178,8 +184,34 @@
             Imprimir
         </button>
     </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
 
-        </form>
-    </div>
-</body>
-</html>
+        /* Configuración para usar la tipografía Figtree */
+        body {
+            font-family: 'Figtree', sans-serif;
+        }
+
+        /* Estilos para imprimir solo la sección deseada */
+        @media print {
+
+            /* Oculta todo menos la sección que queremos imprimir */
+            body * {
+                visibility: hidden;
+            }
+
+            .print-section,
+            .print-section * {
+                visibility: visible;
+            }
+
+            /* Mueve la sección de impresión al inicio de la página en el modo de impresión */
+            .print-section {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</main>

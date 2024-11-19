@@ -71,36 +71,25 @@ class RegistrarMigrante extends Component
     #[On('situacion-validated')]
     public function situacionStep()
     {
-        $this->nextStep();
-    }
+        // guardar Expediente
+        $newExpedienteId = $this->getMigranteService()->guardarExpediente(
+            session('migranteId'),
+            session('datosMigratorios.motivosSelected'),
+            session('datosMigratorios.necesidadesSelected'),
+            session('datosMigratorios.discapacidadesSelected'),
+            session('datosMigratorios.fronteraId'),
+            session('datosMigratorios.asesorId'),
+            session('datosMigratorios.situacionId'),
+            session('datosMigratorios.observacion'),
+        );
 
-    #[On('familiar-validated')]
-    public function familiarStep()
-    {
-        if (!session()->has('migranteCreated')) {
-            $migrante = new Migrante();
 
-            $nombres = $this->dividirNombre(session('datosPersonales')['nombres']);
-            $apellidos = $this->dividirNombre(session('datosPersonales')['apellidos']);
+        if ($newExpedienteId) {
+            session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
+            session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
 
-            $migrante->primer_nombre = $nombres[0];
-            $migrante->segundo_nombre = $nombres[1];
-            $migrante->primer_apellido = $apellidos[0];
-            $migrante->segundo_apellido = $apellidos[1];
-            $migrante->sexo = session('datosPersonales')['sexo'];
-            $migrante->tipo_identificacion = session('datosPersonales')['tipoIdentificacion'];
-            $migrante->numero_identificacion = session('identificacion');
-            $migrante->pais_id = session('datosPersonales')['idPais'];
-            $migrante->codigo_familiar = session('codigoFamiliar');
-            $migrante->fecha_nacimiento = session('datosPersonales')['fechaNacimiento'];
-            $migrante->es_lgbt = session('datosPersonales')['esLGBT'];
-            $migrante->estado_civil = session('datosPersonales')['estadoCivil'];
-
-            $migrante->save();
-            session(['migranteCreated' => true]);
-            session()->flash('alertIcon', 'si--check-circle-fill');
-            session()->flash('message', '¡Datos personales del migrante ingresados!');
-            session()->flash('type', 'alert-success');
+            // dd($newExpedienteId);
+            session(['expedienteId' => $newExpedienteId]);
         }
         $this->nextStep();
     }
