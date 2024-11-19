@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Crud\TipoDonantes;
 
+use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Donantes\CrearDonantesModal;
 use App\Models\TipoDonante;
 use Livewire\Component;
 
 class CrearTipoDonantesModal extends Component
 {
-    public $descripcion;  
+    public $descripcion;
     public $idModal;
 
 
@@ -23,9 +25,14 @@ class CrearTipoDonantesModal extends Component
 
 
         $nuevoTipoDonante->save();
+        //se despacha el evento a si mismo para cerrarsolo este modal
+        $this->dispatch('cerrar-modal')->self();
 
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-created');
+        //Este evento se envia a la tabla de contenido para actualizarse
+        $this->dispatch('item-created')->to(ContentTable::class);
+
+        //Este evento se envia al modal de Crear Donante Modal para actualizar el select
+        $this->dispatch('tipo-donante-created')->to(CrearDonantesModal::class);
     }
 
 

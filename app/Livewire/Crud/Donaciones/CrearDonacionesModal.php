@@ -7,6 +7,7 @@ use App\Models\Donante;
 use App\Models\Donacion;
 use App\Models\DonacionArticulo;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class CrearDonacionesModal extends Component
 {
@@ -80,5 +81,21 @@ class CrearDonacionesModal extends Component
     public function render()
     {
         return view('livewire.crud.donaciones.crear-donaciones-modal');
+    }
+
+    #[On('donaciones-created')]
+    public function updateDonanteSelect()
+    {
+        $this->donantes = Donante::select('id', 'nombre_donante')
+            ->orderBy('id', 'desc')
+            ->get();
+    }
+
+    #[On('articulos-created')]
+    public function updateArticulosSelect()
+    {
+        $this->articulos = Articulo::select('id', 'nombre')
+            ->orderBy('id', 'desc')
+            ->get();
     }
 }

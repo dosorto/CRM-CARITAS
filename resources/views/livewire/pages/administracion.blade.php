@@ -51,6 +51,10 @@
                         iconClass="icon-[fa-solid--hands-helping] size-6"
                         route="ver-tipo-donantes" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="Donantes" cardWidth=" w-full"
+                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-donantes" />
+                </article>
             </div>
         </main>
 

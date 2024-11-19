@@ -19,7 +19,6 @@
                 <div class="flex items-center gap-4 mt-4">
                     <label class="mb-1">Donante</label>
                     <select wire:model.live="id_donante" class="input bg-accent" required>
-                        <option value="">Selecciona un Donante...</option>
                         @foreach ($donantes as $donante)
                             <option value="{{ $donante->id }}">{{ $donante->nombre_donante }}</option>
                         @endforeach
@@ -90,7 +89,7 @@
 
 @script
     <script>
-              
+
         document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
             if (event.target.checked) {
                 $wire.initForm();

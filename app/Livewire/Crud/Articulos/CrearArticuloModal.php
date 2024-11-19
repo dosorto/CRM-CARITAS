@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Crud\Articulos;
 
+use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Donaciones\CrearDonacionesModal;
 use App\Models\Articulo;
 use App\Models\Categoria;
 use App\Models\CategoriaArticulo;
@@ -38,8 +40,11 @@ class CrearArticuloModal extends Component
 
         $nuevoArticulo->save();
 
-        $this->dispatch('close-modal');
-        $this->dispatch('item-created');
+        $this->dispatch('close-modal')->self();
+
+        $this->dispatch('item-created')->to(ContentTable::class);
+        //Este evento se envia al modal de Crear Donante Modal para actualizar el select
+        $this->dispatch('articulos-created')->to(CrearDonacionesModal::class);
     }
 
     public function resetForm()

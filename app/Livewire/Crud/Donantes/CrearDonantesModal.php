@@ -2,9 +2,13 @@
 
 namespace App\Livewire\Crud\Donantes;
 
+use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Articulos\CrearArticuloModal;
+use App\Livewire\Crud\Donaciones\CrearDonacionesModal;
 use App\Models\Donante;
 use App\Models\TipoDonante;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class CrearDonantesModal extends Component
 {
@@ -25,8 +29,16 @@ class CrearDonantesModal extends Component
         $nuevoDonante->tipo_donante_id = $validated['tipo_donante_id'];
         $nuevoDonante->save();
 
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-created');
+        //se despacha el evento a si mismo para cerrarsolo este modal
+        $this->dispatch('cerrar-modal')->self();
+
+        //Este evento se envia a la tabla de contenido para actualizarse
+        $this->dispatch('item-created')->to(ContentTable::class);
+
+        //Este evento se envia al modal de Crear Donante Modal para actualizar el select
+        $this->dispatch('donaciones-created')->to(CrearDonacionesModal::class);
+
+
     }
 
     public function initForm()
@@ -46,6 +58,14 @@ class CrearDonantesModal extends Component
     public function render()
     {
         return view('livewire.crud.donantes.crear-donantes-modal');
+    }
+
+    #[On('tipo-donante-created')]
+    public function updateTipoDonanteSelect()
+    {
+        $this->tiposDonantes = TipoDonante::select('id', 'descripcion')
+            ->orderBy('id', 'desc')
+            ->get();
     }
 }
 

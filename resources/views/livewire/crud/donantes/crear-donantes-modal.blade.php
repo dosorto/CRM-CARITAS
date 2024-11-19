@@ -30,7 +30,6 @@
                     <label class="mb-1"> Tipo de Donante </label>
                     <div class="flex items-center gap-3">
                         <select wire:model="tipo_donante_id" class="input bg-accent w-4/5">
-                            <option value="">Selecciona un tipo de donante...</option>
                             @foreach ($tiposDonantes as $tipo)
                                 <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
                             @endforeach
