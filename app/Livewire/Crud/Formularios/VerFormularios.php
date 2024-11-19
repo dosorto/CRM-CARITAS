@@ -5,9 +5,21 @@ namespace App\Livewire\Crud\Formularios;
 use App\Models\Expediente;
 use App\Models\Migrante;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 
+#[Lazy()]
 class VerFormularios extends Component
 {
+
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div class="size-full h-screen flex items-center justify-center">
+            <span class="loading loading-ring loading-lg"></span>
+        </div>
+        HTML;
+    }
+    
     // public $nombreCompleto;
     // public $fechaIngreso;
     // public $identificacion;

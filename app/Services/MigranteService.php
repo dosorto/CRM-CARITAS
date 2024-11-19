@@ -137,26 +137,24 @@ class MigranteService
         $situacionMigratoriaId,
         $observacion = ''
     ) {
-        // dd(session()->all());
-        // guardar expediente
-
-        $expediente = new Expediente();
-        $expediente->migrante_id = $migranteId;
-        $expediente->frontera_id = $fronteraId;
-        $expediente->asesor_migratorio_id = $asesorMigratorioId;
-        $expediente->situacion_migratoria_id = $situacionMigratoriaId;
-        $expediente->observacion = $observacion;
-        $expediente->save();
-        $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
-        $expediente->necesidades()->sync($Necesidades);
-        $expediente->discapacidades()->sync($discapacidades);
-
         try {
+            // guardar expediente
+            $expediente = new Expediente();
+            $expediente->migrante_id = $migranteId;
+            $expediente->frontera_id = $fronteraId;
+            $expediente->asesor_migratorio_id = $asesorMigratorioId;
+            $expediente->situacion_migratoria_id = $situacionMigratoriaId;
+            $expediente->observacion = $observacion;
+            $expediente->save();
+            $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
+            $expediente->necesidades()->sync($Necesidades);
+            $expediente->discapacidades()->sync($discapacidades);
+            return $expediente->id;
 
-            // session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
-            session(['expedienteId' => $expediente->id]);
         } catch (Exception $e) {
             dump('ocurrió un error al guardar el expediente');
+            dump($e->getMessage());
+            return 0;
         }
     }
 }

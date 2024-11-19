@@ -32,6 +32,7 @@ class DatosMigratoriosStep extends Component
 
     public function mount()
     {
+        dump(session()->all());
         // obtiene los valores de la sesion, en caso de que exista, si no, asigna por defecto el segundo parametro de session()
         $this->asesorId = session('datosMigratorios.asesorId', 1);
         $this->fronteraId = session('datosMigratorios.fronteraId', 1);
@@ -56,7 +57,7 @@ class DatosMigratoriosStep extends Component
             'motivosSelected.*' => 'required',
         ]);
 
-        // session(['datosMigratorios' => $validated]);
+        session(['datosMigratorios' => $validated]);
 
         $this->dispatch('datos-migratorios-validated')
             ->to(RegistrarMigrante::class);

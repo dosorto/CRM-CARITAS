@@ -35,6 +35,6 @@ class DatabaseSeeder extends Seeder
             NecesidadSeeder::class,
         ]);
 
-        Migrante::factory()->count(10)->create();
+        Migrante::factory()->count(100)->create();
     }
 }
