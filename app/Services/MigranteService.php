@@ -129,12 +129,12 @@ class MigranteService
 
     public function guardarExpediente(
         $migranteId,
-        $motivosSalidaPais,
-        $Necesidades,
-        $discapacidades,
-        $fronteraId,
-        $asesorMigratorioId,
-        $situacionMigratoriaId,
+        $motivosSalidaPais = [],
+        $necesidades = [],
+        $discapacidades = [],
+        $fronteraId = 1,
+        $asesorMigratorioId = 1,
+        $situacionMigratoriaId = 1,
         $observacion = ''
     ) {
         try {
@@ -147,14 +147,12 @@ class MigranteService
             $expediente->observacion = $observacion;
             $expediente->save();
             $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
-            $expediente->necesidades()->sync($Necesidades);
+            $expediente->necesidades()->sync($necesidades);
             $expediente->discapacidades()->sync($discapacidades);
             return $expediente->id;
-
         } catch (Exception $e) {
-            dump('ocurrió un error al guardar el expediente');
-            dump($e->getMessage());
-            return 0;
+            dump('ocurrió un error al guardar el expediente', $e->getMessage());
+            return false;
         }
     }
 }

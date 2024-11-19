@@ -111,34 +111,42 @@
 
 
 
-{{-- Modal de confirmacion --}}
+    {{-- Modal de confirmacion --}}
 
     <input type="checkbox" id="my_modal_6" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/5 max-w-5xl bg-neutral">
+        <div class="modal-box w-1/2 max-w-5xl bg-neutral">
 
             <div class="flex flex-col items-center text-center mb-6">
-                <h3 class="text-lg font-bold">Se Guardarán los Siguientes Datos en un Nuevo Expediente Para:</h3>
-                <h5 class="text-md font-semibold">{{ session('nombreMigrante') }} - {{ session('identificacion') }}</h5>
+                <h3 class="text-lg font-bold">Se Guardarán los Datos Ingresados Para un Nuevo Expediente de:</h3>
+                <h5 class="text-md font-semibold mt-4">{{ session('nombreMigrante') }} - {{ session('identificacion') }}
+                </h5>
+                <h5 class="text-xl font-semibold mt-4">¿Está seguro?</h5>
             </div>
-            <div class="flex gap-1">
-                <strong>Entidad que lo Guió al Centro: </strong>
-                <p> {{ $asesor }}
-                </p>
-            </div>
-            <div class="flex gap-1">
-                <strong>Situación Migratoria: </strong>
-                <p> {{ $situacion }}
-                </p>
-            </div>
-            <div class="flex gap-1">
-                <strong>Frontera por la que ingresó: </strong>
-                <p> {{ $frontera }}
-                </p>
-            </div>
+            {{-- 
+            <p>
+                {!! nl2br(e(print_r(session()->all(), true))) !!}
+            </p> --}}
 
             <div class="modal-action">
-                <label for="my_modal_6" class="btn">Close!</label>
+
+                <div class="flex size-full justify-between">
+                    <div class="flex flex-col text-error font-semibold">
+                        @error('necesidadesSelected')
+                            <p>* Hay campos sin seleccionar.</p>
+                            <p>Seleccionelos e Inténtelo de Nuevo.</p>
+                        @enderror
+                    </div>
+
+                    <div class="flex w-max gap-2">
+                        <button wire:click="saveExpediente" class="btn btn-success text-base-content">
+                            <span class="icon-[fa-solid--check] size-6"></span>
+                            Confirmar
+                        </button>
+                        <label for="my_modal_6" class="btn btn-error text-base-content">Cancelar</label>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

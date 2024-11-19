@@ -24,13 +24,6 @@ class SituacionStep extends Component
 
     public $observacion = '';
 
-
-
-    // Variables para la inicializacion de los datos del modal de confirmacion
-    public $asesor = '';
-    public $situacion = '';
-    public $frontera = '';
-
     public function mount()
     {
         $this->necesidades = Necesidad::select('id', 'necesidad')->get();
@@ -38,26 +31,8 @@ class SituacionStep extends Component
         $this->discapacidades = Discapacidad::select('id', 'discapacidad')->get();
 
         $this->necesidadesSelected = session('datosMigratorios.necesidadesSelected', []);
-        // $this->situacionesSelected = session('datosMigratorios.situacionesSelected', []);
         $this->discapacidadesSelected = session('datosMigratorios.discapacidadesSelected', []);
         $this->observacion = session('datosMigratorios.observacion', '');
-
-
-        // Inicializa los datos extra para la confirmación de creación del expediente
-        $this->asesor = AsesorMigratorio::select('asesor_migratorio')
-            ->where('id', session('datosMigratorios.asesorId'))
-            ->first()
-            ->asesor_migratorio;
-
-        $this->situacion = SituacionMigratoria::select('situacion_migratoria')
-            ->where('id', session('datosMigratorios.situacionId'))
-            ->first()
-            ->situacion_migratoria;
-
-        $this->frontera = Frontera::select('frontera')
-            ->where('id', session('datosMigratorios.fronteraId'))
-            ->first()
-            ->frontera;
     }
 
     public function test()
@@ -75,12 +50,6 @@ class SituacionStep extends Component
         $this->validate([
             'necesidadesSelected' => 'required|array|min:1',
             'necesidadesSelected.*' => 'required',
-
-            // 'situacionesSelected' => 'required|array|min:1',
-            // 'situacionesSelected.*' => 'required',
-
-            // 'discapacidadesSelected' => 'required|array|min:1',
-            // 'discapacidadesSelected.*' => 'required',
         ]);
 
         $this->dispatch('situacion-validated')
@@ -91,7 +60,6 @@ class SituacionStep extends Component
     public function updated()
     {
         session()->put('datosMigratorios.necesidadesSelected', $this->necesidadesSelected);
-        // session()->put('datosMigratorios.situacionesSelected', $this->situacionesSelected);
         session()->put('datosMigratorios.discapacidadesSelected', $this->discapacidadesSelected);
         session()->put('datosMigratorios.observacion', $this->observacion);
     }

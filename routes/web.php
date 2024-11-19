@@ -61,7 +61,7 @@ Route::get('/subcategorias', VerSubCategorias::class)
     ->name('ver-sub-categorias')->middleware('auth');
 
 Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
-Route::get('/formularios', VerFormularios::class)->name('ver-formulario')->middleware('auth');
+Route::get('/ver-expediente', VerFormularios::class)->name('ver-expediente')->middleware('auth');
 
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
