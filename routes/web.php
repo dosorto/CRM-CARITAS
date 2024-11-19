@@ -22,6 +22,15 @@ use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
 
+use App\Livewire\Actas\SolicitudTraslado\CrearSolicitudTraslado;
+use App\Livewire\Actas\SolicitudTraslado\InfoSolicitudTraslado;
+use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
+
+use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
+use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
+use App\Livewire\Crud\Fronteras\VerFronteras;
+use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
+
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
 
@@ -80,7 +89,20 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->name('info-acta-entrega')
     ->middleware('auth');
 
-Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual');
+
+Route::get('/solicitudes-traslado', VerSolicitudesTraslado::class)
+    ->name('ver-solicitudes-traslado')
+    ->middleware('auth');
+
+Route::get('/crear-solicitud-traslado', CrearSolicitudTraslado::class)
+    ->name('crear-solicitud-traslado')
+    ->middleware('auth');
+
+Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
+    ->name('info-solicitud-traslado')
+    ->middleware('auth');
+
+Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual')->middleware('auth');
 
 
 Route::post('/logout', function () {
