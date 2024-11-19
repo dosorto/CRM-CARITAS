@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                {{-- Subcategorías --}}
+
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Categoría de Articulos </label>
                     <div class="flex gap-2">
@@ -91,16 +91,9 @@
 </div>
 @script
     <script>
-        document.getElementById($idModal).addEventListener('change', function(event) {
-            if (event.target.checked) {
-                // Llama a la función `resetForm` del componente para restablecer los valores
-                $wire.resetForm();
-            }
-        });
-
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById($idModal).checked = false;
+            document.getElementById('{{$idModal}}').checked = false;
         });
     </script>
 @endscript

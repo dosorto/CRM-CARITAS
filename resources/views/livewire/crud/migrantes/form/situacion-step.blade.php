@@ -87,28 +87,67 @@
             </button> --}}
             {{-- <livewire:components.buttons.next-step-button /> --}}
 
-            <!-- Open the modal using ID.showModal() method -->
-            <button class="btn btn-info text-base-content" onclick="my_modal_1.showModal()">
-                <span class="icon-[lucide--save] size-5"></span>
-                Guardar Expediente
-            </button>
-            <dialog id="my_modal_1" class="modal">
-                <div class="modal-box bg-neutral text-center">
-                    <h3 class="text-lg font-bold">Confirmación</h3>
-                    <p class="py-4">¡Expediente Guardado exitosamente!</p>
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn btn-accent text-base-content">Cerrar</button>
-                        </form>
-                    </div>
-                </div>
-            </dialog>
 
-            {{-- <button wire:click="saveExpediente" class="btn btn-info text-base-content">
+
+            <!-- The button to open modal -->
+            <label for="my_modal_6" class="btn btn-info text-base-content">
                 <span class="icon-[lucide--save] size-5"></span>
                 Guardar Expediente
-            </button> --}}
+            </label>
+
+
         </div>
     </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- Modal de confirmacion --}}
+
+    <input type="checkbox" id="my_modal_6" class="modal-toggle" />
+    <div class="modal" role="dialog">
+        <div class="modal-box w-1/2 max-w-5xl bg-neutral">
+
+            <div class="flex flex-col items-center text-center mb-6">
+                <h3 class="text-lg font-bold">Se Guardarán los Datos Ingresados Para un Nuevo Expediente de:</h3>
+                <h5 class="text-md font-semibold mt-4">{{ session('nombreMigrante') }} - {{ session('identificacion') }}
+                </h5>
+                <h5 class="text-xl font-semibold mt-4">¿Está seguro?</h5>
+            </div>
+            {{-- 
+            <p>
+                {!! nl2br(e(print_r(session()->all(), true))) !!}
+            </p> --}}
+
+            <div class="modal-action">
+
+                <div class="flex size-full justify-between">
+                    <div class="flex flex-col text-error font-semibold">
+                        @error('necesidadesSelected')
+                            <p>* Hay campos sin seleccionar.</p>
+                            <p>Seleccionelos e Inténtelo de Nuevo.</p>
+                        @enderror
+                    </div>
+
+                    <div class="flex w-max gap-2">
+                        <button wire:click="saveExpediente" class="btn btn-success text-base-content">
+                            <span class="icon-[fa-solid--check] size-6"></span>
+                            Confirmar
+                        </button>
+                        <label for="my_modal_6" class="btn btn-error text-base-content">Cancelar</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </main>

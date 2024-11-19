@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -43,13 +44,23 @@ class Expediente extends Model
         );
     }
 
-    // public function situaciones_migratorias(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(
-    //         SituacionMigratoria::class,
-    //         'expedientes_situaciones_migratorias',
-    //         'expediente_id',               // Foreign key en la tabla pivote hacia este modelo (Expediente)
-    //         'situacion_migratoria_id'
-    //     );
-    // }
+    public function frontera(): BelongsTo
+    {
+        return $this->belongsTo(Frontera::class, 'frontera_id');
+    }
+
+    public function asesorMigratorio(): BelongsTo
+    {
+        return $this->belongsTo(AsesorMigratorio::class, 'asesor_migratorio_id');
+    }
+
+    public function situacionMigratoria(): BelongsTo
+    {
+        return $this->belongsTo(SituacionMigratoria::class, 'situacion_migratoria_id');
+    }
+
+    public function migrante(): BelongsTo
+    {
+        return $this->belongsTo(Migrante::class, 'migrante_id');
+    }
 }

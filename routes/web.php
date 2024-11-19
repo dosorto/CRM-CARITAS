@@ -9,6 +9,8 @@ use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 use App\Livewire\Crud\Migrantes\VerMigrantes;
+use App\Livewire\Crud\Donaciones\VerDonaciones;
+use App\Livewire\Crud\Donantes\VerDonantes;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Login;
 use App\Livewire\Pages\Administracion;
@@ -30,6 +32,7 @@ use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
+use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -66,11 +69,22 @@ Route::get('/subcategorias', VerSubCategorias::class)
     ->name('ver-sub-categorias')->middleware('auth');
 
 Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
-Route::get('/formularios', VerFormularios::class)->name('ver-formulario')->middleware('auth');
+Route::get('/ver-expediente', VerFormularios::class)->name('ver-expediente')->middleware('auth');
 
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
     ->middleware('auth');
+Route::get('/tipodonantes', VerTipoDonantes::class)
+    ->name('ver-tipo-donantes')
+    ->middleware('auth');
+Route::get('/donantes', VerDonantes::class)
+    ->name('ver-donantes')
+    ->middleware('auth');
+Route::get('/donaciones', VerDonaciones::class)
+    ->name('ver-donaciones')
+    ->middleware('auth');
+
+
 
 Route::get('/categoria-articulos', VerCategoriaArticulos::class)
     ->name('ver-categoria-articulos')

@@ -27,8 +27,11 @@ return new class extends Migration
 
             $table->boolean('fallecimiento')->default(false);
 
+            $table->date('fecha_ingreso');
+
             $table->string('observacion')->nullable();
             
+            $table->softDeletes();
             $table->timestamps();
         });
     }

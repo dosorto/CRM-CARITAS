@@ -36,6 +36,8 @@ class DatosMigratoriosStep extends Component
         $this->asesorId = session('datosMigratorios.asesorId', 1);
         $this->fronteraId = session('datosMigratorios.fronteraId', 1);
         $this->situacionId = session('datosMigratorios.situacionId', 1);
+
+
         $this->motivosSelected = session('datosMigratorios.motivosSelected', []);
 
 
@@ -55,8 +57,11 @@ class DatosMigratoriosStep extends Component
             'motivosSelected' => 'required|array|min:1',
             'motivosSelected.*' => 'required',
         ]);
-
-        // session(['datosMigratorios' => $validated]);
+        
+        session(['datosMigratorios.fronteraId' => $validated['fronteraId']]);
+        session(['datosMigratorios.situacionId' => $validated['situacionId']]);
+        session(['datosMigratorios.asesorId' => $validated['asesorId']]);
+        session(['datosMigratorios.motivosSelected' => $validated['motivosSelected']]);
 
         $this->dispatch('datos-migratorios-validated')
             ->to(RegistrarMigrante::class);

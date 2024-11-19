@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             MobiliarioSeeder::class,
             CategoriaArticuloSeeder::class,
             ArticuloSeeder::class,
-            ActaEntregaSeeder::class,
+            TipoDonanteSeeder::class,            ActaEntregaSeeder::class,
             DiscapacidadSeeder::class,
             SituacionMigratoriaSeeder::class,
             AsesorMigratorioSeeder::class,
@@ -35,6 +35,6 @@ class DatabaseSeeder extends Seeder
             NecesidadSeeder::class,
         ]);
 
-        Migrante::factory()->count(10)->create();
+        Migrante::factory()->count(100)->create();
     }
 }

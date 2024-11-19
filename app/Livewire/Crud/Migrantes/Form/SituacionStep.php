@@ -5,7 +5,9 @@ namespace App\Livewire\Crud\Migrantes\Form;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
+use App\Models\AsesorMigratorio;
 use App\Models\Discapacidad;
+use App\Models\Frontera;
 use App\Models\Necesidad;
 use App\Models\SituacionMigratoria;
 
@@ -28,13 +30,14 @@ class SituacionStep extends Component
         // $this->situaciones = SituacionMigratoria::select('id', 'situacion_migratoria')->get();
         $this->discapacidades = Discapacidad::select('id', 'discapacidad')->get();
 
-
-        
         $this->necesidadesSelected = session('datosMigratorios.necesidadesSelected', []);
-        // $this->situacionesSelected = session('datosMigratorios.situacionesSelected', []);
         $this->discapacidadesSelected = session('datosMigratorios.discapacidadesSelected', []);
         $this->observacion = session('datosMigratorios.observacion', '');
-       
+    }
+
+    public function test()
+    {
+        dump(1);
     }
 
     public function render()
@@ -47,12 +50,6 @@ class SituacionStep extends Component
         $this->validate([
             'necesidadesSelected' => 'required|array|min:1',
             'necesidadesSelected.*' => 'required',
-
-            // 'situacionesSelected' => 'required|array|min:1',
-            // 'situacionesSelected.*' => 'required',
-
-            // 'discapacidadesSelected' => 'required|array|min:1',
-            // 'discapacidadesSelected.*' => 'required',
         ]);
 
         $this->dispatch('situacion-validated')
@@ -63,7 +60,6 @@ class SituacionStep extends Component
     public function updated()
     {
         session()->put('datosMigratorios.necesidadesSelected', $this->necesidadesSelected);
-        // session()->put('datosMigratorios.situacionesSelected', $this->situacionesSelected);
         session()->put('datosMigratorios.discapacidadesSelected', $this->discapacidadesSelected);
         session()->put('datosMigratorios.observacion', $this->observacion);
     }

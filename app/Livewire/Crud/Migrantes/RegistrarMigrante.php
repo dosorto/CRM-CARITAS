@@ -2,13 +2,11 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
-use App\Models\Migrante;
 use App\Services\MigranteService;
 use Exception;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Lazy;
-use Livewire\Attributes\Locked;
 
 #[Lazy()]
 class RegistrarMigrante extends Component
@@ -84,7 +82,6 @@ class RegistrarMigrante extends Component
 
                 if ($idMigrante) {
 
-                    // session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo']);
 
                     session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
                     session(['identificacion' => $datos['identificacion']]);
@@ -111,10 +108,7 @@ class RegistrarMigrante extends Component
     public function situacionStep()
     {
         // guardar Expediente
-
-        dd(':)');
-
-        $this->getMigranteService()->guardarExpediente(
+        $newExpedienteId = $this->getMigranteService()->guardarExpediente(
             session('migranteId'),
             session('datosMigratorios.motivosSelected'),
             session('datosMigratorios.necesidadesSelected'),
@@ -126,8 +120,18 @@ class RegistrarMigrante extends Component
         );
 
 
-        $this->nextStep();
+        if ($newExpedienteId) {
+            session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
+            session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
+            
+            // dd($newExpedienteId);
+            session(['expedienteId' => $newExpedienteId]);
+        }
+
+        $this->redirect(route('ver-expediente'));
     }
+
+
 
 
     #[On('previous-step')]
