@@ -3,7 +3,6 @@
 namespace App\Livewire\Crud\Donantes;
 
 use App\Livewire\Components\ContentTable;
-use App\Livewire\Crud\Articulos\CrearArticuloModal;
 use App\Livewire\Crud\Donaciones\CrearDonacionesModal;
 use App\Models\Donante;
 use App\Models\TipoDonante;
@@ -61,11 +60,12 @@ class CrearDonantesModal extends Component
     }
 
     #[On('tipo-donante-created')]
-    public function updateTipoDonanteSelect()
+    public function updateTipoDonanteSelect($newId)
     {
         $this->tiposDonantes = TipoDonante::select('id', 'descripcion')
             ->orderBy('id', 'desc')
             ->get();
+        $this->tipo_donante_id = $newId;
     }
 }
 

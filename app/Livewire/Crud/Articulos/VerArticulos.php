@@ -61,7 +61,7 @@ class VerArticulos extends Component
         ]
     ];
 
-    public $paginationSize = 6;
+    public $paginationSize = 15;
     public $itemClass = Articulo::class;
     public $idCreateModal = 'createArticuloModal';
 

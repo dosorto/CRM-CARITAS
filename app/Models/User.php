@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -19,7 +20,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellido',
+        'identidad',
+        'telefono',
+        'fecha_nacimiento',
+        'estado_civil',
         'email',
         'password',
     ];
@@ -45,5 +51,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function trasladosSolicitados(): HasMany
+    {
+        return $this->hasMany(SolicitudTraslado::class, 'solicitante_id', 'id');
+    }
+
+    public function trasladosAprobados(): HasMany
+    {
+        return $this->hasMany(SolicitudTraslado::class, 'aprobador_id', 'id');
     }
 }

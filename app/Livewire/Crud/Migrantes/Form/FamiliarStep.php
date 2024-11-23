@@ -53,7 +53,8 @@ class FamiliarStep extends Component
 
 
         // Esto es para mostrar el nombre del pais en el modal de confirmacion
-        $pais = Pais::select('nombre_pais')->where('id', session('datosPersonales')['idPais'])->get()->first();
+        $idPais = session('datosPersonales.idPais') ?? 74;
+        $pais = Pais::select('nombre_pais')->where('id', $idPais)->get()->first();
         $this->pais = $pais->nombre_pais;
     }
 

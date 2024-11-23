@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Crud\CategoriaArticulos;
 
+use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Articulos\CrearArticuloModal;
 use App\Models\CategoriaArticulo;
 use Livewire\Component;
 
@@ -22,8 +24,9 @@ class CrearCategoriaArticulosModal extends Component
 
         $nueva_categoria->save();
 
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-created');
+        $this->dispatch('cerrar-modal')->self();
+        $this->dispatch('item-created')->to(ContentTable::class);
+        $this->dispatch('categoria-articulos-created', newId: $nueva_categoria->id)->to(CrearArticuloModal::class);
     }
 
     public function mount($idModal)

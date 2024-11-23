@@ -8,6 +8,7 @@ use App\Models\Articulo;
 use App\Models\Categoria;
 use App\Models\CategoriaArticulo;
 use App\Models\Subcategoria;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CrearArticuloModal extends Component
@@ -41,10 +42,16 @@ class CrearArticuloModal extends Component
         $nuevoArticulo->save();
 
         $this->dispatch('close-modal')->self();
-
+        $this->resetForm();
         $this->dispatch('item-created')->to(ContentTable::class);
         //Este evento se envia al modal de Crear Donante Modal para actualizar el select
         $this->dispatch('articulos-created')->to(CrearDonacionesModal::class);
+    }
+
+    public function cancelar()
+    {
+        $this->resetForm();
+        $this->dispatch('close-modal')->self();
     }
 
     public function resetForm()
@@ -54,7 +61,7 @@ class CrearArticuloModal extends Component
         $this->descripcion = '';
         $this->codigo_barra = '';
         $this->cantidad_stock = '';
-        $this->categoria_articulos_id = null;
+        $this->categoria_articulos_id = 1;
     }
 
     public function mount($idModal)
@@ -66,5 +73,14 @@ class CrearArticuloModal extends Component
     public function render()
     {
         return view('livewire.crud.articulos.crear-articulo-modal');
+    }
+
+    #[On('categoria-articulos-created')]
+    public function updateCategoriaArticulosSelect($newId)
+    {
+        $this->categoria_articulos = CategoriaArticulo::select('id', 'name_categoria')
+            ->orderBy('id', 'desc')
+            ->get();
+        $this->categoria_articulos_id = $newId;
     }
 }

@@ -20,7 +20,7 @@
                                 {{ $migrantes }}
                             </p>
                             <span>
-                                 Inmigrantes
+                                 Migrantes
                             </span>
                         </div>
                     </div>

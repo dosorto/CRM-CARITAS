@@ -64,7 +64,6 @@
                     <label class="mb-1"> Categoría de Articulos </label>
                     <div class="flex gap-2">
                         <select wire:model.live="categoria_articulos_id" class="input bg-accent w-[72%]">
-                            <option value="">Selecciona una categoría...</option>
                             @foreach ($categoria_articulos as $categoria_articulo)
                                 <option value="{{ $categoria_articulo->id }}">{{ $categoria_articulo->name_categoria }}</option>
                             @endforeach
@@ -84,7 +83,10 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear
                 </button>
-                <label for="{{ $idModal }}" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="cancelar"
+                    class="btn btn-accent text-base-content">
+                    Cancelar
+                </button>
             </div>
         </div>
     </div>

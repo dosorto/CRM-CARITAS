@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Articulos;
 
+use App\Livewire\Components\ContentTable;
 use Livewire\Component;
 
 class EliminarArticuloModal extends Component
@@ -12,8 +13,8 @@ class EliminarArticuloModal extends Component
     public function deleteItem()
     {
         $this->item->delete();  // Eliminar el artículo
-        $this->dispatch('close-modal');  // Emitir evento para cerrar el modal
-        $this->dispatch('item-deleted');  // Emitir evento para notificar la eliminación
+        $this->dispatch('close-modal')->self();  // Emitir evento para cerrar el modal
+        $this->dispatch('item-deleted')->to(ContentTable::class);  // Emitir evento para notificar la eliminación
     }
 
     public function mount($parameters)
@@ -22,11 +23,13 @@ class EliminarArticuloModal extends Component
         $this->idModal = $parameters['idModal'];
     }
 
-    public function initInfo() {}
+    public function cancelar()
+    {
+        $this->dispatch('close-modal')->self();  // Emitir evento para cerrar el modal
+    }
 
     public function render()
     {
         return view('livewire.crud.articulos.eliminar-articulo-modal');
     }
 }
-

@@ -32,7 +32,7 @@ class CrearTipoDonantesModal extends Component
         $this->dispatch('item-created')->to(ContentTable::class);
 
         //Este evento se envia al modal de Crear Donante Modal para actualizar el select
-        $this->dispatch('tipo-donante-created')->to(CrearDonantesModal::class);
+        $this->dispatch('tipo-donante-created', newId: $nuevoTipoDonante->id)->to(CrearDonantesModal::class);
     }
 
 

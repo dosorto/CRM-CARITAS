@@ -23,6 +23,11 @@ use App\Livewire\Reportes\ReporteMensual;
 use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
+
+use App\Livewire\Actas\SolicitudTraslado\CrearSolicitudTraslado;
+use App\Livewire\Actas\SolicitudTraslado\InfoSolicitudTraslado;
+use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
+
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
@@ -36,7 +41,7 @@ Route::get('/migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
 
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
@@ -58,13 +63,13 @@ Route::get('/', Login::class)
     ->name('login');
 
 Route::get('/categorias', VerCategorias::class)
-    ->name('ver-categorias');
+    ->name('ver-categorias')->middleware('auth');
 
 Route::get('/subcategorias', VerSubCategorias::class)
-    ->name('ver-sub-categorias');
+    ->name('ver-sub-categorias')->middleware('auth');
 
-Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
-Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
+Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
+Route::get('/formularios', VerFormularios::class)->name('ver-formulario')->middleware('auth');
 
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
@@ -97,7 +102,20 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->name('info-acta-entrega')
     ->middleware('auth');
 
-Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual');
+
+Route::get('/solicitudes-traslado', VerSolicitudesTraslado::class)
+    ->name('ver-solicitudes-traslado')
+    ->middleware('auth');
+
+Route::get('/crear-solicitud-traslado', CrearSolicitudTraslado::class)
+    ->name('crear-solicitud-traslado')
+    ->middleware('auth');
+
+Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
+    ->name('info-solicitud-traslado')
+    ->middleware('auth');
+
+Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual')->middleware('auth');
 
 
 Route::post('/logout', function () {
