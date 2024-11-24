@@ -9,6 +9,8 @@ use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 use App\Livewire\Crud\Migrantes\VerMigrantes;
+use App\Livewire\Crud\Donaciones\VerDonaciones;
+use App\Livewire\Crud\Donantes\VerDonantes;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Login;
 use App\Livewire\Pages\Administracion;
@@ -40,7 +42,7 @@ Route::get('/migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
 
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
@@ -62,22 +64,32 @@ Route::get('/', Login::class)
     ->name('login');
 
 Route::get('/categorias', VerCategorias::class)
-    ->name('ver-categorias');
+    ->name('ver-categorias')->middleware('auth');
 
 Route::get('/subcategorias', VerSubCategorias::class)
-    ->name('ver-sub-categorias');
+    ->name('ver-sub-categorias')->middleware('auth');
 
-Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
-Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
+Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
+Route::get('/ver-expediente', VerFormularios::class)->name('ver-expediente')->middleware('auth');
 
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
     ->middleware('auth');
-
-Route::get('/categoriadearticulos', VerCategoriaArticulos::class)
-    ->name('ver-categoria-articulos')
+Route::get('/tipodonantes', VerTipoDonantes::class)
+    ->name('ver-tipo-donantes')
+    ->middleware('auth');
+Route::get('/donantes', VerDonantes::class)
+    ->name('ver-donantes')
+    ->middleware('auth');
+Route::get('/donaciones', VerDonaciones::class)
+    ->name('ver-donaciones')
     ->middleware('auth');
 
+
+
+Route::get('/categoria-articulos', VerCategoriaArticulos::class)
+    ->name('ver-categoria-articulos')
+    ->middleware('auth');
 
 Route::get('/actas-entrega', VerActasEntrega::class)
     ->name('ver-actas-entrega')
