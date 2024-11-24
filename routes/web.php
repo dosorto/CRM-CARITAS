@@ -30,6 +30,8 @@ use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
+use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
+use App\Livewire\Reportes\ReporteArticulo;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -112,3 +114,22 @@ Route::post('/logout', function () {
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
 
+Route::get('/discapacidades', VerDiscapacidades::class)
+    ->name('ver-discapacidades')
+    ->middleware('auth');
+
+Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
+    ->name('ver-situaciones-migratorias')
+    ->middleware('auth');
+
+Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
+    ->name('ver-asesores-migratorios')
+    ->middleware('auth');
+
+Route::get('/fronteras', VerFronteras::class)
+    ->name('ver-fronteras')
+    ->middleware('auth');
+
+Route::get('/reporte-articulos', ReporteArticulo::class)
+    ->name('reporte-articulos')
+    ->middleware('auth');
