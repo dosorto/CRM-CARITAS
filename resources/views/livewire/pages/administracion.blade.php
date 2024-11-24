@@ -55,28 +55,6 @@
                     <livewire:components.link-card title="Mobiliario" cardWidth="w-full"
                         iconClass="icon-[icon-park-solid--bedside-two] size-6" route="ver-mobiliarios" />
                 </article>
-                <article>
-                    <livewire:components.link-card title="TipoDonantes" cardWidth=" w-full"
-                        iconClass="icon-[fa-solid--hands-helping] size-6"
-                        route="ver-tipo-donantes" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Donantes" cardWidth=" w-full"
-                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-donantes" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Artículos" cardWidth="w-full"
-                        iconClass="icon-[material-symbols--sanitizer-rounded] size-6"
-                        route="ver-articulos" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Mobiliario" cardWidth="w-full"
-                        iconClass="icon-[icon-park-solid--bedside-two] size-6"
-                        route="ver-mobiliarios" />
-                </article>
-
-
-
             </div>
         </main>
 
