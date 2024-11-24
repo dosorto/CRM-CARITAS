@@ -33,9 +33,13 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
+use App\Livewire\Pages\Actas\ActasEntrega;
+use App\Livewire\Pages\Actas\ActasEntregaPage;
 use App\Livewire\Pages\ActasOptions;
 use App\Livewire\Pages\MigrantesOptions;
 use App\Livewire\Pages\Reportes;
+use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
+use App\Livewire\Pages\Solicitudes\SolicitudTrasladoPage;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -96,7 +100,7 @@ Route::get('/categoria-articulos', VerCategoriaArticulos::class)
     ->name('ver-categoria-articulos')
     ->middleware('auth');
 
-Route::get('/actas-entrega', VerActasEntrega::class)
+Route::get('/listado-actas-entrega', VerActasEntrega::class)
     ->name('ver-actas-entrega')
     ->middleware('auth');
 
@@ -109,12 +113,22 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->middleware('auth');
 
 
+Route::get('/actas-entrega', ActasEntregaPage::class)
+    ->name('actas-entrega-page')
+    ->middleware('auth');
+
 Route::get('/actas', ActasOptions::class)
     ->name('actas')
     ->middleware('auth');
 
 
-Route::get('/solicitudes-traslado', VerSolicitudesTraslado::class)
+
+
+Route::get('/solicitudes-traslado', SolicitudesTrasladoPage::class)
+    ->name('solicitudes-traslado-page')
+    ->middleware('auth');
+
+Route::get('/listado-solicitudes-traslado', VerSolicitudesTraslado::class)
     ->name('ver-solicitudes-traslado')
     ->middleware('auth');
 
