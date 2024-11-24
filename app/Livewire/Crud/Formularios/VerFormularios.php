@@ -2,10 +2,13 @@
 
 namespace App\Livewire\Crud\Formularios;
 
+use App\Models\Expediente;
+use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 use Carbon\Carbon;
 
+#[Lazy()]
 class VerFormularios extends Component
 {
     public function placeholder()
