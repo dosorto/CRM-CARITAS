@@ -142,6 +142,6 @@ Route::get('/fronteras', VerFronteras::class)
     ->name('ver-fronteras')
     ->middleware('auth');
 
- Route::get('/reporte-articulos', ReporteArticulo::class)
+Route::get('/reporte-articulos', ReporteArticulo::class)
     ->name('reporte-articulos')
     ->middleware('auth');
