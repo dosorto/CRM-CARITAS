@@ -14,10 +14,6 @@
                     <livewire:components.link-card title="Reporte Mensual" cardWidth="w-full" iconClass="icon-[tabler--presentation-analytics-filled] size-6"
                         route="reporte-mensual" />
                 </article>
-                <article>
-                    <livewire:components.link-card title="Registrar Migrante" cardWidth="w-full" iconClass="icon-[mingcute--user-add-2-fill] size-6"
-                        route="registrar-migrante" />
-                </article>
             </div>
         </main>
 

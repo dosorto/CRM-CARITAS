@@ -23,10 +23,6 @@
                         iconClass="icon-[solar--city-bold] size-6" route="ver-ciudades" />
                 </article>
                 <article>
-                    <livewire:components.link-card title="Reportes Mensuales" cardWidth="w-full"
-                        iconClass="icon-[bxs--report] size-6" route="reporte-mensual" />
-                </article>
-                <article>
                     <livewire:components.link-card title="Discapacidades" cardWidth="w-full"
                         iconClass="icon-[material-symbols--accessibility-rounded] size-6" route="ver-discapacidades" />
                 </article>

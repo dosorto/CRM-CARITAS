@@ -16,14 +16,30 @@
                         Actas de Entrega
                     </h2>
                     <hr class="border-2 border-accent my-6">
-                    <div class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-6 items-center">
                         <article>
                             <livewire:components.link-card title="Ver Actas de Entrega" cardWidth="w-full"
-                                iconClass="icon-[fa-solid--users] size-6" route="ver-actas-entrega" />
+                                iconClass="icon-[fluent-mdl2--product-list] size-6" route="ver-actas-entrega" />
                         </article>
                         <article>
                             <livewire:components.link-card title="Registrar Acta de Entrega" cardWidth="w-full"
-                                iconClass="icon-[mingcute--user-add-2-fill] size-6" route="crear-acta-entrega" />
+                                iconClass="icon-[line-md--document-add] size-6" route="crear-acta-entrega" />
+                        </article>
+                    </div>
+                </section>
+                <section class="border-2 border-accent rounded-xl p-8">
+                    <h2 class="text-base-content text-lg font-bold text-center">
+                        Solicitudes de Traslado de Mobiliario
+                    </h2>
+                    <hr class="border-2 border-accent my-6">
+                    <div class="flex flex-col gap-6 items-center">
+                        <article>
+                            <livewire:components.link-card title="Ver Solicitudes de Traslado" cardWidth="w-full"
+                                iconClass="icon-[mdi--file-replace-outline] size-6" route="ver-solicitudes-traslado" />
+                        </article>
+                        <article>
+                            <livewire:components.link-card title="Registrar Solicitud de Traslado" cardWidth="w-full"
+                                iconClass="icon-[line-md--document-add] size-6" route="crear-solicitud-traslado" />
                         </article>
                     </div>
                 </section>
