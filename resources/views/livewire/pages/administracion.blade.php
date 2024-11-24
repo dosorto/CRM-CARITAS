@@ -79,6 +79,14 @@
                         route="ver-mobiliarios" />
                 </article>
 
+                <article>
+                    <livewire:components.link-card title="Reporte de Artículos" cardWidth="w-full"
+                        iconClass="icon-[icon-park-solid--bedside-two] size-6"
+                        route="reporte-articulos" />
+                </article>
+
+
+
 
 
             </div>

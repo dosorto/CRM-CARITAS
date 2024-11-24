@@ -34,6 +34,9 @@ use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 
+use App\Livewire\Reportes\ReporteArticulo;
+
+
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
 
@@ -139,4 +142,8 @@ Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
 
 Route::get('/fronteras', VerFronteras::class)
     ->name('ver-fronteras')
+    ->middleware('auth');
+
+ Route::get('/reporte-articulos', ReporteArticulo::class)
+    ->name('reporte-articulos')
     ->middleware('auth');
