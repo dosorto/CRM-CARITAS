@@ -25,9 +25,4 @@ class Departamento extends Model
     {
         return $this->hasMany(Ciudad::class);
     }
-    
-    public function fronteras(): HasMany
-    {
-        return $this->hasMany(Frontera::class);
-    }
 }

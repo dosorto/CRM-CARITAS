@@ -8,7 +8,6 @@ use App\Models\Categoria;
 use Livewire\Component;
 use Illuminate\Support\Collection;
 use App\Livewire\Components\ContentTable;
-use App\Livewire\Crud\Categorias\CrearCategoriaModal;
 
 class EditarMobiliarioModal extends Component
 {
@@ -31,7 +30,8 @@ class EditarMobiliarioModal extends Component
         $this->item = $parameters['item'];
         if ($this->item->estado === "Bueno") {
             $this->Estado = true;
-        } else {
+        }
+        else {
             $this->Estado = false;
         }
         $this->idModal = $parameters['idModal'];
@@ -40,33 +40,24 @@ class EditarMobiliarioModal extends Component
 
     public function resetForm()
     {
-        // Primero cargamos todas las categorías
         $this->categorias = Categoria::all();
 
-        // Asignamos los valores del item directamente
+        if ($this->categorias->isNotEmpty()) {
+            $this->IdCategoria = 1;
+            $this->cargarSubcategorias();
+        }
         $this->Nombre = $this->item->nombre_mobiliario;
         $this->Descripcion = $this->item->descripcion;
         $this->Codigo = $this->item->codigo;
         $this->Ubicacion = $this->item->ubicacion;
-
-        // Asignamos primero la categoría
-        $this->IdCategoria = $this->item->subcategoria->categoria->id;
-
-        // Cargamos las subcategorías basadas en la categoría
-        $this->cargarSubcategorias();
-
-        // Finalmente asignamos la subcategoría
-        $this->IdSubcategoria = $this->item->subcategoria->id;
+        $this->IdSubcategoria= $this->item->subcategoria->id;
+        $this->IdCategoria= $this->item->subcategoria->categoria->id;
     }
 
     public function updatedIdCategoria()
     {
-        $this->IdSubcategoria = null;
-        $this->cargarSubcategorias();
-        // Forzar la actualización de la vista
-        $this->dispatch('$refresh');
         // Cargar las subcategorías cuando se selecciona una categoría
-        //$this->cargarSubcategorias();
+        $this->cargarSubcategorias();
     }
 
     public function cargarSubcategorias()
@@ -104,7 +95,8 @@ class EditarMobiliarioModal extends Component
 
         if ($this->Estado === true) {
             $estado = 'Bueno';
-        } else {
+        }
+        else {
             $estado = 'Malo';
         }
 
@@ -119,17 +111,16 @@ class EditarMobiliarioModal extends Component
 
         $nuevo_mobiliario->save();
 
-        $this->dispatch('update-delete-modal', id: $this->item->id)->to(EliminarMobiliarioModal::class);
-        $this->dispatch('update-info-modal', id: $this->item->id)->to(InfoMobiliarioModal::class);
-        //$this->dispatch('createCategoriaModalEdit')->to(CrearCategoriaModal::class);
-        $this->dispatch('item-edited')->to(ContentTable::class);
+        $this->dispatch('update-delete-modal', id: $nuevo_mobiliario->id)->to(EliminarMobiliarioModal::class);
+        $this->dispatch('update-info-modal', id: $nuevo_mobiliario->id)->to(InfoMobiliarioModal::class);
         $this->dispatch('close-modal');
+        $this->dispatch('item-edited')->to(ContentTable::class);
     }
 
     public function render()
     {
-        //$this->cargarSubcategorias();
-        //$this->dispatch('$refresh')->self();
+        $this->cargarSubcategorias();
+        $this->dispatch('$refresh')->self();
 
         return view('livewire.crud.mobiliarios.editar-mobiliario-modal', [
             'categorias' => $this->categorias,

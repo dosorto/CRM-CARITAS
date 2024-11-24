@@ -9,7 +9,7 @@
 
     <section class="flex flex-grow flex-col overflow-y-auto rounded-lg border-2 border-accent p-6">
         <h2 class="text-center mb-6 text-lg">
-            <strong>Nuevo registro para el Número de Identificación: </strong> {{ session('datosPersonales')['identificacion'] }}
+            <strong>Nuevo registro para el Número de Identificación: </strong> {{ session('identificacion') }}
         </h2>
 
         {{-- Nombres y Apellidos --}}
@@ -82,7 +82,7 @@
         </div>
 
 
-        {{-- Tipo de Identificación, Pais, Es LGBTQI+ --}}
+        {{-- Tipo de Identificación, Pais, Es LGBT --}}
         <div class="flex gap-8 mb-5">
             <div class="flex flex-col w-1/3">
                 <label>Tipo de Identificación </label>
@@ -111,7 +111,7 @@
                 </select>
             </div>
             <div class="flex flex-col w-1/3">
-                <label>¿Es LGBTQI+? </label>
+                <label>¿Es LGBT? </label>
                 <div class="flex gap-2 h-full items-center">
 
                     <label>Si</label>

@@ -24,7 +24,7 @@ class VerPaises extends Component
     //     'Nombre que aparece en el select' => 'nombre del atributo'
     // ]
     public $fakeColNames = [
-        'Nombre del País' => 'nombre_pais',
+        'Nombre del Pais' => 'nombre_pais',
         'Código alfa-3' => 'codigo_alfa3',
         'Código Numérico' => 'codigo_numerico',
     ];

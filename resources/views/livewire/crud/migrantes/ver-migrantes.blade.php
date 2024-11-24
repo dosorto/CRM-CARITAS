@@ -80,12 +80,12 @@
 
                             {{-- Botones --}}
                             <td class="flex gap-2">
-                                {{-- <button class="btn btn-warning btn-xs text-base-content" type="button">
+                                <button class="btn btn-warning btn-xs text-base-content" type="button">
                                     <span class="icon-[line-md--edit] size-4"></span>
                                 </button>
                                 <button class="btn btn-error btn-xs text-base-100" type="button">
                                     <span class="icon-[mingcute--delete-2-fill] size-4"></span>
-                                </button> --}}
+                                </button>
                             </td>
                         </tr>
                     @endforeach

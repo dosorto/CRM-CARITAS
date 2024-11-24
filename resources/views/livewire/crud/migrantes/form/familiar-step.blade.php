@@ -79,6 +79,8 @@
 
                     {{-- Tabla --}}
                     <div class="flex flex-col">
+
+
                         <div class="rounded-lg border-2 border-accent">
                             <table class="table table-sm w-full table-pin-rows">
                                 <thead class="text-sm border-b-2 border-accent">
@@ -95,41 +97,42 @@
                                 </thead>
                                 <tbody>
 
-
-                                    @forelse ($personas as $persona)
-                                        <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
-                                            <td>
-                                                {{ $persona->primer_nombre .
-                                                    ' ' .
-                                                    $persona->segundo_nombre .
-                                                    ' ' .
-                                                    $persona->primer_apellido .
-                                                    ' ' .
-                                                    $persona->segundo_apellido }}
-                                            </td>
-                                            <td>
-                                                {{ $persona->numero_identificacion }}
-                                            </td>
-                                            <td>
-                                                {{ $persona->pais->nombre_pais }}
-                                            </td>
-                                            <td class="flex w-max gap-2">
-                                                <div class="tooltip" data-tip="Seleccionar">
-                                                    <button wire:click="selectRelated({{ $persona->id }})"
-                                                        class="items-center btn btn-xs btn-accent text-base-content">
-                                                        <span
-                                                            class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @empty
+                                    @if (!$personas)
                                         <tr class="border-b border-accent">
                                             <td colspan="4" class="text-center py-4">
                                                 <strong>* Sonido de Grillos *</strong>
                                             </td>
                                         </tr>
-                                    @endforelse
+                                    @else
+                                        @foreach ($personas as $persona)
+                                            <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
+                                                <td>
+                                                    {{ $persona->primer_nombre .
+                                                        ' ' .
+                                                        $persona->segundo_nombre .
+                                                        ' ' .
+                                                        $persona->primer_apellido .
+                                                        ' ' .
+                                                        $persona->segundo_apellido }}
+                                                </td>
+                                                <td>
+                                                    {{ $persona->numero_identificacion }}
+                                                </td>
+                                                <td>
+                                                    {{ $persona->pais->nombre_pais }}
+                                                </td>
+                                                <td class="flex w-max gap-2">
+                                                    <div class="tooltip" data-tip="Seleccionar">
+                                                        <button wire:click="selectRelated({{ $persona->id }})"
+                                                            class="items-center btn btn-xs btn-accent text-base-content">
+                                                            <span
+                                                                class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -138,9 +141,8 @@
                 </section>
             </div>
         </section>
-
-
         <section class="w-2/5 h-full bg-accent flex flex-col ">
+
             {{-- Caso en que viaje en grupo y ya tenga familiar registrado --}}
             @if ($tieneFamiliar && $viajaEnGrupo)
                 @if ($familiar)
@@ -201,11 +203,10 @@
                 @endif
             @else<div class="p-5 text-lg flex flex-col items-center justify-center size-full">
                     <strong>Nuevo Código Familiar:</strong>
-                    <p>{{ $nuevoCodigoFamiliar }}</p>
+                    <p>{{ $codigoFamiliar }}</p>
                     <hr class="border border-base-content w-4/5 mt-6">
                     <p class="mt-6 text-sm text-center mx-4">
-                        Este registro no será tomado en cuenta para datos estadísticos de familias,
-                        hasta que se registre otra persona como familiar de esta.
+                        Este registro no será tomado en cuenta para datos estadísticos de familiares
                     </p>
                 </div>
 
@@ -219,106 +220,11 @@
         <livewire:crud.migrantes.listado-migrantes-button />
         <div class="flex gap-4">
             <livewire:components.buttons.previous-step-button />
-
-
-            {{-- Modal para mostrar los datos antes de Continuar --}}
-            <div>
-                <!-- Botón para abrir el modal -->
-                <label for="inforDatosPersonalesModal" class="btn btn-info">
-                    <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
-                    Registrar Datos Personales
-                </label>
-
-                {{-- Cuerpo del Modal --}}
-                <input type="checkbox" id="inforDatosPersonalesModal" class="modal-toggle" />
-                <div class="modal" role="dialog">
-                    <div class="modal-box w-2/5 max-w-5xl bg-neutral">
-
-                        {{-- Título del Modal --}}
-                        <h3 class="text-xl font-bold text-center mb-5">Se Almacenarán los Siguientes Datos:</h3>
-
-                        {{-- Contenido --}}
-                        <main class="h-max flex flex-col w-full gap-2">
-
-                            <div class="flex gap-1">
-                                <strong>Nombre Completo:</strong>
-                                <p> {{ session('datosPersonales')['nombres'] . ' ' . session('datosPersonales')['apellidos'] }}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>Número de Identificación:</strong>
-                                <p> {{ session('datosPersonales')['identificacion'] . ' - (' . session('datosPersonales')['tipoIdentificacion'] . ')' }}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>País de Procedencia:</strong>
-                                <p> {{ $pais }}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>Sexo:</strong>
-                                <p> {{ session('datosPersonales')['sexo'] }}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>Estado Civil:</strong>
-                                <p> {{ session('datosPersonales')['estadoCivil'] }}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>Fecha de Nacimiento:</strong>
-                                <p> {{ session('datosPersonales')['fechaNacimiento'] }}
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>Es LGBTQI+:</strong>
-                                <p>
-                                    @if (session('datosPersonales')['esLGBT'])
-                                        Si
-                                    @else
-                                        No
-                                    @endif
-                                </p>
-                            </div>
-                            <div class="flex gap-1">
-                                <strong>Código Familiar: </strong>
-                                @if (!$familiar)
-                                    <p> {{ $nuevoCodigoFamiliar }}
-                                        <span class="text-success text-sm font-bold">- Nuevo -</span>
-                                    </p>
-                                @else
-                                <p>
-                                    {{ $familiar->codigo_familiar }}
-                                </p>
-                                @endif
-
-                            </div>
-
-                            @if (!$familiar)
-                                <div
-                                    class="flex flex-col items-center text-warning p-2 border border-warning rounded-lg mt-4">
-                                    <span class="icon-[typcn--warning] size-8"></span>
-                                    <p class="text-center mt-2">
-                                        No se ha seleccionado ningún familiar, este registro no será tomado en cuenta
-                                        para datos estadísticos de familias.
-                                    </p>
-                                </div>
-                            @endif
-                        </main>
-
-                        <div class="modal-action">
-
-                            <button wire:click="nextStep" class="btn btn-success text-base-content">
-                                <span class="icon-[fa-solid--check] size-6"></span>
-                                Confirmar
-                            </button>
-                            <label for="inforDatosPersonalesModal"
-                                class="btn btn-error text-base-content">Cancelar</label>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{-- <livewire:components.buttons.next-step-button /> --}}
+            <button wire:click="nextStep" class="btn btn-info">
+                <span class="icon-[mingcute--user-add-2-fill] size-6"></span>
+                Registrar Datos Personales
+            </button>
         </div>
     </footer>
 </main>

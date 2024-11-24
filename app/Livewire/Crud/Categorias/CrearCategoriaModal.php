@@ -8,7 +8,6 @@ use App\Livewire\Crud\Mobiliarios\EliminarMobiliarioModal;
 use App\Livewire\Crud\SubCategorias\CrearSubCategoriaModal;
 use App\Models\Categoria;
 use Livewire\Component;
-use Livewire\Attributes\On;
 
 class CrearCategoriaModal extends Component
 {
@@ -41,13 +40,6 @@ class CrearCategoriaModal extends Component
     {
         $this->idModal = $idModal;
     }
-
-    // #[On('createCategoriaModalEdit')]
-    // #[On('createCategoriaModal')]
-    // public function showModal($id)
-    // {
-    //     ;
-    // }
 
     public function render()
     {

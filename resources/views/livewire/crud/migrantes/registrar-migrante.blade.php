@@ -2,15 +2,16 @@
 
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
-        <h1 class="text-xl font-bold"> Registrar Migrante </h1>
+        <h1 class="text-xl font-bold">Registrar Migrante</h1>
         <div>
-            {{-- @if (session()->has('message') && session()->has('alertIcon') && session()->has('type'))
+            @if (session()->has('message'))
                 <div role="alert"
-                    class="alert {{ session('type') }} w-max text-white pl-2 pr-4 py-1 rounded-lg shadow-lg fixed top-4 right-4 z-50">
+                    class="alert w-max text-white pl-2 pr-4 py-1 rounded-lg shadow-lg fixed top-4 right-4 z-50 {{ session('type') }}">
                     <span class="icon-[{{ session('alertIcon') }}]"></span>
                     {{ session('message') }}
+
                 </div>
-            @endif --}}
+            @endif
         </div>
     </header>
 

@@ -7,7 +7,7 @@
 
     <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/3 max-w-5xl bg-neutral">
+        <div class="modal-box w-1/3 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Crear Artículo</h3>
@@ -29,7 +29,7 @@
                 {{-- Contenedor de la descripción --}}
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Descripción </label>
-                    <textarea wire:model="descripcion" class="textarea bg-accent" placeholder="Escribir aquí..."></textarea>
+                    <textarea wire:model="descripcion" class="input bg-accent" placeholder="Escribir aquí..."></textarea>
                     <div class="mt-1 text-error-content font-bold">
                         @error('descripcion')
                             {{ $message }}
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-
+                {{-- Subcategorías --}}
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Categoría de Articulos </label>
                     <div class="flex gap-2">
@@ -91,9 +91,16 @@
 </div>
 @script
     <script>
+        document.getElementById($idModal).addEventListener('change', function(event) {
+            if (event.target.checked) {
+                // Llama a la función `resetForm` del componente para restablecer los valores
+                $wire.resetForm();
+            }
+        });
+
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('{{$idModal}}').checked = false;
+            document.getElementById($idModal).checked = false;
         });
     </script>
 @endscript

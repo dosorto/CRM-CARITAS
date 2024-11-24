@@ -31,7 +31,7 @@ class VerDepartamentos extends Component
     public $colNames = [
         'Nombre del Departamento',
         'Código',
-        'Nombre del País'
+        'Nombre del Pais'
     ];
 
     // Atributos, deben estar en el mismo orden que las $colNames

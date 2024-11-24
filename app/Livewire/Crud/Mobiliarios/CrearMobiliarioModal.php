@@ -47,7 +47,6 @@ class CrearMobiliarioModal extends Component
         $this->Ubicacion = '';
         $this->IdSubcategoria = 1;
         $this->generarCodigo();
-        $this->cargarSubcategorias();
     }
 
     public function closeModal()
@@ -60,9 +59,8 @@ class CrearMobiliarioModal extends Component
 
     public function updatedCategoriaId()
     {
-        $this->IdSubcategoria = null;
+        // Cargar las subcategorías cuando se selecciona una categoría
         $this->cargarSubcategorias();
-        $this->dispatch('$refresh');
     }
 
     public function cargarSubcategorias()
@@ -100,10 +98,11 @@ class CrearMobiliarioModal extends Component
 
         if ($this->Estado === "") {
             $estado = 'Bueno';
-        } else {
+        }
+        else {
             $estado = 'Malo';
         }
-
+        
         $nuevo_mobiliario = new Mobiliario();
 
         $nuevo_mobiliario->nombre_mobiliario = $validated['Nombre'];

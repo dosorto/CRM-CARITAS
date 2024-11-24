@@ -1,12 +1,12 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
+    <label for="{{ $idModal }}" class="btn btn-sm btn-warning text-warning-content gap-2 pl-3">
         <span class="icon-[line-md--edit] size-4"></span>
     </label>
 
-    <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/3 max-w-5xl bg-neutral">
+        <div class="modal-box w-1/3 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Editar Artículo</h3>
@@ -28,7 +28,7 @@
                 {{-- Descripción --}}
                 <div class="flex flex-col mt-4">
                     <label class="mb-1"> Descripción </label>
-                    <textarea wire:model="descripcion" class="textarea bg-accent" placeholder="Escribir aquí..."></textarea>
+                    <textarea wire:model="descripcion" class="input bg-accent" placeholder="Escribir aquí..."></textarea>
                     <div class="mt-1 text-error-content font-bold">
                         @error('descripcion')
                             {{ $message }}
@@ -62,15 +62,15 @@
 
                 {{-- Subcategorías --}}
                 <div class="flex flex-col mt-4">
-                    <label class="mb-1"> SCategoría </label>
-                    <select wire:model="categoria_articulos_id" class="select bg-accent text-base-content">
-                        <option value="">Seleccione categoria de articulos...</option>
-                        @foreach ($categoria_articulos as $categoria_articulo)
-                            <option value="{{ $categoria_articulo->id }}">{{ $categoria_articulo->name_categoria }}</option>
+                    <label class="mb-1"> Subcategoría </label>
+                    <select wire:model="subcategoria_id" class="select bg-accent text-base-content">
+                        <option value="">Seleccione una subcategoría...</option>
+                        @foreach ($subcategorias as $subcategoria)
+                            <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre_subcategoria }}</option>
                         @endforeach
                     </select>
                     <div class="mt-1 text-error-content font-bold">
-                        @error('categoria_articulos_id')
+                        @error('subcategoria_id')
                             {{ $message }}
                         @enderror
                     </div>
@@ -94,16 +94,16 @@
 </div>
 @script
     <script>
-        document.getElementById('{{ $idModal }}-{{ $item->id }}').addEventListener('change', function(event) {
+        document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
             if (event.target.checked) {
-                // Llama a la función `initForm` del componente para restablecer los valores
+                // Llama a la función `resetForm` del componente para restablecer los valores
                 $wire.resetForm();
             }
         });
 
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
+            document.getElementById('{{ $idModal }}').checked = false;
         });
     </script>
 @endscript

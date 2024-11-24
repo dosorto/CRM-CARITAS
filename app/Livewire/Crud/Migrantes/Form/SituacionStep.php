@@ -5,39 +5,56 @@ namespace App\Livewire\Crud\Migrantes\Form;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
-use App\Models\AsesorMigratorio;
-use App\Models\Discapacidad;
-use App\Models\Frontera;
-use App\Models\Necesidad;
-use App\Models\SituacionMigratoria;
 
 class SituacionStep extends Component
 {
     public $necesidadesSelected = [];
-    public $necesidades = [];
+    public $necesidades = [
+        'Asilo',
+        'Agua',
+        'Comida',
+        'Teléfono Celular',
+        'Dinero',
+        'Ropa',
+        'Ducha',
+    ];
 
-    // public $situacionesSelected = [];
-    // public $situaciones = [];
+    public $situacionesSelected = [];
+    public $situaciones = [
+        'Migrante en Tránsito',
+        'Protección Internacional',
+        'Refugiado',
+        'Retornado',
+        'Solicitante de Asilo',
+    ];
 
     public $discapacidadesSelected = [];
-    public $discapacidades = [];
+    public $discapacidades = [
+        'Poca Visión',
+        'Ceguera total',
+        'Autismo',
+        'Síndrome de Down',
+        'Herida Grave',
+    ];
 
     public $observacion = '';
 
-    public function mount()
+    public function nextStep()
     {
-        $this->necesidades = Necesidad::select('id', 'necesidad')->get();
-        // $this->situaciones = SituacionMigratoria::select('id', 'situacion_migratoria')->get();
-        $this->discapacidades = Discapacidad::select('id', 'discapacidad')->get();
+        $validated = $this->validate([
+            'necesidadesSelected' => 'required|array|min:1',
+            'necesidadesSelected.*' => Rule::in($this->necesidadesSelected),
+            'situacionesSelected' => 'required|array|min:1',
+            'situacionesSelected.*' => Rule::in($this->situacionesSelected),
+        ]);
 
-        $this->necesidadesSelected = session('datosMigratorios.necesidadesSelected', []);
-        $this->discapacidadesSelected = session('datosMigratorios.discapacidadesSelected', []);
-        $this->observacion = session('datosMigratorios.observacion', '');
-    }
+        session(['situaciones' => $validated['situacionesSelected']]);
+        session(['necesidades' => $validated['necesidadesSelected']]);
+        session(['discapacidades' => $validated['discapacidadesSelected']]);
+        session(['observacion' => $this->observacion]);
 
-    public function test()
-    {
-        dump(1);
+        $this->dispatch('situacion-validated')
+            ->to(RegistrarMigrante::class);
     }
 
     public function render()
@@ -45,22 +62,8 @@ class SituacionStep extends Component
         return view('livewire.crud.migrantes.form.situacion-step');
     }
 
-    public function saveExpediente()
+    public function cleanSession()
     {
-        $this->validate([
-            'necesidadesSelected' => 'required|array|min:1',
-            'necesidadesSelected.*' => 'required',
-        ]);
-
-        $this->dispatch('situacion-validated')
-            ->to(RegistrarMigrante::class);
-    }
-
-
-    public function updated()
-    {
-        session()->put('datosMigratorios.necesidadesSelected', $this->necesidadesSelected);
-        session()->put('datosMigratorios.discapacidadesSelected', $this->discapacidadesSelected);
-        session()->put('datosMigratorios.observacion', $this->observacion);
+        session()->flush();
     }
 }

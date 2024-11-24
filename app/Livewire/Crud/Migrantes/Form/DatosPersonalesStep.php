@@ -22,7 +22,20 @@ class DatosPersonalesStep extends Component
     public function mount()
     {
         $this->paises = Pais::select('id', 'nombre_pais')->get();
-        $this->inicializarCampos();
+
+        // session()->flush();
+        // dd(session('datosPersonales'));
+        if (session('datosPersonales'))
+        {
+            $this->nombres = session('datosPersonales')['nombres'];
+            $this->apellidos = session('datosPersonales')['apellidos'];
+            $this->fechaNacimiento = session('datosPersonales')['fechaNacimiento'];
+            $this->estadoCivil = session('datosPersonales')['estadoCivil'];
+            $this->tipoIdentificacion = session('datosPersonales')['tipoIdentificacion'];
+            $this->idPais = session('datosPersonales')['idPais'];
+            $this->sexo = session('datosPersonales')['sexo'];
+            $this->esLGBT = session('datosPersonales')['esLGBT'];
+        }
     }
 
     public function render()
@@ -44,29 +57,9 @@ class DatosPersonalesStep extends Component
             'esLGBT' => 'required',
         ]);
 
-        // Obtener el array existente de 'datosPersonales' o inicializarlo como un array vacío
-        $datosPersonales = session('datosPersonales', []);
-
-        // Mezclar los datos validados con los datos existentes
-        $datosPersonales = array_merge($datosPersonales, $validated);
-
-        // Guardar los datos actualizados en la sesión
-        session(['datosPersonales' => $datosPersonales]);
-
+        session(['datosPersonales' => $validated]);
 
         $this->dispatch('datos-personales-validated')
             ->to(RegistrarMigrante::class);
-    }
-
-    public function inicializarCampos()
-    {
-        $this->nombres = session()->get('datosPersonales.nombres', '');
-        $this->apellidos = session()->get('datosPersonales.apellidos', '');
-        $this->fechaNacimiento = session()->get('datosPersonales.fechaNacimiento', '');
-        $this->estadoCivil = session()->get('datosPersonales.estadoCivil', '');
-        $this->tipoIdentificacion = session()->get('datosPersonales.tipoIdentificacion', '');
-        $this->idPais = session()->get('datosPersonales.idPais', '');
-        $this->sexo = session()->get('datosPersonales.sexo', '');
-        $this->esLGBT = session()->get('datosPersonales.esLGBT', '');
     }
 }

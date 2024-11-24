@@ -9,8 +9,6 @@ use App\Livewire\Crud\Ciudades\VerCiudades;
 use App\Livewire\Crud\Departamentos\VerDepartamentos;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 use App\Livewire\Crud\Migrantes\VerMigrantes;
-use App\Livewire\Crud\Donaciones\VerDonaciones;
-use App\Livewire\Crud\Donantes\VerDonantes;
 use App\Livewire\Crud\Paises\VerPaises;
 use App\Livewire\Login;
 use App\Livewire\Pages\Administracion;
@@ -24,19 +22,6 @@ use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
 
-use App\Livewire\Actas\SolicitudTraslado\CrearSolicitudTraslado;
-use App\Livewire\Actas\SolicitudTraslado\InfoSolicitudTraslado;
-use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
-
-use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
-use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
-use App\Livewire\Crud\Fronteras\VerFronteras;
-use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
-use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
-
-use App\Livewire\Reportes\ReporteArticulo;
-
-
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
 
@@ -44,7 +29,7 @@ Route::get('/migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
 
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
@@ -66,32 +51,22 @@ Route::get('/', Login::class)
     ->name('login');
 
 Route::get('/categorias', VerCategorias::class)
-    ->name('ver-categorias')->middleware('auth');
+    ->name('ver-categorias');
 
 Route::get('/subcategorias', VerSubCategorias::class)
-    ->name('ver-sub-categorias')->middleware('auth');
+    ->name('ver-sub-categorias');
 
-Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
-Route::get('/ver-expediente', VerFormularios::class)->name('ver-expediente')->middleware('auth');
+Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios');
+Route::get('/formularios', VerFormularios::class)->name('ver-formulario');
 
 Route::get('/articulos', VerArticulos::class)
     ->name('ver-articulos')
     ->middleware('auth');
-Route::get('/tipodonantes', VerTipoDonantes::class)
-    ->name('ver-tipo-donantes')
-    ->middleware('auth');
-Route::get('/donantes', VerDonantes::class)
-    ->name('ver-donantes')
-    ->middleware('auth');
-Route::get('/donaciones', VerDonaciones::class)
-    ->name('ver-donaciones')
-    ->middleware('auth');
 
-
-
-Route::get('/categoria-articulos', VerCategoriaArticulos::class)
+Route::get('/categoriadearticulos', VerCategoriaArticulos::class)
     ->name('ver-categoria-articulos')
     ->middleware('auth');
+
 
 Route::get('/actas-entrega', VerActasEntrega::class)
     ->name('ver-actas-entrega')
@@ -105,20 +80,7 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->name('info-acta-entrega')
     ->middleware('auth');
 
-
-Route::get('/solicitudes-traslado', VerSolicitudesTraslado::class)
-    ->name('ver-solicitudes-traslado')
-    ->middleware('auth');
-
-Route::get('/crear-solicitud-traslado', CrearSolicitudTraslado::class)
-    ->name('crear-solicitud-traslado')
-    ->middleware('auth');
-
-Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
-    ->name('info-solicitud-traslado')
-    ->middleware('auth');
-
-Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual')->middleware('auth');
+Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual');
 
 
 Route::post('/logout', function () {
@@ -128,22 +90,3 @@ Route::post('/logout', function () {
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
 
-Route::get('/discapacidades', VerDiscapacidades::class)
-    ->name('ver-discapacidades')
-    ->middleware('auth');
-
-Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
-    ->name('ver-situaciones-migratorias')
-    ->middleware('auth');
-
-Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
-    ->name('ver-asesores-migratorios')
-    ->middleware('auth');
-
-Route::get('/fronteras', VerFronteras::class)
-    ->name('ver-fronteras')
-    ->middleware('auth');
-
- Route::get('/reporte-articulos', ReporteArticulo::class)
-    ->name('reporte-articulos')
-    ->middleware('auth');

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Mobiliario extends Model
 {
@@ -19,15 +18,4 @@ class Mobiliario extends Model
     {
         return $this->belongsTo(SubCategoria::class); // Relación con subcategoría
     }
-    
-    public function solicitudesTraslado(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            SolicitudTraslado::class,   // Modelo relacionado
-            'detalles_solicitud_traslado', // Tabla intermedia
-            'mobiliario_id',           // Clave foránea en la tabla intermedia que apunta a mobiliarios
-            'solicitud_traslado_id'    // Clave foránea en la tabla intermedia que apunta a solicitudes_traslado
-        );
-    }
-
 }
