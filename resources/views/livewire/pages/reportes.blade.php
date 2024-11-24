@@ -11,8 +11,8 @@
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
                 <article>
-                    <livewire:components.link-card title="Listado de Migrantes" cardWidth="w-full" iconClass="icon-[fa-solid--users] size-6"
-                        route="ver-migrantes" />
+                    <livewire:components.link-card title="Reporte Mensual" cardWidth="w-full" iconClass="icon-[tabler--presentation-analytics-filled] size-6"
+                        route="reporte-mensual" />
                 </article>
                 <article>
                     <livewire:components.link-card title="Registrar Migrante" cardWidth="w-full" iconClass="icon-[mingcute--user-add-2-fill] size-6"

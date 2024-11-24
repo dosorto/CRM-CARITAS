@@ -6,7 +6,7 @@
         </div>
     </header>
 
-    <div class="flex flex-col justify-between h-full">
+    <div class="flex flex-col justify-between h-full overflow-y-auto">
         <main class="flex items-center h-full">
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">

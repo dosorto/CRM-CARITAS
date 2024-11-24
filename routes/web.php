@@ -33,7 +33,9 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
+use App\Livewire\Pages\ActasOptions;
 use App\Livewire\Pages\MigrantesOptions;
+use App\Livewire\Pages\Reportes;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -107,6 +109,11 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->middleware('auth');
 
 
+Route::get('/actas', ActasOptions::class)
+    ->name('actas')
+    ->middleware('auth');
+
+
 Route::get('/solicitudes-traslado', VerSolicitudesTraslado::class)
     ->name('ver-solicitudes-traslado')
     ->middleware('auth');
@@ -119,7 +126,13 @@ Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
     ->name('info-solicitud-traslado')
     ->middleware('auth');
 
-Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual')->middleware('auth');
+Route::get('/reporte-mensual', ReporteMensual::class)
+    ->name('reporte-mensual')
+    ->middleware('auth');
+
+Route::get('/reportes', Reportes::class)
+    ->name('reportes')
+    ->middleware('auth');
 
 
 Route::post('/logout', function () {
