@@ -11,7 +11,7 @@
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
                 <article>
-                    <livewire:components.link-card title="Paises" cardWidth="w-full" iconClass="icon-[vaadin--flag] size-"
+                    <livewire:components.link-card title="Paises" cardWidth="w-full" iconClass="icon-[vaadin--flag] size-6"
                         route="ver-paises" />
                 </article>
                 <article>

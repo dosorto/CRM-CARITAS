@@ -33,13 +33,17 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
+use App\Livewire\Pages\MigrantesOptions;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
 
-Route::get('/migrantes', VerMigrantes::class)
+Route::get('/listado-migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
+
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
+Route::get('/migrantes', MigrantesOptions::class)->name('migrantes')->middleware('auth');
 
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 
