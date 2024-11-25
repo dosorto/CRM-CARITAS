@@ -24,9 +24,15 @@ class CrearCategoriaArticulosModal extends Component
 
         $nueva_categoria->save();
 
-        $this->dispatch('cerrar-modal')->self();
+        $this->closeModal();
         $this->dispatch('item-created')->to(ContentTable::class);
         $this->dispatch('categoria-articulos-created', newId: $nueva_categoria->id)->to(CrearArticuloModal::class);
+    }
+
+    public function closeModal()
+    {
+        $this->dispatch('cerrar-modal')->self();
+        $this->initForm();
     }
 
     public function mount($idModal)
@@ -38,7 +44,6 @@ class CrearCategoriaArticulosModal extends Component
     public function initForm(){
         $this->Name = '';
     }
-
 
     public function render()
     {

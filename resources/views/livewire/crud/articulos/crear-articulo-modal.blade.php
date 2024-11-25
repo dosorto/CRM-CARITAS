@@ -5,26 +5,75 @@
         Añadir
     </label>
 
-    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" checked />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/3 max-w-5xl bg-neutral">
+        <div class="modal-box w-3/5 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Crear Artículo</h3>
 
             {{-- Contenido --}}
-            <main class="h-max flex flex-col w-full">
+            <main class="h-max flex flex-col w-full mt-4">
 
-                {{-- Contenedor del nombre del artículo --}}
-                <div class="flex flex-col mt-4">
-                    <label class="mb-1"> Nombre del Artículo </label>
-                    <input wire:model="nombre" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
-                    <div class="mt-1 text-error-content font-bold">
-                        @error('nombre')
-                            {{ $message }}
-                        @enderror
+                <div class="flex flex-row gap-6 size-full">
+
+                    {{-- Contenedor del nombre del artículo --}}
+                    <div class="flex flex-col w-1/2">
+                        <label class="mb-1"> Nombre del Artículo </label>
+                        <input wire:model="nombre" class="input bg-accent" type="text"
+                            placeholder="Escribir aquí..." />
+                        <div class="mt-1 text-error-content font-bold">
+                            @error('nombre')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Contenedor de la categoria del articulo --}}
+                    <div class="flex flex-col w-1/2">
+                        <label class="mb-1"> Categoría del Artículo</label>
+                        <div class="flex gap-2">
+                            <select wire:model.live="categoria_articulos_id" class="select bg-accent w-full">
+                                @foreach ($categoria_articulos as $categoria_articulo)
+                                    <option value="{{ $categoria_articulo->id }}">
+                                        {{ $categoria_articulo->name_categoria }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <livewire:crud.categoria-articulos.crear-categoria-articulos-modal :idModal="'createCategoriaArticulosModal'">
+                        </div>
                     </div>
                 </div>
+
+
+
+
+                <div class="flex flex-row gap-6 size-full mt-4">
+                    {{-- Contenedor del código de barras --}}
+                    <div class="flex flex-col w-1/2">
+                        <label class="mb-1"> Código de Barras </label>
+                        <input wire:model="codigo_barra" class="input bg-accent" type="text"
+                            placeholder="Escribir aquí..." />
+                        <div class="mt-1 text-error-content font-bold">
+                            @error('codigo_barra')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Contenedor de la cantidad en stock --}}
+                    <div class="flex flex-col w-1/2">
+                        <label class="mb-1"> Cantidad en Stock </label>
+                        <input wire:model="cantidad_stock" class="input bg-accent" type="number"
+                            placeholder="Escribir aquí..." />
+                        <div class="mt-1 text-error-content font-bold">
+                            @error('cantidad_stock')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
 
                 {{-- Contenedor de la descripción --}}
                 <div class="flex flex-col mt-4">
@@ -37,44 +86,10 @@
                     </div>
                 </div>
 
-                {{-- Contenedor del código de barras --}}
-                <div class="flex flex-col mt-4">
-                    <label class="mb-1"> Código de Barras </label>
-                    <input wire:model="codigo_barra" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
-                    <div class="mt-1 text-error-content font-bold">
-                        @error('codigo_barra')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-
-                {{-- Contenedor de la cantidad en stock --}}
-                <div class="flex flex-col mt-4">
-                    <label class="mb-1"> Cantidad en Stock </label>
-                    <input wire:model="cantidad_stock" class="input bg-accent" type="number" placeholder="Escribir aquí..." />
-                    <div class="mt-1 text-error-content font-bold">
-                        @error('cantidad_stock')
-                            {{ $message }}
-                        @enderror
-                    </div>
-                </div>
-
-
-                <div class="flex flex-col mt-4">
-                    <label class="mb-1"> Categoría de Articulos </label>
-                    <div class="flex gap-2">
-                        <select wire:model.live="categoria_articulos_id" class="input bg-accent w-[72%]">
-                            @foreach ($categoria_articulos as $categoria_articulo)
-                                <option value="{{ $categoria_articulo->id }}">{{ $categoria_articulo->name_categoria }}</option>
-                            @endforeach
-                        </select>
-                        <livewire:crud.categoria-articulos.crear-categoria-articulos-modal :idModal="'createCategoriaArticulosModal'">
-                    </div>
-                </div>
 
             </main>
 
-            {{-- Acción del modal --}}
+            {{-- Botones --}}
             <div class="modal-action">
                 <div wire:loading class="flex items-center p-2 justify-start size-full">
                     <span class="loading loading-spinner loading-md text-gray-400"></span>
@@ -83,8 +98,7 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear
                 </button>
-                <button wire:click="cancelar"
-                    class="btn btn-accent text-base-content">
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">
                     Cancelar
                 </button>
             </div>
@@ -95,7 +109,7 @@
     <script>
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('{{$idModal}}').checked = false;
+            document.getElementById('{{ $idModal }}').checked = false;
         });
     </script>
 @endscript

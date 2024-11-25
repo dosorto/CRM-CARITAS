@@ -66,6 +66,7 @@ class EditarArticuloModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
+        $this->resetForm();
     }
 
     public function render()
