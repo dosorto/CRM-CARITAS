@@ -42,7 +42,6 @@ class VerSolicitudesTraslado extends Component
             ];
         });
 
-        $fecha = $solicitud->fecha_solicitud;
 
         // Guardar en la sesión los datos estructurados
         session([
@@ -59,7 +58,7 @@ class VerSolicitudesTraslado extends Component
                     : 'Desconocido',
             ],
             'mobiliarios' => $mobiliarios,
-            'fecha' => $fecha,
+            'fecha' => $solicitud->created_at->format('d/m/Y'),
         ]);
 
         // Redirigir a la vista de detalles de la solicitud

@@ -27,7 +27,7 @@
                         @foreach ($item->mobiliarios as $mobiliario)
                             <tr wire:key="{{ $item->id . '-' . $mobiliario->id }}" class="border border-accent">
                                 <td>
-                                    {{ $item->fecha_solicitud->format('Y-m-d') }}
+                                    {{ $item->created_at->format('d/m/Y') }}
                                 </td>
                                 <td>
                                     {{ $item->solicitante->nombre . ' ' . $item->solicitante->apellido }}

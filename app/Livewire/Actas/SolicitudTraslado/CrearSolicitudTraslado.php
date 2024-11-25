@@ -95,7 +95,6 @@ class CrearSolicitudTraslado extends Component
         $solicitud = new SolicitudTraslado();
         $solicitud->solicitante_id = $solicitanteId;
         $solicitud->aprobador_id = 1; // Opcional, se puede asignar luego
-        $solicitud->fecha_solicitud = Carbon::now();
         $solicitud->save();
 
         // Asociar los mobiliarios seleccionados con la solicitud y actualizar sus ubicaciones

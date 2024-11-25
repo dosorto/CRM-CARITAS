@@ -195,4 +195,14 @@ class CrearActaEntrega extends Component
             }
         }
     }
+
+    public function cancelarArticulo($i)
+    {
+        unset($this->listaEntrega['articulos'][$i]);
+        unset($this->listaEntrega['cantidades'][$i]);
+
+        // Reindexar los arrays para evitar huecos en los índices
+        $this->listaEntrega['articulos'] = array_values($this->listaEntrega['articulos']);
+        $this->listaEntrega['cantidades'] = array_values($this->listaEntrega['cantidades']);
+    }
 }

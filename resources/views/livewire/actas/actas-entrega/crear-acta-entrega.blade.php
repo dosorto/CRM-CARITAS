@@ -102,10 +102,25 @@
                     @if ($listaEntrega && sizeof($listaEntrega['articulos']) > 0)
                         <div class="p-4">
                             @for ($i = 0; $i < sizeof($listaEntrega['articulos']); $i++)
-                                <strong class="text-lg">{{ $listaEntrega['articulos'][$i]->nombre }}</strong>
-                                <br>
-                                Cantidad: {{ $listaEntrega['cantidades'][$i] }}
-                                <hr class="border border-base-content my-1">
+                                <div class="flex flex-col h-max w-full">
+                                    <div class="flex flex-row w-full justify-between">
+                                        <div class="flex flex-col">
+                                            <p>
+                                                <strong class="text-lg">
+                                                    {{ $listaEntrega['articulos'][$i]->nombre }}
+                                                </strong>
+                                            </p>
+                                            <p>
+                                                Cantidad: {{ $listaEntrega['cantidades'][$i] }}
+                                            </p>
+                                        </div>
+                                        <button wire:click="cancelarArticulo( {{ $i }} )"
+                                            class="btn btn-error text-primary-content">
+                                            <span class="icon-[mingcute--delete-2-fill] size-6"></span>
+                                        </button>
+                                    </div>
+                                    <hr class="border border-base-content my-1">
+                                </div>
                             @endfor
                         </div>
                     @else
@@ -133,10 +148,8 @@
     <div class="modal" role="dialog">
         <div class="modal-box bg-neutral">
             <h3 class="text-lg font-bold text-center">Oops...</h3>
-            <p class="py-4">Este código de artículo actualmente no existe en el sistema.</p>
-            <p class="py-4"> <strong>¿Desea Crearlo?</strong> </p>
+            <p class="py-4 text-center">Este código de artículo actualmente no existe en el sistema.</p>
             <div class="modal-action ">
-                <button class="btn btn-success text-base-content"> Crear </button>
                 <label for="alertCreateActaEntrega" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('aprobador_id');
             $table->foreign('aprobador_id')->references('id')->on('users');
 
-            $table->date('fecha_solicitud');
             
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();

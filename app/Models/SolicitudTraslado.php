@@ -14,11 +14,6 @@ class SolicitudTraslado extends BaseModel
 
     protected $table = 'solicitudes_traslado';
 
-    protected $casts = [
-        'fecha_solicitud' => 'datetime',
-    ];
-    
-
     public function solicitante(): BelongsTo
     {
         return $this->belongsTo(User::class, 'solicitante_id', 'id');
