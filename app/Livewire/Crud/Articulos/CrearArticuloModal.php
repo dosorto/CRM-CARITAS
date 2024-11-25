@@ -13,6 +13,7 @@ use Livewire\Component;
 
 class CrearArticuloModal extends Component
 {
+    // nO :)
     public $nombre;
     public $descripcion;
     public $codigo_barra;
