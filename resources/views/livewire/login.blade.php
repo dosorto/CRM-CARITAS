@@ -20,7 +20,7 @@
                 <form wire:submit.prevent="login" class="space-y-4">
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                        <input type="email" id="email" wire:model="email"
+                        <input type="email" id="email" wire:model="email" placeholder="Escribir aquí..."
                             class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-200 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required>
                         @error('email')
@@ -29,7 +29,7 @@
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                        <input type="password" id="password" wire:model="password"
+                        <input type="password" id="password" wire:model="password" placeholder="Escribir aquí..."
                             class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-200 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                             required>
                         @error('password')
@@ -37,13 +37,11 @@
                         @enderror
                     </div>
                     <button type="submit"
-                        class="w-full py-2 font-semibold text-neutral btn btn-primary">
+                        class="w-full py-2 font-semibold text-white btn btn-primary">
                         Ingresar
                     </button>
                 </form>
             </div>
         </div>
     </div>
-
-
 </div>
