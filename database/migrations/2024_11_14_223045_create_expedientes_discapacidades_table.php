@@ -14,11 +14,18 @@ return new class extends Migration
         Schema::create('expedientes_discapacidades', function (Blueprint $table) {
             $table->unsignedBigInteger('expediente_id');
             $table->unsignedBigInteger('discapacidad_id');
-        
+
             $table->primary(['expediente_id', 'discapacidad_id']);
-        
+
             $table->foreign('expediente_id')->references('id')->on('expedientes')->onDelete('cascade');
             $table->foreign('discapacidad_id')->references('id')->on('discapacidades')->onDelete('cascade');
+
+
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
+            $table->timestamps();
+            $table->softDeletes('deleted_at', precision: 0);
         });
     }
 

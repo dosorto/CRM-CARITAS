@@ -14,7 +14,7 @@ class SubCategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('subcategorias')->insert([
+        $subcategorias = [
             ['nombre_subcategoria' => 'Televisor', 'categoria_id' => 1],
             ['nombre_subcategoria' => 'Sintonizador', 'categoria_id' => 1],
             ['nombre_subcategoria' => 'Estufa', 'categoria_id' => 1],
@@ -34,6 +34,11 @@ class SubCategoriaSeeder extends Seeder
             ['nombre_subcategoria' => 'Ropero', 'categoria_id' => 2],
             ['nombre_subcategoria' => 'Organizador', 'categoria_id' => 2],
             ['nombre_subcategoria' => 'Escritorio', 'categoria_id' => 2],
-        ]);
+        ];
+
+        foreach ($subcategorias as $subcategoria)
+        {
+            DB::table('subcategorias')->insert(array_merge($subcategoria, ['created_by' => 1]));
+        }
     }
 }

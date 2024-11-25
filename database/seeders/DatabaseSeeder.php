@@ -25,8 +25,6 @@ class DatabaseSeeder extends Seeder
             MobiliarioSeeder::class,
             CategoriaArticuloSeeder::class,
             ArticuloSeeder::class,
-            ActaEntregaSeeder::class,
-
         ]);
 
         Migrante::factory()->count(100)->create();

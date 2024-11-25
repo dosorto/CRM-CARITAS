@@ -2,14 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DonacionArticulo extends Model
+class DonacionArticulo extends BaseModel
 {
-   
-
     protected $table = 'donacion_articulo';
-
     
     protected $fillable = [
         'id_donacion', 
@@ -18,12 +15,12 @@ class DonacionArticulo extends Model
     ];
 
 
-    public function donacion()
+    public function donacion(): BelongsTo
     {
         return $this->belongsTo(Donacion::class, 'id_donacion');
     }
 
-    public function articulo()
+    public function articulo(): BelongsTo
     {
         return $this->belongsTo(Articulo::class, 'id_articulo');
     }

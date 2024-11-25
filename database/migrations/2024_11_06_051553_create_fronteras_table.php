@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('fronteras', function (Blueprint $table) {
             $table->id();
             $table->string('frontera');
+            
             $table->unsignedBigInteger('departamento_id')->nullable();
             $table->foreign('departamento_id')->references('id')->on('departamentos');
+
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

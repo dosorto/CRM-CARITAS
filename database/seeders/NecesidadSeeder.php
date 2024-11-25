@@ -24,7 +24,8 @@ class NecesidadSeeder extends Seeder
         ];
         foreach ($necesidades as $necesidad) {
             DB::table('necesidades')->insert([
-                'necesidad' => $necesidad
+                'necesidad' => $necesidad,
+                'created_by' => 1
             ]);
         }
     }

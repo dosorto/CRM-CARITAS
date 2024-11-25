@@ -14,7 +14,7 @@ class PaisSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('paises')->insert([
+        $paises = [
             ['nombre_pais' => 'Afganistán', 'codigo_alfa3' => 'AFG', 'codigo_numerico' => '004'],
             ['nombre_pais' => 'Albania', 'codigo_alfa3' => 'ALB', 'codigo_numerico' => '008'],
             ['nombre_pais' => 'Alemania', 'codigo_alfa3' => 'DEU', 'codigo_numerico' => '276'],
@@ -199,6 +199,11 @@ class PaisSeeder extends Seeder
             ['nombre_pais' => 'Yibuti', 'codigo_alfa3' => 'DJI', 'codigo_numerico' => '262'],
             ['nombre_pais' => 'Zambia', 'codigo_alfa3' => 'ZMB', 'codigo_numerico' => '894'],
             ['nombre_pais' => 'Zimbabue', 'codigo_alfa3' => 'ZWE', 'codigo_numerico' => '716'],
-        ]);
+        ];
+
+        foreach ($paises as $pais) 
+        {
+            DB::table('paises')->insert(array_merge($pais, ['created_by' => 1]));
+        }
     }
 }

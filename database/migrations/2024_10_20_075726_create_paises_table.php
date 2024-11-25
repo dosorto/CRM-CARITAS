@@ -14,6 +14,11 @@ return new class extends Migration
             $table->string('nombre_pais', length: 50);
             $table->string('codigo_alfa3', length: 3);
             $table->string('codigo_numerico', length: 3);
+
+
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

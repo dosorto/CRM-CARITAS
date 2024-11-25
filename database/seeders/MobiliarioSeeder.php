@@ -21,7 +21,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000001',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 1
+                'subcategoria_id' => 1,
+                'created_by' => 1
             ],
 
             [
@@ -30,7 +31,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000002',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 2
+                'subcategoria_id' => 2,
+                'created_by' => 1
             ],
 
 
@@ -40,7 +42,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000003',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 3
+                'subcategoria_id' => 3,
+                'created_by' => 1
             ],
 
 
@@ -50,7 +53,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000004',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 4
+                'subcategoria_id' => 4,
+                'created_by' => 1
             ],
 
 
@@ -60,7 +64,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000005',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 14
+                'subcategoria_id' => 14,
+                'created_by' => 1
             ],
 
             [
@@ -69,7 +74,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000006',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 16
+                'subcategoria_id' => 16,
+                'created_by' => 1
             ],
 
             [
@@ -78,7 +84,8 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000007',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 17
+                'subcategoria_id' => 17,
+                'created_by' => 1
             ]
         ]);
     }

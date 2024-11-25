@@ -14,8 +14,14 @@ class CategoriaArticuloSeeder extends Seeder
     public function run(): void
     {
         DB::table('categoria_articulos')->insert([
-            ['name_categoria' => 'Higiene Personal'],
-            ['name_categoria' => 'Aseo del Cuerpo']
+            [
+                'name_categoria' => 'Higiene Personal',
+                'created_by' => 1
+            ],
+            [
+                'name_categoria' => 'Aseo del Cuerpo',
+                'created_by' => 1
+            ]
         ]);
     }
 }

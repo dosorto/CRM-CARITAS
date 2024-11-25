@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('codigo_departamento', length: 5);
             $table->unsignedBigInteger('pais_id');
             $table->foreign('pais_id')->references('id')->on('paises');
+
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

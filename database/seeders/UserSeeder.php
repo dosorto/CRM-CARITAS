@@ -36,12 +36,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123'),
             // 'empleado_id' => 2
         ]);
-        User::create([
-            'name' => 'fernanda',
-            'email' => 'fsbetancourth@unah.hn',
-            'password' => Hash::make('123'),
-            // 'empleado_id' => 2
-        ]);
+
         User::create([
             'nombre' => 'Dacia',
             'apellido' => 'Espinoza',
@@ -53,25 +48,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123'),
             // 'empleado_id' => 2
         ]);
-        User::create([
-            'name' => 'jorlin',
-            'email' => 'jorlin.rosa@unah.hn',
-            'password' => Hash::make('123'),
-            // 'empleado_id' => 2
-        ]);
-        User::create([
-            'name' => 'cristhian',
-            // No se si este es el correo: Magrio
-            'email' => 'cavila@unah.hn',
-            'password' => Hash::make('123'),
-            // 'empleado_id' => 2
-        ]);
-        User::create([
-            'name' => 'mario',
-            'email' => 'mcarbajalg@unah.hn',
-            'password' => Hash::make('123'),
-            // 'empleado_id' => 2
-        ]);
+
 
         $adminRole = Role::where('name', 'admin')->get()[0];
         $permissions = Permission::all();

@@ -12,7 +12,7 @@ class DepartamentoSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('departamentos')->insert([
+        $departamentos = [
             ['nombre_departamento' => 'Atlántida', 'codigo_departamento' => 'HN-AT', 'pais_id' => 74],
             ['nombre_departamento' => 'Colón', 'codigo_departamento' => 'HN-CL', 'pais_id' => 74],
             ['nombre_departamento' => 'Comayagua', 'codigo_departamento' => 'HN-CM', 'pais_id' => 74],
@@ -33,7 +33,11 @@ class DepartamentoSeeder extends Seeder
             ['nombre_departamento' => 'Choluteca', 'codigo_departamento' => 'HN-CH', 'pais_id' => 74],
             ['nombre_departamento' => 'Machiques', 'codigo_departamento' => '0263', 'pais_id' => 179],
             ['nombre_departamento' => 'Atlántico', 'codigo_departamento' => '08', 'pais_id' => 39],
-        ]);
-        
+        ];
+
+        foreach ($departamentos as $departamento) 
+        {
+            DB::table('departamentos')->insert(array_merge($departamento, ['created_by' => 1]));
+        }
     }
 }

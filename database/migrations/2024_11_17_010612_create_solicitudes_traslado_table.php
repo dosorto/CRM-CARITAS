@@ -22,6 +22,9 @@ return new class extends Migration
 
             $table->date('fecha_solicitud');
             
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

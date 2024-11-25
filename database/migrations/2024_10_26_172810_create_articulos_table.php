@@ -23,6 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('categoria_articulos_id');
             $table->foreign('categoria_articulos_id')->references('id')->on('categoria_articulos');
 
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

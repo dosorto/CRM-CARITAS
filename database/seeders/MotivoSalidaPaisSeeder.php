@@ -43,7 +43,8 @@ class MotivoSalidaPaisSeeder extends Seeder
 
         foreach ($motivos as $motivo) {
             DB::table('motivos_salida_pais')->insert([
-                'motivo_salida_pais' => $motivo
+                'motivo_salida_pais' => $motivo,
+                'created_by' => 1
             ]);
         }
     }

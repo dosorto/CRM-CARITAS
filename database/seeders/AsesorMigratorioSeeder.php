@@ -45,6 +45,7 @@ class AsesorMigratorioSeeder extends Seeder
         foreach ($asesoresMigratorios as $asesor) {
             DB::table('asesores_migratorios')->insert([
                 'asesor_migratorio' => $asesor,
+                'created_by' => 1
             ]);
         }
     }

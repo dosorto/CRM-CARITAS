@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string('nombre_donante', 255);
             $table->unsignedBigInteger('tipo_donante_id');
             $table->foreign('tipo_donante_id')->references('id')->on('tipo_donante')->onDelete('cascade');
+
+            $table->integer("created_by");
+            $table->integer("deleted_by")->nullable();
+            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
          });

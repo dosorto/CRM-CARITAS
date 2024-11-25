@@ -35,6 +35,7 @@ class MigranteFactory extends Factory
             'codigo_familiar' => 1,
             'es_lgbt' => 0,
             'fecha_nacimiento' => $this->faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
+            'created_by' => 1
         ];
     }
 }

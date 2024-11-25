@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 use App\Models\TipoDonante;
 use Illuminate\Support\Facades\DB;
+
 class TipoDonanteSeeder extends Seeder
 {
     /**
@@ -17,12 +18,15 @@ class TipoDonanteSeeder extends Seeder
         DB::table('tipo_donante')->insert([
             [
                 'descripcion' => 'ONG',
+                'created_by' => 1
             ],
             [
                 'descripcion' => 'Organización Gubernamental',
+                'created_by' => 1
             ],
             [
                 'descripcion' => 'Persona Natural',
+                'created_by' => 1
             ]
         ]);
     }

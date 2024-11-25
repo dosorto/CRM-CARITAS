@@ -19,7 +19,8 @@ class ArticuloSeeder extends Seeder
                 'codigo_barra' => '012345678012',
                 'cantidad_stock' => 110,
                 'es_insumo' => 0,
-                'categoria_articulos_id' => 1
+                'categoria_articulos_id' => 1,
+                'created_by' => 1
             ],
 
             [
@@ -28,7 +29,8 @@ class ArticuloSeeder extends Seeder
                 'codigo_barra' => '016346739012',
                 'cantidad_stock' => 100,
                 'es_insumo' => 0,
-                'categoria_articulos_id' => 1
+                'categoria_articulos_id' => 1,
+                'created_by' => 1
             ],
 
             [
@@ -37,7 +39,8 @@ class ArticuloSeeder extends Seeder
                 'codigo_barra' => '012345589012',
                 'cantidad_stock' => 60,
                 'es_insumo' => 0,
-                'categoria_articulos_id' => 2
+                'categoria_articulos_id' => 2,
+                'created_by' => 1
             ],
 
             [
@@ -47,6 +50,7 @@ class ArticuloSeeder extends Seeder
                 'cantidad_stock' => 110,
                 'es_insumo' => 1,
                 'categoria_articulos_id' => 2,
+                'created_by' => 1
             ],
 
             [
@@ -56,6 +60,7 @@ class ArticuloSeeder extends Seeder
                 'cantidad_stock' => 70,
                 'es_insumo' => 1,
                 'categoria_articulos_id' => 2,
+                'created_by' => 1
             ]
         ]);
 

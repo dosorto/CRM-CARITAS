@@ -25,6 +25,7 @@ class DiscapacidadSeeder extends Seeder
         foreach ($discapacidades as $discapacidad) {
             DB::table('discapacidades')->insert([
                 'discapacidad' => $discapacidad,
+                'created_by' => 1
             ]);
         }
     }
