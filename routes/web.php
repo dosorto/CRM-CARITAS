@@ -23,7 +23,9 @@ use App\Livewire\Reportes\ReporteMensual;
 use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
-
+use App\Livewire\Actas\SolicitudInsumo\CrearSolicitudInsumos;
+use App\Livewire\Actas\SolicitudInsumo\InfoSolicitudInsumo;
+use App\Livewire\Actas\SolicitudInsumo\VerSolicitudesInsumos;
 use App\Livewire\Actas\SolicitudTraslado\CrearSolicitudTraslado;
 use App\Livewire\Actas\SolicitudTraslado\InfoSolicitudTraslado;
 use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
@@ -33,14 +35,25 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
+use App\Livewire\Pages\Actas\ActasEntrega;
+use App\Livewire\Pages\Actas\ActasEntregaPage;
+use App\Livewire\Pages\ActasOptions;
+use App\Livewire\Pages\MigrantesOptions;
+use App\Livewire\Pages\Reportes;
+use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
+use App\Livewire\Pages\Solicitudes\SolicitudTrasladoPage;
+use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 use App\Livewire\Reportes\ReporteArticulo;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
 
-Route::get('/migrantes', VerMigrantes::class)
+Route::get('/listado-migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
+
+Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
+Route::get('/migrantes', MigrantesOptions::class)->name('migrantes')->middleware('auth');
 
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 
@@ -92,7 +105,7 @@ Route::get('/categoria-articulos', VerCategoriaArticulos::class)
     ->name('ver-categoria-articulos')
     ->middleware('auth');
 
-Route::get('/actas-entrega', VerActasEntrega::class)
+Route::get('/listado-actas-entrega', VerActasEntrega::class)
     ->name('ver-actas-entrega')
     ->middleware('auth');
 
@@ -105,7 +118,22 @@ Route::get('/info-acta-entrega', InfoActaEntrega::class)
     ->middleware('auth');
 
 
-Route::get('/solicitudes-traslado', VerSolicitudesTraslado::class)
+Route::get('/actas-entrega', ActasEntregaPage::class)
+    ->name('actas-entrega-page')
+    ->middleware('auth');
+
+Route::get('/actas', ActasOptions::class)
+    ->name('actas')
+    ->middleware('auth');
+
+
+
+
+Route::get('/solicitudes-traslado', SolicitudesTrasladoPage::class)
+    ->name('solicitudes-traslado-page')
+    ->middleware('auth');
+
+Route::get('/listado-solicitudes-traslado', VerSolicitudesTraslado::class)
     ->name('ver-solicitudes-traslado')
     ->middleware('auth');
 
@@ -117,7 +145,13 @@ Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
     ->name('info-solicitud-traslado')
     ->middleware('auth');
 
-Route::get('/reportes', ReporteMensual::class)->name('reporte-mensual')->middleware('auth');
+Route::get('/reporte-mensual', ReporteMensual::class)
+    ->name('reporte-mensual')
+    ->middleware('auth');
+
+Route::get('/reportes', Reportes::class)
+    ->name('reportes')
+    ->middleware('auth');
 
 
 Route::post('/logout', function () {
@@ -141,6 +175,23 @@ Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
 
 Route::get('/fronteras', VerFronteras::class)
     ->name('ver-fronteras')
+    ->middleware('auth');
+
+
+Route::get('/solicitudes-insumos', SolicitudesInsumosPage::class)
+    ->name('solicitudes-insumos-page')
+    ->middleware('auth');
+
+Route::get('/listado-solicitudes-insumos', VerSolicitudesInsumos::class)
+    ->name('ver-solicitudes-insumos')
+    ->middleware('auth');
+
+Route::get('/solicitud-insumo', InfoSolicitudInsumo::class)
+    ->name('info-solicitud-insumos')
+    ->middleware('auth');
+
+Route::get('/crear-solicitud-insumos', CrearSolicitudInsumos::class)
+    ->name('crear-solicitud-insumos')
     ->middleware('auth');
 
 Route::get('/reporte-articulos', ReporteArticulo::class)

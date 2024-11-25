@@ -54,8 +54,6 @@
                 {{-- Grupo de elementos de enlace --}}
                 <div class="p-4 flex-grow text-primary-content">
                     <livewire:components.icon-link-group />
-
-
                 </div>
 
 
