@@ -67,11 +67,15 @@
                 </article>
                 <article>
                     <livewire:components.link-card title="Asesores Migratorios" cardWidth="w-full"
-                        iconClass="icon-[fa6-solid--person-walking-luggage] size-6" route="ver-asesores-migratorios" />
+                        iconClass="icon-[tabler--navigation-heart] size-6" route="ver-asesores-migratorios" />
                 </article>
                 <article>
                     <livewire:components.link-card title="Fronteras" cardWidth="w-full"
                         iconClass="icon-[maki--police] size-6" route="ver-fronteras" />
+                </article>
+                <article>
+                    <livewire:components.link-card title="Necesidades" cardWidth="w-full"
+                        iconClass="icon-[hugeicons--bubble-chat-favourite] size-6" route="ver-necesidades" />
                 </article>
             </div>
         </div>

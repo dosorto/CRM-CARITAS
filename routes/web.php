@@ -33,6 +33,7 @@ use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
+use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 use App\Livewire\Pages\Actas\ActasEntrega;
@@ -163,6 +164,10 @@ Route::post('/logout', function () {
 
 Route::get('/discapacidades', VerDiscapacidades::class)
     ->name('ver-discapacidades')
+    ->middleware('auth');
+
+Route::get('/necesidades', VerNecesidades::class)
+    ->name('ver-necesidades')
     ->middleware('auth');
 
 Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
