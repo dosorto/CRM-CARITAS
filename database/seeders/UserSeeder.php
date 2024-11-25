@@ -23,7 +23,6 @@ class UserSeeder extends Seeder
             'estado_civil' => 'Soltero/a',
             'email' => 'sabas.portillo@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
         User::create([
             'nombre' => 'Ingrid',
@@ -34,7 +33,6 @@ class UserSeeder extends Seeder
             'estado_civil' => 'Soltero/a',
             'email' => 'ibaquedano@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
         User::create([
             'nombre' => 'Fernanda',
@@ -45,7 +43,6 @@ class UserSeeder extends Seeder
             'estado_civil' => 'Soltero/a',
             'email' => 'fsbetancourth@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
         User::create([
             'nombre' => 'Dacia',
@@ -56,7 +53,6 @@ class UserSeeder extends Seeder
             'estado_civil' => 'Soltero/a',
             'email' => 'dacia.espinoza@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
         User::create([
             'nombre' => 'Jorlin',
@@ -67,7 +63,6 @@ class UserSeeder extends Seeder
             'estado_civil' => 'Soltero/a',
             'email' => 'jorlin.rosa@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
         User::create([
             'nombre' => 'Cristhian',
@@ -76,10 +71,8 @@ class UserSeeder extends Seeder
             'telefono' => '8810-0306',
             'fecha_nacimiento' => '2000-01-01',
             'estado_civil' => 'Soltero/a',
-            // No se si este es el correo: Magrio
             'email' => 'cavila@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
         User::create([
             'nombre' => 'Mario',
@@ -90,7 +83,6 @@ class UserSeeder extends Seeder
             'estado_civil' => 'Soltero/a',
             'email' => 'mcarbajalg@unah.hn',
             'password' => Hash::make('123'),
-            // 'empleado_id' => 2
         ]);
 
         $adminRole = Role::where('name', 'admin')->get()[0];
