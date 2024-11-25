@@ -36,7 +36,17 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123'),
             // 'empleado_id' => 2
         ]);
-
+        User::create([
+            'nombre' => 'Fernanda',
+            'apellido' => 'Betancourth',
+            'identidad' => '0000000000002',
+            'telefono' => '88241492',
+            'fecha_nacimiento' => '2002-09-05',
+            'estado_civil' => 'Soltero/a',
+            'email' => 'fsbetancourth@unah.hn',
+            'password' => Hash::make('123'),
+            // 'empleado_id' => 2
+        ]);
         User::create([
             'nombre' => 'Dacia',
             'apellido' => 'Espinoza',
@@ -48,7 +58,40 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123'),
             // 'empleado_id' => 2
         ]);
-
+        User::create([
+            'nombre' => 'Jorlin',
+            'apellido' => 'Rosa',
+            'identidad' => '0000000000004',
+            'telefono' => '87368208',
+            'fecha_nacimiento' => '2000-07-12',
+            'estado_civil' => 'Soltero/a',
+            'email' => 'jorlin.rosa@unah.hn',
+            'password' => Hash::make('123'),
+            // 'empleado_id' => 2
+        ]);
+        User::create([
+            'nombre' => 'Cristhian',
+            'apellido' => 'Ávila',
+            'identidad' => '0000000000005',
+            'telefono' => '8810-0306',
+            'fecha_nacimiento' => '2000-01-01',
+            'estado_civil' => 'Soltero/a',
+            // No se si este es el correo: Magrio
+            'email' => 'cavila@unah.hn',
+            'password' => Hash::make('123'),
+            // 'empleado_id' => 2
+        ]);
+        User::create([
+            'nombre' => 'Mario',
+            'apellido' => 'Carbajal',
+            'identidad' => '0601200303381',
+            'telefono' => '97639800',
+            'fecha_nacimiento' => '2003-09-02',
+            'estado_civil' => 'Soltero/a',
+            'email' => 'mcarbajalg@unah.hn',
+            'password' => Hash::make('123'),
+            // 'empleado_id' => 2
+        ]);
 
         $adminRole = Role::where('name', 'admin')->get()[0];
         $permissions = Permission::all();
