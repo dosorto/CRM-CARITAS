@@ -6,10 +6,14 @@
         </div>
     </header>
 
-    <div class="flex flex-col justify-between h-full overflow-y-auto">
-        <main class="flex items-center h-full">
+    <main class="overflow-auto size-full p-4 flex flex-col">
 
-            <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
+
+        <div class="flex flex-col">
+            <h2 class="text-xl font-semibold">
+                Regiones
+            </h2>
+            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
                 <article>
                     <livewire:components.link-card title="Paises" cardWidth="w-full" iconClass="icon-[vaadin--flag] size-6"
                         route="ver-paises" />
@@ -22,6 +26,36 @@
                     <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
                         iconClass="icon-[solar--city-bold] size-6" route="ver-ciudades" />
                 </article>
+            </div>
+
+        </div>
+        <hr class="border-2 border-accent">
+
+
+        <div class="flex flex-col mt-6">
+            <h2 class="text-xl font-semibold">
+                Donaciones
+            </h2>
+            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
+                <article>
+                    <livewire:components.link-card title="Donantes" cardWidth=" w-full"
+                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-donantes" />
+                </article>
+                <article>
+                    <livewire:components.link-card title="TipoDonantes" cardWidth=" w-full"
+                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-tipo-donantes" />
+                </article>
+            </div>
+
+        </div>
+        <hr class="border-2 border-accent">
+
+
+        <div class="flex flex-col mt-6">
+            <h2 class="text-xl font-semibold">
+                Expedientes de Migrantes
+            </h2>
+            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
                 <article>
                     <livewire:components.link-card title="Discapacidades" cardWidth="w-full"
                         iconClass="icon-[material-symbols--accessibility-rounded] size-6" route="ver-discapacidades" />
@@ -39,14 +73,16 @@
                     <livewire:components.link-card title="Fronteras" cardWidth="w-full"
                         iconClass="icon-[maki--police] size-6" route="ver-fronteras" />
                 </article>
-                <article>
-                    <livewire:components.link-card title="TipoDonantes" cardWidth=" w-full"
-                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-tipo-donantes" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Donantes" cardWidth=" w-full"
-                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-donantes" />
-                </article>
+            </div>
+        </div>
+        <hr class="border-2 border-accent">
+
+
+        <div class="flex flex-col mt-6">
+            <h2 class="text-xl font-semibold">
+                Artículos y Mobiliario
+            </h2>
+            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
                 <article>
                     <livewire:components.link-card title="Artículos" cardWidth="w-full"
                         iconClass="icon-[material-symbols--sanitizer-rounded] size-6" route="ver-articulos" />
@@ -56,13 +92,15 @@
                         iconClass="icon-[icon-park-solid--bedside-two] size-6" route="ver-mobiliarios" />
                 </article>
             </div>
-        </main>
+        </div>
+        <hr class="border-2 border-accent">
+    </main>
 
-        {{-- Footer fijo en la parte inferior --}}
-        <footer class="h-auto flex justify-start bg-neutral text-base-content p-4">
-            <aside>
 
-            </aside>
-        </footer>
-    </div>
+    {{-- Footer fijo en la parte inferior --}}
+    <footer class="h-auto flex justify-start bg-neutral text-base-content p-4">
+        <aside>
+
+        </aside>
+    </footer>
 </div>

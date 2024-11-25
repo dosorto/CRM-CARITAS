@@ -6,7 +6,7 @@
         </div>
     </header>
 
-    <div class="flex flex-col justify-between h-full">
+    <div class="flex flex-col justify-between h-full overflow-auto">
         <main class="h-full overflow-y-auto w-full p-4">
             {{-- KPI's --}}
             <section class="flex justify-between space-x-4 w-full">
@@ -63,7 +63,7 @@
                 <article class="w-1/3 border-2 border-dashed border-gray-400 p-4 rounded-lg h-full">
                     <x-chartjs-component :chart="$chartDonut" />
                 </article>
-                <article class="w-2/3 border-2 border-dashed border-gray-400 p-4 rounded-lg  h-full">
+                <article class="w-2/3 border-2 border-dashed border-gray-400 p-4 rounded-lg h-full">
                     <x-chartjs-component :chart="$chart" />
                 </article>
             </section>
