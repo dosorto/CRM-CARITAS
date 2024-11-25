@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\CategoriaArticulos;
 
+use App\Livewire\Components\ContentTable;
 use Livewire\Component;
 
 class EditarCategoriaArticulosModal extends Component
@@ -22,8 +23,8 @@ class EditarCategoriaArticulosModal extends Component
 
         $nueva_categoria->save();
 
-        $this->dispatch('cerrar-modal');
-        $this->dispatch('item-edited');
+        $this->dispatch('cerrar-modal')->self();
+        $this->dispatch('item-edited')->to(ContentTable::class);
     }
 
     public function initForm()
@@ -31,11 +32,16 @@ class EditarCategoriaArticulosModal extends Component
         $this->Nombre = $this->item->name_categoria;
     }
 
+    public function closeModal()
+    {
+        $this->dispatch('cerrar-modal')->self();
+        $this->initForm();
+    }
+
     public function mount($parameters)
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->initForm();
     }
 
     public function render()
