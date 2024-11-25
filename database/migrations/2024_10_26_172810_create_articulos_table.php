@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('codigo_barra')->unique()->nullable();
             $table->integer('cantidad_stock');
 
+            $table->boolean('es_insumo')->default(false);
+
             $table->unsignedBigInteger('categoria_articulos_id');
             $table->foreign('categoria_articulos_id')->references('id')->on('categoria_articulos');
 

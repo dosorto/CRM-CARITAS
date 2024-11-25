@@ -23,7 +23,9 @@ use App\Livewire\Reportes\ReporteMensual;
 use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
 use App\Livewire\Actas\ActasEntrega\InfoActaEntrega;
 use App\Livewire\Actas\ActasEntrega\VerActasEntrega;
-
+use App\Livewire\Actas\SolicitudInsumo\CrearSolicitudInsumos;
+use App\Livewire\Actas\SolicitudInsumo\InfoSolicitudInsumo;
+use App\Livewire\Actas\SolicitudInsumo\VerSolicitudesInsumos;
 use App\Livewire\Actas\SolicitudTraslado\CrearSolicitudTraslado;
 use App\Livewire\Actas\SolicitudTraslado\InfoSolicitudTraslado;
 use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
@@ -33,6 +35,7 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
+use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -139,4 +142,21 @@ Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
 
 Route::get('/fronteras', VerFronteras::class)
     ->name('ver-fronteras')
+    ->middleware('auth');
+
+
+Route::get('/solicitudes-insumos', SolicitudesInsumosPage::class)
+    ->name('solicitudes-insumos-page')
+    ->middleware('auth');
+
+Route::get('/listado-solicitudes-insumos', VerSolicitudesInsumos::class)
+    ->name('ver-solicitudes-insumos')
+    ->middleware('auth');
+
+Route::get('/solicitud-insumo', InfoSolicitudInsumo::class)
+    ->name('info-solicitud-insumos')
+    ->middleware('auth');
+
+Route::get('/crear-solicitud-insumos', CrearSolicitudInsumos::class)
+    ->name('crear-solicitud-insumos')
     ->middleware('auth');
