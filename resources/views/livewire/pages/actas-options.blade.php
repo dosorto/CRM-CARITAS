@@ -20,6 +20,10 @@
                     <livewire:components.link-card title="Solicitud de Traslado" cardWidth="w-full"
                         iconClass="icon-[mdi--file-replace-outline] size-6" route="solicitudes-traslado-page" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="Solicitud de Insumos" cardWidth="w-full"
+                        iconClass="icon-[lsicon--goods-search-filled] size-6" route="solicitudes-insumos-page" />
+                </article>
             </div>
         </main>
 
