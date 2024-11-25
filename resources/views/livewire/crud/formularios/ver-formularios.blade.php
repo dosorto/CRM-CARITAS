@@ -1,45 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
-
-        /* Configuración para usar la tipografía Figtree */
-        body {
-            font-family: 'Figtree', sans-serif;
-        }
-
-        /* Estilos para imprimir solo la sección deseada */
-        @media print {
-            /* Oculta todo menos la sección que queremos imprimir */
-            body * {
-                visibility: hidden;
-            }
-
-            .print-section, .print-section * {
-                visibility: visible;
-            }
-
-            /* Mueve la sección de impresión al inicio de la página en el modo de impresión */
-            .print-section {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-            }
-        }
-    </style>
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center py-8 ">
+<main class=" min-h-screen flex flex-col items-center justify-center py-8 ">
     <!-- Contenedor del formulario -->
-    <div id="formulario-captura" class="relative bg-white p-8 rounded-lg shadow-lg max-w-3xl w-full space-y-6 print-section">
+    <div id="formulario-captura"
+        class="relative bg-white p-8 rounded-lg shadow-lg max-w-3xl w-full space-y-6 print-section">
 
         <!-- Logo superior izquierdo -->
         <img src="/img/LOGO1.png" class="absolute top-4 left-0 h-10 w-30 m-4" alt="Logo izquierdo">
@@ -48,15 +10,17 @@
         <img src="/img/LOGO2.png" class="absolute top-3 right-0 h-10 w-30 m-4" alt="Logo derecho">
 
         <!-- Título del formulario -->
-        <h2 class="text-3xl font-bold text-center mb-0 text-gray-800">Centro de Atención Cáritas</h2>
-        <h3 class="text-xl font-semibold text-center mb-0 text-gray-600">Mons. Guido Charbonneau</h3>
-        <h4 class="text-lg text-center mb-0 text-gray-500">Ficha de Registro / Consentimiento Entrada y Salida</h4>
+        <div class="¿size-max flex flex-col justify-center text-center">
 
+
+            <h2 class="text-3xl font-bold text-center mb-0 text-gray-800">Centro de Atención Cáritas</h2>
+            <h3 class="text-xl font-semibold text-center mb-0 text-gray-600">Mons. Guido Charbonneau</h3>
+            <h4 class="text-lg text-center mb-0 text-gray-500">Ficha de Registro / Consentimiento Entrada y Salida</h4>
+        </div>
         <!-- Formulario de Registro -->
-        <form id="registroForm" class="space-y-6">
-
+        <section id="registroForm" class="space-y-6">
             <!-- Sección: Datos Generales -->
-            <div>
+            <div class="flex flex-col w-full">
                 <p class="text-lg font-semibold text-gray-700 mb-4">I. Datos Generales</p>
 
                 <div class="flex flex-row gap-6 w-full mb-4">
@@ -165,21 +129,50 @@
                 </div>
             </div>
 
+
             <!-- Texto final -->
-            <div class="flex flex-col mb-2">
+            <div class="flex flex-col">
                 <p class="text-justify text-gray-700">
-                    Mediante la presente manifiesto que solicito estadía temporal en el "CENTRO DE ATENCION CÁRITAS MONS. GUIDO CHARBONNEAU", tengo conocimiento del contenido del reglamento en el Centro de Atención, el cual cumpliré en todo y cada una de sus partes, así mismo doy mi consentimiento para que mi información sea socializada con la Agencia de la ONU para los Refugiados (ACNUR) o cualquier organización internacional que apoye el tema de migración, para constancia firmo el presente documento.
+
+                    Solicito estadía temporal en el "Centro de Atención Cáritas Mons. Guido Charbonneau". Declaro
+                    conocer y aceptar el reglamento del centro, y autorizo compartir mi información con ACNUR u otras
+                    organizaciones internacionales de apoyo migratorio. Firmo para constancia.
+
+                    {{-- Mediante la presente manifiesto que solicito estadía temporal en el "CENTRO DE ATENCION CÁRITAS
+                    MONS. GUIDO CHARBONNEAU", tengo conocimiento del contenido del reglamento en el Centro de Atención,
+                    el cual cumpliré en todo y cada una de sus partes, así mismo doy mi consentimiento para que mi
+                    información sea socializada con la Agencia de la ONU para los Refugiados (ACNUR) o cualquier
+                    organización internacional que apoye el tema de migración, para constancia firmo el presente
+                    documento. --}}
                 </p>
             </div>
 
             <!-- Firma Ingreso -->
-            <div class="flex flex-col mb-2">
-                <label for="firma" class="text-gray-600 mb-1">Firma Ingreso:</label>
-                <input type="text" id="firma" name="firma" class="px-4 py-2 border-b border-gray-400 w-3/4">
+            <div class="flex flex-col">
+                <div class="w-full items-center flex justify-center flex-col mb-12 mt-12">
+                    <hr class="border border-gray-500 w-1/3">
+                    <label for="firma" class="text-gray-600">Firma Ingreso:</label>
+                </div>
+                <div class="w-full flex gap-4 justify-between">
+                    <div class="w-full flex justify-center">
+                        <label for="firma" class="text-gray-600">Fecha de Salida:</label>
+                        <hr class="border border-gray-500 w-3/5">
+                    </div>
+                    <div class="w-full items-center flex justify-center flex-col">
+                        <hr class="border border-gray-500 w-3/5">
+                        <label for="firma" class="text-gray-600">Firma Salida:</label>
+                    </div>
+                </div>
+
             </div>
 
-                <!-- Botón de imprimir -->
-    <div class="flex justify-end mt-4">
+
+
+        </section>
+
+    </div>
+    <!-- Botón de imprimir -->
+    <div class="flex justify-center mt-6">
         <button @click="window.print()" class="btn bg-primary text-primary-content border-none print-button">
             Imprimir
         </button>
@@ -197,7 +190,7 @@
 
             /* Oculta todo menos la sección que queremos imprimir */
             body * {
-                visibility: hidden;
+                visibility: hidden; 
             }
 
             .print-section,

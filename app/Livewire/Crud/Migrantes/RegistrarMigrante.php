@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
-use App\Models\Migrante;
+use App\Services\MigranteService;
+use Exception;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Lazy;
@@ -10,6 +11,7 @@ use Livewire\Attributes\Lazy;
 #[Lazy()]
 class RegistrarMigrante extends Component
 {
+
     public function placeholder()
     {
         return <<<'HTML'
@@ -19,10 +21,10 @@ class RegistrarMigrante extends Component
         HTML;
     }
 
-    public $currentStep;
 
     public function mount()
     {
+
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
             session([
@@ -30,28 +32,28 @@ class RegistrarMigrante extends Component
                 'totalSteps' => 5,
             ]);
         }
-
-        $this->currentStep = session('currentStep');
     }
 
     public function render()
     {
-        // session(['currentStep' => 1]);
+
         return view('livewire.crud.migrantes.registrar-migrante');
     }
+
+
 
     #[On('identificacion-validated')]
     public function identificacionStep()
     {
-        $migrante = Migrante::select('id', 'primer_nombre', 'primer_apellido')
-            ->where('numero_identificacion', session('identificacion'))
-            ->first();
+        $migrante = $this->getMigranteService()->buscar('numero_identificacion', session('datosPersonales')['identificacion']);
 
         if ($migrante) {
-            session(['idMigrante' => $migrante->id]);
-            session()->flash('message', '¡Nueva visita por parte de: ' . $migrante->primer_nombre . ' ' . $migrante->primer_apellido . '!');
-            session()->flash('type', 'alert-info');
-            session()->flash('alertIcon', 'akar-icons--info');
+
+            // Si ya existe el migrante, saltarse los pasos datos Personales.
+            // session()->forget(['datosPersonales']);
+            session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
+            session(['identificacion' => $migrante->numero_identificacion]);
+            session(['migranteId' => $migrante->id]);
             session(['currentStep' => 4]);
         } else {
             $this->nextStep();
@@ -63,11 +65,45 @@ class RegistrarMigrante extends Component
     {
         $this->nextStep();
     }
+
+    #[On('familiar-validated')]
+    public function familiarStep()
+    {
+
+        if (session('migranteCreado')) {
+            $this->nextStep();
+        } else {
+            // Obtener los datos actuales de la sesión
+            $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
+
+            try {
+
+                $idMigrante = $this->getMigranteService()->guardarDatosPersonales($datos);
+
+                if ($idMigrante) {
+
+
+                    session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
+                    session(['identificacion' => $datos['identificacion']]);
+                    session(['migranteId' => $idMigrante]);
+
+                    session(['migranteCreado' => true]);
+
+                    $this->nextStep();
+                }
+            } catch (Exception $e) {
+                dump('ha ocurrido un error al guardar datos personales');
+            }
+        }
+    }
+
+
     #[On('datos-migratorios-validated')]
     public function datosMigratoriosStep()
     {
         $this->nextStep();
     }
+
     #[On('situacion-validated')]
     public function situacionStep()
     {
@@ -87,12 +123,16 @@ class RegistrarMigrante extends Component
         if ($newExpedienteId) {
             session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
             session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
-
+            
             // dd($newExpedienteId);
             session(['expedienteId' => $newExpedienteId]);
         }
-        $this->nextStep();
+
+        $this->redirect(route('ver-expediente'));
     }
+
+
+
 
     #[On('previous-step')]
     public function previousStep()
@@ -107,12 +147,8 @@ class RegistrarMigrante extends Component
         session(['currentStep' => $currentStep]);
     }
 
-    function dividirNombre($cadena)
+    public function getMigranteService()
     {
-        $partes = explode(' ', $cadena, 2); // Divide en 2 partes, donde el primer elemento es el primero
-        $primero = $partes[0]; // Primer palabra es el primer nombre o apellido
-        $segundo = isset($partes[1]) ? $partes[1] : ''; // Resto del string es el segundo nombre o apellido (o vacío si no hay)
-
-        return [$primero, $segundo];
+        return app(MigranteService::class);
     }
 }
