@@ -5,7 +5,7 @@
         Añadir
     </label>
 
-    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" checked />
+    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-3/5 max-w-5xl bg-neutral">
 
