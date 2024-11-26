@@ -76,13 +76,14 @@ class FamiliarStep extends Component
             $this->personas = $this->textToFind === '' ?
                 $this->getMigranteService()->getAllMigrantes()
                 :
-                $this->getMigranteService()->filtrar($this->fakeColNames[$this->colSelected], $this->textToFind);
+                $this->getMigranteService()->filter($this->fakeColNames[$this->colSelected], $this->textToFind);
         }
     }
 
     public function selectRelated($personaId)
     {
-        $this->familiar = Migrante::find($personaId);
+        $this->familiar = $this->getMigranteService()->buscar('id', $personaId);
+        // $this->familiar = Migrante::find($personaId);
     }
 
     public function nextStep()
@@ -100,9 +101,8 @@ class FamiliarStep extends Component
             'viajaEnGrupo' => $this->viajaEnGrupo,
             'tieneFamiliar' => $this->tieneFamiliar
         ]);
-        
-        $this->dispatch('familiar-validated')
-            ->to(RegistrarMigrante::class);
+
+        $this->dispatch('familiar-validated')->to(RegistrarMigrante::class);
     }
 
     public function getMigranteService()

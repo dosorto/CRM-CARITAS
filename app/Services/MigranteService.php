@@ -5,9 +5,11 @@ namespace App\Services;
 use App\Models\Expediente;
 use App\Models\Migrante;
 use Exception;
+use Livewire\WithPagination;
 
 class MigranteService
 {
+    use WithPagination;
 
     public function guardarDatosPersonales($datosPersonales)
     {
@@ -57,7 +59,7 @@ class MigranteService
         return [$primero, $segundo];
     }
 
-    public function filtrar(string $col, string $text)
+    public function filter(string $col, string $text)
     {
         return Migrante::select(
             'id',
@@ -77,6 +79,27 @@ class MigranteService
             ->with('pais')
             ->where($col, 'LIKE', '%' . $text . '%')
             ->get();
+    }
+    public function filterPaginated(string $col, string $text, $pagination)
+    {
+        return Migrante::select(
+            'id',
+            'codigo_familiar',
+            'primer_nombre',
+            'primer_apellido',
+            'segundo_nombre',
+            'segundo_apellido',
+            'numero_identificacion',
+            'tipo_identificacion',
+            'fecha_nacimiento',
+            'pais_id',
+            'es_lgbt',
+            'estado_civil',
+            'sexo'
+        )
+            ->with('pais')
+            ->where($col, 'LIKE', '%' . $text . '%')
+            ->paginate($pagination);
     }
 
     public function getAllMigrantes()
@@ -98,6 +121,27 @@ class MigranteService
         )
             ->with('pais')
             ->get();
+    }
+
+    public function getAllMigrantesPaginated($pagination)
+    {
+        return Migrante::select(
+            'id',
+            'codigo_familiar',
+            'primer_nombre',
+            'primer_apellido',
+            'segundo_nombre',
+            'segundo_apellido',
+            'numero_identificacion',
+            'tipo_identificacion',
+            'fecha_nacimiento',
+            'pais_id',
+            'es_lgbt',
+            'estado_civil',
+            'sexo'
+        )
+            ->with('pais')
+            ->paginate($pagination);
     }
 
     public function buscar($col, $text)
