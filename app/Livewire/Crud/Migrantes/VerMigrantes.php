@@ -52,6 +52,12 @@ class VerMigrantes extends Component
         $this->colSelected = 'Número de Identificación';
     }
 
+    public function registrarSalida($id)
+    {
+        session(['migranteId' => $id]);
+        return redirect(route('registrar-salida-migrante'));
+    }
+
     public function getMigranteService()
     {
         return app(MigranteService::class);

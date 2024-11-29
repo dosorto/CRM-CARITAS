@@ -33,6 +33,7 @@ use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Fronteras\VerFronteras;
+use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
@@ -56,7 +57,7 @@ Route::get('/listado-migrantes', VerMigrantes::class)
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 Route::get('/migrantes', MigrantesOptions::class)->name('migrantes')->middleware('auth');
 
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
+Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)->name('registrar-salida-migrante')->middleware('auth');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
