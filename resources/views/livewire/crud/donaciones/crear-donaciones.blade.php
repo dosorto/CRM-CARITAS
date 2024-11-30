@@ -1,4 +1,5 @@
 <div class="h-screen w-full flex flex-col px-6 overflow-hidden">
+
     {{-- Título y botón para listado --}}
     <header class="flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Crear Donación</h1>
@@ -14,7 +15,7 @@
         {{-- Selección de Donante, Fecha y Artículos --}}
         <section class="w-3/5 p-4 overflow-y-auto">
             {{-- Buscador de Donante --}}
-            <div class="w-full flex flex-col">
+            <div class="w-full flex flex-col mb-4">
                 <label for="donante" class="text-lg font-semibold label">Buscar Donante:</label>
                 <input wire:model="nombre_donante" class="input input-bordered bg-accent" type="text" id="donante"
                     list="donantes" placeholder="Escribe el nombre del donante...">
@@ -37,14 +38,13 @@
             {{-- Selección de Artículo --}}
             <form wire:submit.prevent="selectArticulo">
                 <div class="flex gap-4">
-                    <div class="flex flex-col w-3/5">
+                    <div class="flex flex-col w-3/5 mb-4">
                         <label for="articulo" class="text-lg font-semibold">Codigo del Artículo</label>
-                        <input wire:model="nombre_articulo" list="dataArticulos" id="articulo" type="text"
+                        <input wire:model="codigo_barra" list="dataArticulos" id="articulo" type="text"
                             class="input bg-accent" placeholder="Escribir nombre del artículo...">
                         <datalist id="dataArticulos">
                             @foreach ($articulos as $articulo)
-                                <option value="{{ $articulo->nombre }}" data-id="{{ $articulo->id }}">
-                                    {{ $articulo->codigo_barra }}
+                                <option value="{{ $articulo->codigo_barra }}">
                                     {{ $articulo->nombre }}
                                 </option>
                             @endforeach
@@ -80,12 +80,12 @@
             <hr class="border border-gray-400 mb-2">
 
             <div class="flex-1 overflow-y-auto">
-                @if ($selectedArticulos)
+                @if ($cantidad)
                     <ul>
-                        @foreach ($selectedArticulos as $articuloId)
+                        @foreach ($cantidad as $articuloId => $cantidad)
                             <li class="flex justify-between mb-2">
                                 <span>{{ $articulos->find($articuloId)->nombre ?? 'Artículo desconocido' }}
-                                    (Cantidad: {{ $cantidad[$articuloId] ?? 0 }})
+                                    (Cantidad: {{ $cantidad ?? 0 }})
                                 </span>
                                 <button wire:click="removeArticulo({{ $articuloId }})"
                                     class="btn btn-error btn-sm">Eliminar</button>

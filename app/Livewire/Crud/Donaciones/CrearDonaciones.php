@@ -7,7 +7,6 @@ use App\Models\Donacion;
 use App\Models\DonacionArticulo;
 use App\Models\Donante;
 use Carbon\Carbon;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 
@@ -15,21 +14,18 @@ class CrearDonaciones extends Component
 {
     public $id_donante;
     public $fecha_donacion;
-    public $selectedArticulos = [];
     public $cantidad = [];
-    public $codigo; // Código del artículo seleccionado
     public $cantidadSeleccionada; // Cantidad del artículo seleccionado
     public $donantes;
     public $articulos;
     public $nombre_donante;
     public $idArticulo;
-    public $nombre_articulo;
+    public $codigo_barra;
 
     public function create()
     {
-        $validated = $this->validate([
+        $this->validate([
             'id_donante' => 'required|exists:donantes,id',
-            'selectedArticulos' => 'required|array|min:1',
             'cantidad.*' => 'required|integer|min:1',
             'fecha_donacion' => 'required|date',
         ]);
@@ -39,15 +35,7 @@ class CrearDonaciones extends Component
             'fecha_donacion' => $this->fecha_donacion,
         ]);
 
-        // foreach ($this->selectedArticulos as $articuloId) {
-        //     if (isset($this->cantidad[$articuloId]) && $this->cantidad[$articuloId] > 0) {
-        //         DonacionArticulo::create([
-        //             'id_donacion' => $donacion->id,
-        //             'id_articulo' => $articuloId,
-        //             'cantidad_donada' => $this->cantidad[$articuloId],
-        //         ]);
-
-        foreach ($this->selectedArticulos as $articuloId) {
+        foreach ($this->cantidad as $articuloId => $cantidad) {
             if (isset($this->cantidad[$articuloId]) && $this->cantidad[$articuloId] > 0) {
                 DonacionArticulo::create([
                     'id_donacion' => $donacion->id,
@@ -61,13 +49,11 @@ class CrearDonaciones extends Component
                     $articulo->cantidad_stock += $this->cantidad[$articuloId];
                     $articulo->save();
                 }
-
-
             }
         }
-        $this->resetForm(); // Resetea los datos del formulario
-        //$this->dispatchBrowserEvent('notify', ['type' => 'success', 'message' => 'Donación registrada exitosamente.']);
+        $this->resetForm();
 
+        return $this->redirect(route('ver-donaciones'));
     }
 
 
@@ -75,26 +61,26 @@ class CrearDonaciones extends Component
     public function selectArticulo()
     {
         $this->validate([
-            'nombre_articulo' => 'required|string',
+            'codigo_barra' => 'required|string',
             'cantidadSeleccionada' => 'required|integer|min:1',
         ]);
 
         // Buscar el artículo por su nombre
-        $articulo = Articulo::where('nombre', $this->nombre_articulo)->first();
+        $articulo = Articulo::where('codigo_barra', $this->codigo_barra)->first();
 
         if (!$articulo) {
-            $this->addError('nombre_articulo', 'El artículo no existe.');
-            return;
+            return redirect(route('ver-articulos'));
         }
 
         // Añadir el artículo si no está ya seleccionado
-        if (!in_array($articulo->id, $this->selectedArticulos)) {
-            $this->selectedArticulos[] = $articulo->id;
+        if (!array_key_exists($articulo->id, $this->cantidad)) {
             $this->cantidad[$articulo->id] = $this->cantidadSeleccionada;
+        } else {
+            $this->cantidad[$articulo->id] += $this->cantidadSeleccionada;
         }
 
         // Restablecer los campos de nombre y cantidad
-        $this->nombre_articulo = '';
+        $this->codigo_barra = '';
         $this->cantidadSeleccionada = '';
     }
 
@@ -102,7 +88,6 @@ class CrearDonaciones extends Component
 
     public function resetArticuloInputs()
     {
-        $this->codigo = null;
         $this->cantidadSeleccionada = null;
         $this->dispatch('focus-codigo')->self();
     }
@@ -111,9 +96,7 @@ class CrearDonaciones extends Component
     {
         $this->id_donante = null;
         $this->fecha_donacion = null;
-        $this->selectedArticulos = [];
         $this->cantidad = [];
-        $this->codigo = null;
         $this->cantidadSeleccionada = null;
     }
 
@@ -122,7 +105,6 @@ class CrearDonaciones extends Component
         $this->fecha_donacion = Carbon::now()->format('Y-m-d');
         $this->donantes = Donante::all();
         $this->articulos = Articulo::all();
-
     }
 
     public function updatedNombreDonante($nombre)
@@ -137,18 +119,14 @@ class CrearDonaciones extends Component
 
     public function removeArticulo($articuloId)
     {
-        unset($this->selectedArticulos['articulos'][$articuloId]);
-        unset($this->selectedArticulos['cantidades'][$articuloId]);
-
-        // Reindexar los arrays para evitar huecos en los índices
-        $this->selectedArticulos['articulos'] = array_values($this->selectedArticulos['articulos']);
-        $this->selectedArticulos['cantidades'] = array_values($this->selectedArticulos['cantidades']);
+        if (array_key_exists($articuloId, $this->cantidad)) {
+            unset($this->cantidad[$articuloId]); // Elimina el artículo de la lista
+        }
     }
-
-
 
     public function render()
     {
         return view('livewire.crud.donaciones.crear-donaciones');
     }
 }
+
