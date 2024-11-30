@@ -18,6 +18,10 @@
                     <livewire:components.link-card title="Registrar Migrante" cardWidth="w-full" iconClass="icon-[mingcute--user-add-2-fill] size-6"
                         route="registrar-migrante" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="Faltas Disciplinarias" cardWidth="w-full" iconClass="icon-[fluent--clipboard-error-16-filled] size-6"
+                        route="ver-faltas" />
+                </article>
             </div>
         </main>
 

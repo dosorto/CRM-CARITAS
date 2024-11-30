@@ -32,6 +32,7 @@ use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
 
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
+use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
@@ -202,4 +203,9 @@ Route::get('/crear-solicitud-insumos', CrearSolicitudInsumos::class)
 
 Route::get('/reporte-articulos', ReporteArticulo::class)
     ->name('reporte-articulos')
+    ->middleware('auth');
+
+
+    Route::get('/faltas-disciplinarias', VerFaltas::class)
+    ->name('ver-faltas')
     ->middleware('auth');

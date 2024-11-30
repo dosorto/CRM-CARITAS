@@ -3,8 +3,8 @@
 namespace App\Livewire\Crud\Departamentos;
 
 use App\Models\Departamento;
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 
 #[Lazy()]
 class VerDepartamentos extends Component
