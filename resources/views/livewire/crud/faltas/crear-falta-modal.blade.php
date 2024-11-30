@@ -14,7 +14,6 @@
 
             <main class="h-max flex flex-col w-full">
 
-                {{-- Inputs de Codigo de Depto y Pais Seleccionado --}}
                 <div class="flex flex-row w-full justify-between mt-6 gap-6">
                     <div class="w-2/3 flex flex-col">
                         <label class="mb-1">Falta</label>
@@ -30,7 +29,7 @@
                     {{-- País --}}
                     <div class="w-1/3 flex flex-col">
                         <label class="mb-1">Gravedad</label>
-                        <select wire:model="IdPais" class="select bg-accent text-base-content">
+                        <select wire:model="GravedadId" class="select bg-accent text-base-content">
                             @foreach ($Gravedades as $Gravedad)
                                 <option value="{{ $Gravedad->id }}">{{ $Gravedad->gravedad_falta }}</option>
                             @endforeach
