@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             FaltasSeeder::class,
         ]);
 
-        Migrante::factory()->count(30)->create();
+        // Migrante::factory()->count(30)->create();
 
 
     }

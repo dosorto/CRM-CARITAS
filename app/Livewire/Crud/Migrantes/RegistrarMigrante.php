@@ -107,6 +107,7 @@ class RegistrarMigrante extends Component
     #[On('situacion-validated')]
     public function situacionStep()
     {
+        // dd(session()->all());
         // guardar Expediente
         $newExpedienteId = $this->getMigranteService()->guardarExpediente(
             session('migranteId'),
@@ -119,6 +120,7 @@ class RegistrarMigrante extends Component
             session('datosMigratorios.observacion'),
         );
 
+        
 
         if ($newExpedienteId) {
             session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
@@ -126,9 +128,10 @@ class RegistrarMigrante extends Component
             
             // dd($newExpedienteId);
             session(['expedienteId' => $newExpedienteId]);
+            return redirect(route('ver-expediente'));
         }
+        return redirect(route('ver-migrantes'));
 
-        $this->redirect(route('ver-expediente'));
     }
 
 

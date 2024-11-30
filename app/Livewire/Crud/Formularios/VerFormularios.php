@@ -39,7 +39,14 @@ class VerFormularios extends Component
         // dd(session()->all());
 
         // Se extrae el expediente de la sesión.
-        $expedienteId = session('expedienteId');
+        if (session()->has('expedienteId'))
+        {
+            $expedienteId = session('expedienteId');
+        }
+        else
+        {
+            return redirect(route('ver-migrantes'));
+        }
         // session()->forget('expedienteId);
         $expediente = Expediente::find($expedienteId);
 

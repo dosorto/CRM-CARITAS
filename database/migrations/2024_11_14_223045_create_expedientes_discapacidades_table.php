@@ -20,10 +20,6 @@ return new class extends Migration
             $table->foreign('expediente_id')->references('id')->on('expedientes')->onDelete('cascade');
             $table->foreign('discapacidad_id')->references('id')->on('discapacidades')->onDelete('cascade');
 
-
-            $table->integer("created_by");
-            $table->integer("deleted_by")->nullable();
-            $table->integer("updated_by")->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

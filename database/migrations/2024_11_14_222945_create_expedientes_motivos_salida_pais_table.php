@@ -19,10 +19,7 @@ return new class extends Migration
 
             $table->foreign('expediente_id')->references('id')->on('expedientes');
             $table->foreign('motivo_salida_pais_id')->references('id')->on('motivos_salida_pais');
-
-            $table->integer("created_by");
-            $table->integer("deleted_by")->nullable();
-            $table->integer("updated_by")->nullable();
+            
             $table->timestamps();
             $table->softDeletes('deleted_at', precision: 0);
         });

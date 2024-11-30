@@ -64,10 +64,17 @@
     </main>
 
     <footer class="flex flex-row h-max w-full justify-between py-4">
-        <button wire:click="" class="btn btn-primary text-nowrap text-primary-content">
-            <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
-            Ver Faltas Disciplinarias
-        </button>
+        <div class="flex gap-4">
+            <button wire:click="" class="btn btn-primary text-nowrap text-primary-content">
+                <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
+                Ver Faltas Disciplinarias
+            </button>
+            <button wire:click="" class="btn btn-primary text-nowrap text-primary-content">
+                <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
+                Añadir Falta Disciplinaria
+            </button>
+        </div>
+
         <div class="flex gap-4">
             <button class="btn btn-accent text-nowrap text-base-content">
                 Cancelar

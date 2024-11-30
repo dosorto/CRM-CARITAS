@@ -45,12 +45,14 @@ class RegistrarSalidaMigrante extends Component
             return redirect(route('ver-migrantes'));
         }
 
+
         $migrante = $this->getMigranteService()->buscar('id', intval($id));
 
         if (!$migrante) {
             session()->forget('migranteId');
             return redirect(route('ver-migrantes'));
         }
+
 
         $this->nombre = $migrante->primer_nombre . ' ' .
             $migrante->segundo_nombre . ' ' .
@@ -65,9 +67,8 @@ class RegistrarSalidaMigrante extends Component
             ->where('migrante_id', $migrante->id)
             ->first();
 
-
-        if(!$this->fechaIngreso)
-        {
+        if (!$this->fechaIngreso) {
+            // No se contró el expediente
             return redirect(route('ver-migrantes'));
         }
     }
