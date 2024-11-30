@@ -39,7 +39,7 @@
             <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
                 <article>
                     <livewire:components.link-card title="Donantes" cardWidth=" w-full"
-                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-donantes" />
+                        iconClass="icon-[streamline--give-gift-solid] size-6" route="ver-donantes" />
                 </article>
                 <article>
                     <livewire:components.link-card title="TipoDonantes" cardWidth=" w-full"

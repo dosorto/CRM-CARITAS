@@ -32,6 +32,8 @@ use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
 
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
+use App\Livewire\Crud\Donaciones\CrearDonaciones;
+use App\Livewire\Crud\Donantes\CrearDonantesModal;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
@@ -39,6 +41,7 @@ use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 use App\Livewire\Pages\Actas\ActasEntrega;
 use App\Livewire\Pages\Actas\ActasEntregaPage;
 use App\Livewire\Pages\ActasOptions;
+use App\Livewire\Pages\Donaciones\DonacionPage;
 use App\Livewire\Pages\MigrantesOptions;
 use App\Livewire\Pages\Reportes;
 use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
@@ -96,8 +99,11 @@ Route::get('/tipodonantes', VerTipoDonantes::class)
 Route::get('/donantes', VerDonantes::class)
     ->name('ver-donantes')
     ->middleware('auth');
-Route::get('/donaciones', VerDonaciones::class)
+Route::get('/listar-donaciones', VerDonaciones::class)
     ->name('ver-donaciones')
+    ->middleware('auth');
+Route::get('crear-donacion', CrearDonaciones::class)
+    ->name('crear-donacion')
     ->middleware('auth');
 
 
@@ -127,6 +133,9 @@ Route::get('/actas', ActasOptions::class)
     ->name('actas')
     ->middleware('auth');
 
+Route::get('/donaciones', DonacionPage::class)
+    ->name('donaciones')
+    ->middleware('auth');
 
 
 
