@@ -3,7 +3,6 @@
 namespace App\Livewire\Crud\GravedadesFaltas;
 
 use App\Livewire\Components\ContentTable;
-use App\Models\GravedadFalta;
 use Livewire\Component;
 
 class EditarGravedadModal extends Component
