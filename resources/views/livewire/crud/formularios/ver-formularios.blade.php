@@ -173,7 +173,7 @@
     </div>
     <!-- Botón de imprimir -->
     <div class="flex justify-center mt-6">
-        <button @click="window.print()" class="btn bg-primary text-primary-content border-none print-button">
+        <button onclick="window.print()" class="btn bg-primary text-primary-content border-none print-button">
             Imprimir
         </button>
     </div>
@@ -190,7 +190,7 @@
 
             /* Oculta todo menos la sección que queremos imprimir */
             body * {
-                visibility: hidden; 
+                visibility: hidden;
             }
 
             .print-section,
@@ -204,6 +204,10 @@
                 top: 0;
                 left: 0;
                 width: 100%;
+            }
+
+            .print-button {
+                display: none;
             }
         }
     </style>

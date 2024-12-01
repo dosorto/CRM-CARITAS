@@ -19,7 +19,7 @@
                     <strong>Discapacidad: </strong> {{ $item->falta }}
                 </div>
                 <div class="flex items-center justify-center gap-1">
-                    <strong>Gravedad: </strong> {{ $item->gravedadFalta->gravedad_falta }}
+                    <strong>Gravedad: </strong> {{ $item->gravedad->gravedad_falta }}
                 </div>
             </main>
 

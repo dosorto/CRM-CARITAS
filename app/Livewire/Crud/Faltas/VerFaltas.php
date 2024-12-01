@@ -36,7 +36,7 @@ class VerFaltas extends Component
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
         'falta',
-        'gravedadFalta.gravedad_falta'
+        'gravedad.gravedad_falta'
     ];
 
     // Atributos de los botones (Componentes dinámicos) de cada fila (registro)

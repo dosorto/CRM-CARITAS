@@ -7,11 +7,20 @@ use App\Services\MigranteService;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
-use Ramsey\Uuid\Type\Integer;
 
 #[Lazy()]
 class RegistrarSalidaMigrante extends Component
 {
+    public $datosPersonales = [];
+    public $Observaciones;
+    public $fechaSalida;
+
+    public $expedienteId;
+
+    public $atencionPsicologica = 0;
+    public $asesoriaPsicologica = 0;
+    public $atencionLegal = 0;
+    public $asesoriaPsicosocial = 0;
 
     public $preguntas = [
         'atencionPsicologica' => '¿Recibió atención psicológica?',
@@ -19,13 +28,6 @@ class RegistrarSalidaMigrante extends Component
         'atencionLegal' => '¿Recibió atención legal?',
         'asesoriaPsicosocial' => '¿Recibió asesoría psicosocial?',
     ];
-
-    public $nombre;
-    public $identificacion;
-    public $pais;
-    public $edad;
-    public $fechaIngreso;
-    public $dias;
 
     public function placeholder()
     {
@@ -42,35 +44,52 @@ class RegistrarSalidaMigrante extends Component
         if (session()->has('migranteId')) {
             $id = session('migranteId');
         } else {
+            // dd(session()->all(), 'no hay id de migrante en sesion');
             return redirect(route('ver-migrantes'));
         }
-
 
         $migrante = $this->getMigranteService()->buscar('id', intval($id));
 
         if (!$migrante) {
             session()->forget('migranteId');
+            // dd(session()->all(), 'no se encontro el migrante');
             return redirect(route('ver-migrantes'));
         }
 
-
-        $this->nombre = $migrante->primer_nombre . ' ' .
-            $migrante->segundo_nombre . ' ' .
-            $migrante->primer_apellido . ' ' .
-            $migrante->segundo_apellido;
-
-        $this->identificacion = $migrante->numero_identificacion;
-        $this->pais = $migrante->pais->nombre_pais;
-        $this->edad = $this->calcularEdad($migrante->fecha_nacimiento);
-        $this->fechaIngreso = Expediente::select('created_at')
+        $expediente = Expediente::select('id', 'created_at', 'observacion')
             ->orderBy('id', 'desc')
             ->where('migrante_id', $migrante->id)
             ->first();
 
-        if (!$this->fechaIngreso) {
+
+        $fecha = $expediente->created_at->format('d-m-Y');
+
+        if (!$fecha) {
             // No se contró el expediente
+            session()->forget('migranteId');
+            // dd(session()->all(), 'no se encontró la fecha');
             return redirect(route('ver-migrantes'));
         }
+
+        // dd(session()->all());
+
+        $nombre = $migrante->primer_nombre . ' ' .
+            $migrante->segundo_nombre . ' ' .
+            $migrante->primer_apellido . ' ' .
+            $migrante->segundo_apellido;
+
+        $this->expedienteId = $expediente->id;
+
+        $this->datosPersonales = [
+            'Nombre Completo' => $nombre,
+            'Número de Identidad' => $migrante->numero_identificacion,
+            'País de Procedencia' => $migrante->pais->nombre_pais,
+            'Fecha de Ingreso' => $fecha,
+            'Edad' => $this->getMigranteService()->calcularEdad($migrante->fecha_nacimiento),
+            'Dias de Estancia' => round(Carbon::parse($fecha)->diffInDays(Carbon::now())),
+        ];
+        $this->Observaciones = $expediente->observacion;
+        $this->fechaSalida = Carbon::now()->format('Y-m-d');
     }
 
     public function render()
@@ -78,16 +97,24 @@ class RegistrarSalidaMigrante extends Component
         return view('livewire.crud.migrantes.salida-migrante.registrar-salida-migrante');
     }
 
-    public function calcularEdad($fechaNacimiento)
-    {
-        // Asegúrate de que la fecha de nacimiento esté bien parseada
-        $fecha = Carbon::parse($fechaNacimiento);
-        // Calcula la edad en años
-        return $fecha->age;
-    }
-
     public function getMigranteService()
     {
         return app(MigranteService::class);
+    }
+
+    public function cancelar()
+    {
+        session()->forget(['expedienteId', 'migranteId']);
+        $this->redirectRoute('ver-migrantes');
+    }
+
+    public function updatedFechaSalida($value)
+    {
+        $fechaIngreso = $this->datosPersonales['Fecha de Ingreso'] ?? null;
+
+        if ($fechaIngreso && $value) {
+            $diasDeEstancia = round(Carbon::parse($fechaIngreso)->diffInDays(Carbon::parse($value)));
+            $this->datosPersonales['Dias de Estancia'] = $diasDeEstancia;
+        }
     }
 }

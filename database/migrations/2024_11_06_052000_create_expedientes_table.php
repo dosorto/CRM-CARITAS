@@ -27,10 +27,16 @@ return new class extends Migration
 
             $table->boolean('fallecimiento')->default(false);
 
-            $table->date('fecha_ingreso');
+            $table->date('fecha_salida')->default(null);
 
             $table->string('observacion')->nullable();
             
+            $table->boolean('atencion_psicologica')->default(0);
+            $table->boolean('asesoria_psicologica')->default(0);
+            $table->boolean('atencion_legal')->default(0);
+            $table->boolean('asesoria_psicosocial')->default(0);
+
+
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();
