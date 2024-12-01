@@ -30,6 +30,8 @@ class MigranteService
 
         $nuevoMigrante->save();
 
+
+
         return $nuevoMigrante->id;
     }
 
@@ -208,7 +210,7 @@ class MigranteService
 
             return $expediente->id;
         } catch (Exception $e) {
-            dump('ocurrió un error al guardar el expediente', $e->getMessage());
+            dd('ocurrió un error al guardar el expediente', $e->getMessage());
             return false;
         }
     }

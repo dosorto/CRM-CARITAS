@@ -89,12 +89,6 @@
                 <span class="icon-[bxs--save] size-6"></span>
                 Registrar Salida
             </label>
-
-
-            {{-- <button class="btn btn-success text-nowrap text-base-content">
-                <span class="icon-[bxs--save] size-5"></span>
-                Guardar
-            </button> --}}
         </div>
     </footer>
 
@@ -111,15 +105,11 @@
     {{-- Cuerpo del Modal --}}
     <input type="checkbox" id="confirmarSalidaMigrante" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/5 max-w-5xl bg-neutral">
+        <div class="modal-box w-2/5 max-w-5xl bg-neutral border-2 border-primary">
 
             {{-- Título del Modal --}}
-            <h3 class="text-xl font-bold text-center mb-5">¿Seguro que desea registrar la Salida de esta persona?</h3>
+            <h3 class="text-xl font-bold text-center mb-5">¿Seguro que desea registrar la salida de esta persona?</h3>
 
-            {{-- Contenido --}}
-            {{-- <main class="h-max flex flex-col w-full gap-2">
-                asdasd
-            </main> --}}
             <div class="modal-action">
                 <button wire:click="guardarDatosSalida" class="btn btn-success text-base-content">
                     <span class="icon-[fa-solid--check] size-6"></span>

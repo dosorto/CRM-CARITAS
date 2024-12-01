@@ -42,33 +42,35 @@ class RegistrarSalidaMigrante extends Component
     {
         // validar el id de la sesion
         if (session()->has('migranteId')) {
-            $id = session('migranteId');
+            $migranteId = session('migranteId');
+            $expediente = Expediente::select('id', 'created_at', 'observacion', 'fecha_salida')
+                ->orderBy('id', 'desc')
+                ->where('migrante_id', $migranteId)
+                ->first();
+
+            if ($expediente->fecha_salida !== null)
+            {
+                // No hay expedientes con fecha nula, significa que ya se registró salida para todos
+                $this->cancelar();
+            }
         } else {
-            // dd(session()->all(), 'no hay id de migrante en sesion');
             return redirect(route('ver-migrantes'));
         }
 
-        $migrante = $this->getMigranteService()->buscar('id', intval($id));
+        $migrante = $this->getMigranteService()->buscar('id', intval($migranteId));
 
         if (!$migrante) {
-            session()->forget('migranteId');
-            // dd(session()->all(), 'no se encontro el migrante');
-            return redirect(route('ver-migrantes'));
+            $this->cancelar();
         }
 
-        $expediente = Expediente::select('id', 'created_at', 'observacion')
-            ->orderBy('id', 'desc')
-            ->where('migrante_id', $migrante->id)
-            ->first();
 
 
-        $fecha = $expediente->created_at->format('d-m-Y');
 
-        if (!$fecha) {
+        $fechaIngreso = $expediente->created_at->format('d-m-Y');
+
+        if (!$fechaIngreso) {
             // No se contró el expediente
-            session()->forget('migranteId');
-            // dd(session()->all(), 'no se encontró la fecha');
-            return redirect(route('ver-migrantes'));
+            $this->cancelar();
         }
 
         // dd(session()->all());
@@ -84,9 +86,9 @@ class RegistrarSalidaMigrante extends Component
             'Nombre Completo' => $nombre,
             'Número de Identidad' => $migrante->numero_identificacion,
             'País de Procedencia' => $migrante->pais->nombre_pais,
-            'Fecha de Ingreso' => $fecha,
+            'Fecha de Ingreso' => $fechaIngreso,
             'Edad' => $this->getMigranteService()->calcularEdad($migrante->fecha_nacimiento),
-            'Dias de Estancia' => round(Carbon::parse($fecha)->diffInDays(Carbon::now())),
+            'Dias de Estancia' => round(Carbon::parse($fechaIngreso)->diffInDays(Carbon::now())),
         ];
         $this->Observaciones = $expediente->observacion;
         $this->fechaSalida = Carbon::now()->format('Y-m-d');
@@ -104,7 +106,7 @@ class RegistrarSalidaMigrante extends Component
 
     public function cancelar()
     {
-        session()->forget(['expedienteId', 'migranteId']);
+        session()->forget('migranteId');
         $this->redirectRoute('ver-migrantes');
     }
 
@@ -116,5 +118,21 @@ class RegistrarSalidaMigrante extends Component
             $diasDeEstancia = round(Carbon::parse($fechaIngreso)->diffInDays(Carbon::parse($value)));
             $this->datosPersonales['Dias de Estancia'] = $diasDeEstancia;
         }
+    }
+
+    public function guardarDatosSalida()
+    {
+        $expediente = Expediente::find($this->expedienteId);
+
+        $expediente->fecha_salida = $this->fechaSalida;
+        $expediente->atencion_psicologica = intval($this->atencionPsicologica);
+        $expediente->asesoria_psicologica = intval($this->asesoriaPsicologica);
+        $expediente->atencion_legal = intval($this->atencionLegal);
+        $expediente->asesoria_psicosocial = intval($this->asesoriaPsicosocial);
+        $expediente->observacion = $this->Observaciones;
+
+        $expediente->save();
+
+        return $this->redirectRoute('ver-migrantes');
     }
 }
