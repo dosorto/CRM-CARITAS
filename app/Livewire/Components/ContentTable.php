@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Components;
 
-use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;

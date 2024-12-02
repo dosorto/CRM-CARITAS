@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
-use App\Models\Migrante;
+use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
@@ -35,22 +35,12 @@ class VerMigrantes extends Component
     public $textToFind = '';
     public $colSelected = 'Número de Identificación';
 
-    public function filtrar()
-    {
-        return $this->textToFind === '' ?
-            Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id', 'codigo_familiar')
-            ->with('pais')
-            ->paginate(30)
-            :
-            Migrante::select('id', 'codigo_familiar', 'primer_nombre', 'primer_apellido', 'segundo_nombre', 'segundo_apellido', 'numero_identificacion', 'pais_id', 'codigo_familiar')
-            ->with('pais')
-            ->where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')
-            ->paginate(30);
-    }
-
     public function render()
     {
-        $items = $this->filtrar();
+        $items = $this->textToFind === '' ?
+            $this->getMigranteService()->getAllMigrantesPaginated(30)
+            :
+            $this->getMigranteService()->filterPaginated($this->fakeColNames[$this->colSelected], $this->textToFind, 30);
         return view('livewire.crud.migrantes.ver-migrantes')
             ->with('items', $items);
     }
@@ -60,5 +50,16 @@ class VerMigrantes extends Component
     {
         $this->textToFind = '';
         $this->colSelected = 'Número de Identificación';
+    }
+
+    public function registrarSalida($id)
+    {
+        session(['migranteId' => $id]);
+        return redirect(route('registrar-salida-migrante'));
+    }
+
+    public function getMigranteService()
+    {
+        return app(MigranteService::class);
     }
 }

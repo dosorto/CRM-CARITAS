@@ -3,9 +3,8 @@
 namespace App\Livewire\Crud\Donaciones;
 
 use App\Models\Donacion;
-use App\Models\Articulo;
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 
 #[Lazy()]
 class VerDonaciones extends Component

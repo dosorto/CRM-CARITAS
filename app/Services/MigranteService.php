@@ -4,10 +4,13 @@ namespace App\Services;
 
 use App\Models\Expediente;
 use App\Models\Migrante;
+use Carbon\Carbon;
 use Exception;
+use Livewire\WithPagination;
 
 class MigranteService
 {
+    use WithPagination;
 
     public function guardarDatosPersonales($datosPersonales)
     {
@@ -26,6 +29,8 @@ class MigranteService
         $nuevoMigrante->es_lgbt = $datosPersonales['esLGBT'];
 
         $nuevoMigrante->save();
+
+
 
         return $nuevoMigrante->id;
     }
@@ -57,7 +62,7 @@ class MigranteService
         return [$primero, $segundo];
     }
 
-    public function filtrar(string $col, string $text)
+    public function filter(string $col, string $text)
     {
         return Migrante::select(
             'id',
@@ -77,6 +82,27 @@ class MigranteService
             ->with('pais')
             ->where($col, 'LIKE', '%' . $text . '%')
             ->get();
+    }
+    public function filterPaginated(string $col, string $text, $pagination)
+    {
+        return Migrante::select(
+            'id',
+            'codigo_familiar',
+            'primer_nombre',
+            'primer_apellido',
+            'segundo_nombre',
+            'segundo_apellido',
+            'numero_identificacion',
+            'tipo_identificacion',
+            'fecha_nacimiento',
+            'pais_id',
+            'es_lgbt',
+            'estado_civil',
+            'sexo'
+        )
+            ->with('pais')
+            ->where($col, 'LIKE', '%' . $text . '%')
+            ->paginate($pagination);
     }
 
     public function getAllMigrantes()
@@ -98,6 +124,27 @@ class MigranteService
         )
             ->with('pais')
             ->get();
+    }
+
+    public function getAllMigrantesPaginated($pagination)
+    {
+        return Migrante::select(
+            'id',
+            'codigo_familiar',
+            'primer_nombre',
+            'primer_apellido',
+            'segundo_nombre',
+            'segundo_apellido',
+            'numero_identificacion',
+            'tipo_identificacion',
+            'fecha_nacimiento',
+            'pais_id',
+            'es_lgbt',
+            'estado_civil',
+            'sexo'
+        )
+            ->with('pais')
+            ->paginate($pagination);
     }
 
     public function buscar($col, $text)
@@ -145,15 +192,39 @@ class MigranteService
             $expediente->asesor_migratorio_id = $asesorMigratorioId;
             $expediente->situacion_migratoria_id = $situacionMigratoriaId;
             $expediente->observacion = $observacion;
-            $expediente->fecha_ingreso = date('Y-m-d');
             $expediente->save();
             $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
             $expediente->necesidades()->sync($necesidades);
             $expediente->discapacidades()->sync($discapacidades);
+
+
+            // $expedienteId = $expediente->id;
+            // $faltas = [
+            //     ['expediente_id' => $expedienteId, 'falta_id' => 1], // Falta Leve
+            //     ['expediente_id' => $expedienteId, 'falta_id' => 2], // Falta Grave
+            //     ['expediente_id' => $expedienteId, 'falta_id' => 3], // Falta Muy Grave
+            // ];
+
+            // DB::table('expedientes_faltas')->insert($faltas);
+
+
             return $expediente->id;
         } catch (Exception $e) {
-            dump('ocurrió un error al guardar el expediente', $e->getMessage());
+            dd('ocurrió un error al guardar el expediente', $e->getMessage());
             return false;
         }
+    }
+
+    public function calcularEdad($fechaNacimiento)
+    {
+        // Asegúrate de que la fecha de nacimiento esté bien parseada
+        $fecha = Carbon::parse($fechaNacimiento);
+        // Calcula la edad en años
+        return $fecha->age;
+    }
+
+    public function registrarSalida($datosSalida)
+    {   
+
     }
 }

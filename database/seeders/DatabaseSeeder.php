@@ -32,10 +32,9 @@ class DatabaseSeeder extends Seeder
             FronteraSeeder::class,
             MotivoSalidaPaisSeeder::class,
             NecesidadSeeder::class,
+            FaltasSeeder::class,
         ]);
 
-        Migrante::factory()->count(30)->create();
-
-
+        // Migrante::factory()->count(30)->create();
     }
 }

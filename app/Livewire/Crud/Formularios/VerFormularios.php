@@ -4,6 +4,7 @@ namespace App\Livewire\Crud\Formularios;
 
 use App\Models\Expediente;
 use App\Models\Migrante;
+use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 use Carbon\Carbon;
@@ -39,7 +40,14 @@ class VerFormularios extends Component
         // dd(session()->all());
 
         // Se extrae el expediente de la sesión.
-        $expedienteId = session('expedienteId');
+        if (session()->has('expedienteId'))
+        {
+            $expedienteId = session('expedienteId');
+        }
+        else
+        {
+            return redirect(route('ver-migrantes'));
+        }
         // session()->forget('expedienteId);
         $expediente = Expediente::find($expedienteId);
 
@@ -55,13 +63,13 @@ class VerFormularios extends Component
             $migrante->segundo_apellido;
         $this->nombreCompleto = $nombre ?? ' - ';
 
-        $this->fechaIngreso = Carbon::parse($expediente->fecha_ingreso)->format('d/m/Y') ?? ' - ';
+        $this->fechaIngreso = Carbon::parse($expediente->created_at)->format('d/m/Y') ?? ' - ';
 
         $this->identificacion = $migrante->numero_identificacion ?? ' - ';
 
         $this->tipoIdentificacion = $migrante->tipo_identificacion ?? ' - ';
 
-        $this->edad = $this->calcularEdad($migrante->fecha_nacimiento) ?? 0;
+        $this->edad = $this->getMigranteService()->calcularEdad($migrante->fecha_nacimiento) ?? 0;
 
         $this->sexo = $migrante->sexo == 'M' ? 'Masculino' : 'Femenino' ?? ' - ';
 
@@ -81,12 +89,9 @@ class VerFormularios extends Component
         return view('livewire.crud.formularios.ver-formularios');
     }
 
-
-    public function calcularEdad($fechaNacimiento)
+    public function getMigranteService()
     {
-        // Asegúrate de que la fecha de nacimiento esté bien parseada
-        $fecha = Carbon::parse($fechaNacimiento);
-        // Calcula la edad en años
-        return $fecha->age;
+        return app(MigranteService::class);
     }
+
 }

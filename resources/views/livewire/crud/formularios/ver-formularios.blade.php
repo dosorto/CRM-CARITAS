@@ -18,7 +18,7 @@
             <h4 class="text-lg text-center mb-0 text-gray-500">Ficha de Registro / Consentimiento Entrada y Salida</h4>
         </div>
         <!-- Formulario de Registro -->
-        <section id="registroForm" class="space-y-6">
+        <section id="registroForm" class="space-y-6 text-gray-700">
             <!-- Sección: Datos Generales -->
             <div class="flex flex-col w-full">
                 <p class="text-lg font-semibold text-gray-700 mb-4">I. Datos Generales</p>
@@ -27,7 +27,7 @@
                     <!-- Nombre completo -->
                     <div class="flex mb-2 w-2/3">
                         <label for="nombreCompleto" class="text-gray-600 mb-1 text-nowrap">Nombre completo:</label>
-                        <label class="px-4  w-full border-b-2 border-gray-600">
+                        <label class="px-4 w-full border-b-2 border-gray-600">
                             {{ $nombreCompleto }}
                             {{-- Mario Fernando Carbajal Galo --}}
                         </label>
@@ -35,7 +35,7 @@
                     <!-- Fecha de ingreso -->
                     <div class="flex mb-2 w-1/3">
                         <label for="fechaIngreso" class="text-gray-600 mb-1 text-nowrap">Fecha de ingreso:</label>
-                        <label class="px-4  w-full border-b-2 border-gray-600">
+                        <label class="px-4 w-full border-b-2 border-gray-600">
                             {{ $fechaIngreso }}
                         </label>
                     </div>
@@ -173,7 +173,7 @@
     </div>
     <!-- Botón de imprimir -->
     <div class="flex justify-center mt-6">
-        <button @click="window.print()" class="btn bg-primary text-primary-content border-none print-button">
+        <button onclick="window.print()" class="btn bg-primary text-primary-content border-none print-button">
             Imprimir
         </button>
     </div>
@@ -190,7 +190,7 @@
 
             /* Oculta todo menos la sección que queremos imprimir */
             body * {
-                visibility: hidden; 
+                visibility: hidden;
             }
 
             .print-section,
@@ -204,6 +204,10 @@
                 top: 0;
                 left: 0;
                 width: 100%;
+            }
+
+            .print-button {
+                display: none;
             }
         }
     </style>

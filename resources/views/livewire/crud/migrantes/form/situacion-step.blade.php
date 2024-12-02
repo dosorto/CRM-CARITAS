@@ -67,7 +67,7 @@
 
             <!-- The button to open modal -->
             <label for="my_modal_6" class="btn btn-info text-base-content">
-                <span class="icon-[lucide--save] size-5"></span>
+                <span class="icon-[bxs--save] size-5"></span>
                 Guardar Expediente
             </label>
 

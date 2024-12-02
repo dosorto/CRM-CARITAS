@@ -31,11 +31,6 @@ class SituacionStep extends Component
         $this->observacion = session('datosMigratorios.observacion', '');
     }
 
-    public function test()
-    {
-        dump(1);
-    }
-
     public function render()
     {
         return view('livewire.crud.migrantes.form.situacion-step');

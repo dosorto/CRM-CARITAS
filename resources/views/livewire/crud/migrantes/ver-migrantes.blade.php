@@ -80,12 +80,12 @@
 
                             {{-- Botones --}}
                             <td class="flex gap-2">
-                                {{-- <button class="btn btn-warning btn-xs text-base-content" type="button">
-                                    <span class="icon-[line-md--edit] size-4"></span>
-                                </button>
-                                <button class="btn btn-error btn-xs text-base-100" type="button">
-                                    <span class="icon-[mingcute--delete-2-fill] size-4"></span>
-                                </button> --}}
+                                <div class="tooltip tooltip-primary" data-tip="Registrar Salida">
+                                    <button wire:click="registrarSalida({{ $item->id }})" 
+                                        class="btn btn-accent btn-sm text-base-content" type="button">
+                                        <span class="icon-[heroicons-outline--logout] size-6"></span>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

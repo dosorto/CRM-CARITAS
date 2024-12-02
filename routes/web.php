@@ -34,7 +34,10 @@ use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Donaciones\CrearDonaciones;
 use App\Livewire\Crud\Donantes\CrearDonantesModal;
+use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
+use App\Livewire\Crud\GravedadesFaltas\VerGravedadesFaltas;
+use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
@@ -59,7 +62,7 @@ Route::get('/listado-migrantes', VerMigrantes::class)
 Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
 Route::get('/migrantes', MigrantesOptions::class)->name('migrantes')->middleware('auth');
 
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
+Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)->name('registrar-salida-migrante')->middleware('auth');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
@@ -210,4 +213,13 @@ Route::get('/crear-solicitud-insumos', CrearSolicitudInsumos::class)
 
 Route::get('/reporte-articulos', ReporteArticulo::class)
     ->name('reporte-articulos')
+    ->middleware('auth');
+
+
+Route::get('/faltas-disciplinarias', VerFaltas::class)
+    ->name('ver-faltas')
+    ->middleware('auth');
+
+Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
+    ->name('ver-gravedades-faltas')
     ->middleware('auth');
