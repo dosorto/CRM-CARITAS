@@ -7,10 +7,16 @@ use Livewire\Attributes\Lazy;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use App\Models\Migrante;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 // #[Lazy()]
 class Dashboard extends Component
 {
+    public $currentYear;
+    public $nombreMes;
+    public $numeroDia;
+    public $total_personas = 0;
+    public $total_migrantes = 0;
     // Anillo de Cargando cuando el componente tarda
     public function placeholder()
     {
@@ -23,6 +29,18 @@ class Dashboard extends Component
 
     public function render()
     {
+
+        $migrantesPorMes = Migrante::selectRaw('MONTH(created_at) as mes, COUNT(*) as total')
+                                    ->whereYear('created_at', date('Y'))
+                                    ->groupBy('mes')
+                                    ->pluck('total', 'mes');
+
+        $datosPorMes = array_fill(1, 12, 0);
+
+        foreach ($migrantesPorMes as $mes => $total) {
+            $datosPorMes[$mes] = $total;
+        }
+
         $migrantes = Migrante::where('deleted_at', null)->count();
         $hombres = Migrante::where('sexo', 'M')
                 ->where('deleted_at', null)
@@ -67,14 +85,8 @@ class Dashboard extends Component
                  "label" => "Entrantes",
                  'backgroundColor' => ['#FF6B6B', '#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B','#FF6B6B',],
                  //Lista de entrantes ordenandolos por mes inciando desde enero
-                 'data' => [69, 59,78]
+                 'data' => array_values($datosPorMes)
              ],
-             [
-                 "label" => "Salientes",
-                 'backgroundColor' => ['#4299E1', '#4299E1','#4299E1','#4299E1','#4299E1','#4299E1','#4299E1','#4299E1','#4299E1','#4299E1','#4299E1','#4299E1',],
-                 //Lista de salientes ordenandolos por mes inciando desde enero
-                 'data' => [65, 12, 100]
-             ]
          ])
          ->options([
             "scales" => [
@@ -85,4 +97,5 @@ class Dashboard extends Component
          ]);
         return view('livewire.admin.dashboard',  compact('chartDonut', 'chart', 'migrantes', 'hombres', 'mujeres'));
     }
+
 }
