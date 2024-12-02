@@ -14,6 +14,10 @@
                     <livewire:components.link-card title="Reporte Mensual" cardWidth="w-full" iconClass="icon-[tabler--presentation-analytics-filled] size-6"
                         route="reporte-mensual" />
                 </article>
+                <article>
+                    <livewire:components.link-card title="Reporte Artículo" cardWidth="w-full" iconClass="icon-[tabler--presentation-analytics-filled] size-6"
+                        route="reporte-articulos" />
+                </article
             </div>
         </main>
 
