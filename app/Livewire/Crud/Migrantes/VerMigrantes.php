@@ -62,4 +62,10 @@ class VerMigrantes extends Component
     {
         return app(MigranteService::class);
     }
+
+    public function verHistorial($id)
+    {
+    return $this->redirectRoute('ver-historial', ['migranteId' => $id]);
+    }
 }
+

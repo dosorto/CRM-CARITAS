@@ -81,12 +81,19 @@
                             {{-- Botones --}}
                             <td class="flex gap-2">
                                 <div class="tooltip tooltip-primary" data-tip="Registrar Salida">
-                                    <button wire:click="registrarSalida({{ $item->id }})" 
+                                    <button wire:click="registrarSalida({{ $item->id }})"
                                         class="btn btn-accent btn-sm text-base-content" type="button">
                                         <span class="icon-[heroicons-outline--logout] size-6"></span>
                                     </button>
                                 </div>
+                                <div class="tooltip tooltip-primary" data-tip="Ver Historial">
+                                    <button wire:click="verHistorial({{ $item->id }})"
+                                        class="btn btn-accent btn-sm text-base-content" type="button">
+                                        <span class="icon-[mdi--account-file-text] size-6"></span>
+                                    </button>
+                                </div>
                             </td>
+
                         </tr>
                     @endforeach
                 </tbody>

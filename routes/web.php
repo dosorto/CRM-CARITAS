@@ -48,6 +48,7 @@ use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
 use App\Livewire\Pages\Solicitudes\SolicitudTrasladoPage;
 use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 use App\Livewire\Reportes\ReporteArticulo;
+use App\Livewire\Crud\Migrantes\HistorialMigrante;
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -212,4 +213,8 @@ Route::get('/faltas-disciplinarias', VerFaltas::class)
 
 Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
     ->name('ver-gravedades-faltas')
+    ->middleware('auth');
+
+Route::get('/historial/{migranteId}', HistorialMigrante::class)
+    ->name('ver-historial')
     ->middleware('auth');
