@@ -98,5 +98,22 @@ class UserSeeder extends Seeder
         }
 
         // Seguir añadiendo usuarios...
+        User::create([
+            'nombre' => 'Dorian',
+            'apellido' => 'Ordoñez',
+            'identidad' => '038302029384',
+            'telefono' => '87463552',
+            'fecha_nacimiento' => '1990-09-02',
+            'estado_civil' => 'Soltero/a',
+            'email' => 'dosorto@unah.hn',
+            'password' => Hash::make('123'),
+        ]);
+
+        $adminRole = Role::where('name', 'voluntario')->get()[0];
+        $dorian = User::where('identidad', '038302029384')->get()[0];
+
+        $adminRole->givePermissionTo('Administrar Paises');
+        
+        $dorian->assignRole('voluntario');
     }
 }

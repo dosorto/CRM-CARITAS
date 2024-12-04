@@ -14,18 +14,24 @@
                 Regiones
             </h2>
             <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
-                <article>
-                    <livewire:components.link-card title="Paises" cardWidth="w-full" iconClass="icon-[vaadin--flag] size-6"
-                        route="ver-paises" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Departamentos" cardWidth="w-full"
-                        iconClass="icon-[fluent--location-ripple-16-filled] size-6" route="ver-departamentos" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
-                        iconClass="icon-[solar--city-bold] size-6" route="ver-ciudades" />
-                </article>
+                @can('Administrar Paises')
+                    <article>
+                        <livewire:components.link-card title="Paises" cardWidth="w-full" iconClass="icon-[vaadin--flag] size-6"
+                            route="ver-paises" />
+                    </article>
+                @endcan
+                @can('Administrar Departamentos')
+                    <article>
+                        <livewire:components.link-card title="Departamentos" cardWidth="w-full"
+                            iconClass="icon-[fluent--location-ripple-16-filled] size-6" route="ver-departamentos" />
+                    </article>
+                @endcan
+                @can('Administrar Ciudades')
+                    <article>
+                        <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
+                            iconClass="icon-[solar--city-bold] size-6" route="ver-ciudades" />
+                    </article>
+                @endcan
             </div>
 
         </div>

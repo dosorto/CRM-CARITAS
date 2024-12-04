@@ -33,7 +33,6 @@ use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Donaciones\CrearDonaciones;
-use App\Livewire\Crud\Donantes\CrearDonantesModal;
 use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\GravedadesFaltas\VerGravedadesFaltas;
@@ -41,17 +40,28 @@ use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
-use App\Livewire\Pages\Actas\ActasEntrega;
 use App\Livewire\Pages\Actas\ActasEntregaPage;
 use App\Livewire\Pages\ActasOptions;
 use App\Livewire\Pages\Donaciones\DonacionPage;
 use App\Livewire\Pages\MigrantesOptions;
 use App\Livewire\Pages\Reportes;
 use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
-use App\Livewire\Pages\Solicitudes\SolicitudTrasladoPage;
 use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 use App\Livewire\Reportes\ReporteArticulo;
 use App\Livewire\Crud\Migrantes\HistorialMigrante;
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/registrar-migrante', RegistrarMigrante::class)
+        ->name('registrar-migrante')
+        ->middleware('can: Registrar Migrante');
+    Route::get('/migrantes', MigrantesOptions::class)
+        ->name('migrantes')
+        ->middleware('can: Ver Migrantes');
+    Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)
+        ->name('registrar-salida-migrante')
+        ->middleware('can: Registrar Salida Migrante');
+});
 
 Route::get('/inicio', Dashboard::class)
     ->middleware('auth');
@@ -59,11 +69,6 @@ Route::get('/inicio', Dashboard::class)
 Route::get('/listado-migrantes', VerMigrantes::class)
     ->name('ver-migrantes')
     ->middleware('auth');
-
-Route::get('/registrar-migrante', RegistrarMigrante::class)->name('registrar-migrante')->middleware('auth');
-Route::get('/migrantes', MigrantesOptions::class)->name('migrantes')->middleware('auth');
-
-Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)->name('registrar-salida-migrante')->middleware('auth');
 
 Route::get('/administracion', Administracion::class)
     ->name('administracion')
@@ -75,7 +80,8 @@ Route::get('/paises', VerPaises::class)
 
 Route::get('/departamentos', VerDepartamentos::class)
     ->name('ver-departamentos')
-    ->middleware('auth');
+    ->middleware('auth')
+    ->middleware('can: Administrar Departamentos');
 
 Route::get('/ciudades', VerCiudades::class)
     ->name('ver-ciudades')
