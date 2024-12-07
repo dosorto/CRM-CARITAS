@@ -64,9 +64,23 @@
                         </div>
                     </div>
                 </article>
-                <article class="w-1/4 border-2 border-dashed border-gray-400 p-1 rounded-lg">
+                {{-- <article class="w-1/4 border-2 border-dashed border-gray-400 p-1 rounded-lg">
                     <div class="size-full p-2 bg-accent">
                         Solicitudes Pendientes aquí
+                    </div>
+                </article> --}}
+                <article class="w-1/4 border-2 border-dashed border-gray-400 p-1 rounded-lg">
+                    <div
+                        class="border-2 border-pink-300 w-full h-auto p-2 flex items-center rounded-md bg-pink-300 gap-4">
+
+                        <span class="icon-[mi--document] size-10"></span>
+
+                        <div class="flex flex-col text-base-content text-sm">
+                            <a href="{{ route('ver-solicitudes-pendientes') }}"
+                                class="flex flex-col text-base-content text-sm">
+                                <h2 class="text-lg font-bold">Solicitudes Pendientes</h2>
+                            </a>
+                        </div>
                     </div>
                 </article>
 

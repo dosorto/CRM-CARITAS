@@ -12,6 +12,8 @@ class SolicitudInsumos extends BaseModel
 
     protected $table = 'solicitudes_insumos';
 
+    protected $fillable = ['firmado', 'user_id', 'created_by', 'updated_by', 'deleted_by'];
+
     public function detalles_solicitud_insumos(): HasMany
     {
         return $this->hasMany(DetalleSolicitudInsumos::class);

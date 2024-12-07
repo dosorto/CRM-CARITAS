@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->date('fecha');
+            $table->boolean('firmado')->default(false);
 
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();

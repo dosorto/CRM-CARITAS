@@ -19,8 +19,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('aprobador_id');
             $table->foreign('aprobador_id')->references('id')->on('users');
-
             
+            $table->boolean('firmado')->default(false);
+
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();
             $table->integer("updated_by")->nullable();

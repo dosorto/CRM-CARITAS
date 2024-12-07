@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\VerSolicitudesPendientes;
 use App\Livewire\Crud\Articulos\VerArticulos;
 use App\Livewire\Crud\CategoriaArticulos\VerCategoriaArticulos;
 use App\Livewire\Crud\Categorias\VerCategorias;
@@ -214,3 +215,16 @@ Route::get('/faltas-disciplinarias', VerFaltas::class)
 Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
     ->name('ver-gravedades-faltas')
     ->middleware('auth');
+
+Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
+    ->name('ver-solicitudes-pendientes')
+    ->middleware('auth');
+    
+// Route::get('/detalle-solicitud-traslado/{id}', InfoSolicitudTraslado::class)
+//     ->name('detalle-solicitud-traslado')
+//     ->middleware('auth');
+
+// Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
+//     ->name('detalle-solicitud-insumo')
+//     ->middleware('auth');
+

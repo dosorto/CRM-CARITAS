@@ -14,6 +14,8 @@ class SolicitudTraslado extends BaseModel
 
     protected $table = 'solicitudes_traslado';
 
+    protected $fillable = ['firmado', 'solicitante_id', 'aprobador_id', 'created_by', 'updated_by', 'deleted_by'];
+
     public function solicitante(): BelongsTo
     {
         return $this->belongsTo(User::class, 'solicitante_id', 'id');
