@@ -48,6 +48,6 @@ class EditarGravedadModal extends Component
 
     public function render()
     {
-        return view('livewire.crud.gravedades-faltas.editar-gravedad-modal');
+        return view('livewire.crud.gravedades.editar-gravedad-modal');
     }
 }
