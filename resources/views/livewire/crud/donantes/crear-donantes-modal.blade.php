@@ -86,7 +86,7 @@
                     <span class="icon-[material-symbols--add-location-rounded] size-5"></span>
                     Crear Tipo
                 </button>
-                <label for="createTipoDonantesModal" class="btn btn-accent text-base-content">Cancelar</label>
+                <button wire:click="closeModal" class="btn btn-accent text-base-content">Cancelar</button>
             </div>
         </div>
     </div>
@@ -94,15 +94,6 @@
 
 @script
     <script>
-
-        document.getElementById('{{ $idModal }}').addEventListener('change', function(event) {
-            if (event.target.checked) {
-
-                $wire.initForm();
-            }
-        });
-
-
         $wire.on('cerrar-modal', () => {
             document.getElementById('{{ $idModal }}').checked = false;
         });

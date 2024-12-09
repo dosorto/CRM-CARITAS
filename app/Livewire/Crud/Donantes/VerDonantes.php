@@ -4,6 +4,8 @@ namespace App\Livewire\Crud\Donantes;
 
 use App\Models\Donante;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
+
 #[Lazy()]
 class VerDonantes extends Component
 {
@@ -44,7 +46,7 @@ class VerDonantes extends Component
 
     ];
 
-    public $paginationSize = 6;
+    public $paginationSize = 15;
     public $itemClass = Donante::class;
     public $idCreateModal = 'createDonanteModal';
 
