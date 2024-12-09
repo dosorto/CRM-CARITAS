@@ -116,6 +116,6 @@
 
     {{-- Footer fijo en la parte inferior --}}
     <footer class="h-auto flex flex-col justify-center bg-neutral text-base-content p-4 border-t-2 border-accent">
-        Pie de páginaaa
+        {{-- Pie de páginaaa --}}
     </footer>
 </div>

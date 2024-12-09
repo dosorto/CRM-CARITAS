@@ -3,7 +3,6 @@
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Actas de Entrega</h1>
         <div>
-            Cosas aparte...
         </div>
     </header>
 
