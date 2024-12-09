@@ -53,14 +53,14 @@ use App\Livewire\Crud\Migrantes\HistorialMigrante;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/registrar-migrante', RegistrarMigrante::class)
-        ->name('registrar-migrante')
-        ->middleware('can: Registrar Migrante');
+        ->name('registrar-migrante');
+        // ->middleware('can: Registrar Migrante');
     Route::get('/migrantes', MigrantesOptions::class)
-        ->name('migrantes')
-        ->middleware('can: Ver Migrantes');
+        ->name('migrantes');
+        // ->middleware('can: Ver Migrantes');
     Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)
-        ->name('registrar-salida-migrante')
-        ->middleware('can: Registrar Salida Migrante');
+        ->name('registrar-salida-migrante');
+        // ->middleware('can: Registrar Salida Migrante');
 });
 
 Route::get('/inicio', Dashboard::class)
@@ -80,8 +80,8 @@ Route::get('/paises', VerPaises::class)
 
 Route::get('/departamentos', VerDepartamentos::class)
     ->name('ver-departamentos')
-    ->middleware('auth')
-    ->middleware('can: Administrar Departamentos');
+    ->middleware('auth');
+    // ->middleware('can: Administrar Departamentos');
 
 Route::get('/ciudades', VerCiudades::class)
     ->name('ver-ciudades')

@@ -37,6 +37,7 @@ class PermissionSeeder extends Seeder
         //Permisos del CRUD EMPLEADOS
         Permission::create(['name' => 'Administrar Empleados']);
 
+        // Migrantes
         Permission::create(['name' => 'Registrar Migrante']);
         Permission::create(['name' => 'Registrar Salida Migrante']);
         Permission::create(['name' => 'Ver Migrantes']);
