@@ -16,7 +16,7 @@ class NecesidadSeeder extends Seeder
         $necesidades = [
             'Asilo',
             'Agua',
-            'Comida',
+            'Alimentación',
             'Teléfono Celular',
             'Dinero',
             'Ropa',
