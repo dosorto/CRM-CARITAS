@@ -58,6 +58,6 @@ class VerGravedadesFaltas extends Component
 
     public function render()
     {
-        return view('livewire.crud.gravedades-faltas.ver-gravedades-faltas');
+        return view('livewire.crud.gravedades.ver-gravedades-faltas');
     }
 }

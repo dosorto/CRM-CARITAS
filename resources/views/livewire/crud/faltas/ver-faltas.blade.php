@@ -4,7 +4,7 @@
         
         <h1 class="text-xl font-bold">Faltas Disciplinarias</h1>
         <div>
-            Cosas aparte...
+            {{-- Cosas aparte... --}}
         </div>
     </header>
 

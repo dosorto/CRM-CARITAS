@@ -38,6 +38,6 @@ class EliminarGravedadModal extends Component
 
     public function render()
     {
-        return view('livewire.crud.gravedades-faltas.eliminar-gravedad-modal');
+        return view('livewire.crud.gravedades.eliminar-gravedad-modal');
     }
 }

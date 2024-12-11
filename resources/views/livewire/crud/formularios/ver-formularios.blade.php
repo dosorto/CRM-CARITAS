@@ -1,13 +1,13 @@
-<main class=" min-h-screen flex flex-col items-center justify-center py-8 ">
+<main class=" min-h-screen flex flex-col items-center justify-center py-8">
     <!-- Contenedor del formulario -->
     <div id="formulario-captura"
-        class="relative bg-white p-8 rounded-lg shadow-lg max-w-3xl w-full space-y-6 print-section">
+        class="relative bg-white p-8 rounded-lg max-w-3xl w-full space-y-6 print-section">
 
         <!-- Logo superior izquierdo -->
-        <img src="/img/LOGO1.png" class="absolute top-4 left-0 h-10 w-30 m-4" alt="Logo izquierdo">
+        <img src="/img/logo-centro.jpg" class="absolute top-4 left-6 h-16 w-16 m-4" alt="Logo izquierdo">
 
         <!-- Logo superior derecho -->
-        <img src="/img/LOGO2.png" class="absolute top-3 right-0 h-10 w-30 m-4" alt="Logo derecho">
+        <img src="/img/LOGO2.png" class="absolute top-3 right-0 h-12 w-36 m-4" alt="Logo derecho">
 
         <!-- Título del formulario -->
         <div class="¿size-max flex flex-col justify-center text-center">
@@ -149,25 +149,24 @@
 
             <!-- Firma Ingreso -->
             <div class="flex flex-col">
-                <div class="w-full items-center flex justify-center flex-col mb-12 mt-12">
-                    <hr class="border border-gray-500 w-1/3">
-                    <label for="firma" class="text-gray-600">Firma Ingreso:</label>
-                </div>
-                <div class="w-full flex gap-4 justify-between">
-                    <div class="w-full flex justify-center">
-                        <label for="firma" class="text-gray-600">Fecha de Salida:</label>
+                <div class="w-full flex justify-center mt-6">
+                    <div class="w-1/2 flex flex-row items-end gap-42">
+                        <label for="firma" class="text-gray-600 font-semibold">Fecha de Salida:</label>
                         <hr class="border border-gray-500 w-3/5">
                     </div>
+                </div>
+                <div class="w-full flex gap-4 justify-between mt-16">
                     <div class="w-full items-center flex justify-center flex-col">
-                        <hr class="border border-gray-500 w-3/5">
+                        <hr class="border border-gray-500 w-2/3">
+                        <label for="firma" class="text-gray-600">Firma Ingreso:</label>
+                    </div>
+                    <div class="w-full items-center flex justify-center flex-col">
+                        <hr class="border border-gray-500 w-2/3">
                         <label for="firma" class="text-gray-600">Firma Salida:</label>
                     </div>
                 </div>
 
             </div>
-
-
-
         </section>
 
     </div>

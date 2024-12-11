@@ -5,7 +5,7 @@
         class="relative bg-white p-8 rounded-lg max-w-3xl w-full space-y-4 print-section text-black"">
 
             <!-- Logo superior izquierdo -->
-            <img src="/img/LOGO1.png" class="absolute top-4 left-0 h-14 w-40 m-4" alt="Logo izquierdo">
+            <img src="/img/logo-centro.jpg" class="absolute top-4 left-6 h-16 w-16 m-4" alt="Logo izquierdo">
 
             <!-- Logo superior derecho -->
             <img src="/img/LOGO2.png" class="absolute top-4 right-0 h-14 w-40 m-4" alt="Logo derecho">

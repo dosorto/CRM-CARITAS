@@ -20,7 +20,7 @@ class Login extends Component
         ]);
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            return redirect()->intended('/inicio'); // Cambia '/dashboard' por la ruta deseada
+            return redirect()->intended(route('inicio'));
         } else {
             session()->flash('error', 'Credenciales incorrectas.');
         }

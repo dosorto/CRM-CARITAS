@@ -3,7 +3,7 @@
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Donaciones</h1>
         <div>
-            {{-- Cosas aparte... Puedes añadir botones adicionales o filtros aquí --}}
+            
         </div>
     </header>
 

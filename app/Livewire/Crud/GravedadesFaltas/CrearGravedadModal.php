@@ -44,6 +44,6 @@ class CrearGravedadModal extends Component
 
     public function render()
     {
-        return view('livewire.crud.gravedades-faltas.crear-gravedad-modal');
+        return view('livewire.crud.gravedades.crear-gravedad-modal');
     }
 }

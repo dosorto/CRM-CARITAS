@@ -85,18 +85,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123'),
         ]);
 
-        $adminRole = Role::where('name', 'admin')->get()[0];
-        $permissions = Permission::all();
-
-        $adminRole->syncPermissions($permissions);
-
         $devs = User::all();
 
         foreach ($devs as $dev)
         {
-            $dev->assignRole($adminRole);
+            $dev->assignRole('admin');
         }
-
-        // Seguir añadiendo usuarios...
     }
 }

@@ -174,7 +174,6 @@
             <img width="250px" src=" {{ asset('imagenes/reportes/inmigrante.png') }}" alt="">
         </div>
     </div>
-    <!-- Pie de hoja -->
      <div  class="flex justify-center items-end mb-2 mt-4">
         <div style="border: 1px solid #fcf3c2; width:28%; background-color: #ece2a6; color: #583d2b; font-size: 12px;" class="pt-2 text-center font-bold">
             <p class="mb-1" >Información extraida de la base de datos del Centro de Atención Caritas</p>

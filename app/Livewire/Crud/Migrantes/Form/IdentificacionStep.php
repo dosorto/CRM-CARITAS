@@ -3,6 +3,7 @@
 namespace App\Livewire\Crud\Migrantes\Form;
 
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
+use App\Services\MigranteService;
 use Livewire\Component;
 
 class IdentificacionStep extends Component
@@ -26,6 +27,13 @@ class IdentificacionStep extends Component
             'identificacion' => 'required',
         ]);
 
+        $migrante = $this->getMigranteService()->buscar('numero_identificacion', $validated['identificacion']);
+        // verificar que no tenga un expediente activo
+        if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id)) {
+            $this->addError('identificacion', 'El migrante ya tiene un expediente activo, revise el listado para marcar su salida primero.');
+            return;
+        }
+
         // Inicializar 'datosPersonales' en la sesión si no existe
         if (!session()->has('datosPersonales')) {
             session(['datosPersonales' => []]);
@@ -35,5 +43,10 @@ class IdentificacionStep extends Component
 
         $this->dispatch('identificacion-validated')
             ->to(RegistrarMigrante::class);
+    }
+
+    public function getMigranteService()
+    {
+        return app(MigranteService::class);
     }
 }

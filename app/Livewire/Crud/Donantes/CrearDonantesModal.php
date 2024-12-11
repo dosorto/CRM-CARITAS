@@ -29,29 +29,28 @@ class CrearDonantesModal extends Component
         $nuevoDonante->tipo_donante_id = $validated['tipo_donante_id'];
         $nuevoDonante->save();
 
-        //se despacha el evento a si mismo para cerrarsolo este modal
-        $this->dispatch('cerrar-modal')->self();
+
+        $this->closeModal();
 
         //Este evento se envia a la tabla de contenido para actualizarse
         $this->dispatch('item-created')->to(ContentTable::class);
 
         //Este evento se envia al modal de Crear Donante Modal para actualizar el select
         $this->dispatch('donaciones-created')->to(CrearDonacionesModal::class);
-
-
     }
 
     public function initForm()
     {
-        $this->tiposDonantes = TipoDonante::all();
         $this->nombre_donante = '';
-        $this->tipo_donante_id = null;
-
     }
 
     public function mount($idModal)
     {
         $this->idModal = $idModal;
+        $this->tiposDonantes = TipoDonante::all();
+        if ($this->tiposDonantes->isNotEmpty()) {
+            $this->tipo_donante_id = $this->tiposDonantes[0]->id;
+        }
         $this->initForm();
     }
 
@@ -67,6 +66,10 @@ class CrearDonantesModal extends Component
             ->orderBy('id', 'desc')
             ->get();
     }
+
+    public function closeModal()
+    {
+        $this->initForm();
+        $this->dispatch('cerrar-modal')->self();
+    }
 }
-
-

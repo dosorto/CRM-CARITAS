@@ -3,7 +3,24 @@
 
         <h1 class="text-xl font-bold">Reporte de Artículos</h1>
         <div>
-            Cosas aparte...
+            <select wire:model.live="mes_seleccionado" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                <option>Seleccione</option>
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+              </select>
+
+            {{-- <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha inicial</label> --}}
+            {{-- <input wire:model.live="fecha_inicio" type="date" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required /> --}}
         </div>
     </header>
         <main class="h-full overflow-y-auto w-full p-4">
@@ -15,7 +32,7 @@
                         </div>
                         <div class="flex items-end text-white">
                             <p class="font-bold text-4xl">
-                                88
+                                {{ $cantidad_ingreso }}
                             </p>
                             <span>
                                  Ingresos de Artículos
@@ -70,17 +87,20 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($donaciones as $item)
                         <tr>
-                          <th>1</th>
-                          <td>Cy Ganderton</td>
-                          <td>Quality Control Specialist</td>
-                          <td>Littel, Schaden and Vandervort</td>
-                          <td>Canada</td>
-                          <td>12/16/2020</td>
+                          <th>{{ $item->id }}</th>
+                          <td>{{ $item->articulo->nombre }}</td>
+                          <td>{{ $item->articulo->codigo_barra }}</td>
+                          <td>{{ $item->cantidad_donada }}</td>
+                          <td>{{ $item->articulo->categoriaArticulo->name_categoria }}</td>
+                          <td>{{ $item->donacion->fecha_donacion }}</td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
                 </div>
+
             </section>
 
 

@@ -12,6 +12,35 @@ class MigranteService
 {
     use WithPagination;
 
+    public function tieneExpedienteActivo($id)
+    {
+        $migrante = Migrante::find($id)->first();
+        foreach ($migrante->expedientes as $expediente) {
+            if ($expediente->fecha_salida === null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function obtenerPrimerNombreApellido($id)
+    {
+        $migrante = Migrante::find($id)->first();
+        if ($migrante) {
+            return $migrante->primer_nombre . ' ' . $migrante->primer_apellido;
+        }
+        return null;
+    }
+
+    public function obtenerIdentificacion($id)
+    {
+        $migrante = Migrante::find($id)->first();
+        if ($migrante) {
+            return $migrante->numero_identificacion;
+        }
+        return null;
+    }
+
     public function guardarDatosPersonales($datosPersonales)
     {
         $nuevoMigrante = new Migrante();
@@ -223,8 +252,5 @@ class MigranteService
         return $fecha->age;
     }
 
-    public function registrarSalida($datosSalida)
-    {   
-
-    }
+    public function registrarSalida($datosSalida) {}
 }

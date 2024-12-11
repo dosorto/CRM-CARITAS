@@ -49,8 +49,13 @@ class RegistrarMigrante extends Component
 
         if ($migrante) {
 
+            // verificar que no tenga un expediente activo
+            if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id))
+            {
+                
+            }
+
             // Si ya existe el migrante, saltarse los pasos datos Personales.
-            // session()->forget(['datosPersonales']);
             session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
             session(['identificacion' => $migrante->numero_identificacion]);
             session(['migranteId' => $migrante->id]);
@@ -107,7 +112,6 @@ class RegistrarMigrante extends Component
     #[On('situacion-validated')]
     public function situacionStep()
     {
-        // dd(session()->all());
         // guardar Expediente
         $newExpedienteId = $this->getMigranteService()->guardarExpediente(
             session('migranteId'),
