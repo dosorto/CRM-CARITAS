@@ -131,6 +131,8 @@ class RegistrarSalidaMigrante extends Component
         $expediente->asesoria_psicosocial = intval($this->asesoriaPsicosocial);
         $expediente->observacion = $this->Observaciones;
 
+        dd(session()->all());
+
         $expediente->save();
 
         return $this->redirectRoute('ver-migrantes');

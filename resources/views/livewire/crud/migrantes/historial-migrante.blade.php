@@ -72,7 +72,7 @@
 
         {{-- Sección de datos personales --}}
         <section class="w-2/5 pl-6 border-l-2 border-accent overflow-y-auto flex flex-col">
-            <p class="text-xl font-bold text-center mt-4">Datos Personales...</p>
+            <p class="text-xl font-bold text-center mt-4">Datos Personales</p>
 
             <div class="gap-2 flex flex-col w-full h-max mt-6">
                 <span>

@@ -41,6 +41,16 @@ class VerMigrantes extends Component
             $this->getMigranteService()->getAllMigrantesPaginated(30)
             :
             $this->getMigranteService()->filterPaginated($this->fakeColNames[$this->colSelected], $this->textToFind, 30);
+
+        foreach ($items as $item) {
+            $item->reside_en_centro = false;
+            foreach ($item->expedientes as $expediente) {
+                if ($expediente->fecha_salida === null) {
+                    $item->reside_en_centro = true;
+                }
+            }
+        }
+
         return view('livewire.crud.migrantes.ver-migrantes')
             ->with('items', $items);
     }
@@ -50,6 +60,21 @@ class VerMigrantes extends Component
     {
         $this->textToFind = '';
         $this->colSelected = 'Número de Identificación';
+    }
+
+    public function nuevoExpediente($id)
+    {
+        // pasos para saltarse los primeros pasos del formulario.
+        // los primeros 3 son solo para datos personales.
+        session([
+            'currentStep' => 4,
+            'totalSteps' => 5,
+
+        ]);
+        session(['nombreMigrante' => $this->getMigranteService()->obtenerPrimerNombreApellido($id)]);
+        session(['identificacion' => $this->getMigranteService()->obtenerIdentificacion($id)]);
+        session(['migranteId' => $id]);
+        return $this->redirectRoute('registrar-migrante');
     }
 
     public function registrarSalida($id)
@@ -65,7 +90,6 @@ class VerMigrantes extends Component
 
     public function verHistorial($id)
     {
-    return $this->redirectRoute('ver-historial', ['migranteId' => $id]);
+        return $this->redirectRoute('ver-historial', ['migranteId' => $id]);
     }
 }
-
