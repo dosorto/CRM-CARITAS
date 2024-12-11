@@ -49,12 +49,6 @@ class RegistrarMigrante extends Component
 
         if ($migrante) {
 
-            // verificar que no tenga un expediente activo
-            if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id))
-            {
-                
-            }
-
             // Si ya existe el migrante, saltarse los pasos datos Personales.
             session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
             session(['identificacion' => $migrante->numero_identificacion]);

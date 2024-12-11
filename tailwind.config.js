@@ -72,7 +72,7 @@ module.exports = {
                     "success-content":  "#16a34a",      
                     "warning":          "#f59e00",     
                     "warning-content":  "#FFFFFF",     
-                    "error":            "#FF7D7D",   
+                    "error":            "#F05757",   
                     "error-content":    "#EEE",
                 },
             },
