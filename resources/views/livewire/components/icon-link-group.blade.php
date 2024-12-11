@@ -1,6 +1,6 @@
 <div class="flex flex-col">
     @can('Ver Dashboard')
-        <a href="/inicio" class="btn btn-primary w-full flex justify-start">
+        <a href="{{ route('inicio') }}" class="btn btn-primary w-full flex justify-start">
             <span class="icon-[solar--pie-chart-3-bold] size-6"></span>
             Estadísticas
         </a>

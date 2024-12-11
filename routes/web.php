@@ -51,126 +51,185 @@ use App\Livewire\Reportes\ReporteArticulo;
 use App\Livewire\Crud\Migrantes\HistorialMigrante;
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/registrar-migrante', RegistrarMigrante::class)
-        ->name('registrar-migrante');
-        // ->middleware('can: Registrar Migrante');
-    Route::get('/migrantes', MigrantesOptions::class)
-        ->name('migrantes');
-        // ->middleware('can: Ver Migrantes');
-    Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)
-        ->name('registrar-salida-migrante');
-        // ->middleware('can: Registrar Salida Migrante');
-});
-
-Route::get('/inicio', Dashboard::class)
-    ->middleware('auth');
-
-Route::get('/listado-migrantes', VerMigrantes::class)
-    ->name('ver-migrantes')
-    ->middleware('auth');
-
-Route::get('/administracion', Administracion::class)
-    ->name('administracion')
-    ->middleware('auth');
-
-Route::get('/paises', VerPaises::class)
-    ->name('ver-paises')
-    ->middleware('auth');
-
-Route::get('/departamentos', VerDepartamentos::class)
-    ->name('ver-departamentos')
-    ->middleware('auth');
-    // ->middleware('can: Administrar Departamentos');
-
-Route::get('/ciudades', VerCiudades::class)
-    ->name('ver-ciudades')
-    ->middleware('auth');
-
 Route::get('/', Login::class)
     ->name('login');
 
-Route::get('/categorias', VerCategorias::class)
-    ->name('ver-categorias')->middleware('auth');
 
-Route::get('/subcategorias', VerSubCategorias::class)
-    ->name('ver-sub-categorias')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/mobiliarios', VerMobiliarios::class)->name('ver-mobiliarios')->middleware('auth');
-Route::get('/ver-expediente', VerFormularios::class)->name('ver-expediente')->middleware('auth');
+    // ---------------- Dashboard ----------------
 
-Route::get('/articulos', VerArticulos::class)
-    ->name('ver-articulos')
-    ->middleware('auth');
-Route::get('/tipodonantes', VerTipoDonantes::class)
-    ->name('ver-tipo-donantes')
-    ->middleware('auth');
-Route::get('/donantes', VerDonantes::class)
-    ->name('ver-donantes')
-    ->middleware('auth');
-Route::get('/listar-donaciones', VerDonaciones::class)
-    ->name('ver-donaciones')
-    ->middleware('auth');
-Route::get('crear-donacion', CrearDonaciones::class)
-    ->name('crear-donacion')
-    ->middleware('auth');
+    Route::get('/inicio', Dashboard::class)
+        ->name('inicio');
 
 
+    // ---------------- Migrantes ----------------
 
-Route::get('/categoria-articulos', VerCategoriaArticulos::class)
-    ->name('ver-categoria-articulos')
-    ->middleware('auth');
+    Route::get('/registrar-migrante', RegistrarMigrante::class)
+        ->name('registrar-migrante');
+    // ->middleware('can: Registrar Migrante');
 
-Route::get('/listado-actas-entrega', VerActasEntrega::class)
-    ->name('ver-actas-entrega')
-    ->middleware('auth');
+    Route::get('/migrantes', MigrantesOptions::class)
+        ->name('migrantes');
+    // ->middleware('can: Ver Migrantes');
 
-Route::get('/crear-acta-entrega', CrearActaEntrega::class)
-    ->name('crear-acta-entrega')
-    ->middleware('auth');
+    Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)
+        ->name('registrar-salida-migrante');
+    // ->middleware('can: Registrar Salida Migrante');
 
-Route::get('/info-acta-entrega', InfoActaEntrega::class)
-    ->name('info-acta-entrega')
-    ->middleware('auth');
-
-
-Route::get('/actas-entrega', ActasEntregaPage::class)
-    ->name('actas-entrega-page')
-    ->middleware('auth');
-
-Route::get('/actas', ActasOptions::class)
-    ->name('actas')
-    ->middleware('auth');
-
-Route::get('/donaciones', DonacionPage::class)
-    ->name('donaciones')
-    ->middleware('auth');
+    Route::get('/listado-migrantes', VerMigrantes::class)
+        ->name('ver-migrantes');
 
 
+    // ---------------- Expedientes de Migrantes ----------------
 
-Route::get('/solicitudes-traslado', SolicitudesTrasladoPage::class)
-    ->name('solicitudes-traslado-page')
-    ->middleware('auth');
+    Route::get('/ver-expediente', VerFormularios::class)
+        ->name('ver-expediente');
 
-Route::get('/listado-solicitudes-traslado', VerSolicitudesTraslado::class)
-    ->name('ver-solicitudes-traslado')
-    ->middleware('auth');
+    Route::get('/discapacidades', VerDiscapacidades::class)
+        ->name('ver-discapacidades');
 
-Route::get('/crear-solicitud-traslado', CrearSolicitudTraslado::class)
-    ->name('crear-solicitud-traslado')
-    ->middleware('auth');
+    Route::get('/necesidades', VerNecesidades::class)
+        ->name('ver-necesidades');
 
-Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
-    ->name('info-solicitud-traslado')
-    ->middleware('auth');
+    Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
+        ->name('ver-situaciones-migratorias');
 
-Route::get('/reporte-mensual', ReporteMensual::class)
-    ->name('reporte-mensual')
-    ->middleware('auth');
+    Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
+        ->name('ver-asesores-migratorios');
 
-Route::get('/reportes', Reportes::class)
-    ->name('reportes')
-    ->middleware('auth');
+    Route::get('/fronteras', VerFronteras::class)
+        ->name('ver-fronteras');
+
+    Route::get('/faltas-disciplinarias', VerFaltas::class)
+        ->name('ver-faltas');
+
+    Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
+        ->name('ver-gravedades-faltas');
+
+    Route::get('/historial/{migranteId}', HistorialMigrante::class)
+        ->name('ver-historial');
+
+
+    // ---------------- Manteminiento General ----------------
+
+    Route::get('/administracion', Administracion::class)
+        ->name('administracion');
+
+
+    // ---------------- Localizaciones ----------------
+
+    Route::get('/paises', VerPaises::class)
+        ->name('ver-paises');
+
+    Route::get('/departamentos', VerDepartamentos::class)
+        ->name('ver-departamentos');
+
+    Route::get('/ciudades', VerCiudades::class)
+        ->name('ver-ciudades');
+
+
+    // ---------------- Mobiliarios ----------------
+
+    Route::get('/mobiliarios', VerMobiliarios::class)
+        ->name('ver-mobiliarios');
+
+    Route::get('/categorias', VerCategorias::class)
+        ->name('ver-categorias');
+
+    Route::get('/subcategorias', VerSubCategorias::class)
+        ->name('ver-sub-categorias');
+
+
+    // ---------------- Articulos ----------------
+
+    Route::get('/articulos', VerArticulos::class)
+        ->name('ver-articulos');
+
+    Route::get('/categoria-articulos', VerCategoriaArticulos::class)
+        ->name('ver-categoria-articulos');
+
+
+    // ---------------- Donaciones ----------------
+
+    Route::get('/tipodonantes', VerTipoDonantes::class)
+        ->name('ver-tipo-donantes');
+
+    Route::get('/donantes', VerDonantes::class)
+        ->name('ver-donantes');
+
+    Route::get('/listar-donaciones', VerDonaciones::class)
+        ->name('ver-donaciones');
+
+    Route::get('/crear-donacion', CrearDonaciones::class)
+        ->name('crear-donacion');
+
+    Route::get('/donaciones', DonacionPage::class)
+        ->name('donaciones');
+
+
+    // ---------------- Actas ----------------
+
+    Route::get('/actas', ActasOptions::class)
+        ->name('actas');
+
+
+    // ---------------- Actas de Entrega ----------------
+
+    Route::get('/listado-actas-entrega', VerActasEntrega::class)
+        ->name('ver-actas-entrega');
+
+    Route::get('/crear-acta-entrega', CrearActaEntrega::class)
+        ->name('crear-acta-entrega');
+
+    Route::get('/info-acta-entrega', InfoActaEntrega::class)
+        ->name('info-acta-entrega');
+
+    Route::get('/actas-entrega', ActasEntregaPage::class)
+        ->name('actas-entrega-page');
+
+
+    // ---------------- Solicitudes de Traslado ----------------
+
+    Route::get('/solicitudes-traslado', SolicitudesTrasladoPage::class)
+        ->name('solicitudes-traslado-page');
+
+    Route::get('/listado-solicitudes-traslado', VerSolicitudesTraslado::class)
+        ->name('ver-solicitudes-traslado');
+
+    Route::get('/crear-solicitud-traslado', CrearSolicitudTraslado::class)
+        ->name('crear-solicitud-traslado');
+
+    Route::get('/info-solicitud-traslado', InfoSolicitudTraslado::class)
+        ->name('info-solicitud-traslado');
+
+
+    // ---------------- Solicitudes de Insumos ----------------
+
+    Route::get('/solicitudes-insumos', SolicitudesInsumosPage::class)
+        ->name('solicitudes-insumos-page');
+
+    Route::get('/listado-solicitudes-insumos', VerSolicitudesInsumos::class)
+        ->name('ver-solicitudes-insumos');
+
+    Route::get('/solicitud-insumo', InfoSolicitudInsumo::class)
+        ->name('info-solicitud-insumos');
+
+    Route::get('/crear-solicitud-insumos', CrearSolicitudInsumos::class)
+        ->name('crear-solicitud-insumos');
+
+
+    // ---------------- Reporteria ----------------
+
+    Route::get('/reporte-mensual', ReporteMensual::class)
+        ->name('reporte-mensual');
+
+    Route::get('/reportes', Reportes::class)
+        ->name('reportes');
+
+    Route::get('/reporte-articulos', ReporteArticulo::class)
+        ->name('reporte-articulos');
+});
 
 
 Route::post('/logout', function () {
@@ -179,57 +238,3 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
-
-Route::get('/discapacidades', VerDiscapacidades::class)
-    ->name('ver-discapacidades')
-    ->middleware('auth');
-
-Route::get('/necesidades', VerNecesidades::class)
-    ->name('ver-necesidades')
-    ->middleware('auth');
-
-Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
-    ->name('ver-situaciones-migratorias')
-    ->middleware('auth');
-
-Route::get('/asesores-migratorios', VerAsesoresMigratorios::class)
-    ->name('ver-asesores-migratorios')
-    ->middleware('auth');
-
-Route::get('/fronteras', VerFronteras::class)
-    ->name('ver-fronteras')
-    ->middleware('auth');
-
-
-Route::get('/solicitudes-insumos', SolicitudesInsumosPage::class)
-    ->name('solicitudes-insumos-page')
-    ->middleware('auth');
-
-Route::get('/listado-solicitudes-insumos', VerSolicitudesInsumos::class)
-    ->name('ver-solicitudes-insumos')
-    ->middleware('auth');
-
-Route::get('/solicitud-insumo', InfoSolicitudInsumo::class)
-    ->name('info-solicitud-insumos')
-    ->middleware('auth');
-
-Route::get('/crear-solicitud-insumos', CrearSolicitudInsumos::class)
-    ->name('crear-solicitud-insumos')
-    ->middleware('auth');
-
-Route::get('/reporte-articulos', ReporteArticulo::class)
-    ->name('reporte-articulos')
-    ->middleware('auth');
-
-
-Route::get('/faltas-disciplinarias', VerFaltas::class)
-    ->name('ver-faltas')
-    ->middleware('auth');
-
-Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
-    ->name('ver-gravedades-faltas')
-    ->middleware('auth');
-
-Route::get('/historial/{migranteId}', HistorialMigrante::class)
-    ->name('ver-historial')
-    ->middleware('auth');
