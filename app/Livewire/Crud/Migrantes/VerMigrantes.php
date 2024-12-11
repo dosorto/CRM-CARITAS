@@ -37,6 +37,7 @@ class VerMigrantes extends Component
 
     public function render()
     {
+        dd(session()->all());
         $items = $this->textToFind === '' ?
             $this->getMigranteService()->getAllMigrantesPaginated(30)
             :
