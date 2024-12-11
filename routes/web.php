@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
-use App\Livewire\Admin\VerSolicitudesPendientes;
 use App\Livewire\Crud\Articulos\VerArticulos;
 use App\Livewire\Crud\CategoriaArticulos\VerCategoriaArticulos;
 use App\Livewire\Crud\Categorias\VerCategorias;
@@ -122,6 +121,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
         ->name('ver-gravedades-faltas');
 
+    Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
+        ->name('ver-solicitudes-pendientes');
+
     // Route::get('/detalle-solicitud-traslado/{id}', InfoSolicitudTraslado::class)
     //     ->name('detalle-solicitud-traslado')
     //     ->middleware('auth');
@@ -236,10 +238,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('crear-solicitud-insumos');
 
 
-    Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
-        ->name('ver-solicitudes-pendientes');
-
-
     // ---------------- Reporteria ----------------
 
     Route::get('/reporte-mensual', ReporteMensual::class)
@@ -252,10 +250,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('reporte-articulos');
 });
 
-Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
-    ->name('ver-solicitudes-pendientes')
-    ->middleware('auth');
-    
+
 // Route::get('/detalle-solicitud-traslado/{id}', InfoSolicitudTraslado::class)
 //     ->name('detalle-solicitud-traslado')
 //     ->middleware('auth');
@@ -263,3 +258,4 @@ Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
 // Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
 //     ->name('detalle-solicitud-insumo')
 //     ->middleware('auth');
+
