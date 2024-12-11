@@ -88,7 +88,7 @@ Route::middleware(['auth'])->group(function () {
 
     // ---------------- Expedientes de Migrantes ----------------
 
-    Route::get('/ver-expediente', VerFormularios::class)
+    Route::get('/ver-expediente/{expedienteId}', VerFormularios::class)
         ->name('ver-expediente');
 
     Route::get('/discapacidades', VerDiscapacidades::class)

@@ -3,7 +3,6 @@
 namespace App\Livewire\Crud\Migrantes\SalidaMigrante;
 
 use App\Models\Falta;
-use App\Models\GravedadFalta;
 use Livewire\Component;
 
 class VerFaltasExpediente extends Component

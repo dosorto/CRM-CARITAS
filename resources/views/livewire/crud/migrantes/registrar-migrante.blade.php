@@ -4,7 +4,12 @@
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold"> Registrar Migrante </h1>
         <div>
-            
+            @if (session('currentStep') < 4)
+                <button wire:click="cancelarRegistro" class="btn btn-sm bg-accent">
+                    <span class="icon-[gravity-ui--circle-xmark] size-4"></span>
+                    Cancelar
+                </button>
+            @endif
         </div>
     </header>
 

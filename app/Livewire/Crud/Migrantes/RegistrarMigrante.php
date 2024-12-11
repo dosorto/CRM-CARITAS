@@ -24,7 +24,6 @@ class RegistrarMigrante extends Component
 
     public function mount()
     {
-
         // Si el paso no ha sido establecido, entonces se establece en 1
         if (!session()->has('currentStep')) {
             session([
@@ -36,10 +35,8 @@ class RegistrarMigrante extends Component
 
     public function render()
     {
-
         return view('livewire.crud.migrantes.registrar-migrante');
     }
-
 
 
     #[On('identificacion-validated')]
@@ -118,22 +115,18 @@ class RegistrarMigrante extends Component
             session('datosMigratorios.observacion'),
         );
 
-        
 
         if ($newExpedienteId) {
             session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
             session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
             
-            // dd($newExpedienteId);
-            session(['expedienteId' => $newExpedienteId]);
-            return redirect(route('ver-expediente'));
+            return $this->redirectRoute('ver-expediente', ['expedienteId' => $newExpedienteId]);
         }
+
+        // Mensaje
         return redirect(route('ver-migrantes'));
 
     }
-
-
-
 
     #[On('previous-step')]
     public function previousStep()
@@ -147,6 +140,14 @@ class RegistrarMigrante extends Component
         $currentStep = session('currentStep', 0) + 1;
         session(['currentStep' => $currentStep]);
     }
+
+
+    public function cancelarRegistro()
+    {
+        session()->forget(['expedienteId', 'currentStep', 'totalSteps', 'datosPersonales']);
+        return $this->redirectRoute('ver-migrantes');
+    }
+
 
     public function getMigranteService()
     {
