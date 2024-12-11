@@ -54,6 +54,12 @@ use App\Livewire\Crud\Migrantes\HistorialMigrante;
 Route::get('/', Login::class)
     ->name('login');
 
+Route::post('/logout', function () {
+    FacadesAuth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/'); // Redirecciona a la página de login
+})->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -61,7 +67,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/inicio', Dashboard::class)
         ->name('inicio');
-
 
     // ---------------- Migrantes ----------------
 
@@ -230,11 +235,3 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reporte-articulos', ReporteArticulo::class)
         ->name('reporte-articulos');
 });
-
-
-Route::post('/logout', function () {
-    FacadesAuth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-    return redirect('/'); // Redirecciona a la página de login
-})->name('logout');
