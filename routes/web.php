@@ -29,7 +29,7 @@ use App\Livewire\Actas\SolicitudInsumo\VerSolicitudesInsumos;
 use App\Livewire\Actas\SolicitudTraslado\CrearSolicitudTraslado;
 use App\Livewire\Actas\SolicitudTraslado\InfoSolicitudTraslado;
 use App\Livewire\Actas\SolicitudTraslado\VerSolicitudesTraslado;
-
+use App\Livewire\Admin\VerSolicitudesPendientes;
 use App\Livewire\Crud\AsesoresMigratorios\VerAsesoresMigratorios;
 use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Donaciones\CrearDonaciones;
