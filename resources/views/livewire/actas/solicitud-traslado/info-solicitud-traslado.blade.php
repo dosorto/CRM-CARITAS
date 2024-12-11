@@ -63,14 +63,14 @@
                     <div class="w-1/2 flex flex-col items-center justify-center">
                         <hr class="w-2/3 border-gray-600">
                         <p class="mt-2">Firma de Entrega</p>
-                        <p class="mt-1 font-semibold text-gray-700">Ing. {{ $nombreSolicitante }}</p>
+                        <p class="mt-1 font-semibold text-gray-700">{{ $nombreSolicitante }}</p>
                     </div>
 
                     <!-- Firma del aprobador -->
                     <div class="w-1/2 flex flex-col items-center justify-center">
                         <hr class="w-2/3 border-gray-600">
                         <p class="mt-2">Firma de Recibido</p>
-                        <p class="mt-1 font-semibold text-gray-700">Ing. {{ $nombreAprobador }}</p>
+                        <p class="mt-1 font-semibold text-gray-700">{{ $nombreAprobador }}</p>
                     </div>
                 </section>
             </footer>
