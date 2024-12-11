@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('expedientes_faltas', function (Blueprint $table) {
-            $table->unsignedBigInteger('expediente_id');
+        Schema::create('migrantes_faltas', function (Blueprint $table) {
+            $table->unsignedBigInteger('migrante_id');
             $table->unsignedBigInteger('falta_id');
 
-            $table->primary(['expediente_id', 'falta_id']);
+            $table->primary(['migrante_id', 'falta_id']);
 
-            $table->foreign('expediente_id')->references('id')->on('expedientes')->onDelete('cascade');
+            $table->foreign('migrante_id')->references('id')->on('migrantes')->onDelete('cascade');
             $table->foreign('falta_id')->references('id')->on('faltas')->onDelete('cascade');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('expedientes_faltas');
+        Schema::dropIfExists('migrantes_faltas');
     }
 };

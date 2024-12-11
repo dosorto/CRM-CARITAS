@@ -1,9 +1,20 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="verFaltasExpediente" class="btn btn-primary text-nowrap text-primary-content">
-        <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
-        Ver Faltas Disciplinarias
-    </label>
+
+
+    @if ($botonGrande)
+        {{-- Boton Grande --}}
+        <label for="verFaltasExpediente" class="btn btn-primary text-nowrap text-primary-content">
+            <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
+            Ver Faltas Disciplinarias
+        </label>
+    @else
+        {{-- Boton Pequeño --}}
+        <label for="verFaltasExpediente" class="btn btn-accent btn-sm text-base-content">
+            <span class="icon-[fluent--clipboard-error-16-filled] size-5"></span>
+        </label>
+    @endif
+
 
     {{-- Modal --}}
     <input type="checkbox" id="verFaltasExpediente" class="modal-toggle" />
@@ -55,6 +66,13 @@
                 <div wire:loading class="flex items-center p-2 justify-start size-full">
                     <span class="loading loading-spinner loading-md text-gray-400"></span>
                 </div>
+
+
+
+                <button class="btn btn-error text-base-content pr-5">
+                    <span class="icon-[ci--error] size-6"></span>
+                    Asignar Falta Disciplinaria
+                </button>
                 <label for="verFaltasExpediente" class="btn btn-accent text-base-content">Cerrar</label>
             </footer>
         </div>

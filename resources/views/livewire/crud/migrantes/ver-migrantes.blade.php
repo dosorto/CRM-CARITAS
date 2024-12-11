@@ -3,7 +3,7 @@
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Migrantes</h1>
         <div>
-            {{-- Cosas aparte... --}}...
+            {{-- Cosas aparte... --}}
         </div>
     </header>
 
@@ -101,6 +101,16 @@
                                         class="btn btn-accent btn-sm text-base-content" type="button">
                                         <span class="icon-[mdi--account-file-text] size-6"></span>
                                     </button>
+                                </div>
+
+
+                                
+
+                                <div class="tooltip tooltip-primary" data-tip="Ver Faltas Disciplinarias">
+                                    <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente migranteId="{{ $item->id }}" botonGrande="{{ false }}"/>
+                                    {{-- <button class="btn btn-accent btn-sm text-base-content" type="button">
+                                        <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
+                                    </button> --}}
                                 </div>
                             </td>
 

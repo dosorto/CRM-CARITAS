@@ -76,7 +76,7 @@
 
     <footer class="flex flex-row h-max w-full justify-between py-4">
         <div class="flex gap-4">
-            <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente expedienteId="{{ $expedienteId }}" />
+            <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente migranteId="{{ $migranteId }}" botonGrande="{{ true }}"/>
         </div>
 
         <div class="flex gap-4">

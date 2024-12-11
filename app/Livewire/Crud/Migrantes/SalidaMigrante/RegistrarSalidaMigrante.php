@@ -16,6 +16,7 @@ class RegistrarSalidaMigrante extends Component
     public $fechaSalida;
 
     public $expedienteId;
+    public $migranteId;
 
     public $atencionPsicologica = 0;
     public $asesoriaPsicologica = 0;
@@ -54,7 +55,7 @@ class RegistrarSalidaMigrante extends Component
                 $this->cancelar();
             }
         } else {
-            return redirect(route('ver-migrantes'));
+            return $this->redirectRoute('ver-migrantes');
         }
 
         $migrante = $this->getMigranteService()->buscar('id', intval($migranteId));
@@ -62,9 +63,6 @@ class RegistrarSalidaMigrante extends Component
         if (!$migrante) {
             $this->cancelar();
         }
-
-
-
 
         $fechaIngreso = $expediente->created_at->format('d-m-Y');
 
@@ -81,6 +79,7 @@ class RegistrarSalidaMigrante extends Component
             $migrante->segundo_apellido;
 
         $this->expedienteId = $expediente->id;
+        $this->migranteId = $migrante->id;
 
         $this->datosPersonales = [
             'Nombre Completo' => $nombre,

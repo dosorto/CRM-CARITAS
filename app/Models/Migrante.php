@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,5 +33,10 @@ class Migrante extends BaseModel
     public function expedientes(): HasMany
     {
         return $this->hasMany(Expediente::class, 'migrante_id');
+    }
+
+    public function faltas(): BelongsToMany
+    {
+        return $this->belongsToMany(Falta::class, 'migrantes_faltas', 'migrante_id', 'falta_id');
     }
 }

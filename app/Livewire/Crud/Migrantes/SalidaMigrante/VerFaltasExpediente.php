@@ -8,12 +8,15 @@ use Livewire\Component;
 class VerFaltasExpediente extends Component
 {
     public $faltas;
+    public $botonGrande;
 
-    public function mount($expedienteId)
+    public function mount($migranteId, $botonGrande = false)
     {
+        $this->botonGrande = $botonGrande;
+
         // Obtener las faltas asociadas al expediente
-        $faltasAgrupadas = Falta::whereHas('expedientes', function ($query) use ($expedienteId) {
-            $query->where('expediente_id', $expedienteId);
+        $faltasAgrupadas = Falta::whereHas('migrantes', function ($query) use ($migranteId) {
+            $query->where('migrante_id', $migranteId);
         })
             ->with('gravedad') // Carga la relación de la gravedad
             ->get()
