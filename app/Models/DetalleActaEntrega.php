@@ -21,3 +21,4 @@ class DetalleActaEntrega extends BaseModel
         return $this->belongsTo(Articulo::class, 'articulo_id');
     }
 }
+

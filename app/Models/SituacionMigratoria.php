@@ -17,3 +17,4 @@ class SituacionMigratoria extends BaseModel
         return $this->hasMany(Expediente::class, 'situacion_migratoria_id');
     }
 }
+

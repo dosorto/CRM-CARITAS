@@ -28,5 +28,5 @@ class Mobiliario extends BaseModel
             'solicitud_traslado_id'    // Clave foránea en la tabla intermedia que apunta a solicitudes_traslado
         );
     }
-
 }
+

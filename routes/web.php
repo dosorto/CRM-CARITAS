@@ -124,14 +124,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
         ->name('ver-solicitudes-pendientes');
 
-    // Route::get('/detalle-solicitud-traslado/{id}', InfoSolicitudTraslado::class)
-    //     ->name('detalle-solicitud-traslado')
-    //     ->middleware('auth');
-
-    // Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
-    //     ->name('detalle-solicitud-insumo')
-    //     ->middleware('auth');
-
     Route::get('/administracion', Administracion::class)
         ->name('administracion');
 

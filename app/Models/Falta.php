@@ -18,3 +18,4 @@ class Falta extends BaseModel
         return $this->belongsToMany(Migrante::class, 'migrantes_faltas', 'falta_id', 'migrante_id');
     }
 }
+

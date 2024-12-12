@@ -41,3 +41,4 @@ class BaseModel extends Model
         });
     }
 }
+

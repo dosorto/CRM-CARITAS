@@ -24,10 +24,25 @@ class FaltasSeeder extends Seeder
         }
 
         $faltas = [
-            ['falta' => 'Disturbio', 'gravedad_falta_id' => 1],
-            ['falta' => 'Robo', 'gravedad_falta_id' => 2],
-            ['falta' => 'Violencia Física', 'gravedad_falta_id' => 3],
+            // Leves
+            ['falta' => 'Llegar tarde al horario de comida', 'gravedad_falta_id' => 1],
+            ['falta' => 'Uso indebido de espacios comunes', 'gravedad_falta_id' => 1],
+            ['falta' => 'No colaborar en tareas de limpieza', 'gravedad_falta_id' => 1],
+            ['falta' => 'Hablar en voz alta durante las horas de descanso', 'gravedad_falta_id' => 1],
+        
+            // Graves
+            ['falta' => 'Altercados verbales con otros residentes', 'gravedad_falta_id' => 2],
+            ['falta' => 'Desobedecer normas de convivencia', 'gravedad_falta_id' => 2],
+            ['falta' => 'Fumar en áreas no designadas', 'gravedad_falta_id' => 2],
+            ['falta' => 'Uso indebido de recursos del albergue', 'gravedad_falta_id' => 2],
+        
+            // Muy graves
+            ['falta' => 'Agresiones físicas a otros residentes', 'gravedad_falta_id' => 3],
+            ['falta' => 'Robo a otros migrantes o al albergue', 'gravedad_falta_id' => 3],
+            ['falta' => 'Amenazas graves hacia el personal o residentes', 'gravedad_falta_id' => 3],
+            ['falta' => 'Destrucción intencional de propiedad del albergue', 'gravedad_falta_id' => 3],
         ];
+        
 
         foreach ($faltas as $falta) {
             DB::table('faltas')->insert(array_merge($falta, ['created_by' => 1]));

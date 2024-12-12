@@ -25,7 +25,7 @@ class TipoDonanteSeeder extends Seeder
                 'created_by' => 1
             ],
             [
-                'descripcion' => 'Persona Natural',
+                'descripcion' => 'Persona',
                 'created_by' => 1
             ]
         ]);

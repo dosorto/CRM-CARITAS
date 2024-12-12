@@ -57,14 +57,13 @@ class MobiliarioSeeder extends Seeder
                 'created_by' => 1
             ],
 
-
             [
                 'nombre_mobiliario' => 'Mesa',
                 'descripcion' => 'Mesa grande de comedor, color roble oscuro',
                 'codigo' => 'PSCCH-000005',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 14,
+                'subcategoria_id' => 5,
                 'created_by' => 1
             ],
 
@@ -74,17 +73,17 @@ class MobiliarioSeeder extends Seeder
                 'codigo' => 'PSCCH-000006',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 16,
+                'subcategoria_id' => 6,
                 'created_by' => 1
             ],
 
             [
                 'nombre_mobiliario' => 'Ropero',
-                'descripcion' => 'Ropero de ropa',
+                'descripcion' => 'Ropero Grande de Madera',
                 'codigo' => 'PSCCH-000007',
                 'estado' => 'Bueno',
                 'ubicacion' => 'Bodega',
-                'subcategoria_id' => 17,
+                'subcategoria_id' => 7,
                 'created_by' => 1
             ]
         ]);

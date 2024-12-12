@@ -2,15 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class CategoriaArticuloSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::table('categoria_articulos')->insert([
@@ -19,9 +15,21 @@ class CategoriaArticuloSeeder extends Seeder
                 'created_by' => 1
             ],
             [
-                'name_categoria' => 'Aseo del Cuerpo',
+                'name_categoria' => 'Limpieza General',
                 'created_by' => 1
-            ]
+            ],
+            [
+                'name_categoria' => 'Productos de Belleza',
+                'created_by' => 1
+            ],
+            [
+                'name_categoria' => 'Cuidado Infantil',
+                'created_by' => 1
+            ],
+            [
+                'name_categoria' => 'Cuidado de la Salud',
+                'created_by' => 1
+            ],
         ]);
     }
 }

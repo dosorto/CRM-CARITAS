@@ -24,6 +24,4 @@ class SubCategoria extends BaseModel
     {
         return $this->hasMany(Mobiliario::class); // Relación con artículos
     }
-
-
 }
