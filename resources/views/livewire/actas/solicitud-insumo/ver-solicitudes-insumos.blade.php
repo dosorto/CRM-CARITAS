@@ -26,7 +26,7 @@
                                 {{ $item->user->nombre . ' ' . $item->user->apellido }}
                             </td>
                             <td>
-                                {{ $item->user->identificacion }}
+                                {{ $item->user->identidad }}
                             </td>
                             <td>
                                 {{ $item->created_at->format('d-m-Y') }}
