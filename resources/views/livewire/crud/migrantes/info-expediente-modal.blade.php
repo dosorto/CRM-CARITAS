@@ -86,6 +86,10 @@
             </main>
 
             <div class="modal-action">
+                <button class="btn btn-success text-base-content" wire:click="imprimir({{ $item->id }})">
+                    <span class="icon-[material-symbols--print] size-6"></span>
+                    Imprimir
+                </button>
                 <label for="{{ $idModal }}-{{ $id }}"
                     class="btn btn-accent text-base-content">Cerrar</label>
             </div>

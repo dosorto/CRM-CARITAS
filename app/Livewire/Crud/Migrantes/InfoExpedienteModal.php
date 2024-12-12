@@ -23,4 +23,9 @@ class InfoExpedienteModal extends Component
     {
         return view('livewire.crud.migrantes.info-expediente-modal');
     }
+
+    public function imprimir($id)
+    {
+        $this->redirectRoute('ver-expediente', ['expedienteId' => $id]);
+    }
 }
