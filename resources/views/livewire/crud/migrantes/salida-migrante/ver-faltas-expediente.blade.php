@@ -19,7 +19,7 @@
     {{-- Modal --}}
     <input type="checkbox" id="verFaltasExpediente" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box max-w-5xl h-full w-2/3 bg-neutral border-2 border-accent flex flex-col">
+        <div class="modal-box max-w-5xl h-max w-1/2 bg-neutral border-2 border-accent flex flex-col">
             <header>
                 {{-- Título del Modal --}}
                 <h3 class="text-xl font-bold text-center mb-5">Faltas Disciplinarias</h3>
@@ -39,7 +39,7 @@
                 @else
                     @foreach ($faltas as $gravedad => $faltasDeGravedad)
                         {{-- Sección de categoría --}}
-                        <section>
+                        <section class="flex flex-col items-start">
                             <h4
                                 class="text-lg font-bold mb-2 
                         {{-- @if ($gravedad === 'Leve') text-success
@@ -47,7 +47,7 @@
                         @elseif ($gravedad === 'Muy Grave') text-error
                         @else text-primary @endif --}}
                         ">
-                                Faltas {{ $gravedad }}
+                                {{ $gravedad }}
                             </h4>
                             <ul class="list-disc list-inside space-y-1">
                                 @forelse ($faltasDeGravedad as $falta)
@@ -68,11 +68,8 @@
                 </div>
 
 
+                <livewire:crud.migrantes.asignar-falta-modal migranteId="{{ $migranteId }}" />
 
-                <button class="btn btn-error text-base-content pr-5">
-                    <span class="icon-[ci--error] size-6"></span>
-                    Asignar Falta Disciplinaria
-                </button>
                 <label for="verFaltasExpediente" class="btn btn-accent text-base-content">Cerrar</label>
             </footer>
         </div>
