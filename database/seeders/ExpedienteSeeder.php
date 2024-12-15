@@ -23,6 +23,8 @@ class ExpedienteSeeder extends Seeder
                 'atencion_legal' => true,
                 'asesoria_psicosocial' => true,
                 'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'migrante_id' => 2,
@@ -37,6 +39,8 @@ class ExpedienteSeeder extends Seeder
                 'atencion_legal' => false,
                 'asesoria_psicosocial' => false,
                 'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'migrante_id' => 3,
@@ -51,6 +55,8 @@ class ExpedienteSeeder extends Seeder
                 'atencion_legal' => true,
                 'asesoria_psicosocial' => true,
                 'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ]);
 

@@ -25,7 +25,9 @@ class SituacionMigratoriaSeeder extends Seeder
         foreach ($situacionesMigratorias as $situacion) {
             DB::table('situaciones_migratorias')->insert([
                 'situacion_migratoria' => $situacion,
-                'created_by' => 1
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }

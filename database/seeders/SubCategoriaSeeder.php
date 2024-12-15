@@ -11,7 +11,8 @@ class SubCategoriaSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('subcategorias')->insert([
+        $subcategorias = [
+            // DB::table('subcategorias')->insert([
             // Subcategorías para "Aparato Eléctrico"
             [
                 'nombre_subcategoria' => 'Televisión',
@@ -23,7 +24,7 @@ class SubCategoriaSeeder extends Seeder
                 'categoria_id' => 1,
                 'created_by' => 1,
             ],
-        
+
             // Subcategorías para "Mueble"
             [
                 'nombre_subcategoria' => 'Silla',
@@ -35,7 +36,7 @@ class SubCategoriaSeeder extends Seeder
                 'categoria_id' => 2,
                 'created_by' => 1,
             ],
-        
+
             // Subcategorías para "Herramienta"
             [
                 'nombre_subcategoria' => 'Martillo',
@@ -47,7 +48,7 @@ class SubCategoriaSeeder extends Seeder
                 'categoria_id' => 3,
                 'created_by' => 1,
             ],
-        
+
             // Subcategorías para "Decoración"
             [
                 'nombre_subcategoria' => 'Cuadro',
@@ -59,7 +60,7 @@ class SubCategoriaSeeder extends Seeder
                 'categoria_id' => 4,
                 'created_by' => 1,
             ],
-        
+
             // Subcategorías para "Accesorios de Oficina"
             [
                 'nombre_subcategoria' => 'Lapicero',
@@ -71,6 +72,13 @@ class SubCategoriaSeeder extends Seeder
                 'categoria_id' => 5,
                 'created_by' => 1,
             ],
-        ]);
+        ];
+
+        foreach ($subcategorias as $subcategoria) {
+            SubCategoria::create(array_merge($subcategoria, [
+                'created_at' => now(),
+                'updated_at' => now()
+            ]));
+        }
     }
 }

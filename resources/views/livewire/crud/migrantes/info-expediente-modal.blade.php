@@ -1,12 +1,12 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}-{{ $id }}" class="btn btn-neutral text-base-content w-max gap-2">
+    <label for="{{ $idModal }}" class="btn btn-neutral text-base-content w-max gap-2">
         <span class="icon-[flowbite--info-circle-solid] size-4"></span>
         Detalles
     </label>
 
     {{-- Modal --}}
-    <input type="checkbox" id="{{ $idModal }}-{{ $id }}" class="modal-toggle" />
+    <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-2/3 h-max max-w-5xl bg-neutral border-2 border-accent">
 
@@ -90,7 +90,7 @@
                     <span class="icon-[material-symbols--print] size-6"></span>
                     Imprimir
                 </button>
-                <label for="{{ $idModal }}-{{ $id }}"
+                <label for="{{ $idModal }}"
                     class="btn btn-accent text-base-content">Cerrar</label>
             </div>
         </div>

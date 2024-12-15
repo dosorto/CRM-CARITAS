@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Articulo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +13,7 @@ class ArticuloSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('articulos')->insert([
+        $articulos = [
             [
                 'nombre' => 'Pasta Dental grande',
                 'descripcion' => 'Pasta dental marca Colgate ',
@@ -193,6 +194,10 @@ class ArticuloSeeder extends Seeder
                 'categoria_articulos_id' => 4,
                 'created_by' => 1
             ],
-        ]);
+        ];
+
+        foreach ($articulos as $articulo) {
+            Articulo::create($articulo);
+        }
     }
 }

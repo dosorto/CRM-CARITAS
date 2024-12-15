@@ -14,7 +14,9 @@ class MobiliarioSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('mobiliarios')->insert([
+        $mobiliarios = [
+
+            // DB::table('mobiliarios')->insert([
             [
                 'nombre_mobiliario' => 'Televisor',
                 'descripcion' => 'Televisor LG LCD 32 pulg',
@@ -86,6 +88,15 @@ class MobiliarioSeeder extends Seeder
                 'subcategoria_id' => 7,
                 'created_by' => 1
             ]
-        ]);
+        ];
+
+        foreach ($mobiliarios as $mob) {
+            Mobiliario::create(
+                array_merge($mob, [
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ])
+            );
+        }
     }
 }

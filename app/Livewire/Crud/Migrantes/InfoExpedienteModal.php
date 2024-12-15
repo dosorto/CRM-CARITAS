@@ -15,7 +15,7 @@ class InfoExpedienteModal extends Component
     public function mount($idModal, $itemId)
     {
         $this->id = $itemId;
-        $this->idModal = $idModal;
+        $this->idModal = $idModal . $itemId;
         $this->item = Expediente::find($itemId);
     }
 

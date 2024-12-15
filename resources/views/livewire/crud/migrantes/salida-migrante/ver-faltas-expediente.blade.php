@@ -4,22 +4,22 @@
 
     @if ($botonGrande)
         {{-- Boton Grande --}}
-        <label for="verFaltasExpediente" class="btn btn-primary text-nowrap text-primary-content">
+        <label for="verFaltasExpediente-{{ $migranteId }}" class="btn btn-primary text-nowrap text-primary-content">
             <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
             Ver Faltas Disciplinarias
         </label>
     @else
         {{-- Boton Pequeño --}}
-        <label for="verFaltasExpediente" class="btn btn-accent btn-sm text-base-content">
+        <label for="verFaltasExpediente-{{ $migranteId }}" class="btn btn-accent btn-sm text-base-content">
             <span class="icon-[fluent--clipboard-error-16-filled] size-5"></span>
         </label>
     @endif
 
 
     {{-- Modal --}}
-    <input type="checkbox" id="verFaltasExpediente" class="modal-toggle" />
+    <input type="checkbox" id="verFaltasExpediente-{{ $migranteId }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box max-w-5xl h-max w-1/2 bg-neutral border-2 border-accent flex flex-col">
+        <div class="modal-box max-w-5xl h-4/5 w-2/3 bg-neutral border-2 border-accent flex flex-col">
             <header>
                 {{-- Título del Modal --}}
                 <h3 class="text-xl font-bold text-center mb-5">Faltas Disciplinarias</h3>
@@ -70,7 +70,8 @@
 
                 <livewire:crud.migrantes.asignar-falta-modal migranteId="{{ $migranteId }}" />
 
-                <label for="verFaltasExpediente" class="btn btn-accent text-base-content">Cerrar</label>
+                <label for="verFaltasExpediente-{{ $migranteId }}"
+                    class="btn btn-accent text-base-content">Cerrar</label>
             </footer>
         </div>
     </div>
@@ -80,7 +81,7 @@
     <script>
         $wire.on('close-modal', () => {
             // Cerrar el modal desactivando el checkbox
-            document.getElementById('verFaltasExpediente').checked = false;
+            document.getElementById('verFaltasExpediente-{{ $migranteId }}').checked = false;
         });
     </script>
 @endscript

@@ -25,7 +25,9 @@ class NecesidadSeeder extends Seeder
         foreach ($necesidades as $necesidad) {
             DB::table('necesidades')->insert([
                 'necesidad' => $necesidad,
-                'created_by' => 1
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }
