@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AboutUs\AboutPage;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Crud\Articulos\VerArticulos;
@@ -60,6 +61,9 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken();
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
+
+Route::get('/acerca-de-nosotros', AboutPage::class)
+    ->name('about-us');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -250,4 +254,3 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
 //     ->name('detalle-solicitud-insumo')
 //     ->middleware('auth');
-
