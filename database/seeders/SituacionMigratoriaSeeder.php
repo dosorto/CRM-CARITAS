@@ -14,11 +14,11 @@ class SituacionMigratoriaSeeder extends Seeder
     {
         $situacionesMigratorias = [
             'N/A',
-            'Migrante en tránsito',
+            'Migrante en Tránsito',
             'Protección Internacional',
             'Retornado',
-            'Solicitante de asilo',
-            'Desplazado por violencia interna',
+            'Solicitante de Asilo',
+            'Desplazado por Violencia Interna',
             'Refugiado',
         ];
 

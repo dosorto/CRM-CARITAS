@@ -14,7 +14,7 @@ class NecesidadSeeder extends Seeder
     public function run(): void
     {
         $necesidades = [
-            'Asilo',
+            'Alojamiento',
             'Agua',
             'Alimentación',
             'Teléfono Celular',
