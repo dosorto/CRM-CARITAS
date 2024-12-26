@@ -2,7 +2,7 @@
 	(Este es para levantar el servidor)
 
 > npm run dev
-	(Este es para correr módulos de node.js o algo así Xd, necesario por Tailwind y Flowbite)
+	(Este es para correr módulos de node.js o algo así Xd, necesario por Tailwind y DaisyUI)
 
 > php artisan make:migration nombre_de_la_migracion
 	Este es para crear las migraciones de las tablas que van hacer, si es para crear una tabla, tiene que tener la siguiente notación específica: 
