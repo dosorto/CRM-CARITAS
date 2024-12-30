@@ -11,42 +11,50 @@
         </div>
     </header>
 
-    <div class="size-full flex-grow my-4 border-x-4 rounded-xl border-b-4 border-base-300">
-        <div role="tablist" class="tabs tabs-lifted">
-            <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
-                aria-label="Paso 1 @if ($currentStep == 1) : {{ $stepNames[1] }} @endif"
-                wire:model="currentStep" value="1" />
-            <div role="tabpanel" class="h-full flex-grow tab-content bg-neutral  rounded-box p-6">
-                <livewire:crud.migrantes.form.identificacion-step />
-            </div>
+    <div class="h-full flex flex-col mt-4 overflow-hidden">
+        {{-- Tabs --}}
+        <div class="w-full h-max flex justify-start">
+            @foreach ($stepNames as $step => $name)
+                <div
+                    class="tab pointer-events-none border-base-100 rounded-t-lg font-semibold
+                    @if ($currentStep == $step) bg-base-100 @endif">
+                    Paso {{ $step }} @if ($currentStep == $step)
+                        : {{ $name }}
+                    @endif
+                </div>
+            @endforeach
+        </div>
 
-            <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
-            aria-label="Paso 2 @if ($currentStep == 2) : {{ $stepNames[2] }} @endif"
-            wire:model="currentStep" value="2" />
-            <div role="tabpanel" class="tab-content bg-neutral rounded-box p-6">
-                <livewire:crud.migrantes.form.datos-personales-step />
-            </div>
+        {{-- Contenido de las tabs --}}
+        <div
+            class="h-full flex-grow border-4 border-base-300 rounded-box p-4 overflow-y-auto
+            @if ($currentStep == 1) rounded-tl-none @endif">
 
-            <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
-                aria-label="Paso 3 @if ($currentStep == 3) : {{ $stepNames[3] }} @endif"
-                wire:model="currentStep" value="3" />
-            <div role="tabpanel" class="tab-content bg-neutral rounded-box p-6">
-                Registro Familiar...
-            </div>
+            @switch($currentStep)
+                @case(1)
+                    Identificación...
+                @break
 
-            <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
-                aria-label="Paso 4 @if ($currentStep == 4) : {{ $stepNames[4] }} @endif"
-                wire:model="currentStep" value="4" />
-            <div role="tabpanel" class="tab-content bg-neutral rounded-box p-6">
-                Situación Migratoria...
-            </div>
+                @case(2)
+                    Datos Personales...
+                @break
 
-            <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
-                aria-label="Paso 5 @if ($currentStep == 5) : {{ $stepNames[5] }} @endif"
-                wire:model="currentStep" value="5" />
-            <div role="tabpanel" class="tab-content bg-neutral rounded-box p-6">
-                Necesidades y Observaciones...
-            </div>
+                @case(3)
+                    Registro Familiar...
+                @break
+
+                @case(4)
+                    Situación Migratoria
+                @break
+
+                @case(5)
+                    Necesidades y Observaciones...
+                @break
+
+                @default
+                    Oops... Algo está fuera de lugar.
+            @endswitch
+
         </div>
     </div>
 
