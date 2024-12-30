@@ -21,10 +21,10 @@
             </div>
 
             <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
-                aria-label="Paso 2 @if ($currentStep == 2) : {{ $stepNames[2] }} @endif"
-                wire:model="currentStep" value="2" />
+            aria-label="Paso 2 @if ($currentStep == 2) : {{ $stepNames[2] }} @endif"
+            wire:model="currentStep" value="2" />
             <div role="tabpanel" class="tab-content bg-neutral rounded-box p-6">
-                Datos Personales...
+                <livewire:crud.migrantes.form.datos-personales-step />
             </div>
 
             <input type="radio" name="steps" role="tab" class="tab font-semibold pointer-events-none"
