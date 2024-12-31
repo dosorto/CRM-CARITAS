@@ -30,6 +30,7 @@ return new class extends Migration
             $table->unsignedInteger('codigo_familiar')->nullable();
             $table->boolean('es_lgbt');
             $table->date('fecha_nacimiento')->nullable();
+            $table->date('tipo_sangre')->nullable();
 
             $table->integer("created_by");
             $table->integer("deleted_by")->nullable();

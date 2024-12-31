@@ -17,7 +17,7 @@ class MigranteFactory extends Factory
      */
 
     protected $model = Migrante::class;
- 
+
     public function definition(): array
     {
         $sexo = $this->faker->randomElement(['M', 'F']);
@@ -35,6 +35,7 @@ class MigranteFactory extends Factory
             'codigo_familiar' => 1,
             'es_lgbt' => 0,
             'fecha_nacimiento' => $this->faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
+            'tipo_sangre' => $this->faker->randomElement(['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-']),
             'created_by' => 1
         ];
     }
