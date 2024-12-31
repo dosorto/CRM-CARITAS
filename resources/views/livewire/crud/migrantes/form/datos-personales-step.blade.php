@@ -71,20 +71,8 @@
 
     {{-- Tipo de Identificación, Pais, Es LGBTQI+ --}}
     <div class="flex gap-8 mb-5">
-        <div class="flex flex-col w-1/3">
-            <label>Tipo de Identificación </label>
-            <select wire:model="tipoIdentificacion"
-                class="select select-bordered bg-accent text-base-content text-md
-                @error('tipoIdentificacion')
-                    border-2 border-red-500
-                @enderror">
-                <option value="">Seleccione...</option>
-                <option>DNI</option>
-                <option>Pasaporte</option>
-            </select>
 
-        </div>
-        <div class="flex flex-col w-1/3">
+        <div class="flex flex-col w-1/2">
             <label>País de Origen</label>
             <select wire:model="idPais"
                 class="select select-bordered bg-accent text-base-content text-md
@@ -97,7 +85,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="flex flex-col w-1/3">
+        <div class="flex flex-col w-1/2">
             <label>¿Es LGBTQI+? </label>
             <div class="flex gap-2 h-full items-center">
 

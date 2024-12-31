@@ -3,18 +3,18 @@
 namespace App\Livewire\Crud\Migrantes\Form;
 
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
-use App\Services\MigranteService;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class IdentificacionStep extends Component
 {
     public $identificacion;
+    public $tipoIdentificacion;
 
     public function mount()
     {
         $this->identificacion = session()->get('formMigranteData.migrante.identificacion', '');
+        $this->tipoIdentificacion = session()->get('formMigranteData.migrante.tipoIdentificacion', '');
     }
 
     public function render()
@@ -22,16 +22,22 @@ class IdentificacionStep extends Component
         return view('livewire.crud.migrantes.form.identificacion-step');
     }
 
-    public function updatedIdentificacion($value)
+    #[On('validate-identificacion')]
+    public function validateIdentificacion()
     {
-        session(['formMigranteData.migrante.identificacion' => $value]);
-    }
-
-    #[On('identificacion-error')]
-    public function throwError()
-    {
-        throw ValidationException::withMessages([
-            'identificacion' => ['* Debe completar este campo']
+        // Se validan los campos cuando se recibe el evento de RegistrarMigrante::class
+        $this->validate([
+            'identificacion' => 'required',
+            'tipoIdentificacion' => 'required',
         ]);
+
+        // Hasta que fueron validados se guardan en la variable de session
+        session([
+            'formMigranteData.migrante.identificacion' => $this->identificacion,
+            'formMigranteData.migrante.tipoIdentificacion' => $this->tipoIdentificacion,
+        ]);
+
+        // Se manda el evento para avisar que los datos fueron validados y guardados en session
+        $this->dispatch('identificacion-validated')->to(RegistrarMigrante::class);
     }
 }

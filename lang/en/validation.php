@@ -118,7 +118,8 @@ return [
     'multiple_of' => 'The :attribute field must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute field format is invalid.',
-    'numeric' => 'The :attribute field must be a number.',
+    // Original: 'numeric' => 'The :attribute field must be a number.',
+    'numeric' => 'Este campo solo debe contener números.',
     'password' => [
         'letters' => 'The :attribute field must contain at least one letter.',
         'mixed' => 'The :attribute field must contain at least one uppercase and one lowercase letter.',
@@ -138,8 +139,8 @@ return [
     'regex' => 'The :attribute field format is invalid.',
 
     //Original: 'required' => 'The :attribute field is required.',
-    'required' => 'Debe completar este campo',
-    
+    'required' => 'Debe completar este campo.',
+
     'required_array_keys' => 'The :attribute field must contain entries for: :values.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_if_accepted' => 'The :attribute field is required when :other is accepted.',

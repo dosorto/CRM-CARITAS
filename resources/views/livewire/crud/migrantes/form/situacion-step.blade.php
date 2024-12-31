@@ -1,15 +1,5 @@
 <main class="flex-grow overflow-hidden flex flex-col">
 
-    <section class="flex justify-between my-4 items-center">
-        <h2 class="text-lg">
-            <strong>Paso 5:</strong> Situación Migratoria de:
-            <u>
-                {{ session('nombreMigrante') }} ({{ session('identificacion') }})
-            </u>
-        </h2>
-        <livewire:components.forms.steps :currentStep="1" :steps="4">
-    </section>
-
     <article class="flex-grow flex-col flex overflow-y-auto rounded-lg border-2 border-accent">
 
         <div class="w-full flex flex-grow overflow-y-auto p-6">

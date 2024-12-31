@@ -68,8 +68,6 @@ class VerMigrantes extends Component
         // los primeros 3 son solo para datos personales.
         session([
             'currentStep' => 4,
-            'totalSteps' => 5,
-
         ]);
         session(['nombreMigrante' => $this->getMigranteService()->obtenerPrimerNombreApellido($id)]);
         session(['identificacion' => $this->getMigranteService()->obtenerIdentificacion($id)]);

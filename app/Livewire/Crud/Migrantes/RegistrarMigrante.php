@@ -6,6 +6,7 @@ use App\Livewire\Crud\Migrantes\Form\IdentificacionStep;
 use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\On;
 
 #[Lazy()]
 class RegistrarMigrante extends Component
@@ -20,7 +21,6 @@ class RegistrarMigrante extends Component
     ];
 
     public $currentStep;
-
 
     public function mount()
     {
@@ -43,18 +43,33 @@ class RegistrarMigrante extends Component
         $this->redirectRoute('ver-migrantes');
     }
 
+    // Esta funcion se ejecuta al presionar el boton de "siguiente"
     public function validateStep()
     {
+        // Dependiendo del paso, se validan los datos o se hacen acciones.
         switch ($this->currentStep) {
             case 1:
-                $this->validateIdentificacionStep();
+                $this->dispatch('validate-identificacion')->to(IdentificacionStep::class);
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            case 5:
                 break;
         }
     }
 
     public function nextStep()
     {
-        if ($this->currentStep < 5) {
+        if ($this->currentStep < 5)
+        {
             $this->currentStep++;
             session(['currentStep' => $this->currentStep]);
         }
@@ -62,35 +77,30 @@ class RegistrarMigrante extends Component
 
     public function previousStep()
     {
-        if ($this->currentStep > 1) {
+        if ($this->currentStep > 1)
+        {
             $this->currentStep--;
             session(['currentStep' => $this->currentStep]);
         }
     }
 
-
-    public function validateIdentificacionStep()
+    #[On('identificacion-validated')]
+    public function identificacionValidated()
     {
         $identificacion = session('formMigranteData.migrante.identificacion');
 
-        if ($identificacion == '')
-        {
-            $this->dispatch('identificacion-error')->to(IdentificacionStep::class);
+        $migrante = $this->getMigranteService()->buscar('numero_identificacion', $identificacion);
+
+        // Caso 1: el registro es totalmente nuevo
+        if ($migrante === null) {
+            $this->nextStep();
         }
+        // Caso 2: El numero de identificacion ya existe
         else
         {
-            // Validar si ya existe
-            $migrante = $this->getMigranteService()->buscar('numero_identificacion', $identificacion);
-
-            if (!$migrante) {
-                // Si no existe, simplemente pasar al siguiente paso.
-                $this->nextStep();
-            }
-            else
-            {
-                $this->currentStep = 4;  // Decrementa la propiedad
-                session(['currentStep' => $this->currentStep]);
-            }
+            // session(['formData.migranteFound' => true]);
+            // $this->loadFieldsData();
+            // $this->currentStep = 4;
         }
     }
 
