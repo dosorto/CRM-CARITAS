@@ -16,8 +16,8 @@
         <div class="w-full h-max flex justify-start">
             @foreach ($stepNames as $step => $name)
                 <div
-                    class="tab pointer-events-none border-base-100 rounded-t-lg font-semibold
-                    @if ($currentStep == $step) bg-base-100 @endif">
+                    class="tab pointer-events-none border-accent rounded-t-lg font-semibold
+                    @if ($currentStep == $step) bg-accent @endif">
                     Paso {{ $step }} @if ($currentStep == $step)
                         : {{ $name }}
                     @endif
@@ -27,20 +27,20 @@
 
         {{-- Contenido de las tabs --}}
         <div
-            class="h-full flex-grow border-4 border-base-300 rounded-box p-4 overflow-y-auto
+            class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto
             @if ($currentStep == 1) rounded-tl-none @endif">
 
             @switch($currentStep)
                 @case(1)
-                    Identificación...
+                    <livewire:crud.migrantes.form.identificacion-step />
                 @break
 
                 @case(2)
-                    Datos Personales...
+                    <livewire:crud.migrantes.form.datos-personales-step />
                 @break
 
                 @case(3)
-                    Registro Familiar...
+                    <livewire:crud.migrantes.form.familiar-step />
                 @break
 
                 @case(4)
@@ -59,12 +59,15 @@
     </div>
 
     <footer class="py-4 w-full flex">
-        <div class="w-1/2 flex justify-start">
+        <div class="w-1/3 flex justify-start">
             @if ($currentStep > 1)
                 <livewire:components.buttons.previous-step-button>
             @endif
         </div>
-        <div class="w-1/2 flex justify-end">
+        <div class="w-1/3 flex justify-center">
+            <span wire:loading class="loading loading-spinner loading-lg"></span>
+        </div>
+        <div class="w-1/3 flex justify-end">
             @if ($currentStep < 5)
                 <livewire:components.buttons.next-step-button>
                 @else

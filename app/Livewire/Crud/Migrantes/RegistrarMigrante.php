@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
+use App\Livewire\Crud\Migrantes\Form\IdentificacionStep;
 use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
@@ -18,7 +19,81 @@ class RegistrarMigrante extends Component
         5 => 'Necesidades y Observaciones',
     ];
 
-    public $currentStep = 1;
+    public $currentStep;
+
+
+    public function mount()
+    {
+        if (!session()->has('currentStep')) {
+            session(['currentStep' => 1]);
+        }
+
+        $this->currentStep = session('currentStep');
+    }
+
+    public function render()
+    {
+        return view('livewire.crud.migrantes.registrar-migrante');
+    }
+
+
+    public function cancelar()
+    {
+        session()->forget(['currentStep', 'formMigranteData']);
+        $this->redirectRoute('ver-migrantes');
+    }
+
+    public function validateStep()
+    {
+        switch ($this->currentStep) {
+            case 1:
+                $this->validateIdentificacionStep();
+                break;
+        }
+    }
+
+    public function nextStep()
+    {
+        if ($this->currentStep < 5) {
+            $this->currentStep++;
+            session(['currentStep' => $this->currentStep]);
+        }
+    }
+
+    public function previousStep()
+    {
+        if ($this->currentStep > 1) {
+            $this->currentStep--;
+            session(['currentStep' => $this->currentStep]);
+        }
+    }
+
+
+    public function validateIdentificacionStep()
+    {
+        $identificacion = session('formMigranteData.migrante.identificacion');
+
+        if ($identificacion == '')
+        {
+            $this->dispatch('identificacion-error')->to(IdentificacionStep::class);
+        }
+        else
+        {
+            // Validar si ya existe
+            $migrante = $this->getMigranteService()->buscar('numero_identificacion', $identificacion);
+
+            if (!$migrante) {
+                // Si no existe, simplemente pasar al siguiente paso.
+                $this->nextStep();
+            }
+            else
+            {
+                $this->currentStep = 4;  // Decrementa la propiedad
+                session(['currentStep' => $this->currentStep]);
+            }
+        }
+    }
+
 
     public function placeholder()
     {
@@ -29,53 +104,10 @@ class RegistrarMigrante extends Component
         HTML;
     }
 
-
-    public function mount() {}
-
-    public function render()
-    {
-
-        return view('livewire.crud.migrantes.registrar-migrante');
-    }
-
-
-    public function cancelar()
-    {
-        session()->forget(['currentStep', 'formData']);
-        $this->redirectRoute('ver-migrantes');
-    }
-
-
     public function getMigranteService()
     {
         return app(MigranteService::class);
     }
-
-    public function getIsStepActive($step)
-    {
-        return $this->currentStep === $step ? 'checked' : '';
-    }
-
-    public function nextStep()
-    {
-        if ($this->currentStep < 5) {  // Usa la propiedad directamente
-            $this->currentStep++;  // Incrementa la propiedad
-        }
-    }
-
-    public function previousStep()
-    {
-        if ($this->currentStep > 1) {  // Usa la propiedad directamente
-            $this->currentStep--;  // Decrementa la propiedad
-        }
-    }
-
-
-
-
-
-
-
 
 
 
@@ -96,7 +128,7 @@ class RegistrarMigrante extends Component
     // #[On('identificacion-validated')]
     // public function identificacionStep()
     // {
-    //     $migrante = $this->getMigranteService()->buscar('numero_identificacion', session('datosPersonales')['identificacion']);
+    //
 
     //     if ($migrante) {
 

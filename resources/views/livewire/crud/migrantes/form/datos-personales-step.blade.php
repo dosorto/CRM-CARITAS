@@ -1,4 +1,4 @@
-<section>
+<main class="m-6">
     {{-- Nombres y Apellidos --}}
     <div class="flex gap-8 mb-5">
         <div class="flex flex-col w-1/2">
@@ -120,4 +120,4 @@
             </div>
         </div>
     </div>
-</section>
+</main>
