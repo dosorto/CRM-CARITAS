@@ -32,15 +32,14 @@ class DatosPersonalesStep extends Component
         return view('livewire.crud.migrantes.form.datos-personales-step');
     }
 
-    // #[On('validate-datos-personales')]
+    #[On('validate-datos-personales')]
     public function validateDatosPersonales()
     {
         $validated = $this->validate([
             'nombres' => 'required',
             'apellidos' => 'required',
-            'fechaNacimiento' => 'required',
             'estadoCivil' => 'required',
-            'tipoIdentificacion' => 'required',
+            'fechaNacimiento' => 'required',
             'idPais' => 'required',
             'sexo' => 'required',
             'esLGBT' => 'required',
@@ -49,31 +48,31 @@ class DatosPersonalesStep extends Component
 
         // Hasta que fueron validados se guardan en la variable de session
         session([
-            'formMigranteData.datosPersonales.nombres' => $validated['nombres'],
-            'formMigranteData.datosPersonales.apellidos' => $validated['apellidos'],
-            'formMigranteData.datosPersonales.fechaNacimiento' => $validated['fechaNacimiento'],
-            'formMigranteData.datosPersonales.estadoCivil' => $validated['estadoCivil'],
-            'formMigranteData.datosPersonales.tipoIdentificacion' => $validated['tipoIdentificacion'],
-            'formMigranteData.datosPersonales.idPais' => $validated['idPais'],
-            'formMigranteData.datosPersonales.sexo' => $validated['sexo'],
-            'formMigranteData.datosPersonales.esLGBT' => $validated['esLGBT'],
-            'formMigranteData.datosPersonales.tipoSangre' => $validated['esLGBT'],
+            'formMigranteData.migrante.nombres' => $validated['nombres'],
+            'formMigranteData.migrante.apellidos' => $validated['apellidos'],
+            'formMigranteData.migrante.fechaNacimiento' => $validated['fechaNacimiento'],
+            'formMigranteData.migrante.estadoCivil' => $validated['estadoCivil'],
+            'formMigranteData.migrante.idPais' => $validated['idPais'],
+            'formMigranteData.migrante.sexo' => $validated['sexo'],
+            'formMigranteData.migrante.esLGBT' => $validated['esLGBT'],
+            'formMigranteData.migrante.tipoSangre' => $validated['tipoSangre'],
         ]);
 
         // Se manda el evento para avisar que los datos fueron validados y guardados en session
-        $this->dispatch('identificacion-validated')->to(RegistrarMigrante::class);
+
+        $this->dispatch('datos-personales-validated')->to(RegistrarMigrante::class);
     }
 
     public function inicializarCampos()
     {
-        $this->nombres = session()->get('formMigranteData.datosPersonales.nombres', '');
-        $this->apellidos = session()->get('formMigranteData.datosPersonales.apellidos', '');
-        $this->fechaNacimiento = session()->get('formMigranteData.datosPersonales.fechaNacimiento', '');
-        $this->estadoCivil = session()->get('formMigranteData.datosPersonales.estadoCivil', '');
-        $this->tipoIdentificacion = session()->get('formMigranteData.datosPersonales.tipoIdentificacion', '');
-        $this->idPais = session()->get('formMigranteData.datosPersonales.idPais', '');
-        $this->sexo = session()->get('formMigranteData.datosPersonales.sexo', '');
-        $this->esLGBT = session()->get('formMigranteData.datosPersonales.esLGBT', '');
-        $this->esLGBT = session()->get('formMigranteData.datosPersonales.tipoSangre', '');
+        $this->nombres = session()->get('formMigranteData.migrante.nombres', '');
+        $this->apellidos = session()->get('formMigranteData.migrante.apellidos', '');
+        $this->fechaNacimiento = session()->get('formMigranteData.migrante.fechaNacimiento', '');
+        $this->estadoCivil = session()->get('formMigranteData.migrante.estadoCivil', '');
+        $this->idPais = session()->get('formMigranteData.migrante.idPais', '');
+        $this->sexo = session()->get('formMigranteData.migrante.sexo', '');
+        $this->esLGBT = session()->get('formMigranteData.migrante.esLGBT', '');
+        $this->tipoSangre = session()->get('formMigranteData.migrante.tipoSangre', '');
+        // dump(session()->all());
     }
 }

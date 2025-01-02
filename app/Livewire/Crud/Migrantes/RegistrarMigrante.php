@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
+use App\Livewire\Crud\Migrantes\Form\DatosPersonalesStep;
 use App\Livewire\Crud\Migrantes\Form\IdentificacionStep;
 use App\Services\MigranteService;
 use Livewire\Component;
@@ -36,7 +37,6 @@ class RegistrarMigrante extends Component
         return view('livewire.crud.migrantes.registrar-migrante');
     }
 
-
     public function cancelar()
     {
         session()->forget(['currentStep', 'formMigranteData']);
@@ -53,6 +53,7 @@ class RegistrarMigrante extends Component
                 break;
 
             case 2:
+                $this->dispatch('validate-datos-personales')->to(DatosPersonalesStep::class);
                 break;
 
             case 3:
@@ -102,6 +103,12 @@ class RegistrarMigrante extends Component
             // $this->loadFieldsData();
             // $this->currentStep = 4;
         }
+    }
+
+    #[On('datos-personales-validated')]
+    public function datosPersonalesValidated()
+    {
+        $this->nextStep();
     }
 
 
