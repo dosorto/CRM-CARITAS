@@ -5,8 +5,7 @@
             @if (session('formData.migranteFound')) disabled @endif placeholder="Ej. 0601200303381">
         @error('identificacion')
             <span class="flex gap-1 text-error items-center">
-                <span class="icon-[typcn--cancel] size-5"></span>
-                <p class="font-semibold">{{ $message }}</p>
+                <p class="font-semibold">* {{ $message }}</p>
             </span>
         @enderror
     </div>
@@ -20,8 +19,7 @@
         </select>
         @error('tipoIdentificacion')
             <span class="flex gap-1 text-error items-center">
-                <span class="icon-[typcn--cancel] size-5"></span>
-                <p class="font-semibold">{{ $message }}</p>
+                <p class="font-semibold">* {{ $message }}</p>
             </span>
         @enderror
     </div>

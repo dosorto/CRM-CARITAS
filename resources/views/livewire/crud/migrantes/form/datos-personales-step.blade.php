@@ -1,111 +1,172 @@
-<main class="m-6">
+<main class="mx-7 my-6 flex flex-col gap-5">
+
+    {{-- <button wire:click="validateDatosPersonales" class="btn btn-xs"> test errors </button> --}}
+
     {{-- Nombres y Apellidos --}}
-    <div class="flex gap-8 mb-5">
+    <div class="flex gap-12">
         <div class="flex flex-col w-1/2">
-            <label>Nombres </label>
-            <input wire:model="nombres" type="text" placeholder="Escribir aquí..."
-                class="input input-bordered bg-accent
+            <label class="label p-1 font-semibold">Nombres: </label>
+            <div class="input input-bordered flex items-center gap-2 bg-accent pl-3">
+                <span class="icon-[ion--person-circle-sharp] size-6"></span>
+                <input wire:model="nombres" type="text" class="grow" placeholder="Escribir aquí..." />
+                @error('nombres')
+                    <span class="icon-[bx--error] size-6 text-error"></span>
+                @enderror
+            </div>
             @error('nombres')
-                border-2 border-red-500
-            @enderror">
+                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
+            @enderror
         </div>
         <div class="flex flex-col w-1/2">
-            <label>Apellidos </label>
-            <input wire:model="apellidos" type="text" placeholder="Escribir aquí..."
-                class="input input-bordered bg-accent
+            <label class="label p-1 font-semibold">Apellidos: </label>
+            <div class="input input-bordered flex items-center gap-2 bg-accent pl-3">
+                <span class="icon-[ion--person-circle-sharp] size-6"></span>
+                <input wire:model="apellidos" type="text" class="grow" placeholder="Escribir aquí...">
+                @error('apellidos')
+                    <span class="icon-[bx--error] size-6 text-error"></span>
+                @enderror
+            </div>
             @error('apellidos')
-                border-2 border-red-500
-            @enderror">
+                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
+            @enderror
         </div>
     </div>
 
-    {{-- Estado Civil, Fecha de Nacimiento, Sexo --}}
-    <div class="flex gap-8 mb-5">
-        <div class="flex flex-col w-1/3">
-            <label>Estado Civil </label>
-            <select wire:model="estadoCivil"
-                class="select select-bordered bg-accent text-base-content text-md
+    <div class="flex gap-12 w-full">
+        <div class="flex flex-col w-1/2">
+            <label class="label p-1 font-semibold">Estado Civil: </label>
+            <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
+                <span class="icon-[ion--people-circle] size-6"></span>
+                <select wire:model="estadoCivil"
+                    class="h-full text-base pl-1 grow bg-accent focus:outline-none focus:border-none border-x-0 rounded-none">
+                    <option value="">Seleccione...</option>
+                    <option>Casado/a</option>
+                    <option>Soltero/a</option>
+                    <option>Divorciado/a</option>
+                    <option>Viudo/a</option>
+                    <option>Unión Libre</option>
+                </select>
+                @error('estadoCivil')
+                    <span class="icon-[bx--error] size-6 text-error ms-2"></span>
+                @enderror
+            </div>
             @error('estadoCivil')
-                border-2 border-red-500
-            @enderror">
-                <option value="">Seleccione...</option>
-                <option>Casado/a</option>
-                <option>Soltero/a</option>
-                <option>Divorciado/a</option>
-                <option>Viudo/a</option>
-                <option>Unión Libre</option>
-            </select>
+                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
+            @enderror
         </div>
-        <div class="flex flex-col w-1/3">
-            <label>Fecha de Nacimiento</label>
-            <input wire:model="fechaNacimiento" placeholder="Escribir aquí..." type="date"
-                class="input input-bordered bg-accent
-            @error('fechaNacimiento')
-                border-2 border-red-500
-            @enderror">
-        </div>
-        <div class="flex flex-col w-1/3">
-            <label>Sexo </label>
-            <div class="flex gap-2 h-full items-center">
-
-                <label>M</label>
-                <input wire:model="sexo" value="M" type="radio"
-                    class="radio radio-sm border-2
-                @error('sexo')
-                    border-red-500
-                @enderror"
-                    name="sex">
-
-                <label class="ml-3">F</label>
-                <input wire:model="sexo" value="F" type="radio"
-                    class="radio radio-sm border-2
-                @error('sexo')
-                    border-red-500
-                @enderror"
-                    name="sex">
-
+        <div class="flex flex-col w-1/2">
+            <label class="label p-1 font-semibold">Fecha de Nacimiento: </label>
+            <div class="input input-bordered flex items-center gap-2 bg-accent pl-3 pe-2">
+                <span class="icon-[f7--calendar-circle-fill] size-6"></span>
+                <input wire:model="fechaNacimiento" type="date" class="grow bg-accent"
+                    placeholder="Escribir aquí...">
+                @error('fechaNacimiento')
+                    <span class="icon-[bx--error] size-6 text-error mr-2"></span>
+                @enderror
             </div>
+            @error('fechaNacimiento')
+                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
+            @enderror
         </div>
     </div>
 
 
-    {{-- Tipo de Identificación, Pais, Es LGBTQI+ --}}
-    <div class="flex gap-8 mb-5">
 
+    <div class="flex gap-12">
         <div class="flex flex-col w-1/2">
-            <label>País de Origen</label>
-            <select wire:model="idPais"
-                class="select select-bordered bg-accent text-base-content text-md
-            @error('idPais')
-                border-2 border-red-500
-            @enderror">
-                <option value="">Seleccione...</option>
-                @foreach ($paises as $pais)
-                    <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="flex flex-col w-1/2">
-            <label>¿Es LGBTQI+? </label>
-            <div class="flex gap-2 h-full items-center">
-
-                <label>Si</label>
-                <input wire:model="esLGBT" value="1" type="radio"
-                    class="radio radio-sm border-2
-                @error('esLGBT')
-                    border-red-500
-                @enderror"
-                    name="esLGBT">
-
-                <label class="ml-3">No</label>
-                <input wire:model="esLGBT" value="0" type="radio"
-                    class="radio radio-sm border-2
-                @error('esLGBT')
-                    border-red-500
-                @enderror"
-                    name="esLGBT" checked>
-
+            <label class="label p-1 font-semibold">País de Origen: </label>
+            <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
+                <span class="icon-[material-symbols--flag-circle-rounded] size-6"></span>
+                <select wire:model="idPais"
+                    class="h-full text-base pl-1 grow bg-accent focus:outline-none focus:border-none border-x-0 rounded-none">
+                    <option value="">Seleccione...</option>
+                    @foreach ($paises as $pais)
+                        <option value="{{ $pais->id }}">{{ $pais->nombre_pais }}</option>
+                    @endforeach
+                </select>
+                @error('idPais')
+                    <span class="icon-[bx--error] size-6 text-error ms-2"></span>
+                @enderror
             </div>
+            @error('idPais')
+                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
+            @enderror
+        </div>
+
+
+        <div class="flex flex-col w-1/2">
+            <label class="label p-1 font-semibold">Tipo de Sangre: </label>
+            <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
+                <span class="icon-[material-symbols--bloodtype-rounded] size-6"></span>
+                <select wire:model="tipoSangre"
+                    class="h-full text-base pl-1 grow bg-accent focus:outline-none focus:border-none border-x-0 rounded-none">
+                    <option value="">Seleccione...</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
+                    <option>Desconocido</option>
+                </select>
+                @error('tipoSangre')
+                    <span class="icon-[bx--error] size-6 text-error ms-2"></span>
+                @enderror
+            </div>
+            @error('tipoSangre')
+                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
+            @enderror
+        </div>
+    </div>
+
+
+
+    <div class="flex gap-12">
+        <div class="flex flex-col w-1/2 gap-2 border-2 border-accent rounded-box p-4">
+            <label class="label p-1 font-semibold">Sexo: </label>
+
+            <div class="flex gap-8">
+                <div class="flex h-max items-center gap-2">
+                    <input wire:model="sexo" value="M" type="radio" class="radio border-2" name="sex">
+                    <label>Masculino</label>
+                </div>
+                <div class="flex h-max items-center gap-2">
+                    <input wire:model="sexo" value="F" type="radio" class="radio border-2" name="sex">
+                    <label>Femenino</label>
+                </div>
+                @error('sexo')
+                    <span class="icon-[bx--error] size-6 text-error ms-2"></span>
+                @enderror
+            </div>
+            @error('sexo')
+                <span class="font-semibold text-error text-sm mt-1">* {{ $message }}. </span>
+            @enderror
+
+        </div>
+
+        <div class="flex flex-col w-1/2 gap-2 border-2 border-accent rounded-box p-4">
+            <label class="label p-1 font-semibold">¿Esta persona pertenece a la comunidad LGBTQI+? </label>
+
+            <div class="flex gap-8">
+                <div class="flex h-max items-center gap-2">
+
+                    <input wire:model="esLGBT" value="1" type="radio" class="radio border-2" name="esLGBT">
+                    <label>Si</label>
+                </div>
+                <div class="flex h-max items-center gap-2">
+                    <input wire:model="esLGBT" value="0" type="radio" class="radio border-2" name="esLGBT"
+                        checked>
+                    <label>No</label>
+                </div>
+                @error('esLGBT')
+                    <span class="icon-[bx--error] size-6 text-error ms-2"></span>
+                @enderror
+            </div>
+            @error('esLGBT')
+                <span class="font-semibold text-error text-sm mt-1">* {{ $message }}. </span>
+            @enderror
         </div>
     </div>
 </main>
