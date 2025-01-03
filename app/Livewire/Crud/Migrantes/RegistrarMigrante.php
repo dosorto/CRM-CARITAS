@@ -12,7 +12,6 @@ use Livewire\Attributes\On;
 #[Lazy()]
 class RegistrarMigrante extends Component
 {
-
     public $stepNames = [
         1 => 'Identificación',
         2 => 'Datos Personales',
@@ -57,12 +56,15 @@ class RegistrarMigrante extends Component
                 break;
 
             case 3:
+                $this->nextStep();
                 break;
 
             case 4:
+            $this->nextStep();
                 break;
 
             case 5:
+                $this->nextStep();
                 break;
         }
     }

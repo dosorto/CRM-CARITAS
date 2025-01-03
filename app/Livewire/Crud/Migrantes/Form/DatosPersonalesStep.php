@@ -59,7 +59,6 @@ class DatosPersonalesStep extends Component
         ]);
 
         // Se manda el evento para avisar que los datos fueron validados y guardados en session
-
         $this->dispatch('datos-personales-validated')->to(RegistrarMigrante::class);
     }
 

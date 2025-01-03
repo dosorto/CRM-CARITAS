@@ -40,7 +40,7 @@ module.exports = {
                     "accent":           "#E3DFDF",  // Color del encabezado de tablas, bordes y elementos de formulario especiales
                     "accent-content":   "#F6EFEF",  // Color del cuerpo de las tablas y elementos de formulario comunes
 
-                    "error-content":    "#dc2626", // Color de alertas de validacion de formularios
+                    "error-content":    "#F6EFEF", // Color de alertas de validacion de formularios
 
                     "success":          "#6EE299",
                     "success-content":  "#D0FDE1",
