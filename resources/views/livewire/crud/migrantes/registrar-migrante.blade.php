@@ -64,7 +64,10 @@
                 <livewire:components.buttons.previous-step-button>
             @endif
         </div>
-        <div class="w-1/3 flex justify-center">
+        <div class="w-1/3 flex justify-center items-center">
+            {{-- <p class="font-semibold text-lg text-error">
+                Mensaje de error...
+            </p> --}}
             <span wire:loading class="loading loading-spinner loading-lg"></span>
         </div>
         <div class="w-1/3 flex justify-end">

@@ -1,204 +1,149 @@
-<article class="h-full flex-grow flex overflow-hidden rounded-lg">
+<main class="size-full flex">
 
-    {{-- Seccion de preguntas y tabla de búsqueda --}}
-    <section class="w-3/5 overflow-y-auto">
-        <div class="flex flex-col h-max">
+    {{-- Sección de preguntas y tabla de personas en caso de familiar ya registrado --}}
+    <section class="w-2/3 h-full flex flex-col overflow-hidden">
 
-            {{-- Preguntas --}}
-            <section class="flex p-4">
-                {{-- Pregunta de Viaja en Grupo --}}
-                <div class="flex flex-col w-1/3">
-                    <label>¿Viaja en Grupo?</label>
-                    <div class="flex gap-2 mt-2 items-center">
-
-                        <label>Si</label>
-                        <input wire:model.live.debounce.100ms="viajaEnGrupo" value="1" type="radio"
-                            class="radio radio-sm border-2 mr-2" name="viajaEnGrupo">
-
-                        <label>No</label>
-                        <input wire:model.live.debounce.100ms="viajaEnGrupo" value="0" type="radio"
-                            class="radio radio-sm border-2" name="viajaEnGrupo">
+        {{-- Preguntas --}}
+        <div class="flex w-full border-b-4 rounded-box border-accent p-4">
+            <div class="w-1/2 flex flex-col items-center border-e-4 border-accent">
+                <label class="p-1 font-semibold mb-2">¿Viaja en grupo o en familia?</label>
+                <div class="flex gap-6 font-bold">
+                    <div class="flex gap-2">
+                        <input wire:model.live="viajaEnGrupo" value="1" type="radio"
+                            class="radio border-2 radio-success" name="viajaEnGrupo">
+                        Si
+                    </div>
+                    <div class="flex gap-2">
+                        <input wire:model.live="viajaEnGrupo" value="0" type="radio"
+                            class="radio border-2 radio-error" name="viajaEnGrupo">
+                        No
                     </div>
                 </div>
-
-                {{-- Pregunta de Tiene Familiar --}}
-                <div class="flex flex-col w-2/3">
-                    <label>¿Tiene ya un familiar Registrado?</label>
-                    <div class="flex gap-2 mt-2 items-center">
-
-                        <label>Si</label>
-                        <input wire:model.live.debounce.100ms="tieneFamiliar" value="1" type="radio"
-                            class="radio radio-sm border-2 mr-2" name="tieneFamiliar"
-                            @if (!$viajaEnGrupo) disabled @endif>
-
-                        <label>No</label>
-                        <input wire:model.live.debounce.100ms="tieneFamiliar" value="0" type="radio"
-                            class="radio radio-sm border-2" name="tieneFamiliar"
-                            @if (!$viajaEnGrupo) disabled @endif>
+            </div>
+            <div class="w-1/2 flex flex-col items-center">
+                <label class="p-1 font-semibold mb-2 {{ !$viajaEnGrupo ? 'opacity-30' : '' }}">¿Tiene ya un familiar
+                    registrado?</label>
+                <div class="flex gap-6 font-bold">
+                    <div class="flex gap-2">
+                        <input wire:model.live="tieneFamiliar" value="1" type="radio"
+                            class="radio border-2 radio-success" name="tieneFamiliar" @disabled(!$viajaEnGrupo)>
+                        <p class="{{ !$viajaEnGrupo ? 'opacity-30' : '' }}">Si</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <input wire:model.live="tieneFamiliar" value="0" type="radio"
+                            class="radio border-2 radio-error" name="tieneFamiliar" @disabled(!$viajaEnGrupo)>
+                        <p class="{{ !$viajaEnGrupo ? 'opacity-30' : '' }}">No</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
 
+        {{-- Tabla para buscar en caso de que ya tenga un familiar registrado --}}
+        @if ($viajaEnGrupo && $tieneFamiliar)
+            <div class="overflow-auto">
+                <div class="px-4 pt-4 join w-full {{ empty($personas) ? 'hidden' : '' }}">
+                    <select wire:model.live="colSelected" class="select-sm select join-item w-min bg-accent">
+                        <option>Identificación</option>
+                        <option>Nombre</option>
+                    </select>
+                    <div
+                        class="w-full input-sm input join-item bg-neutral border-2 border-accent flex items-center justify-between gap-2">
+                        <input wire:model.live.debounce.300ms="textToFind" placeholder="Buscar..." type="text"
+                            class="w-full" />
 
-            {{-- Tabla y buscador en caso de que tenga Familiar. --}}
-            <section class="mt-2  @if (!$tieneFamiliar || !$viajaEnGrupo) hidden @endif">
-
-                {{-- Buscador --}}
-                <div class="flex px-4 mb-4 mt-2">
-                    <div class="join w-full">
-                        <select wire:model.live.debounce.100ms="colSelected"
-                            class="select select-sm join-item w-min bg-accent">
-                            <option value="Identificacion">Identificación</option>
-                            <option value="Nombre1">Primer Nombre</option>
-                            <option value="Nombre2">Primer Apellido</option>
-                            <option value="Apellido1">Segundo Nombre</option>
-                            <option value="Apellido2">Segundo Apellido</option>
-                        </select>
-                        <label
-                            class="w-full input input-sm join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
-                            <input wire:model.live.debounce.200ms="textToFind" placeholder="Buscar..." type="text" />
-
-                            {{-- Lógica para mostrar el ícono de carga o el ícono de búsqueda --}}
-                            <span wire:loading.remove class="icon-[map--search] size-4 text-gray-400"></span>
-                            <span wire:loading class="loading loading-dots"></span>
-                            {{-- <span class="loading loading-dots loading-md"></span> --}}
-                        </label>
+                        {{-- Lógica para mostrar el ícono de cargando o el ícono de búsqueda --}}
+                        <span wire:loading.remove class="icon-[map--search] size-4 text-gray-400"></span>
+                        <span wire:loading class="loading loading-dots loading-sm"></span>
                     </div>
                 </div>
-
-
-                {{-- Tabla --}}
-                <div class="flex flex-col">
-                    <div class="rounded-lg border-2 border-accent">
+                <div class="m-4">
+                    @if (!empty($personas))
                         <table class="table table-sm w-full table-pin-rows">
-                            <thead class="text-sm border-b-2 border-accent">
-                                <th class="bg-accent">
-                                    Nombre
-                                </th>
-                                <th class="bg-accent">
-                                    Identificación
-                                </th>
-                                <th class="bg-accent">
-                                    País
-                                </th>
-                                <th class="bg-accent">Opciones</th>
+                            <thead>
+                                <tr class="bg-accent text-sm border-b border-accent">
+                                    <th class="rounded-tl-lg">Nombre</th>
+                                    <th>Identificación</th>
+                                    <th class="rounded-tr-lg">Acciones</th>
+                                </tr>
                             </thead>
                             <tbody>
-
-
-                                @forelse ($personas as $persona)
-                                    <tr wire:key="{{ $persona->id }}" class="border-b border-accent">
-                                        <td>
-                                            {{ $persona->primer_nombre .
-                                                ' ' .
-                                                $persona->segundo_nombre .
-                                                ' ' .
-                                                $persona->primer_apellido .
-                                                ' ' .
-                                                $persona->segundo_apellido }}
-                                        </td>
-                                        <td>
-                                            {{ $persona->numero_identificacion }}
-                                        </td>
-                                        <td>
-                                            {{ $persona->pais->nombre_pais }}
-                                        </td>
-                                        <td class="flex w-max gap-2">
-                                            <div class="tooltip" data-tip="Seleccionar">
-                                                <button wire:click="selectRelated({{ $persona->id }})"
-                                                    class="items-center btn btn-xs btn-accent text-base-content">
-                                                    <span
-                                                        class="icon-[ic--round-navigate-next] size-4 text-base-content"></span>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
+                                {{-- Listado de personas --}}
+                                @for ($i = 0; $i <= 30; $i++)
                                     <tr class="border-b border-accent">
-                                        <td colspan="4" class="text-center py-4">
-                                            <strong>* Sonido de Grillos *</strong>
+                                        <td>Nombre...</td>
+                                        <td>Identificación...</td>
+                                        <td class="flex gap-2">
+                                            <button class="btn btn-xs btn-accent text-base-content">
+                                                Sel.
+                                            </button>
+                                            <button class="btn btn-xs btn-accent text-base-content">
+                                                info.
+                                            </button>
                                         </td>
                                     </tr>
-                                @endforelse
+                                @endfor
                             </tbody>
                         </table>
-                    </div>
+                    @else
+                        <div class="text-center p-6 w-full">
+
+                            <p class="flex flex-col gap-3 items-center">
+                                {{-- <span class="font-semibold">*Sonido de Grillos*</span> --}}
+                                <span class="tooltip tooltip-primary tooltip-right" data-tip="*Sonido de Grillo*">
+                                    <span class="icon-[twemoji--cricket] size-8"></span>
+                                </span>
+
+                                <span class="text-error font-semibold">No hay personas registradas.</span>
+
+                                <span>Si esta persona viaja sola, seleccione <b>"No"</b> en la pregunta:
+                                    <b>¿Viaja en Grupo?</b>
+                                    Para NO asignarle código familiar.</span>
+
+                                <span>Si es la primera persona de un grupo o familia en registrarse,
+                                    seleccione <b>"No"</b> en la pregunta:
+                                    <b>¿Tiene ya un familiar registrado?</b> para generar un nuevo código
+                                    familiar y relacionar a los siguientes miembros a registrarse.</span>
+                            </p>
+                        </div>
+                    @endif
                 </div>
-
-            </section>
-        </div>
-    </section>
-
-
-    <section class="w-2/5 h-full bg-accent flex flex-col ">
-        {{-- Caso en que viaje en grupo y ya tenga familiar registrado --}}
-        @if ($tieneFamiliar && $viajaEnGrupo)
-            @if ($familiar)
-                <div class="flex flex-col overflow-auto p-6">
-                    <h4 class="text-xl text-center mb-4">
-                        Datos del Familiar
-                    </h4>
-                    <hr class="border border-base-100">
-                    <p class="mt-4">
-                        <strong>Nombre Completo:</strong>
-                    </p>
-                    <p class="ml-4">
-                        {{ $familiar->primer_nombre .
-                            ' ' .
-                            $familiar->segundo_nombre .
-                            ' ' .
-                            $familiar->primer_apellido .
-                            ' ' .
-                            $familiar->segundo_apellido }}
-                    </p>
-                    <p class="mt-4">
-                        <strong>Pais de Procedencia:</strong>
-                    </p>
-                    <p class="ml-4">
-                        {{ $familiar->pais->nombre_pais }}
-                    </p>
-                    <p class="mt-4">
-                        <strong>Número de Identificación:</strong>
-                    </p>
-                    <p class="ml-4">
-                        {{ $familiar->numero_identificacion }}
-                    </p>
-                    <p class="mt-4">
-                        <strong>Código Familiar:</strong>
-                    </p>
-                    <p class="ml-4">
-                        {{ $familiar->codigo_familiar }}
-                    </p>
-                </div>
-            @else
-                <div class="flex items-center h-full justify-center">
-                    <span
-                        class="icon-[material-symbols--question-mark] size-20
-                @error('familiar')
-                    text-error-content
-                @enderror"></span>
-                </div>
-                <div
-                    class="flex flex-col items-center justify-end text-center p-8 h-max
-                @error('familiar')
-                    text-error-content border-2 rounded-xl border-error-content m-6
-                @enderror">
-
-                    <span class="icon-[fa--long-arrow-left]"></span>
-
-                    Seleccione un familiar en la tabla de la izquierda
-                </div>
-            @endif
-        @else<div class="p-5 text-lg flex flex-col items-center justify-center size-full">
-                <strong>Nuevo Código Familiar:</strong>
-                <p>{{ $nuevoCodigoFamiliar }}</p>
-                <hr class="border border-base-content w-4/5 mt-6">
-                <p class="mt-6 text-sm text-center mx-4">
-                    Este registro no será tomado en cuenta para datos estadísticos de familias,
-                    hasta que se registre otra persona como familiar de esta.
-                </p>
             </div>
-
         @endif
     </section>
-</article>
+
+    {{-- Sección de información y código familiar --}}
+    <section class="w-1/3 h-full bg-accent flex flex-col p-8">
+
+        {{-- En caso de que ya tenga un familiar registrado --}}
+        @if ($tieneFamiliar && !$familiarSeleccionado)
+            <div class="grow items-center flex justify-center">
+                <span class="icon-[material-symbols--question-mark] size-20"></span>
+            </div>
+
+            <div class="flex flex-col gap-2 text-center items-center">
+                <span class="icon-[fa--long-arrow-left]"></span>
+                Seleccione un familiar en la tabla de la izquierda.
+            </div>
+        @elseif ($familiarSeleccionado)
+            Familiar ya seleccionado, datos personales:
+        @elseif (!$viajaEnGrupo)
+            <div class="text-center size-full content-center font-semibold">
+                Este registro <b>NO</b> será tomado en cuenta para datos estadísticos de familias.
+            </div>
+        @elseif ($viajaEnGrupo && !$tieneFamiliar)
+            <div class="size-full font-semibold flex flex-col gap-4 justify-center text-center">
+                <span>Se generó un nuevo Código Familiar: {{ $codigoFamiliar }}</span>
+                Los siguientes miembros del grupo o familia serán relacionados mediante este código al identificar a
+                esta persona.
+            </div>
+        @else
+            <div class="text-center size-full content-center">
+                Algo salió mal... <br>
+                Por favor, reinicie el formulario.
+            </div>
+        @endif
+        @error('familiarSeleccionado')
+            <p class="text-error font-semibold text-center mt-4 p-2 border-2 border-error rounded-box">{{ $message }}</p>
+        @enderror
+    </section>
+</main>

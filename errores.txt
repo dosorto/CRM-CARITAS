@@ -1,0 +1,1 @@
+1. Quitar mensaje de error de familiarSeleccionado después de cambiar los inputs de radio.

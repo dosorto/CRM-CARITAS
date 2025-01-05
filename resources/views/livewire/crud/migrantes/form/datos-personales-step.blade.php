@@ -15,10 +15,6 @@
                     </div>
                 @enderror
             </div>
-
-            {{-- @error('nombres')
-                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
-            @enderror --}}
         </div>
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Apellidos: </label>
@@ -31,9 +27,6 @@
                     </div>
                 @enderror
             </div>
-            {{-- @error('apellidos')
-                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
-            @enderror --}}
         </div>
     </div>
 
@@ -43,7 +36,7 @@
             <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
                 <span class="icon-[ion--people-circle] size-6"></span>
                 <select wire:model="estadoCivil"
-                    class="h-full text-base pl-1 grow bg-accent focus:outline-none focus:border-none border-x-0 rounded-none">
+                    class="h-full text-base pl-1 grow bg-accent focus:outline-none border-x-0 rounded-none">
                     <option value="">Seleccione...</option>
                     <option>Casado/a</option>
                     <option>Soltero/a</option>
@@ -57,9 +50,6 @@
                     </div>
                 @enderror
             </div>
-            {{-- @error('estadoCivil')
-                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
-            @enderror --}}
         </div>
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Fecha de Nacimiento: </label>
@@ -74,9 +64,6 @@
                 @enderror
 
             </div>
-            {{-- @error('fechaNacimiento')
-                <span class="font-semibold text-error text-sm mt-0.5">* {{ $message }} </span>
-            @enderror --}}
         </div>
     </div>
 
@@ -138,12 +125,12 @@
 
             <div class="flex justify-between">
                 <div class="flex gap-10">
-                    <div class="flex h-max items-center gap-1">
+                    <div class="flex h-max items-center gap-2">
                         <input wire:model="sexo" value="M" type="radio" class="radio border-2" name="sex">
                         {{-- <span class="icon-[icon-park-outline--male] size-6 text-sky-500"></span> --}}
                         <label>Masculino</label>
                     </div>
-                    <div class="flex h-max items-center gap-1">
+                    <div class="flex h-max items-center gap-2">
                         <input wire:model="sexo" value="F" type="radio" class="radio border-2" name="sex">
                         {{-- <span class="icon-[icon-park-outline--female] size-6 text-fuchsia-400"></span> --}}
                         <label>Femenino</label>

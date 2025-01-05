@@ -3,6 +3,7 @@
 namespace App\Livewire\Crud\Migrantes;
 
 use App\Livewire\Crud\Migrantes\Form\DatosPersonalesStep;
+use App\Livewire\Crud\Migrantes\Form\FamiliarStep;
 use App\Livewire\Crud\Migrantes\Form\IdentificacionStep;
 use App\Services\MigranteService;
 use Livewire\Component;
@@ -56,11 +57,11 @@ class RegistrarMigrante extends Component
                 break;
 
             case 3:
-                $this->nextStep();
+                $this->dispatch('validate-familiar')->to(FamiliarStep::class);
                 break;
 
             case 4:
-            $this->nextStep();
+                $this->nextStep();
                 break;
 
             case 5:
@@ -71,8 +72,7 @@ class RegistrarMigrante extends Component
 
     public function nextStep()
     {
-        if ($this->currentStep < 5)
-        {
+        if ($this->currentStep < 5) {
             $this->currentStep++;
             session(['currentStep' => $this->currentStep]);
         }
@@ -80,8 +80,7 @@ class RegistrarMigrante extends Component
 
     public function previousStep()
     {
-        if ($this->currentStep > 1)
-        {
+        if ($this->currentStep > 1) {
             $this->currentStep--;
             session(['currentStep' => $this->currentStep]);
         }
@@ -99,16 +98,23 @@ class RegistrarMigrante extends Component
             $this->nextStep();
         }
         // Caso 2: El numero de identificacion ya existe
-        else
-        {
+        else {
             // session(['formData.migranteFound' => true]);
             // $this->loadFieldsData();
             // $this->currentStep = 4;
         }
+
+        // Caso 3: El formulario se abrió desde el listado de migrantes.
     }
 
     #[On('datos-personales-validated')]
     public function datosPersonalesValidated()
+    {
+        $this->nextStep();
+    }
+
+    #[On('familiar-validated')]
+    public function familiarValidated()
     {
         $this->nextStep();
     }
