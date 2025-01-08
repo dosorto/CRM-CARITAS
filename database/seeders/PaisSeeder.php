@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Pais;
 
 class PaisSeeder extends Seeder
 {
@@ -201,7 +199,7 @@ class PaisSeeder extends Seeder
             ['nombre_pais' => 'Zimbabue', 'codigo_alfa3' => 'ZWE', 'codigo_numerico' => '716'],
         ];
 
-        foreach ($paises as $pais) 
+        foreach ($paises as $pais)
         {
             DB::table('paises')->insert(array_merge($pais, ['created_by' => 1]));
         }

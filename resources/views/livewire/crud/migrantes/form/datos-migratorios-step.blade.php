@@ -1,7 +1,7 @@
 <main class="flex gap-8 overflow-hidden">
 
     {{-- Frontera, asesor migratorio, y estado migratorio --}}
-    <section class="w-3/5 h-full flex flex-col gap-4 p-4">
+    <section class="w-1/2 h-full flex flex-col gap-4 p-4">
         <div class="flex flex-col">
             <label class="p-1 font-semibold">
                 Entidad que lo guió al centro:
@@ -94,7 +94,7 @@
             </div>
         </div>
     </section>
-    <section class="w-2/5 h-full p-4 overflow-auto grow">
+    <section class="w-1/2 h-full p-4 overflow-auto grow">
 
 
         <label class="label font-bold">Seleccione los motivos por los que salió del país</label>

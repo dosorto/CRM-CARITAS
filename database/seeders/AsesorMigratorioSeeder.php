@@ -13,7 +13,6 @@ class AsesorMigratorioSeeder extends Seeder
     public function run(): void
     {
         $asesoresMigratorios = [
-            'N/A',
             'Persona Civil',
             'CDH',
             'Instituto Nacional de Migración',
@@ -40,6 +39,7 @@ class AsesorMigratorioSeeder extends Seeder
             'ADRA',
             'Cruz Roja Hondureña',
             'SENAF',
+            'N/A',
         ];
 
         foreach ($asesoresMigratorios as $asesor) {

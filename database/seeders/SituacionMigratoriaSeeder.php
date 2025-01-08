@@ -13,13 +13,13 @@ class SituacionMigratoriaSeeder extends Seeder
     public function run(): void
     {
         $situacionesMigratorias = [
-            'N/A',
             'Migrante en tránsito',
             'Protección Internacional',
             'Retornado',
             'Solicitante de asilo',
             'Desplazado por violencia interna',
             'Refugiado',
+            'N/A',
         ];
 
         foreach ($situacionesMigratorias as $situacion) {
