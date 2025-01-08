@@ -44,7 +44,7 @@
                 @break
 
                 @case(4)
-                    Situación Migratoria
+                    <livewire:crud.migrantes.form.datos-migratorios-step />
                 @break
 
                 @case(5)

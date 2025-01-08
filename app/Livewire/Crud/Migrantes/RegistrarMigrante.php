@@ -89,34 +89,40 @@ class RegistrarMigrante extends Component
     #[On('identificacion-validated')]
     public function identificacionValidated()
     {
-        $identificacion = session('formMigranteData.migrante.identificacion');
+        if ($this->currentStep === 1) {
+            $identificacion = session('formMigranteData.migrante.identificacion');
 
-        $migrante = $this->getMigranteService()->buscar('numero_identificacion', $identificacion);
+            $migrante = $this->getMigranteService()->buscar('numero_identificacion', $identificacion);
 
-        // Caso 1: el registro es totalmente nuevo
-        if ($migrante === null) {
-            $this->nextStep();
+            // Caso 1: el registro es totalmente nuevo
+            if ($migrante === null) {
+                $this->nextStep();
+            }
+            // Caso 2: El numero de identificacion ya existe
+            else {
+                // session(['formData.migranteFound' => true]);
+                // $this->loadFieldsData();
+                // $this->currentStep = 4;
+            }
+
+            // Caso 3: El formulario se abrió desde el listado de migrantes.
         }
-        // Caso 2: El numero de identificacion ya existe
-        else {
-            // session(['formData.migranteFound' => true]);
-            // $this->loadFieldsData();
-            // $this->currentStep = 4;
-        }
-
-        // Caso 3: El formulario se abrió desde el listado de migrantes.
     }
 
     #[On('datos-personales-validated')]
     public function datosPersonalesValidated()
     {
-        $this->nextStep();
+        if ($this->currentStep === 2) {
+            $this->nextStep();
+        }
     }
 
     #[On('familiar-validated')]
     public function familiarValidated()
     {
-        $this->nextStep();
+        if ($this->currentStep === 3) {
+            $this->nextStep();
+        }
     }
 
 

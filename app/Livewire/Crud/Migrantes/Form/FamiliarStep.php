@@ -100,6 +100,7 @@ class FamiliarStep extends Component
 
         session(['formMigranteData.migrante.codigoFamiliar' => $this->codigoFamiliar]);
         $this->dispatch('familiar-validated')->to(RegistrarMigrante::class);
+
     }
 
     public function getMigranteService()
