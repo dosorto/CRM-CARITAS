@@ -137,13 +137,17 @@
                 esta persona.
             </div>
         @else
-            <div class="text-center size-full content-center">
+            <div class="text-center size-full content-center font-semibold text-error">
                 Algo salió mal... <br>
                 Por favor, reinicie el formulario.
             </div>
         @endif
-        @error('familiarSeleccionado')
-            <p class="text-error font-semibold text-center mt-4 p-2 border-2 border-error rounded-box">{{ $message }}</p>
-        @enderror
+        {{-- Este condicional es para que desaparezca el mensaje cuando se cambian las preguntas --}}
+        @if ($errorFamiliar)
+            @error('familiarSeleccionado')
+                <p class="text-error font-semibold text-center mt-4 p-2 border-2 border-error rounded-box">
+                    {{ $message }}</p>
+            @enderror
+        @endif
     </section>
 </main>

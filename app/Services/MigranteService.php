@@ -107,44 +107,12 @@ class MigranteService
 
     public function getAllMigrantes()
     {
-        return Migrante::select(
-            'id',
-            'codigo_familiar',
-            'primer_nombre',
-            'primer_apellido',
-            'segundo_nombre',
-            'segundo_apellido',
-            'numero_identificacion',
-            'tipo_identificacion',
-            'fecha_nacimiento',
-            'pais_id',
-            'es_lgbt',
-            'estado_civil',
-            'sexo'
-        )
-            ->with('pais')
-            ->get();
+        return Migrante::all();
     }
 
     public function getAllMigrantesPaginated($pagination)
     {
-        return Migrante::select(
-            'id',
-            'codigo_familiar',
-            'primer_nombre',
-            'primer_apellido',
-            'segundo_nombre',
-            'segundo_apellido',
-            'numero_identificacion',
-            'tipo_identificacion',
-            'fecha_nacimiento',
-            'pais_id',
-            'es_lgbt',
-            'estado_civil',
-            'sexo'
-        )
-            ->with('pais')
-            ->paginate($pagination);
+        return Migrante::paginate($pagination);
     }
 
     public function buscar($col, $text)
@@ -184,7 +152,7 @@ class MigranteService
 
             return $expediente->id;
         } catch (Exception $e) {
-            dd('ocurrió un error al guardar el expediente', $e->getMessage());
+            // dd('ocurrió un error al guardar el expediente', $e->getMessage());
             return false;
         }
     }

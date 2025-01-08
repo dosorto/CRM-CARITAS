@@ -31,6 +31,7 @@ class FamiliarStep extends Component
     public $codigoFamiliar = 0;
 
     public $familiarSeleccionado = null;
+    public $errorFamiliar = false;
 
     public $pais;
 
@@ -76,12 +77,14 @@ class FamiliarStep extends Component
             }
             session(['formMigranteData.tieneFamiliar' => $this->tieneFamiliar]);
         }
+
+        $this->errorFamiliar = false;
     }
 
     public function selectRelated($personaId)
     {
         $this->familiarSeleccionado = $this->getMigranteService()->buscar('id', $personaId);
-        // $this->familiarSeleccionado = Migrante::find($personaId);
+        $this->errorFamiliar = false;
     }
 
 
@@ -89,6 +92,7 @@ class FamiliarStep extends Component
     public function validateFamiliarStep()
     {
         if ($this->viajaEnGrupo && $this->tieneFamiliar && !$this->familiarSeleccionado) {
+            $this->errorFamiliar = true;
             throw ValidationException::withMessages([
                 'familiarSeleccionado' => ['Por favor, complete las instrucciones.']
             ]);
