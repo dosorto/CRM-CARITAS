@@ -26,36 +26,45 @@
         </div>
 
         {{-- Contenido de las tabs --}}
-        <div
-            class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto
-            @if ($currentStep == 1) rounded-tl-none @endif">
 
-            @switch($currentStep)
-                @case(1)
+
+        @switch($currentStep)
+            @case(1)
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto rounded-tl-none">
                     <livewire:crud.migrantes.form.identificacion-step />
-                @break
+                </div>
+            @break
 
-                @case(2)
+            @case(2)
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
                     <livewire:crud.migrantes.form.datos-personales-step />
-                @break
+                </div>
+            @break
 
-                @case(3)
+            @case(3)
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
                     <livewire:crud.migrantes.form.familiar-step />
-                @break
+                </div>
+            @break
 
-                @case(4)
+            @case(4)
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
                     <livewire:crud.migrantes.form.datos-migratorios-step />
-                @break
+                </div>
+            @break
 
-                @case(5)
-                    Necesidades y Observaciones...
-                @break
+            @case(5)
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
+                    <livewire:crud.migrantes.form.situacion-step />
+                </div>
+            @break
 
-                @default
+            @default
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
                     Oops... Algo está fuera de lugar.
-            @endswitch
+                </div>
+        @endswitch
 
-        </div>
     </div>
 
     <footer class="py-4 w-full flex">

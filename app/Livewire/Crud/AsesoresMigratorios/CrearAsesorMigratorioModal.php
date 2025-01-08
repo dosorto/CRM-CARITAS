@@ -12,9 +12,12 @@ class CrearAsesorMigratorioModal extends Component
     public $Asesor;
     public $idModal;
 
-    public function mount($idModal)
+    public $buttonLabel;
+
+    public function mount($idModal, $buttonLabel = 'Añadir')
     {
         $this->idModal = $idModal;
+        $this->buttonLabel = $buttonLabel;
     }
 
     public function create()

@@ -22,13 +22,15 @@ class CrearFronteraModal extends Component
     public $departamentos;
 
     public $idModal;
+    public $buttonLabel;
 
-    public function mount($idModal)
+    public function mount($idModal, $buttonLabel = 'Añadir')
     {
         $this->idModal = $idModal;
         $this->paises = Pais::select('id', 'nombre_pais')
             ->has('departamentos')
             ->get();
+        $this->buttonLabel = $buttonLabel;
     }
 
     public function render()

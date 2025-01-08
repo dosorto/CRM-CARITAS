@@ -11,10 +11,12 @@ class CrearSituacionMigratoriaModal extends Component
 {
     public $Situacion;
     public $idModal;
+    public $buttonLabel;
 
-    public function mount($idModal)
+    public function mount($idModal, $buttonLabel = 'Añadir')
     {
         $this->idModal = $idModal;
+        $this->buttonLabel = $buttonLabel;
     }
 
     public function render()

@@ -1,7 +1,7 @@
-<main class="flex overflow-hidden gap-8">
+<main class="flex gap-8 overflow-hidden">
 
     {{-- Frontera, asesor migratorio, y estado migratorio --}}
-    <section class="w-3/5 h-full flex flex-col gap-4 p-6">
+    <section class="w-3/5 h-full flex flex-col gap-4 p-4">
         <div class="flex flex-col">
             <label class="p-1 font-semibold">
                 Entidad que lo guió al centro:
@@ -26,7 +26,9 @@
                 </div>
 
                 {{-- Botón de añadir asesor migratorio --}}
-                <livewire:crud.asesores-migratorios.crear-asesor-migratorio-modal :idModal="'createAsesor-RegMigrante'" />
+                <livewire:crud.asesores-migratorios.crear-asesor-migratorio-modal
+                    :idModal="'createAsesor-RegMigrante'"
+                    :buttonLabel="''" />
             </div>
         </div>
 
@@ -54,7 +56,9 @@
                 </div>
 
                 {{-- Botón de añadir frontera --}}
-                <livewire:crud.fronteras.crear-frontera-modal :idModal="'createFrontera-RegMigrante'" />
+                <livewire:crud.fronteras.crear-frontera-modal
+                    :idModal="'createFrontera-RegMigrante'"
+                    :buttonLabel="''" />
             </div>
         </div>
 
@@ -84,25 +88,27 @@
                 </div>
 
                 {{-- Botón de añadir situacion migratoria --}}
-                <livewire:crud.situaciones-migratorias.crear-situacion-migratoria-modal :idModal="'createSituacion-RegMigrante'" />
+                <livewire:crud.situaciones-migratorias.crear-situacion-migratoria-modal
+                    :idModal="'createSituacion-RegMigrante'"
+                    :buttonLabel="''" />
             </div>
         </div>
     </section>
-    <section class="w-2/5 h-full overflow-y-auto">
-        <div>
+    <section class="w-2/5 h-full p-4 overflow-auto grow">
 
-            <label class="label font-bold">Seleccione los motivos por los que salió del país</label>
-            @error('motivosSelected')
-                <p class="font-semibold text-error-content mb-4">* Seleccione al menos una opción</p>
-            @enderror
-            <div class="flex flex-col gap-2">
-                @foreach ($motivosSalidaPais as $motivo)
-                    <div class="flex gap-1">
-                        <input class="checkbox checkbox-sm" type="checkbox" wire:model.live="motivosSelected"
-                            value="{{ $motivo->id }}">
-                        {{ $motivo->motivo_salida_pais }}
-                    </div>
-                @endforeach
-            </div>
+
+        <label class="label font-bold">Seleccione los motivos por los que salió del país</label>
+        @error('motivosSelected')
+            <p class="font-semibold text-error-content mb-4">* Seleccione al menos una opción</p>
+        @enderror
+        <div class="flex flex-col gap-2">
+            @foreach ($motivosSalidaPais as $motivo)
+                <div class="flex gap-1">
+                    <input class="checkbox checkbox-sm" type="checkbox" wire:model.live="motivosSelected"
+                        value="{{ $motivo->id }}">
+                    {{ $motivo->motivo_salida_pais }}
+                </div>
+            @endforeach
+        </div>
     </section>
 </main>

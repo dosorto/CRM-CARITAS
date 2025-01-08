@@ -1,8 +1,8 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}" class="btn btn-accent text-base-content gap-2 pl-3 flex flex-nowrap">
+    <label for="{{ $idModal }}" class="btn btn-accent text-base-content flex flex-nowrap justify-center">
         <span class="icon-[mdi--plus-circle] size-6"></span>
-        Añadir
+        {{ $buttonLabel }}
     </label>
 
     {{-- Modal --}}
