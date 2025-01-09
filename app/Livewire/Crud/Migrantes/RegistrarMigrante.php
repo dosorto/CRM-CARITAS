@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
+use App\Livewire\Crud\Migrantes\Form\DatosMigratoriosStep;
 use App\Livewire\Crud\Migrantes\Form\DatosPersonalesStep;
 use App\Livewire\Crud\Migrantes\Form\FamiliarStep;
 use App\Livewire\Crud\Migrantes\Form\IdentificacionStep;
+use App\Livewire\Crud\Migrantes\Form\MotivosStep;
 use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
@@ -17,8 +19,9 @@ class RegistrarMigrante extends Component
         1 => 'Identificación',
         2 => 'Datos Personales',
         3 => 'Registro Familiar',
-        4 => 'Situación Migratoria',
-        5 => 'Necesidades y Observaciones',
+        4 => 'Datos Migratorios',
+        5 => 'Motivos y Necesidades',
+        6 => 'Discapacidades y Observaciones',
     ];
 
     public $currentStep;
@@ -61,10 +64,13 @@ class RegistrarMigrante extends Component
                 break;
 
             case 4:
-                $this->nextStep();
+                $this->dispatch('validate-datos-migratorios')->to(DatosMigratoriosStep::class);
                 break;
 
             case 5:
+                $this->dispatch('validate-motivos')->to(MotivosStep::class);
+                break;
+            case 6:
                 $this->nextStep();
                 break;
         }
@@ -72,7 +78,7 @@ class RegistrarMigrante extends Component
 
     public function nextStep()
     {
-        if ($this->currentStep < 5) {
+        if ($this->currentStep < 6) {
             $this->currentStep++;
             session(['currentStep' => $this->currentStep]);
         }
@@ -121,6 +127,14 @@ class RegistrarMigrante extends Component
     public function familiarValidated()
     {
         if ($this->currentStep === 3) {
+            $this->nextStep();
+        }
+    }
+
+    #[On('datos-migratorios-validated')]
+    public function datosMigratoriosValidated()
+    {
+        if ($this->currentStep === 4) {
             $this->nextStep();
         }
     }

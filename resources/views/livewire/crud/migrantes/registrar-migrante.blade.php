@@ -48,12 +48,18 @@
             @break
 
             @case(4)
-                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-auto">
                     <livewire:crud.migrantes.form.datos-migratorios-step />
                 </div>
             @break
 
             @case(5)
+                <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
+                    <livewire:crud.migrantes.form.motivos-step />
+                </div>
+            @break
+
+            @case(6)
                 <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
                     <livewire:crud.migrantes.form.situacion-step />
                 </div>
@@ -80,7 +86,7 @@
             <span wire:loading class="loading loading-spinner loading-lg"></span>
         </div>
         <div class="w-1/3 flex justify-end">
-            @if ($currentStep < 5)
+            @if ($currentStep < 6)
                 <livewire:components.buttons.next-step-button>
                 @else
                     <button class="btn btn-info">

@@ -1,1 +1,3 @@
-1. Quitar mensaje de error de familiarSeleccionado después de cambiar los inputs de radio.
+1. Limitar la cantidad de dígitos en la fecha, quizás?
+2. Cambiar iconos de selects en datos-migratorios-step
+3. Falta crud de motivos de salida del país

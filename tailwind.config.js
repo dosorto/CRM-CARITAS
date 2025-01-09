@@ -44,6 +44,9 @@ module.exports = {
 
                     "success":          "#6EE299",
                     "success-content":  "#D0FDE1",
+
+                    "error":            "#ED4F4F",
+                    "error-content":    "#EEE",
                 },
                 dark: {
                     ...require("daisyui/src/theming/themes")["dark"],
@@ -75,7 +78,7 @@ module.exports = {
                     "success-content":  "#16a34a",
                     "warning":          "#f59e00",
                     "warning-content":  "#FFFFFF",
-                    "error":            "#FF7D7D",
+                    "error":            "#ED4F4F",
                     "error-content":    "#EEE",
                 },
             },

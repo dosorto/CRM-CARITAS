@@ -6,7 +6,10 @@
     <div class="flex gap-12">
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Nombres: </label>
-            <div class="input input-bordered flex items-center gap-2 bg-accent pl-3">
+            <div @class([
+                'input input-bordered flex items-center gap-2 bg-accent pl-3',
+                'border-b-4 border-b-error' => $errors->has('nombres'),
+            ])>
                 <span class="icon-[ion--person-circle-sharp] size-6"></span>
                 <input wire:model="nombres" type="text" class="grow" placeholder="Escribir aquí..." />
                 @error('nombres')
@@ -18,7 +21,10 @@
         </div>
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Apellidos: </label>
-            <div class="input input-bordered flex items-center gap-2 bg-accent pl-3">
+            <div @class([
+                'input input-bordered flex items-center gap-2 bg-accent pl-3',
+                'border-b-4 border-b-error' => $errors->has('apellidos'),
+            ])>
                 <span class="icon-[ion--person-circle-sharp] size-6"></span>
                 <input wire:model="apellidos" type="text" class="grow" placeholder="Escribir aquí...">
                 @error('apellidos')
@@ -33,7 +39,10 @@
     <div class="flex gap-12 w-full">
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Estado Civil: </label>
-            <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
+            <div @class([
+                'input input-bordered flex items-center bg-accent pl-3 pe-4',
+                'border-b-4 border-b-error' => $errors->has('estadoCivil'),
+            ])>
                 <span class="icon-[ion--people-circle] size-6"></span>
                 <select wire:model="estadoCivil"
                     class="h-full text-base pl-1 grow bg-accent focus:outline-none border-x-0 rounded-none">
@@ -53,7 +62,10 @@
         </div>
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Fecha de Nacimiento: </label>
-            <div class="input input-bordered flex items-center gap-2 bg-accent pl-3 pe-2">
+            <div @class([
+                'input input-bordered flex items-center gap-2 bg-accent pl-3 pe-2',
+                'border-b-4 border-b-error' => $errors->has('fechaNacimiento'),
+            ])>
                 <span class="icon-[f7--calendar-circle-fill] size-6"></span>
                 <input wire:model="fechaNacimiento" type="date" class="grow bg-accent"
                     placeholder="Escribir aquí...">
@@ -72,7 +84,10 @@
     <div class="flex gap-12">
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">País de Origen: </label>
-            <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
+            <div @class([
+                'input input-bordered flex items-center bg-accent pl-3 pe-4',
+                'border-b-4 border-b-error' => $errors->has('idPais'),
+            ])>
                 <span class="icon-[material-symbols--flag-circle-rounded] size-6"></span>
                 <select wire:model="idPais"
                     class="h-full text-base pl-1 grow bg-accent focus:outline-none focus:border-none border-x-0 rounded-none">
@@ -92,7 +107,10 @@
 
         <div class="flex flex-col w-1/2">
             <label class="p-1 font-semibold">Tipo de Sangre: </label>
-            <div class="input input-bordered flex items-center bg-accent pl-3 pe-4">
+            <div @class([
+                'input input-bordered flex items-center bg-accent pl-3 pe-4',
+                'border-b-4 border-b-error' => $errors->has('tipoSangre'),
+            ])>
                 <span class="icon-[material-symbols--bloodtype-rounded] size-6"></span>
                 <select wire:model="tipoSangre"
                     class="h-full text-base pl-1 grow bg-accent focus:outline-none focus:border-none border-x-0 rounded-none">
@@ -119,7 +137,11 @@
 
 
     <div class="flex gap-12">
-        <div class="flex flex-col w-1/2 gap-2 border-2 border-accent rounded-lg p-4 pt-2">
+        <div @class([
+            'flex flex-col w-1/2 gap-2 border-2 border-accent rounded-lg p-4 pt-2',
+            'border-b-4 border-b-error' => $errors->has('sexo'),
+        ])>
+
             <label class="p-1 font-semibold">Sexo: </label>
 
 
@@ -145,7 +167,10 @@
 
         </div>
 
-        <div class="flex flex-col w-1/2 gap-2 border-2 border-accent rounded-lg p-4 pt-2">
+        <div @class([
+            'flex flex-col w-1/2 gap-2 border-2 border-accent rounded-lg p-4 pt-2',
+            'border-b-4 border-b-error' => $errors->has('esLGBT'),
+        ])>
             <label class="label p-1 font-semibold">¿Esta persona pertenece a la comunidad LGBTQI+? </label>
             <div class="flex justify-between">
                 <div class="flex gap-8">
