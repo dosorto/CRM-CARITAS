@@ -61,7 +61,7 @@
 
             @case(6)
                 <div class="h-full flex-grow border-4 border-accent rounded-box overflow-y-auto">
-                    <livewire:crud.migrantes.form.situacion-step />
+                    <livewire:crud.migrantes.form.discapacidades-step />
                 </div>
             @break
 
@@ -89,7 +89,7 @@
             @if ($currentStep < 6)
                 <livewire:components.buttons.next-step-button>
                 @else
-                    <button class="btn btn-info">
+                    <button wire:click="guardarRegistro" class="btn btn-info">
                         <span class="icon-[bxs--save] size-5"></span>
                         Guardar
                     </button>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Migrantes\Form;
 
+use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 use App\Models\MotivoSalidaPais;
 use App\Models\Necesidad;
 use Livewire\Attributes\On;
@@ -22,8 +23,8 @@ class MotivosStep extends Component
         $this->motivosSalidaPais = MotivoSalidaPais::orderBy('id', 'desc')->get();
         $this->necesidades = Necesidad::orderBy('id', 'desc')->get();
 
-        $this->motivosSelected = session('formMigranteData.expediente.motivosSelected', []);
-        $this->necesidadesSelected = session('formMigranteData.expediente.necesidadesSelected', []);
+        $this->motivosSelected = session('formMigranteData.expediente.motivosSalidaPais', []);
+        $this->necesidadesSelected = session('formMigranteData.expediente.necesidades', []);
     }
 
     public function updatedTextoBusquedaMotivos($value)
@@ -51,10 +52,15 @@ class MotivosStep extends Component
     #[On('validate-motivos')]
     public function validateMotivos()
     {
-        $validated = $this->validate([
+        $this->validate([
             'motivosSelected' => 'array|min:1',
             'necesidadesSelected' => 'array|min:1',
         ]);
+
+        session()->put('formMigranteData.expediente.motivosSalidaPais', $this->motivosSelected);
+        session()->put('formMigranteData.expediente.necesidades', $this->necesidadesSelected);
+
+        $this->dispatch('motivos-validated')->to(RegistrarMigrante::class);
     }
 
 

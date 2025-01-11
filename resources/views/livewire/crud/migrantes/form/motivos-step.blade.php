@@ -19,7 +19,7 @@
 
             @foreach ($motivosSalidaPais as $motivo)
                 <div class="flex gap-3 text-base">
-                    <input class="checkbox border-2" type="checkbox" wire:model.live="motivosSelected"
+                    <input class="checkbox border-2" type="checkbox" wire:model="motivosSelected"
                         wire:key="motivo-{{ $motivo->id }}" value="{{ $motivo->id }}">
                     <span>{{ $motivo->motivo_salida_pais }}</span>
                 </div>
@@ -44,7 +44,7 @@
         <div class="flex flex-col gap-2 overflow-auto p-3 border-2 border-accent rounded-box">
             @foreach ($necesidades as $necesidad)
                 <div class="flex gap-3 text-base">
-                    <input class="checkbox border-2" type="checkbox" wire:model.live="necesidadesSelected"
+                    <input class="checkbox border-2" type="checkbox" wire:model="necesidadesSelected"
                         wire:key="necesidad-{{ $necesidad->id }}" value="{{ $necesidad->id }}">
                     {{ $necesidad->necesidad }}
                 </div>

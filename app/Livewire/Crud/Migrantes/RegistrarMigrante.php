@@ -139,6 +139,19 @@ class RegistrarMigrante extends Component
         }
     }
 
+    #[On('motivos-validated')]
+    public function motivosValidated()
+    {
+        if ($this->currentStep === 5) {
+            $this->nextStep();
+        }
+    }
+
+    public function guardarRegistro()
+    {
+        dd(session()->all());
+    }
+
 
     public function placeholder()
     {
