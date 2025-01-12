@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreign('situacion_migratoria_id')->references('id')->on('situaciones_migratorias');
 
             $table->string('observacion')->nullable();
+            $table->date('fecha_ingreso')->nullable();
 
             $table->boolean('fallecimiento')->default(false);
 

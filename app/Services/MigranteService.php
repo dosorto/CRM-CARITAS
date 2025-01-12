@@ -152,6 +152,7 @@ class MigranteService
         $fronteraId = 1,
         $asesorMigratorioId = 1,
         $situacionMigratoriaId = 1,
+        $fechaIngreso = null,
         $observacion = ''
     ) {
         try {
@@ -161,6 +162,7 @@ class MigranteService
             $expediente->frontera_id = $fronteraId;
             $expediente->asesor_migratorio_id = $asesorMigratorioId;
             $expediente->situacion_migratoria_id = $situacionMigratoriaId;
+            $expediente->fecha_ingreso = $fechaIngreso ? $fechaIngreso : Carbon::now()->format('Y-m-d');
             $expediente->observacion = $observacion;
             $expediente->save();
             $expediente->motivosSalidaPais()->sync($motivosSalidaPais);

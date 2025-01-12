@@ -30,5 +30,17 @@
         <label class="p-1 font-semibold">Observación</label>
         <textarea wire:model.live="observacion" class="textarea textarea-bordered bg-accent" placeholder="Escribir aquí..."></textarea>
 
+        {{-- Fecha de Salida --}}
+        <label class="p-1 font-semibold mt-4">Fecha de Ingreso:</label>
+        <div class="input input-bordered flex items-center gap-2 bg-accent pl-3 pe-2">
+            <span class="icon-[f7--calendar-circle-fill] size-6"></span>
+            <input wire:model.live="fechaIngreso" type="date" class="grow bg-accent" placeholder="Escribir aquí...">
+            @error('fechaIngreso')
+                <div class="tooltip tooltip-left tooltip-error flex items-center" data-tip="{{ $message }}">
+                    <span class="icon-[bx--error] size-6 text-error mr-2"></span>
+                </div>
+            @enderror
+
+        </div>
     </section>
 </main>

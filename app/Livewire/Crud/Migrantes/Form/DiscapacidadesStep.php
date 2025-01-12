@@ -4,6 +4,7 @@ namespace App\Livewire\Crud\Migrantes\Form;
 
 use Livewire\Component;
 use App\Models\Discapacidad;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class DiscapacidadesStep extends Component
@@ -13,6 +14,7 @@ class DiscapacidadesStep extends Component
 
     public $textoBusquedaDiscapacidades = '';
     public $observacion;
+    public $fechaIngreso;
 
     public function mount()
     {
@@ -20,6 +22,8 @@ class DiscapacidadesStep extends Component
         $this->discapacidadesSelected = session()->get('formMigranteData.expediente.discapacidades', []);
 
         $this->observacion = session()->get('formMigranteData.expediente.observacion', '');
+
+        $this->fechaIngreso = session()->get('formMigranteData.expediente.fechaIngreso', Carbon::now()->format('Y-m-d'));
     }
 
     public function updatedTextoBusquedaDiscapacidades($value)
@@ -39,6 +43,8 @@ class DiscapacidadesStep extends Component
             session()->put('formMigranteData.expediente.discapacidades', $this->discapacidadesSelected);
         } else if ($field === 'observacion') {
             session()->put('formMigranteData.expediente.observacion', $this->observacion);
+        } else if ($field === 'fechaIngreso') {
+            session()->put('formMigranteData.expediente.fechaIngreso', $this->fechaIngreso);
         }
     }
 

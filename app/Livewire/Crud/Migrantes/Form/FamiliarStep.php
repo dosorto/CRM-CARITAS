@@ -37,6 +37,13 @@ class FamiliarStep extends Component
 
     public function mount()
     {
+        if (!session()->has('viajaEnGrupo')) {
+            session()->put('formMigranteData.viajaEnGrupo', '0');
+        }
+        if (!session()->has('tieneFamiliar')) {
+            session()->put('formMigranteData.tieneFamiliar', '0');
+        }
+
         $this->viajaEnGrupo = session()->get('formMigranteData.viajaEnGrupo', false);
         $this->tieneFamiliar =  $this->viajaEnGrupo ? session()->get('formMigranteData.tieneFamiliar', false) : false;
 
@@ -100,7 +107,6 @@ class FamiliarStep extends Component
 
         session(['formMigranteData.migrante.codigoFamiliar' => $this->codigoFamiliar]);
         $this->dispatch('familiar-validated')->to(RegistrarMigrante::class);
-
     }
 
     public function getMigranteService()

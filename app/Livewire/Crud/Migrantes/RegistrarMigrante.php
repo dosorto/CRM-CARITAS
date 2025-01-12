@@ -179,7 +179,8 @@ class RegistrarMigrante extends Component
             session('formMigranteData.expediente.fronteraId'),
             session('formMigranteData.expediente.asesorId'),
             session('formMigranteData.expediente.situacionId'),
-            session('formMigranteData.expediente.observacion')
+            session('formMigranteData.expediente.fechaIngreso'),
+            session('formMigranteData.expediente.observacion'),
         );
 
         if ($expedienteId) {
