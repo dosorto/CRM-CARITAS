@@ -8,6 +8,7 @@ use App\Livewire\Crud\Migrantes\Form\FamiliarStep;
 use App\Livewire\Crud\Migrantes\Form\IdentificacionStep;
 use App\Livewire\Crud\Migrantes\Form\MotivosStep;
 use App\Services\MigranteService;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
@@ -96,7 +97,7 @@ class RegistrarMigrante extends Component
     public function identificacionValidated()
     {
         if ($this->currentStep === 1) {
-            $identificacion = session('formMigranteData.migrante.identificacion');
+            $identificacion = session()->get('formMigranteData.migrante.identificacion', '');
 
             $migrante = $this->getMigranteService()->buscar('numero_identificacion', $identificacion);
 
@@ -106,14 +107,29 @@ class RegistrarMigrante extends Component
             }
             // Caso 2: El numero de identificacion ya existe
             else {
+
+                // Verificar que el migrante no tenga expedientes activos
+                foreach ($migrante->expedientes as $expediente) {
+                    if ($expediente->fecha_salida === null) {
+
+                        $this->dispatch('expediente-aun-activo')->self();
+                        session()->forget(['formMigranteData', 'expedienteId']);
+                        // throw ValidationException::withMessages([
+                        //     'migranteEncontrado' => ['Esta persona ya tiene un expediente activo, diríjase al listado de migrantes para registrar su salida primero.']
+                        // ]);
+                    }
+                }
+
                 // session(['formData.migranteFound' => true]);
-                // $this->loadFieldsData();
+                // $this->loadDataFound();
                 // $this->currentStep = 4;
             }
 
             // Caso 3: El formulario se abrió desde el listado de migrantes.
         }
     }
+
+    public function loadDataFound() {}
 
     #[On('datos-personales-validated')]
     public function datosPersonalesValidated()
@@ -185,7 +201,7 @@ class RegistrarMigrante extends Component
 
         if ($expedienteId) {
             session()->forget(['currentStep', 'formMigranteData']);
-            session(['expedienteId' => $expedienteId]);
+            session(['formMigranteData.expedienteId' => $expedienteId]);
             return $this->redirectRoute('ver-expediente');
         }
 

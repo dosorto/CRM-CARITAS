@@ -89,7 +89,7 @@
             @if ($currentStep < 6)
                 <livewire:components.buttons.next-step-button>
                 @else
-                    <label for="confirmarRegistroExpediente" class="btn btn-info">
+                    <label for="confirmarRegistroExpedienteModal" class="btn btn-info">
                         <span class="icon-[bxs--save] size-5"></span>
                         Guardar
                     </label>
@@ -98,7 +98,7 @@
     </footer>
 
     {{-- Modal de confirmación de la creación del expediente --}}
-    <input type="checkbox" id="confirmarRegistroExpediente" class="modal-toggle" />
+    <input type="checkbox" id="confirmarRegistroExpedienteModal" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box bg-neutral border-2 border-green-600">
             <div class="flex w-full justify-center">
@@ -114,9 +114,57 @@
                 se deberá solicitar formalmente a un usuario con los permisos pertinentes.</p>
             <div class="modal-action">
                 <button wire:click="guardarRegistro" class="btn btn-success">Confirmar</button>
-                <label for="confirmarRegistroExpediente" class="btn btn-accent text-base-content">Cancelar</label>
+                <label for="confirmarRegistroExpedienteModal" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
     </div>
 
+    {{-- Modal de alerta, el migrante todavía tiene un expediente activo. --}}
+    <input type="checkbox" id="expedienteActivoModal" class="modal-toggle" />
+    <div class="modal" role="dialog">
+        <div class="modal-box bg-neutral border-2 border-green-600">
+            <div class="flex w-full justify-center">
+                <span class="icon-[ep--warning-filled] size-8 text-error"></span>
+            </div>
+            <h3 class="text-lg font-bold text-center py-2">Oops...</h3>
+            <p class="text-center font-semibold">
+                La persona con este Número de Identificación ya tiene un expediente activo.
+            </p>
+            <p class="text-center pt-2">
+                Para poder registrar uno nuevo, debe ir al listado de migrantes a registrar su salida del centro.
+            </p>
+            <div class="modal-action">
+                <label for="expedienteActivoModal" class="btn btn-accent text-base-content">Cerrar</label>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal de confirmación de la creación del expediente --}}
+    <input type="checkbox" id="reingresoModal" class="modal-toggle" />
+    <div class="modal" role="dialog">
+        <div class="modal-box bg-neutral border-2 border-green-600">
+            <div class="flex w-full justify-center">
+                <span class="icon-[ep--warning-filled] size-8 text-error"></span>
+            </div>
+            <h3 class="text-lg font-bold text-center py-2">Oops...</h3>
+            <p class="text-center font-semibold">
+                Esta persona ya tiene un expediente activo.
+            </p>
+            <p class="text-center pt-2">
+                Para poder registrar uno nuevo, debe ir al listado de migrantes a registrar su salida del centro.
+            </p>
+            <div class="modal-action">
+                <button wire:click="reingreso" class="btn btn-success">Confirmar</button>
+                <label for="reingresoModal" class="btn btn-accent text-base-content">Cerrar</label>
+            </div>
+        </div>
+    </div>
 </div>
+
+@script
+    <script>
+        $wire.on('expediente-aun-activo', () => {
+            document.getElementById('expedienteActivoModal').checked = true;
+        });
+    </script>
+@endscript
