@@ -122,13 +122,13 @@
     {{-- Modal de alerta, el migrante todavía tiene un expediente activo. --}}
     <input type="checkbox" id="expedienteActivoModal" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box bg-neutral border-2 border-green-600">
+        <div class="modal-box w-1/2 max-w-5xl bg-neutral border-2 border-green-600">
             <div class="flex w-full justify-center">
                 <span class="icon-[ep--warning-filled] size-8 text-error"></span>
             </div>
             <h3 class="text-lg font-bold text-center py-2">Oops...</h3>
             <p class="text-center font-semibold">
-                La persona con este Número de Identificación ya tiene un expediente activo.
+                Esta persona ya está registrada y aún tiene un expediente activo.
             </p>
             <p class="text-center pt-2">
                 Para poder registrar uno nuevo, debe ir al listado de migrantes a registrar su salida del centro.

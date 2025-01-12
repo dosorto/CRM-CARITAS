@@ -109,16 +109,11 @@ class RegistrarMigrante extends Component
             else {
 
                 // Verificar que el migrante no tenga expedientes activos
-                foreach ($migrante->expedientes as $expediente) {
-                    if ($expediente->fecha_salida === null) {
-
-                        $this->dispatch('expediente-aun-activo')->self();
-                        session()->forget(['formMigranteData', 'expedienteId']);
-                        // throw ValidationException::withMessages([
-                        //     'migranteEncontrado' => ['Esta persona ya tiene un expediente activo, diríjase al listado de migrantes para registrar su salida primero.']
-                        // ]);
-                    }
+                if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id)){
+                    $this->dispatch('expediente-aun-activo')->self();
+                    session()->forget(['formMigranteData']);
                 }
+
 
                 // session(['formData.migranteFound' => true]);
                 // $this->loadDataFound();
@@ -222,133 +217,4 @@ class RegistrarMigrante extends Component
     {
         return app(MigranteService::class);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // #[On('identificacion-validated')]
-    // public function identificacionStep()
-    // {
-    //
-
-    //     if ($migrante) {
-
-    //         // verificar que no tenga un expediente activo
-    //         if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id))
-    //         {
-
-    //         }
-
-    //         // Si ya existe el migrante, saltarse los pasos datos Personales.
-    //         session(['nombreMigrante' => $migrante->primer_nombre . ' ' . $migrante->primer_apellido]);
-    //         session(['identificacion' => $migrante->numero_identificacion]);
-    //         session(['migranteId' => $migrante->id]);
-    //         session(['currentStep' => 4]);
-    //     } else {
-    //         $this->nextStep();
-    //     }
-    // }
-
-    // #[On('datos-personales-validated')]
-    // public function datosPersonalesStep()
-    // {
-    //     $this->nextStep();
-    // }
-
-    // #[On('familiar-validated')]
-    // public function familiarStep()
-    // {
-
-    //     if (session('migranteCreado')) {
-    //         $this->nextStep();
-    //     } else {
-    //         // Obtener los datos actuales de la sesión
-    //         $datos = $this->getMigranteService()->obtenerDatosNombresSeparados(session('datosPersonales'));
-
-    //         try {
-
-    //             $idMigrante = $this->getMigranteService()->guardarDatosPersonales($datos);
-
-    //             if ($idMigrante) {
-
-
-    //                 session(['nombreMigrante' => $datos['primerNombre'] . ' ' . $datos['primerApellido']]);
-    //                 session(['identificacion' => $datos['identificacion']]);
-    //                 session(['migranteId' => $idMigrante]);
-
-    //                 session(['migranteCreado' => true]);
-
-    //                 $this->nextStep();
-    //             }
-    //         } catch (Exception $e) {
-    //             dump('ha ocurrido un error al guardar datos personales');
-    //         }
-    //     }
-    // }
-
-
-    // #[On('datos-migratorios-validated')]
-    // public function datosMigratoriosStep()
-    // {
-    //     $this->nextStep();
-    // }
-
-    // #[On('situacion-validated')]
-    // public function situacionStep()
-    // {
-    //     // guardar Expediente
-    //     $newExpedienteId = $this->getMigranteService()->guardarExpediente(
-    //         session('migranteId'),
-    //         session('datosMigratorios.motivosSelected'),
-    //         session('datosMigratorios.necesidadesSelected'),
-    //         session('datosMigratorios.discapacidadesSelected'),
-    //         session('datosMigratorios.fronteraId'),
-    //         session('datosMigratorios.asesorId'),
-    //         session('datosMigratorios.situacionId'),
-    //         session('datosMigratorios.observacion'),
-    //     );
-
-
-
-    //     if ($newExpedienteId) {
-    //         session()->forget(['datosPersonales', 'tieneFamiliar', 'viajaEnGrupo', 'migranteCreado']);
-    //         session()->forget(['datosMigratorios', 'currentStep', 'totalSteps', 'nombreMigrante', 'identificacion', 'migranteId']);
-
-    //         // dd($newExpedienteId);
-    //         session(['expedienteId' => $newExpedienteId]);
-    //         return redirect(route('ver-expediente'));
-    //     }
-    //     return redirect(route('ver-migrantes'));
-
-    // }
-
-
-
-
-    // #[On('previous-step')]
-    // public function previousStep()
-    // {
-    //     $currentStep = session('currentStep', 0) - 1;
-    //     session(['currentStep' => $currentStep]);
-    // }
-
-    // public function nextStep()
-    // {
-    //     $currentStep = session('currentStep', 0) + 1;
-    //     session(['currentStep' => $currentStep]);
-    // }
-
 }

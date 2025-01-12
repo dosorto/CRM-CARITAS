@@ -41,7 +41,7 @@
         {{-- Tabla para buscar en caso de que ya tenga un familiar registrado --}}
         @if ($viajaEnGrupo && $tieneFamiliar)
             <div class="overflow-auto">
-                <div class="px-4 pt-4 join w-full {{ empty($personas) ? 'hidden' : '' }}">
+                <div class="px-4 pt-4 join w-full {{ sizeof($personas) === 0 ? 'hidden' : '' }}">
                     <select wire:model.live="colSelected" class="select-sm select join-item w-min bg-accent">
                         <option>Identificación</option>
                         <option>Nombre</option>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="m-4">
-                    @if (!empty($personas))
+                    @if (sizeof($personas) > 0)
                         <table class="table table-sm w-full table-pin-rows">
                             <thead>
                                 <tr class="bg-accent text-sm border-b border-accent">
@@ -68,27 +68,28 @@
                             </thead>
                             <tbody>
                                 {{-- Listado de personas --}}
-                                @for ($i = 0; $i <= 30; $i++)
-                                    <tr class="border-b border-accent">
-                                        <td>Nombre...</td>
-                                        <td>Identificación...</td>
-                                        <td class="flex gap-2">
-                                            <button class="btn btn-xs btn-accent text-base-content">
-                                                Sel.
-                                            </button>
-                                            <button class="btn btn-xs btn-accent text-base-content">
-                                                info.
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endfor
+                                @foreach ($personas as $persona)
+
+                                <tr class="border-b border-accent">
+                                    <td>{{ $persona->primer_nombre . ' ' . $persona->primer_apellido}}</td>
+                                    <td>{{ $persona->numero_identificacion}} </td>
+                                    <td class="flex gap-2">
+                                        <button class="btn btn-xs btn-accent text-base-content">
+                                            Sel.
+                                        </button>
+                                        <button class="btn btn-xs btn-accent text-base-content">
+                                            info.
+                                        </button>
+                                    </td>
+                                </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     @else
                         <div class="text-center p-6 w-full">
 
                             <p class="flex flex-col gap-3 items-center">
-                                {{-- <span class="font-semibold">*Sonido de Grillos*</span> --}}
                                 <span class="tooltip tooltip-primary tooltip-right" data-tip="*Sonido de Grillo*">
                                     <span class="icon-[twemoji--cricket] size-8"></span>
                                 </span>

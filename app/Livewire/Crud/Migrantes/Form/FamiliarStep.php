@@ -37,22 +37,16 @@ class FamiliarStep extends Component
 
     public function mount()
     {
-        if (!session()->has('viajaEnGrupo')) {
-            session()->put('formMigranteData.viajaEnGrupo', '0');
-        }
-        if (!session()->has('tieneFamiliar')) {
-            session()->put('formMigranteData.tieneFamiliar', '0');
-        }
-
         $this->viajaEnGrupo = session()->get('formMigranteData.viajaEnGrupo', false);
         $this->tieneFamiliar =  $this->viajaEnGrupo ? session()->get('formMigranteData.tieneFamiliar', false) : false;
 
         $this->nuevoCodigoFamiliar = $this->getMigranteService()->generateNewFamiliarCode();
 
-        // Esto es para mostrar el nombre del pais en el modal de confirmacion
-        // $idPais = session('datosPersonales.idPais') ?? 74;
-        // $pais = Pais::select('nombre_pais')->where('id', $idPais)->get()->first();
-        // $this->pais = $pais->nombre_pais;
+        if ($this->viajaEnGrupo && !$this->tieneFamiliar) {
+            $this->codigoFamiliar = $this->nuevoCodigoFamiliar;
+        }
+
+        $this->personas = $this->getMigranteService()->obtenerCandidatosFamiliar();
     }
 
     public function render()
@@ -74,7 +68,8 @@ class FamiliarStep extends Component
                 $this->codigoFamiliar = 0;
                 $this->familiarSeleccionado = null;
             }
-            session(['formMigranteData.viajaEnGrupo' => $this->viajaEnGrupo]);
+            // session(['formMigranteData.viajaEnGrupo' => $this->viajaEnGrupo]);
+            $this->errorFamiliar = false;
         }
 
         if ($property === 'tieneFamiliar') {
@@ -82,10 +77,9 @@ class FamiliarStep extends Component
                 $this->codigoFamiliar = $this->nuevoCodigoFamiliar;
                 $this->familiarSeleccionado = null;
             }
-            session(['formMigranteData.tieneFamiliar' => $this->tieneFamiliar]);
+            // session(['formMigranteData.tieneFamiliar' => $this->tieneFamiliar]);
+            $this->errorFamiliar = false;
         }
-
-        $this->errorFamiliar = false;
     }
 
     public function selectRelated($personaId)
@@ -105,7 +99,9 @@ class FamiliarStep extends Component
             ]);
         }
 
-        session(['formMigranteData.migrante.codigoFamiliar' => $this->codigoFamiliar]);
+        session()->put('formMigranteData.migrante.codigoFamiliar', $this->codigoFamiliar);
+        session()->put('formMigranteData.viajaEnGrupo', $this->viajaEnGrupo);
+        session()->put('formMigranteData.tieneFamiliar', $this->tieneFamiliar);
         $this->dispatch('familiar-validated')->to(RegistrarMigrante::class);
     }
 

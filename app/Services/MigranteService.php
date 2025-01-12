@@ -81,22 +81,36 @@ class MigranteService
         }
     }
 
-    public function obtenerDatosNombresSeparados($datos)
-    {
-        // Separar nombres y apellidos
-        $nombres = $this->separarNombres($datos['nombres']);
-        $apellidos = $this->separarNombres($datos['apellidos']);
+    public function guardarExpediente(
+        $migranteId,
+        $motivosSalidaPais = [],
+        $necesidades = [],
+        $discapacidades = [],
+        $fronteraId = 1,
+        $asesorMigratorioId = 1,
+        $situacionMigratoriaId = 1,
+        $fechaIngreso = null,
+        $observacion = ''
+    ) {
+        try {
+            // guardar expediente
+            $expediente = new Expediente();
+            $expediente->migrante_id = $migranteId;
+            $expediente->frontera_id = $fronteraId;
+            $expediente->asesor_migratorio_id = $asesorMigratorioId;
+            $expediente->situacion_migratoria_id = $situacionMigratoriaId;
+            $expediente->fecha_ingreso = $fechaIngreso ? $fechaIngreso : Carbon::now()->format('Y-m-d');
+            $expediente->observacion = $observacion;
+            $expediente->save();
+            $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
+            $expediente->necesidades()->sync($necesidades);
+            $expediente->discapacidades()->sync($discapacidades);
 
-        // Eliminar los campos originales y añadir los nuevos
-        unset($datos['nombres']);
-        unset($datos['apellidos']);
-
-        return array_merge($datos, [
-            'primerNombre' => $nombres[0],
-            'segundoNombre' => $nombres[1],
-            'primerApellido' => $apellidos[0],
-            'segundoApellido' => $apellidos[1]
-        ]);
+            return $expediente->id;
+        } catch (Exception $e) {
+            dd('ocurrió un error al guardar el expediente', $e->getMessage());
+            return false;
+        }
     }
 
     public function separarNombres($cadena)
@@ -144,38 +158,6 @@ class MigranteService
         return Migrante::max('codigo_familiar') + 1;
     }
 
-    public function guardarExpediente(
-        $migranteId,
-        $motivosSalidaPais = [],
-        $necesidades = [],
-        $discapacidades = [],
-        $fronteraId = 1,
-        $asesorMigratorioId = 1,
-        $situacionMigratoriaId = 1,
-        $fechaIngreso = null,
-        $observacion = ''
-    ) {
-        try {
-            // guardar expediente
-            $expediente = new Expediente();
-            $expediente->migrante_id = $migranteId;
-            $expediente->frontera_id = $fronteraId;
-            $expediente->asesor_migratorio_id = $asesorMigratorioId;
-            $expediente->situacion_migratoria_id = $situacionMigratoriaId;
-            $expediente->fecha_ingreso = $fechaIngreso ? $fechaIngreso : Carbon::now()->format('Y-m-d');
-            $expediente->observacion = $observacion;
-            $expediente->save();
-            $expediente->motivosSalidaPais()->sync($motivosSalidaPais);
-            $expediente->necesidades()->sync($necesidades);
-            $expediente->discapacidades()->sync($discapacidades);
-
-            return $expediente->id;
-        } catch (Exception $e) {
-            dd('ocurrió un error al guardar el expediente', $e->getMessage());
-            return false;
-        }
-    }
-
     public function calcularEdad($fechaNacimiento)
     {
         // Asegúrate de que la fecha de nacimiento esté bien parseada
@@ -189,6 +171,11 @@ class MigranteService
         return Migrante::latest()
             ->take($max)
             ->get();
+    }
+
+    public function obtenerCandidatosFamiliar()
+    {
+        return Migrante::whereNot('codigo_familiar', 0)->get();
     }
 
     public function registrarSalida($datosSalida) {}
