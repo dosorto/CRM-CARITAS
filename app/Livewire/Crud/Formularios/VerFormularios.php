@@ -46,7 +46,7 @@ class VerFormularios extends Component
         }
         else
         {
-            return redirect(route('ver-migrantes'));
+            return $this->redirectRoute('ver-migrantes');
         }
         // session()->forget('expedienteId);
         $expediente = Expediente::find($expedienteId);

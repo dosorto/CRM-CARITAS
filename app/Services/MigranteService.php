@@ -41,27 +41,44 @@ class MigranteService
         return null;
     }
 
-    public function guardarDatosPersonales($datosPersonales)
-    {
-        $nuevoMigrante = new Migrante();
-        $nuevoMigrante->primer_nombre = $datosPersonales['primerNombre'];
-        $nuevoMigrante->segundo_nombre = $datosPersonales['segundoNombre'];
-        $nuevoMigrante->primer_apellido = $datosPersonales['primerApellido'];
-        $nuevoMigrante->segundo_apellido = $datosPersonales['segundoApellido'];
-        $nuevoMigrante->numero_identificacion = $datosPersonales['identificacion'];
-        $nuevoMigrante->tipo_identificacion = $datosPersonales['tipoIdentificacion'];
-        $nuevoMigrante->sexo = $datosPersonales['sexo'];
-        $nuevoMigrante->pais_id = $datosPersonales['idPais'];
-        $nuevoMigrante->codigo_familiar = $datosPersonales['codigoFamiliar'];
-        $nuevoMigrante->fecha_nacimiento = $datosPersonales['fechaNacimiento'];
-        $nuevoMigrante->estado_civil = $datosPersonales['estadoCivil'];
-        $nuevoMigrante->es_lgbt = $datosPersonales['esLGBT'];
+    public function guardarDatosPersonales(
+        $primerNombre,
+        $segundoNombre,
+        $primerApellido,
+        $segundoApellido,
+        $identificacion,
+        $tipoIdentificacion,
+        $sexo,
+        $paisId,
+        $codigoFamiliar,
+        $fechaNacimiento,
+        $estadoCivil,
+        $tipoSangre,
+        $esLGBT
+    ) {
+        try {
+            $nuevoMigrante = new Migrante();
+            $nuevoMigrante->primer_nombre = $primerNombre;
+            $nuevoMigrante->segundo_nombre = $segundoNombre;
+            $nuevoMigrante->primer_apellido = $primerApellido;
+            $nuevoMigrante->segundo_apellido = $segundoApellido;
+            $nuevoMigrante->numero_identificacion = $identificacion;
+            $nuevoMigrante->tipo_identificacion = $tipoIdentificacion;
+            $nuevoMigrante->sexo = $sexo;
+            $nuevoMigrante->pais_id = $paisId;
+            $nuevoMigrante->codigo_familiar = $codigoFamiliar;
+            $nuevoMigrante->fecha_nacimiento = $fechaNacimiento;
+            $nuevoMigrante->estado_civil = $estadoCivil;
+            $nuevoMigrante->tipo_sangre = $tipoSangre;
+            $nuevoMigrante->es_lgbt = $esLGBT;
 
-        $nuevoMigrante->save();
+            $nuevoMigrante->save();
 
-
-
-        return $nuevoMigrante->id;
+            return $nuevoMigrante->id;
+        } catch (Exception $e) {
+            dd('ocurrió un error al registrar los datos personales', $e->getMessage());
+            return false;
+        }
     }
 
     public function obtenerDatosNombresSeparados($datos)

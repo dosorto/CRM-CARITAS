@@ -42,11 +42,14 @@ module.exports = {
 
                     "error-content":    "#F6EFEF", // Color de alertas de validacion de formularios
 
-                    "success":          "#6EE299",
-                    "success-content":  "#D0FDE1",
+                    "success":          "#18A811",
+                    "success-content":  "#F1F5FB",
+                    // "success-content":  "D0FDE1",
 
                     "error":            "#ED4F4F",
                     "error-content":    "#EEE",
+
+                    "warning":          "#f59e00",
                 },
                 dark: {
                     ...require("daisyui/src/theming/themes")["dark"],
@@ -75,7 +78,8 @@ module.exports = {
 
                     "info-content":     "#3b82f6",
                     "success":          "#1A8241",
-                    "success-content":  "#16a34a",
+                    "success-content":  "#FAFAFA",
+                    // "success-content":  "16a34a",
                     "warning":          "#f59e00",
                     "warning-content":  "#FFFFFF",
                     "error":            "#ED4F4F",

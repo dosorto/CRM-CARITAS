@@ -1,3 +1,3 @@
 1. Limitar la cantidad de dígitos en la fecha, quizás?
-2. Cambiar iconos de selects en datos-migratorios-step
-3. Falta crud de motivos de salida del país
+2. Falta crud de motivos de salida del país
+3. Las preguntas de asesoria psicosocial, psicologica, etc, aparecen en "NO" Antes de registrar la salida.

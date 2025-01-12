@@ -40,8 +40,6 @@ class DiscapacidadesStep extends Component
         } else if ($field === 'observacion') {
             session()->put('formMigranteData.expediente.observacion', $this->observacion);
         }
-
-        dump(session()->all());
     }
 
     public function render()

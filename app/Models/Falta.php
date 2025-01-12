@@ -14,7 +14,7 @@ class Falta extends BaseModel
     }
 
     public function expedientes()
-{
-    return $this->belongsToMany(Expediente::class, 'expedientes_faltas', 'falta_id', 'expediente_id');
-}
+    {
+        return $this->belongsToMany(Expediente::class, 'expedientes_faltas', 'falta_id', 'expediente_id');
+    }
 }

@@ -89,12 +89,34 @@
             @if ($currentStep < 6)
                 <livewire:components.buttons.next-step-button>
                 @else
-                    <button wire:click="guardarRegistro" class="btn btn-info">
+                    <label for="confirmarRegistroExpediente" class="btn btn-info">
                         <span class="icon-[bxs--save] size-5"></span>
                         Guardar
-                    </button>
+                    </label>
             @endif
         </div>
     </footer>
+
+    {{-- Modal de confirmación de la creación del expediente --}}
+    <input type="checkbox" id="confirmarRegistroExpediente" class="modal-toggle" />
+    <div class="modal" role="dialog">
+        <div class="modal-box bg-neutral border-2 border-green-600">
+            <div class="flex w-full justify-center">
+                <span class="icon-[ep--warning-filled] size-8 text-warning"></span>
+            </div>
+            <h3 class="text-lg font-bold text-center py-2">Confirmar Registro de Expediente</h3>
+            <p class="text-center font-semibold">
+                Se ha revisado y comprobado la información antes ingresada.
+
+            </p>
+            <p class="text-center pb-4 pt-2">
+                Para cambiar o alterar los registros de migrantes posteriormente,
+                se deberá solicitar formalmente a un usuario con los permisos pertinentes.</p>
+            <div class="modal-action">
+                <button wire:click="guardarRegistro" class="btn btn-success">Confirmar</button>
+                <label for="confirmarRegistroExpediente" class="btn btn-accent text-base-content">Cancelar</label>
+            </div>
+        </div>
+    </div>
 
 </div>

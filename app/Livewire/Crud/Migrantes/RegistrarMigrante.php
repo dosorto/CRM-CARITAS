@@ -149,7 +149,46 @@ class RegistrarMigrante extends Component
 
     public function guardarRegistro()
     {
-        dd(session()->all());
+        // dd(session()->all());
+        $nombres = $this->getMigranteService()->separarNombres(session('formMigranteData.migrante.nombres'));
+        $apellidos = $this->getMigranteService()->separarNombres(session('formMigranteData.migrante.apellidos'));
+        // dd($nombres, $apellidos);
+
+
+        $migranteId = $this->getMigranteService()->guardarDatosPersonales(
+            $nombres[0],
+            $nombres[1],
+            $apellidos[0],
+            $apellidos[1],
+            session('formMigranteData.migrante.identificacion'),
+            session('formMigranteData.migrante.tipoIdentificacion'),
+            session('formMigranteData.migrante.sexo'),
+            session('formMigranteData.migrante.idPais'),
+            session('formMigranteData.migrante.codigoFamiliar'),
+            session('formMigranteData.migrante.fechaNacimiento'),
+            session('formMigranteData.migrante.estadoCivil'),
+            session('formMigranteData.migrante.tipoSangre'),
+            session('formMigranteData.migrante.esLGBT')
+        );
+
+        $expedienteId = $this->getMigranteService()->guardarExpediente(
+            $migranteId,
+            session('formMigranteData.expediente.motivosSalidaPais'),
+            session('formMigranteData.expediente.necesidades'),
+            session('formMigranteData.expediente.discapacidades'),
+            session('formMigranteData.expediente.fronteraId'),
+            session('formMigranteData.expediente.asesorId'),
+            session('formMigranteData.expediente.situacionId'),
+            session('formMigranteData.expediente.observacion')
+        );
+
+        if ($expedienteId) {
+            session()->forget(['currentStep', 'formMigranteData']);
+            session(['expedienteId' => $expedienteId]);
+            return $this->redirectRoute('ver-expediente');
+        }
+
+        return $this->cancelar();
     }
 
 
