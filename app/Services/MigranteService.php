@@ -152,7 +152,7 @@ class MigranteService
 
             return $expediente->id;
         } catch (Exception $e) {
-            // dd('ocurrió un error al guardar el expediente', $e->getMessage());
+            dd('ocurrió un error al guardar el expediente', $e->getMessage());
             return false;
         }
     }
