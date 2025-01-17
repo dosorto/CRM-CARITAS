@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    {{-- Modal de confirmación de la creación del expediente --}}
+    {{-- Modal de confirmación de la creación del expediente
     <input type="checkbox" id="reingresoModal" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box bg-neutral border-2 border-green-600">
@@ -158,7 +158,7 @@
                 <label for="reingresoModal" class="btn btn-accent text-base-content">Cerrar</label>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 @script

@@ -69,19 +69,19 @@
                             <tbody>
                                 {{-- Listado de personas --}}
                                 @foreach ($personas as $persona)
-
-                                <tr class="border-b border-accent">
-                                    <td>{{ $persona->primer_nombre . ' ' . $persona->primer_apellido}}</td>
-                                    <td>{{ $persona->numero_identificacion}} </td>
-                                    <td class="flex gap-2">
-                                        <button class="btn btn-xs btn-accent text-base-content">
-                                            Sel.
-                                        </button>
-                                        <button class="btn btn-xs btn-accent text-base-content">
-                                            info.
-                                        </button>
-                                    </td>
-                                </tr>
+                                    <tr wire:key="familiarRow-{{ $persona->id }}" class="border-b border-accent">
+                                        <td>{{ $persona->primer_nombre . ' ' . $persona->primer_apellido }}</td>
+                                        <td>{{ $persona->numero_identificacion }} </td>
+                                        <td class="flex gap-2">
+                                            <button wire:click="selectFamiliar({{ $persona->id }})"
+                                                class="btn btn-xs btn-accent text-base-content">
+                                                Sel.
+                                            </button>
+                                            <button class="btn btn-xs btn-accent text-base-content">
+                                                info.
+                                            </button>
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>

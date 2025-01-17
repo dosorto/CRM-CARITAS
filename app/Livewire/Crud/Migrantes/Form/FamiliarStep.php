@@ -3,6 +3,7 @@
 namespace App\Livewire\Crud\Migrantes\Form;
 
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
+use App\Models\Migrante;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\MigranteService;
@@ -74,7 +75,7 @@ class FamiliarStep extends Component
 
         if ($property === 'tieneFamiliar') {
             if (!$this->tieneFamiliar) {
-                $this->codigoFamiliar = $this->nuevoCodigoFamiliar;
+                $this->codigoFamiliar = $this->nuevoCodigoFamiliar ?? 0;
                 $this->familiarSeleccionado = null;
             }
             // session(['formMigranteData.tieneFamiliar' => $this->tieneFamiliar]);
@@ -82,9 +83,10 @@ class FamiliarStep extends Component
         }
     }
 
-    public function selectRelated($personaId)
+    public function selectFamiliar($personaId)
     {
         $this->familiarSeleccionado = $this->getMigranteService()->buscar('id', $personaId);
+        $this->codigoFamiliar = $this->familiarSeleccionado->codigo_familiar;
         $this->errorFamiliar = false;
     }
 
