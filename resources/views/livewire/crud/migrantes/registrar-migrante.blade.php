@@ -3,12 +3,10 @@
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold"> Registrar Migrante </h1>
-        <div>
-            <button wire:click="cancelar" class="btn btn-sm btn-accent text-base-content">
-                <span class="icon-[typcn--cancel] size-5"></span>
-                Cancelar
-            </button>
-        </div>
+        <button wire:click="cancelar" class="btn btn-sm btn-accent text-base-content">
+            <span class="icon-[typcn--cancel] size-5"></span>
+            Cancelar
+        </button>
     </header>
 
     <div class="h-full flex flex-col mt-4 overflow-hidden">
