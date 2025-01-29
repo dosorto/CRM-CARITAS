@@ -2,76 +2,52 @@
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
         <h1 class="text-xl font-bold">Registro de Salida de Migrante</h1>
-        <div>
-
-        </div>
+        <button wire:click="cancelar" class="btn btn-sm btn-accent text-base-content">
+            <span class="icon-[typcn--cancel] size-5"></span>
+            Cancelar
+        </button>
     </header>
 
-    <main class="flex flex-grow gap-12 size-full items-center justify-center py-4 overflow-auto">
-        <div class="flex flex-col size-full gap-4">
+    <main class="flex flex-grow gap-10 size-full items-center justify-center overflow-auto">
+        <section class="flex flex-col h-full w-1/2 gap-4 py-5">
 
-            {{-- Preguntas de Asesoria y Atencion --}}
-            <section class="h-3/5 w-full flex">
+            <div class="h-full w-full flex flex-col overflow-auto ">
 
-                <div class="size-full flex flex-col gap-2 justify-center">
-                    @foreach ($preguntas as $nombre => $pregunta)
-                        <div class="flex w-full">
-                            <div class="flex w-3/5">
-                                <label class="label font-semibold">{{ $pregunta }}</label>
-                            </div>
-                            <div class="flex flex-row gap-6 w-2/5">
-                                <div class="flex items-center gap-1">
-                                    <label class="label font-semibold">Sí</label>
-                                    <input type="radio" name="{{ $nombre }}"
-                                        wire:model.live="{{ $nombre }}" value="1"
-                                        class="radio radio-success border-2 border-gray-400" />
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <label class="label font-semibold">No</label>
-                                    <input type="radio" name="{{ $nombre }}"
-                                        wire:model.live="{{ $nombre }}" value="0"
-                                        class="radio radio-error border-2 border-gray-400" />
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                {{-- Preguntas --}}
+                @foreach ($preguntas as $nombre => $pregunta)
+                    <div @class([
+                        'border-b-2 flex justify-between gap-2 py-2 px-2 mb-2 border-gray-400',
+                        // 'border-success' => $this->{$nombre},
+                        // 'border-error' => !$this->{$nombre},
+                    ])>
+                        <label>{{ $pregunta }}</label>
 
-                </div>
+                        <input type="checkbox" @class([
+                            'toggle',
+                            'toggle-success' => $this->{$nombre},
+                            'bg-error hover:bg-error' => !$this->{$nombre},
+                        ]) wire:model.live="{{ $nombre }}" />
 
-            </section>
-            <section class="h-2/5 overflow-y-auto">
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- <section class="h-1/3 overflow-y-auto">
                 <label class="font-semibold label">
                     Observaciones
                 </label>
                 <textarea wire:model="Observaciones" class="textarea w-full bg-accent"></textarea>
-            </section>
-        </div>
-        <div class="flex size-full bg-accent p-8 rounded-3xl">
-
-            <div class="flex flex-grow flex-col size-full">
-                <div class="flex flex-col size-full overflow-auto">
-                    <h2 class="text-center items-center font-bold w-full mb-6 text-xl">
-                        Datos del migrante
-                    </h2>
-
-                    {{-- Datos del migrante --}}
-                    @foreach ($datosPersonales as $label => $dato)
-                        <div class="flex gap-2">
-                            <h4 class="font-semibold">{{ $label }}:</h4>
-                            <p class="mb-4">{{ $dato }}</p>
-                        </div>
-                    @endforeach
-                </div>
-
-                <hr class="border-2 border-neutral w-full">
-
+            </section> --}}
+        </section>
+        <section class="flex h-full w-1/2">
+            {{-- <div class="flex flex-grow flex-col size-full">
                 <div class="flex flex-col h-max w-full">
-                    <label class="label text-base-content font-semibold">Fecha de Salida: (mes / día / año)</label>
-                    <input type="date" class="input bg-neutral" wire:model.live="fechaSalida">
+                    <label class="label text-base-content font-semibold">Fecha de Salida:</label>
+                    <input type="date" class="input bg-accent" wire:model.live="fechaSalida">
                 </div>
-            </div>
+            </div> --}}
 
-        </div>
+        </section>
     </main>
 
     <footer class="flex flex-row h-max w-full justify-between py-4">
@@ -80,12 +56,8 @@
         </div>
 
         <div class="flex gap-4">
-            <button wire:click="cancelar" class="btn btn-accent text-nowrap text-base-content">
-                Cancelar
-            </button>
-
             <!-- Botón para abrir el modal -->
-            <label for="confirmarSalidaMigrante" class="btn btn-success text-nowrap text-base-content">
+            <label for="confirmarSalidaMigrante" class="btn btn-success text-nowrap">
                 <span class="icon-[bxs--save] size-6"></span>
                 Registrar Salida
             </label>

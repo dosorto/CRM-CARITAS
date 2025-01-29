@@ -1,1 +1,2 @@
 1. Hacer por botón la búsqueda del familiar.
+2. Usar un dropdown para las opciones de la lista de migrantes

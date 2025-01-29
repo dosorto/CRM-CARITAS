@@ -42,26 +42,22 @@
         </div>
     </section>
 
-    {{-- Tabla --}}
     <main class="flex-grow overflow-hidden flex flex-col">
-        <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent">
+        <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent z-0">
             <table class="table table-sm table-pin-rows w-full">
                 <thead class="text-sm">
                     <tr class="border-b border-l border-accent bg-accent">
-                        <th> Número de Identificación</th>
-                        <th> Nombre Completo</th>
-                        <th> Pais </th>
-                        <th> Código Familiar </th>
-                        <th> Opciones </th>
+                        <th>Número de Identificación</th>
+                        <th>Nombre Completo</th>
+                        <th>Pais</th>
+                        <th>Código Familiar</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="text-base">
                     @foreach ($items as $item)
                         <tr wire:key="{{ $item->id }}" class="border border-accent">
-
-                            <td>
-                                {{ $item->numero_identificacion }}
-                            </td>
+                            <td>{{ $item->numero_identificacion }}</td>
                             <td>
                                 {{ $item->primer_nombre .
                                     ' ' .
@@ -71,26 +67,20 @@
                                     ' ' .
                                     $item->segundo_apellido }}
                             </td>
-                            <td>
-                                {{ $item->pais->nombre_pais }}
-                            </td>
-                            <td>
-                                {{ $item->codigo_familiar }}
-                            </td>
-
-                            {{-- Botones --}}
+                            <td>{{ $item->pais->nombre_pais }}</td>
+                            <td>{{ $item->codigo_familiar }}</td>
                             <td class="flex gap-2">
                                 @if ($item->reside_en_centro)
                                     <div class="tooltip tooltip-primary" data-tip="Registrar Salida">
                                         <button wire:click="registrarSalida({{ $item->id }})"
-                                            class="btn btn-accent btn-sm text-base-content" type="button">
+                                            class="btn btn-accent btn-sm text-base-content w-12" type="button">
                                             <span class="icon-[heroicons-outline--logout] size-6"></span>
                                         </button>
                                     </div>
                                 @else
                                     <div class="tooltip tooltip-primary" data-tip="Nuevo Expediente">
                                         <button wire:click="nuevoExpediente({{ $item->id }})"
-                                            class="btn btn-accent btn-sm text-base-content" type="button">
+                                            class="btn btn-accent btn-sm text-base-content w-12" type="button">
                                             <span class="icon-[streamline--clipboard-add-solid] size-5"></span>
                                         </button>
                                     </div>
@@ -98,22 +88,45 @@
 
                                 <div class="tooltip tooltip-primary" data-tip="Ver Historial">
                                     <button wire:click="verHistorial({{ $item->id }})"
-                                        class="btn btn-accent btn-sm text-base-content" type="button">
+                                        class="btn btn-accent btn-sm text-base-content w-12" type="button">
                                         <span class="icon-[mdi--account-file-text] size-6"></span>
                                     </button>
                                 </div>
-                            </td>
 
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </article>
 
-        {{-- Footer fijo en el fondo --}}
         <footer class="py-4 border-t border-accent mb-0">
             {{ $items->links() }}
         </footer>
     </main>
+
+    {{--
+    @if ($item->reside_en_centro)
+        <div class="tooltip tooltip-primary" data-tip="Registrar Salida">
+            <button wire:click="registrarSalida({{ $item->id }})"
+                class="btn btn-accent btn-sm text-base-content" type="button">
+                <span class="icon-[heroicons-outline--logout] size-6"></span>
+            </button>
+        </div>
+    @else
+        <div class="tooltip tooltip-primary" data-tip="Nuevo Expediente">
+            <button wire:click="nuevoExpediente({{ $item->id }})"
+                class="btn btn-accent btn-sm text-base-content" type="button">
+                <span class="icon-[streamline--clipboard-add-solid] size-5"></span>
+            </button>
+        </div>
+    @endif
+
+    <div class="tooltip tooltip-primary" data-tip="Ver Historial">
+        <button wire:click="verHistorial({{ $item->id }})"
+            class="btn btn-accent btn-sm text-base-content" type="button">
+            <span class="icon-[mdi--account-file-text] size-6"></span>
+        </button>
+    </div> --}}
 
 </div>
