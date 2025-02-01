@@ -8,7 +8,7 @@
         </button>
     </header>
 
-    <main class="flex flex-grow gap-10 size-full items-center justify-center overflow-auto">
+    <main class="flex flex-grow gap-16 size-full items-center justify-center overflow-auto">
         <section class="flex flex-col h-full w-1/2 gap-4 py-5">
 
             <div class="h-full w-full flex flex-col overflow-auto ">
@@ -16,11 +16,11 @@
                 {{-- Preguntas --}}
                 @foreach ($preguntas as $nombre => $pregunta)
                     <div @class([
-                        'border-b-2 flex justify-between gap-2 py-2 px-2 mb-2 border-gray-400',
+                        'border-b-2 border-dotted flex justify-between gap-2 py-2 px-2 mb-4 border-gray-400',
                         // 'border-success' => $this->{$nombre},
                         // 'border-error' => !$this->{$nombre},
                     ])>
-                        <label>{{ $pregunta }}</label>
+                        <label class="font-semibold">{{ $pregunta }}</label>
 
                         <input type="checkbox" @class([
                             'toggle',
@@ -31,21 +31,17 @@
                     </div>
                 @endforeach
             </div>
-
-            {{-- <section class="h-1/3 overflow-y-auto">
-                <label class="font-semibold label">
-                    Observaciones
-                </label>
-                <textarea wire:model="Observaciones" class="textarea w-full bg-accent"></textarea>
-            </section> --}}
         </section>
-        <section class="flex h-full w-1/2">
-            {{-- <div class="flex flex-grow flex-col size-full">
-                <div class="flex flex-col h-max w-full">
-                    <label class="label text-base-content font-semibold">Fecha de Salida:</label>
-                    <input type="date" class="input bg-accent" wire:model.live="fechaSalida">
-                </div>
-            </div> --}}
+        <section class="flex flex-col justify-start h-full w-1/2 py-5 overflow-auto">
+
+            <label class="font-semibold label">
+                Observaciones
+            </label>
+            <textarea wire:model="Observaciones" class="textarea w-full bg-accent"></textarea>
+
+
+            <label class="label text-base-content font-semibold mt-4">Fecha de Salida</label>
+            <input type="date" class="input bg-accent" wire:model.live="fechaSalida">
 
         </section>
     </main>

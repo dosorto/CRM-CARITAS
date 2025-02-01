@@ -23,7 +23,7 @@ class RegistrarSalidaMigrante extends Component
     public $asesoriaPsicosocial = 0;
 
     public $preguntas = [
-        'atencionPsicologica' => '¿La persona recibió atención psicológica?',
+        'atencionPsicologica' => '¿Recibió atención psicológica?',
         'asesoriaPsicologica' => '¿Recibió asesoría psicológica?',
         'atencionLegal' => '¿Recibió atención legal?',
         'asesoriaPsicosocial' => '¿Recibió asesoría psicosocial?',
