@@ -8,15 +8,15 @@
     {{-- Modal --}}
     <input type="checkbox" id="verFaltasExpediente" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box max-w-5xl h-full w-2/3 bg-neutral border-2 border-accent flex flex-col">
+        <div class="modal-box max-w-5xl h-full w-4/5 bg-neutral border-2 border-accent flex flex-col">
             <header>
                 {{-- Título del Modal --}}
                 <h3 class="text-xl font-bold text-center mb-5">Faltas Disciplinarias</h3>
             </header>
 
-            <main class="h-max flex-grow flex flex-col gap-6 p-4 overflow-auto">
+            <main class="h-max flex-grow flex flex-col px-4 overflow-auto">
 
-                @if (empty($faltas))
+                @if (!empty($faltas))
                     <div class="items-center justify-center flex flex-col text-center">
                         <h3 class="font-bold text-lg text-success">
                             ¡Historial Limpio!
@@ -26,27 +26,63 @@
                         </p>
                     </div>
                 @else
-                    @foreach ($faltas as $gravedad => $faltasDeGravedad)
-                        {{-- Sección de categoría --}}
-                        <section>
-                            <h4
-                                class="text-lg font-bold mb-2 
-                        {{-- @if ($gravedad === 'Leve') text-success
-                        @elseif ($gravedad === 'Grave') text-warning
-                        @elseif ($gravedad === 'Muy Grave') text-error
-                        @else text-primary @endif --}}
-                        ">
-                                Faltas {{ $gravedad }}
-                            </h4>
-                            <ul class="list-disc list-inside space-y-1">
-                                @forelse ($faltasDeGravedad as $falta)
-                                    <li class="text-base">{{ $falta }}</li>
-                                @empty
-                                    <li class="text-base text-gray-500">No hay faltas registradas.</li>
-                                @endforelse
-                            </ul>
-                        </section>
-                    @endforeach
+                    <span class="mb-2 text-center">
+                        <b>Nombre: </b>{{ $nombre }} <br>
+                        <b>Identificación: </b>{{ $identidad }}
+                    </span>
+
+                    <table class="table table-pin-rows">
+                        <thead>
+                            <tr class="bg-accent text-base">
+                                <th>Falta
+                                    Disciplinaria</th>
+                                <th></th>
+                                <th>Gravedad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="border-b-2 border-accent">
+                                <td>
+                                    Se durmio tarde como 5 veces seguidas
+                                </td>
+                                <td class="flex justify-end">
+                                    <button class="btn btn-sm btn-primary text-primary-content">
+                                        <span class="icon-[mingcute--delete-2-fill] size-4"></span>
+                                    </button>
+                                </td>
+                                <td class="bg-success text-success-content font-bold">
+                                    Leve
+                                </td>
+                            </tr>
+                            <tr class="border-b-2 border-accent">
+                                <td>
+                                    Se niega a colaborar
+                                </td>
+                                <td class="flex justify-end">
+                                    <button class="btn btn-sm btn-primary text-primary-content">
+                                        <span class="icon-[mingcute--delete-2-fill] size-4"></span>
+                                    </button>
+                                </td>
+                                <td class="bg-warning text-warning-content font-bold">
+                                    Grave
+                                </td>
+                            </tr>
+                            <tr class="border-b-2 border-accent">
+                                <td>
+                                    Agredió físicamente un infante
+                                </td>
+                                <td class="flex justify-end">
+                                    <button class="btn btn-sm btn-primary text-primary-content">
+                                        <span class="icon-[mingcute--delete-2-fill] size-4"></span>
+                                    </button>
+                                </td>
+                                <td class="bg-error text-error-content font-bold">
+                                    Muy Grave
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 @endif
             </main>
 

@@ -33,9 +33,9 @@ module.exports = {
 
                     "base-100":         "#FFFFFF",  // Color de fondo de elementos varios por encima del fondo general
 
-                    "base-200":         "#FFE9E9",
+                    "base-200":         "#EDDDDD",
 
-                    "base-300":         "#EF90DF",
+                    "base-300":         "#EEEEEE",
 
                     "base-content":     "#2A2222",  // Color de los textos e íconos de los elementos en el fondo general
 
@@ -51,7 +51,9 @@ module.exports = {
                     "error":            "#AA1A1A",
                     "error-content":    "#EEE",
 
-                    "warning":          "#f59e00",
+                    "warning":          "#DA8F09",
+                    "warning-content":  "#F1F5FB",
+
                 },
                 dark: {
                     ...require("daisyui/src/theming/themes")["dark"],
