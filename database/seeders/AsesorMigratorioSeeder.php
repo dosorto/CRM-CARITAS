@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\AsesorMigratorio;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class AsesorMigratorioSeeder extends Seeder
 {

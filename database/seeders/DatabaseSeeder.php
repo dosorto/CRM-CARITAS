@@ -31,22 +31,22 @@ class DatabaseSeeder extends Seeder
             MotivoSalidaPaisSeeder::class,
             NecesidadSeeder::class,
             FaltasSeeder::class,
+            DonanteSeeder::class,
         ]);
 
-        Migrante::factory()->count(3)->create();
+        // Migrante::factory()->count(3)->create();
 
         $this->call([
-            ActaEntregaSeeder::class,
-            DetalleActaEntregaSeeder::class,
-            SolicitudInsumosSeeder::class,
-            DetalleSolicitudInsumosSeeder::class,
-            SolicitudTrasladoSeeder::class,
-            DetalleSolicitudTrasladoSeeder::class,
-            DonanteSeeder::class,
-            DonacionSeeder::class,
-            DonacionArticuloSeeder::class,
-            MigranteFaltaSeeder::class,
-            ExpedienteSeeder::class,
+            // ActaEntregaSeeder::class,
+            // DetalleActaEntregaSeeder::class,
+            // SolicitudInsumosSeeder::class,
+            // DetalleSolicitudInsumosSeeder::class,
+            // SolicitudTrasladoSeeder::class,
+            // DetalleSolicitudTrasladoSeeder::class,
+            // DonacionSeeder::class,
+            // DonacionArticuloSeeder::class,
+            // MigranteFaltaSeeder::class,
+            // ExpedienteSeeder::class,
         ]);
     }
 }

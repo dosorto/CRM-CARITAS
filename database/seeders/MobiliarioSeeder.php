@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mobiliario;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class MobiliarioSeeder extends Seeder
 {
