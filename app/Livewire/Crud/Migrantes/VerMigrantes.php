@@ -77,8 +77,7 @@ class VerMigrantes extends Component
 
     public function registrarSalida($id)
     {
-        session(['migranteId' => $id]);
-        return redirect(route('registrar-salida-migrante'));
+        return $this->redirectRoute('registrar-salida-migrante', ['migranteId' => $id]);
     }
 
     public function getMigranteService()

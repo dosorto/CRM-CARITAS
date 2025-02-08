@@ -195,7 +195,7 @@ class RegistrarMigrante extends Component
         if ($expedienteId) {
             session()->forget(['currentStep', 'formMigranteData']);
             // session(['formMigranteData.expedienteId' => $expedienteId]);
-            return $this->redirectRoute('ver-expediente');
+            return $this->redirectRoute('ver-expediente', ['expedienteId' => $expedienteId]);
         }
 
         return $this->cancelar();

@@ -31,6 +31,7 @@ class DatosMigratoriosStep extends Component
 
     public function mount()
     {
+        // dd(session()->all());
         // obtiene los valores de la sesion, en caso de que exista, si no, asigna por defecto el segundo parametro de session()
         $this->asesorId = session('formMigranteData.expediente.asesorId', '');
         $this->fronteraId = session('formMigranteData.expediente.fronteraId', '');

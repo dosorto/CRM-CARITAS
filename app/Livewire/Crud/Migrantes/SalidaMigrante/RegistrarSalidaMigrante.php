@@ -39,23 +39,16 @@ class RegistrarSalidaMigrante extends Component
         HTML;
     }
 
-    public function mount()
+    public function mount($migranteId)
     {
-        // validar el id de la sesion
-        if (session()->has('migranteId')) {
-            $migranteId = session('migranteId');
-            $expediente = Expediente::select('id', 'created_at', 'observacion', 'fecha_salida')
-                ->orderBy('id', 'desc')
-                ->where('migrante_id', $migranteId)
-                ->first();
+        $expediente = Expediente::select('id', 'created_at', 'observacion', 'fecha_salida')
+            ->orderBy('id', 'desc')
+            ->where('migrante_id', $migranteId)
+            ->first();
 
-            if ($expediente->fecha_salida !== null)
-            {
-                // No hay expedientes con fecha nula, significa que ya se registró salida para todos
-                $this->cancelar();
-            }
-        } else {
-            return $this->redirectRoute('ver-migrantes');
+        if ($expediente->fecha_salida !== null) {
+            // No hay expedientes con fecha nula, significa que ya se registró salida para todos
+            $this->cancelar();
         }
 
         $migrante = $this->getMigranteService()->buscar('id', intval($migranteId));
@@ -67,11 +60,10 @@ class RegistrarSalidaMigrante extends Component
         $fechaIngreso = $expediente->created_at->format('d-m-Y');
 
         if (!$fechaIngreso) {
-            // No se contró el expediente
+            // No se encontró el expediente
             $this->cancelar();
         }
 
-        // dd(session()->all());
 
         $nombre = $migrante->primer_nombre . ' ' .
             $migrante->segundo_nombre . ' ' .
@@ -79,7 +71,7 @@ class RegistrarSalidaMigrante extends Component
             $migrante->segundo_apellido;
 
         $this->expedienteId = $expediente->id;
-        $this->migranteId = $migrante->id;
+        $this->migranteId = $migranteId;
 
         $this->datosPersonales = [
             'Nombre Completo' => $nombre,

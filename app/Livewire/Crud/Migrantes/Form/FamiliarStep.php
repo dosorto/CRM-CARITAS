@@ -48,6 +48,10 @@ class FamiliarStep extends Component
         // obtener familiarSeleccionado de la session
         $this->familiarSeleccionado = session()->get('formMigranteData.migrante.familiarSeleccionado', null);
 
+        if ($this->familiarSeleccionado) {
+            $this->codigoFamiliar = $this->familiarSeleccionado->codigo_familiar;
+        }
+
         if ($this->viajaEnGrupo && !$this->tieneFamiliar) {
             $this->codigoFamiliar = $this->nuevoCodigoFamiliar;
         }
@@ -113,6 +117,7 @@ class FamiliarStep extends Component
             ]);
         }
 
+        // dd($this->codigoFamiliar);
         session()->put('formMigranteData.migrante.codigoFamiliar', $this->codigoFamiliar);
         session()->put('formMigranteData.viajaEnGrupo', $this->viajaEnGrupo);
         session()->put('formMigranteData.tieneFamiliar', $this->tieneFamiliar);

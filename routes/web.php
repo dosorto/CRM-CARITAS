@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('migrantes');
     // ->middleware('can: Ver Migrantes');
 
-    Route::get('/registrar-salida-migrante', RegistrarSalidaMigrante::class)
+    Route::get('/registrar-salida-migrante/{migranteId}', RegistrarSalidaMigrante::class)
         ->name('registrar-salida-migrante');
     // ->middleware('can: Registrar Salida Migrante');
 

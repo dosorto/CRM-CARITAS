@@ -15,9 +15,13 @@ class VerFaltasExpediente extends Component
     public $faltasMigrante;
     public $migranteId;
 
-    public function mount($expedienteId)
+    public function mount($migranteId)
     {
-        $expediente = Expediente::find($expedienteId);
+        // obtener ultimo expediente
+        $expediente = Expediente::where('migrante_id', $migranteId)
+            ->orderBy('id', 'desc')
+            ->first();
+
         $migrante = $expediente->migrante;
         $this->migranteId = $migrante->id;
 
@@ -30,7 +34,7 @@ class VerFaltasExpediente extends Component
 
         $this->identidad = $migrante->numero_identificacion;
 
-        $this->faltasMigrante = $expediente->faltas;
+        $this->faltasMigrante = $migrante->faltas;
 
 
         // // Obtener las faltas asociadas al expediente

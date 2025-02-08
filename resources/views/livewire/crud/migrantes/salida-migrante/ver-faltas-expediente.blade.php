@@ -1,6 +1,6 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="verFaltasExpediente" class="btn btn-primary text-nowrap text-primary-content">
+    <label for="verFaltasExpediente-{{ $migranteId }}" class="btn btn-primary text-nowrap text-primary-content">
         <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
         Faltas Disciplinarias
     </label>
@@ -97,7 +97,7 @@
                     Administrar
                 </a>
 
-                <label for="verFaltasExpediente" class="btn btn-accent text-base-content">
+                <label for="verFaltasExpediente-{{ $migranteId }}" class="btn btn-accent text-base-content">
                     Cerrar
                 </label>
             </footer>
