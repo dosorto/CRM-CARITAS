@@ -160,10 +160,8 @@ class RegistrarMigrante extends Component
 
     public function guardarRegistro()
     {
-        // dd(session()->all());
         $nombres = $this->getMigranteService()->separarNombres(session('formMigranteData.migrante.nombres'));
         $apellidos = $this->getMigranteService()->separarNombres(session('formMigranteData.migrante.apellidos'));
-        // dd($nombres, $apellidos);
 
 
         $migranteId = $this->getMigranteService()->guardarDatosPersonales(
@@ -196,7 +194,7 @@ class RegistrarMigrante extends Component
 
         if ($expedienteId) {
             session()->forget(['currentStep', 'formMigranteData']);
-            session(['formMigranteData.expedienteId' => $expedienteId]);
+            // session(['formMigranteData.expedienteId' => $expedienteId]);
             return $this->redirectRoute('ver-expediente');
         }
 

@@ -23,16 +23,16 @@ class VerArticulos extends Component
     // ]
 
     public $fakeColNames = [
-        'Nombre del Articulo' => 'nombre',
+        'Nombre del Artículo' => 'nombre',
         'Código de Barra' => 'codigo_barra',
     ];
 
     // Nombre de los encabezados de las columnas
     public $colNames = [
-        'Nombre del Articulo',
+        'Nombre del Artículo',
         'Código de barra',
         'Cantidad Disponible',
-        'Categoria del Articulo'
+        'Categoría del Artículo'
     ];
 
     // Atributos, deben estar en el mismo orden que las $colNames

@@ -72,6 +72,7 @@ class MigranteService
             $nuevoMigrante->tipo_sangre = $tipoSangre;
             $nuevoMigrante->es_lgbt = $esLGBT;
 
+
             $nuevoMigrante->save();
 
             return $nuevoMigrante->id;

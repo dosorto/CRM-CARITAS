@@ -13,11 +13,13 @@ class VerFaltasExpediente extends Component
     public $nombre;
     public $identidad;
     public $faltasMigrante;
+    public $migranteId;
 
     public function mount($expedienteId)
     {
         $expediente = Expediente::find($expedienteId);
         $migrante = $expediente->migrante;
+        $this->migranteId = $migrante->id;
 
         $this->faltas = $expediente->faltas;
 

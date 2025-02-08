@@ -98,7 +98,7 @@
     {{-- Modal de confirmación de la creación del expediente --}}
     <input type="checkbox" id="confirmarRegistroExpedienteModal" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box bg-neutral border-2 border-green-600">
+        <div class="modal-box bg-neutral border-2 border-warning">
             <div class="flex w-full justify-center">
                 <span class="icon-[ep--warning-filled] size-8 text-warning"></span>
             </div>
@@ -107,9 +107,9 @@
                 Se ha revisado y comprobado la información antes ingresada.
 
             </p>
-            <p class="text-center pb-4 pt-2">
+            {{-- <p class="text-center pb-4 pt-2">
                 Para cambiar o alterar los registros de migrantes posteriormente,
-                se deberá solicitar formalmente a un usuario con los permisos pertinentes.</p>
+                se deberá solicitar formalmente a un usuario con los permisos pertinentes.</p> --}}
             <div class="modal-action">
                 <button wire:click="guardarRegistro" class="btn btn-success">Confirmar</button>
                 <label for="confirmarRegistroExpedienteModal" class="btn btn-accent text-base-content">Cancelar</label>

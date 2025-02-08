@@ -62,7 +62,7 @@
                             <p>{{ $item->asesorMigratorio->asesor_migratorio }}</p>
                         </div>
                         <div class="flex gap-2">
-                            <span class="font-bold">Observaciónes:</span>
+                            <span class="font-bold">Observaciones:</span>
                             <p>{{ $item->observacion }}</p>
                         </div>
                     </div>

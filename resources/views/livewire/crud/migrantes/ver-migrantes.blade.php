@@ -77,13 +77,13 @@
                                             <span class="icon-[heroicons-outline--logout] size-6"></span>
                                         </button>
                                     </div>
-                                @else
+                                {{-- @else
                                     <div class="tooltip tooltip-primary" data-tip="Nuevo Expediente">
                                         <button wire:click="nuevoExpediente({{ $item->id }})"
                                             class="btn btn-accent btn-sm text-base-content w-12" type="button">
                                             <span class="icon-[streamline--clipboard-add-solid] size-5"></span>
                                         </button>
-                                    </div>
+                                    </div> --}}
                                 @endif
 
                                 <div class="tooltip tooltip-primary" data-tip="Ver Historial">

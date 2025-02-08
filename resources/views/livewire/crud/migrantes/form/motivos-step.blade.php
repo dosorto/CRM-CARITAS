@@ -41,7 +41,7 @@
         @error('necesidadesSelected')
             <span class="text-error font-semibold">* {{ $message }}</span>
         @enderror
-        <div class="flex flex-col gap-2 overflow-auto p-3 border-2 border-accent rounded-box">
+        <div class="flex flex-col gap-2 overflow-auto p-3 border-2 border-accent rounded-box grow">
             @foreach ($necesidades as $necesidad)
                 <div class="flex gap-3 text-base">
                     <input class="checkbox border-2" type="checkbox" wire:model="necesidadesSelected"

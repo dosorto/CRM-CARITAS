@@ -51,8 +51,11 @@ module.exports = {
                     "error":            "#AA1A1A",
                     "error-content":    "#EEE",
 
-                    "warning":          "#DA8F09",
-                    "warning-content":  "#F1F5FB",
+                    "warning":          "#C48200",
+                    "warning-content":  "#FFF",
+
+                    "info":             "#4868CF",
+                    "info-content":     "#EEE",
 
                 },
                 dark: {
@@ -78,15 +81,15 @@ module.exports = {
 
                     "base-200":         "#1F2937",
 
-                    "info":             "#172554",
+                    "info":             "#4868CF",
+                    "info-content":     "#EEE",
 
-                    "info-content":     "#3b82f6",
                     "success":          "#1A8241",
                     "success-content":  "#FAFAFA",
                     // "success-content":  "16a34a",
-                    "warning":          "#f59e00",
+                    "warning":          "#C48200",
                     "warning-content":  "#FFFFFF",
-                    "error":            "#ED4F4F",
+                    "error":            "#B21111",
                     "error-content":    "#EEE",
                 },
             },

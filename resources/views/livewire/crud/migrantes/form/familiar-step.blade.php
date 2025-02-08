@@ -73,13 +73,19 @@
                                         <td>{{ $persona->primer_nombre . ' ' . $persona->primer_apellido }}</td>
                                         <td>{{ $persona->numero_identificacion }} </td>
                                         <td class="flex gap-2">
-                                            <button wire:click="selectFamiliar({{ $persona->id }})"
-                                                class="btn btn-xs btn-accent text-base-content">
-                                                Sel.
-                                            </button>
-                                            <button class="btn btn-xs btn-accent text-base-content">
-                                                info.
-                                            </button>
+                                            <div class="tooltip tooltip-primary" data-tip="Información Personal">
+                                                <livewire:crud.migrantes.info-migrante-modal
+                                                    :wire:key="'info-familiar-'.$persona->id" iconSize="4"
+                                                    btnSize="xs" label="" :personaId="$persona->id"
+                                                    idModal="infoFamiliar" />
+                                            </div>
+
+                                            <div class="tooltip tooltip-primary" data-tip="Seleccionar Familiar">
+                                                <button wire:click="selectFamiliar({{ $persona->id }})"
+                                                    class="btn btn-xs btn-accent text-base-content">
+                                                    <span class="icon-[ep--select] size-4"></span>
+                                                </button>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -126,10 +132,20 @@
                 Seleccione un familiar en la tabla de la izquierda.
             </div>
         @elseif ($familiarSeleccionado)
-            Familiar ya seleccionado, datos personales:
+            <div class="flex flex-col gap-2 justify-center text-center">
+                <span>Se seleccionó a:</span>
+                <span
+                    class="font-semibold">{{ $familiarSeleccionado->primer_nombre . ' ' . $familiarSeleccionado->segundo_nombre . ' ' . $familiarSeleccionado->primer_apellido . ' ' . $familiarSeleccionado->segundo_apellido }}</span>
+                <span>con identificación:</span>
+                <span class="font-semibold">{{ $familiarSeleccionado->numero_identificacion }}</span>
+            </div>
+            <div class="flex flex-col gap-2 justify-center text-center mt-4">
+                <span>Se asignará el siguiente código familiar a este registro:</span>
+                <span class="font-semibold">{{ $familiarSeleccionado->codigo_familiar }}</span>
+            </div>
         @elseif (!$viajaEnGrupo)
             <div class="text-center size-full content-center font-semibold">
-                Este registro <b>NO</b> será tomado en cuenta para datos estadísticos de familias.
+                Este registro <b>NO</b> será tomado en cuenta para datos estadísticos de grupos o familias.
             </div>
         @elseif ($viajaEnGrupo && !$tieneFamiliar)
             <div class="size-full font-semibold flex flex-col gap-4 justify-center text-center">
