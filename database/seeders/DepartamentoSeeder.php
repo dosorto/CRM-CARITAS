@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Departamento;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -35,9 +36,18 @@ class DepartamentoSeeder extends Seeder
             ['nombre_departamento' => 'Atlántico', 'codigo_departamento' => '08', 'pais_id' => 39],
         ];
 
-        foreach ($departamentos as $departamento) 
-        {
-            DB::table('departamentos')->insert(array_merge($departamento, ['created_by' => 1]));
+        foreach ($departamentos as $departamento) {
+
+            DB::table('departamentos')->insert(
+                array_merge(
+                    $departamento,
+                    [
+                        'created_by' => 1,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ]
+                )
+            );
         }
     }
 }

@@ -2,25 +2,39 @@
 
 namespace Database\Seeders;
 
+use App\Models\CategoriaArticulo;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoriaArticuloSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        DB::table('categoria_articulos')->insert([
+        $categoriaArticulos = [
             [
                 'name_categoria' => 'Higiene Personal',
                 'created_by' => 1
             ],
             [
-                'name_categoria' => 'Aseo del Cuerpo',
+                'name_categoria' => 'Limpieza General',
                 'created_by' => 1
-            ]
-        ]);
+            ],
+            [
+                'name_categoria' => 'Productos de Belleza',
+                'created_by' => 1
+            ],
+            [
+                'name_categoria' => 'Cuidado Infantil',
+                'created_by' => 1
+            ],
+            [
+                'name_categoria' => 'Cuidado de la Salud',
+                'created_by' => 1
+            ],
+        ];
+
+        foreach ($categoriaArticulos as $categoria)
+        {
+            CategoriaArticulo::create($categoria);
+        }
     }
 }

@@ -48,14 +48,14 @@ class VerFormularios extends Component
         {
             return $this->redirectRoute('ver-migrantes');
         }
+    public function mount($expedienteId)
+    {
         // session()->forget('expedienteId);
         $expediente = Expediente::find($expedienteId);
 
         // dd(session('expedienteId'));
 
         $migrante = Migrante::find($expediente->migrante_id);
-
-
 
         $nombre = $migrante->primer_nombre . ' ' .
             $migrante->segundo_nombre . ' ' .

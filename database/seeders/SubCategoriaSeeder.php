@@ -7,36 +7,76 @@ use Illuminate\Support\Facades\DB;
 
 class SubCategoriaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $subcategorias = [
-            ['nombre_subcategoria' => 'Televisor', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Sintonizador', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Estufa', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Ventilador', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Microonda', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Oasis', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Licuadora', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Lavadora', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Secadora', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Refrigeradora', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Percoladora', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Lámpara', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Megáfono', 'categoria_id' => 1],
-            ['nombre_subcategoria' => 'Mesa', 'categoria_id' => 2],
-            ['nombre_subcategoria' => 'Silla', 'categoria_id' => 2],
-            ['nombre_subcategoria' => 'Estante', 'categoria_id' => 2],
-            ['nombre_subcategoria' => 'Ropero', 'categoria_id' => 2],
-            ['nombre_subcategoria' => 'Organizador', 'categoria_id' => 2],
-            ['nombre_subcategoria' => 'Escritorio', 'categoria_id' => 2],
+            // DB::table('subcategorias')->insert([
+            // Subcategorías para "Aparato Eléctrico"
+            [
+                'nombre_subcategoria' => 'Televisión',
+                'categoria_id' => 1, // ID de "Aparato Eléctrico"
+                'created_by' => 1,
+            ],
+            [
+                'nombre_subcategoria' => 'Refrigerador',
+                'categoria_id' => 1,
+                'created_by' => 1,
+            ],
+
+            // Subcategorías para "Mueble"
+            [
+                'nombre_subcategoria' => 'Silla',
+                'categoria_id' => 2, // ID de "Mueble"
+                'created_by' => 1,
+            ],
+            [
+                'nombre_subcategoria' => 'Mesa',
+                'categoria_id' => 2,
+                'created_by' => 1,
+            ],
+
+            // Subcategorías para "Herramienta"
+            [
+                'nombre_subcategoria' => 'Martillo',
+                'categoria_id' => 3, // ID de "Herramienta"
+                'created_by' => 1,
+            ],
+            [
+                'nombre_subcategoria' => 'Destornillador',
+                'categoria_id' => 3,
+                'created_by' => 1,
+            ],
+
+            // Subcategorías para "Decoración"
+            [
+                'nombre_subcategoria' => 'Cuadro',
+                'categoria_id' => 4, // ID de "Decoración"
+                'created_by' => 1,
+            ],
+            [
+                'nombre_subcategoria' => 'Florero',
+                'categoria_id' => 4,
+                'created_by' => 1,
+            ],
+
+            // Subcategorías para "Accesorios de Oficina"
+            [
+                'nombre_subcategoria' => 'Lapicero',
+                'categoria_id' => 5, // ID de "Accesorios de Oficina"
+                'created_by' => 1,
+            ],
+            [
+                'nombre_subcategoria' => 'Engrapadora',
+                'categoria_id' => 5,
+                'created_by' => 1,
+            ],
         ];
 
-        foreach ($subcategorias as $subcategoria)
-        {
-            DB::table('subcategorias')->insert(array_merge($subcategoria, ['created_by' => 1]));
+        foreach ($subcategorias as $subcategoria) {
+            SubCategoria::create(array_merge($subcategoria, [
+                'created_at' => now(),
+                'updated_at' => now()
+            ]));
         }
     }
 }

@@ -6,7 +6,7 @@
     </label>
 
     {{-- Modal --}}
-    <input type="checkbox" id="verFaltasExpediente" class="modal-toggle" />
+    <input type="checkbox" id="verFaltasExpediente-{{ $migranteId }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box max-w-5xl min-h-64 size-full bg-neutral border-2 border-accent flex flex-col">
 
@@ -110,7 +110,7 @@
     <script>
         $wire.on('close-modal', () => {
             // Cerrar el modal desactivando el checkbox
-            document.getElementById('verFaltasExpediente').checked = false;
+            document.getElementById('verFaltasExpediente-{{ $migranteId }}').checked = false;
         });
     </script>
 @endscript

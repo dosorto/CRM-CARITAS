@@ -4,7 +4,7 @@ namespace App\Livewire\Crud\Migrantes\SalidaMigrante;
 
 use App\Models\Expediente;
 use App\Models\Falta;
-use App\Models\GravedadFalta;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class VerFaltasExpediente extends Component
@@ -55,5 +55,10 @@ class VerFaltasExpediente extends Component
     public function render()
     {
         return view('livewire.crud.migrantes.salida-migrante.ver-faltas-expediente');
+    }
+
+    #[On('falta-asignada')]
+    public function faltaAsignada()
+    {
     }
 }

@@ -17,3 +17,4 @@ class Ciudad extends BaseModel
         return $this->belongsTo(Departamento::class);
     }
 }
+

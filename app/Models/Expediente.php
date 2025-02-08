@@ -62,9 +62,4 @@ class Expediente extends BaseModel
     {
         return $this->belongsTo(Migrante::class, 'migrante_id');
     }
-
-    public function faltas()
-    {
-        return $this->belongsToMany(Falta::class, 'expedientes_faltas', 'expediente_id', 'falta_id');
-    }
 }

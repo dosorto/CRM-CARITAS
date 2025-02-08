@@ -199,9 +199,12 @@ class PaisSeeder extends Seeder
             ['nombre_pais' => 'Zimbabue', 'codigo_alfa3' => 'ZWE', 'codigo_numerico' => '716'],
         ];
 
-        foreach ($paises as $pais)
-        {
-            DB::table('paises')->insert(array_merge($pais, ['created_by' => 1]));
+        foreach ($paises as $pais) {
+            DB::table('paises')->insert(array_merge($pais, [
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]));
         }
     }
 }

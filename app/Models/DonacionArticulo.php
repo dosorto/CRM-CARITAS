@@ -25,3 +25,4 @@ class DonacionArticulo extends BaseModel
         return $this->belongsTo(Articulo::class, 'id_articulo');
     }
 }
+

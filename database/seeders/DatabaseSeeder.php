@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +33,20 @@ class DatabaseSeeder extends Seeder
             FaltasSeeder::class,
         ]);
 
-        // Migrante::factory()->count(30)->create();
+        Migrante::factory()->count(3)->create();
+
+        $this->call([
+            ActaEntregaSeeder::class,
+            DetalleActaEntregaSeeder::class,
+            SolicitudInsumosSeeder::class,
+            DetalleSolicitudInsumosSeeder::class,
+            SolicitudTrasladoSeeder::class,
+            DetalleSolicitudTrasladoSeeder::class,
+            DonanteSeeder::class,
+            DonacionSeeder::class,
+            DonacionArticuloSeeder::class,
+            MigranteFaltaSeeder::class,
+            ExpedienteSeeder::class,
+        ]);
     }
 }

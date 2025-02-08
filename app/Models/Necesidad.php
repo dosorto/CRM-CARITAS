@@ -11,3 +11,4 @@ class Necesidad extends BaseModel
 
     protected $table = 'necesidades';
 }
+

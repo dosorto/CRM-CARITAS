@@ -25,7 +25,9 @@ class DiscapacidadSeeder extends Seeder
         foreach ($discapacidades as $discapacidad) {
             DB::table('discapacidades')->insert([
                 'discapacidad' => $discapacidad,
-                'created_by' => 1
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

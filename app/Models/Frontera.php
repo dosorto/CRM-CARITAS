@@ -23,3 +23,4 @@ class Frontera extends BaseModel
         return $this->hasMany(Expediente::class, 'frontera_id');
     }
 }
+

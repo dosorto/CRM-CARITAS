@@ -2,7 +2,7 @@
     <!-- Contenedor de la solicitud -->
     <div class="border-2 border-gray-200 rounded-lg p-4 bg-white">
         <article id="info-solicitud-traslado"
-        class="relative bg-white p-8 rounded-lg max-w-3xl w-full space-y-4 print-section text-black"">
+            class="relative bg-white p-8 rounded-lg max-w-3xl w-full space-y-4 print-section text-black"">
 
             <!-- Logo superior izquierdo -->
             <img src="/img/logo-centro.jpg" class="absolute top-4 left-6 h-16 w-16 m-4" alt="Logo izquierdo">
@@ -32,7 +32,8 @@
                         <th class="border-b border-gray-300">#</th>
                         <th class="border-b border-gray-300">Código</th>
                         <th class="border-b border-gray-300">Nombre</th>
-                        <th class="border-b border-gray-300">Ubicación</th>
+                        <th class="border-b border-gray-300">Actual</th>
+                        <th class="border-b border-gray-300">Nueva</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,13 @@
                             <td>{{ $mobiliario['codigo'] }}</td>
                             <td>{{ $mobiliario['nombre_mobiliario'] }}</td>
                             <td>{{ $mobiliario['ubicacion'] }}</td>
+
+                            @if ($mobiliario['ubicacion'] === 'Casa')
+                                <td>Bodega</td>
+                            @else
+                                <td>Casa</td>
+                            @endif
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -62,15 +70,15 @@
                     <!-- Firma del solicitante -->
                     <div class="w-1/2 flex flex-col items-center justify-center">
                         <hr class="w-2/3 border-gray-600">
-                        <p class="mt-2">Firma de Entrega</p>
-                        <p class="mt-1 font-semibold text-gray-700">Ing. {{ $nombreSolicitante }}</p>
+                        <p class="mt-2">Firma del Solicitante</p>
+                        <p class="mt-1 font-semibold text-gray-700">{{ $nombreSolicitante }}</p>
                     </div>
 
                     <!-- Firma del aprobador -->
                     <div class="w-1/2 flex flex-col items-center justify-center">
                         <hr class="w-2/3 border-gray-600">
-                        <p class="mt-2">Firma de Recibido</p>
-                        <p class="mt-1 font-semibold text-gray-700">Ing. {{ $nombreAprobador }}</p>
+                        <p class="mt-2">Firma del Aprobador</p>
+                        <p class="mt-1 font-semibold text-gray-700">{{ $nombreAprobador }}</p>
                     </div>
                 </section>
             </footer>

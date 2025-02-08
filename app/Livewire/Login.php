@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
-use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Layout;
 
 #[Layout('layouts.empty')]
 class Login extends Component

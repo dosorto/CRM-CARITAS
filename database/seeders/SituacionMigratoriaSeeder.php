@@ -16,8 +16,8 @@ class SituacionMigratoriaSeeder extends Seeder
             'Migrante en tránsito',
             'Protección Internacional',
             'Retornado',
-            'Solicitante de asilo',
-            'Desplazado por violencia interna',
+            'Solicitante de Asilo',
+            'Desplazado por Violencia Interna',
             'Refugiado',
             'N/A',
         ];
@@ -25,7 +25,9 @@ class SituacionMigratoriaSeeder extends Seeder
         foreach ($situacionesMigratorias as $situacion) {
             DB::table('situaciones_migratorias')->insert([
                 'situacion_migratoria' => $situacion,
-                'created_by' => 1
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }

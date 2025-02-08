@@ -17,7 +17,6 @@ class ActaEntrega extends BaseModel
         return $this->hasMany(DetalleActaEntrega::class);
     }
 
-    // En el modelo ActaEntrega
     public function migrante(): BelongsTo
     {
         return $this->belongsTo(Migrante::class, 'migrante_id');

@@ -18,3 +18,4 @@ class Pais extends BaseModel
         return $this->hasMany(Departamento::class);
     }
 }
+

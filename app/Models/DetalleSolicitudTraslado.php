@@ -26,3 +26,4 @@ class DetalleSolicitudTraslado extends BaseModel
         return $this->belongsTo(Mobiliario::class, 'mobiliario_id');
     }
 }
+

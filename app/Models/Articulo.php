@@ -17,3 +17,4 @@ class Articulo extends BaseModel
         return $this->belongsTo(CategoriaArticulo::class, 'categoria_articulos_id');
     }
 }
+

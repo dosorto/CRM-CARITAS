@@ -18,3 +18,4 @@ class Falta extends BaseModel
         return $this->belongsToMany(Expediente::class, 'expedientes_faltas', 'falta_id', 'expediente_id');
     }
 }
+

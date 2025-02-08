@@ -11,3 +11,4 @@ class Discapacidad extends BaseModel
 
     protected $table = 'discapacidades';
 }
+

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AsesorMigratorio;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -43,10 +44,13 @@ class AsesorMigratorioSeeder extends Seeder
         ];
 
         foreach ($asesoresMigratorios as $asesor) {
-            DB::table('asesores_migratorios')->insert([
-                'asesor_migratorio' => $asesor,
-                'created_by' => 1
-            ]);
+
+            AsesorMigratorio::create(
+                [
+                    'asesor_migratorio' => $asesor,
+                    'created_by' => 1
+                ]
+            );
         }
     }
 }

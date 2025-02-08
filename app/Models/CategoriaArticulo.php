@@ -18,3 +18,4 @@ class CategoriaArticulo extends BaseModel
         return $this->hasMany(Articulo::class); // Relación con artículos
     }
 }
+

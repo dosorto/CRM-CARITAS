@@ -22,5 +22,4 @@ class TipoDonante extends BaseModel
     {
         return $this->hasMany(Donante::class); 
     }
-   
 }

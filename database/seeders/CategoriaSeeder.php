@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categoria;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategoriaSeeder extends Seeder
 {
@@ -12,17 +12,19 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
+        $categorias = [
+            'Aparato Eléctrico',
+            'Mueble',
+            'Herramienta',
+            'Decoración',
+            'Accesorios de Oficina',
+        ];
 
-
-        DB::table('categorias')->insert([
-            [
-                'nombre_categoria' => 'Aparato Eléctrico',
-                'created_by' => 1
-            ],
-            [
-                'nombre_categoria' => 'Mueble',
-                'created_by' => 1
-            ]
-        ]);
+        foreach ($categorias as $categoria) {
+            Categoria::create([
+                'nombre_categoria' => $categoria,
+                'created_by' => 1,
+            ]);
+        }
     }
 }

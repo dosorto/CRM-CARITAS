@@ -13,3 +13,4 @@ class GravedadFalta extends BaseModel
         return $this->hasMany(Falta::class, 'gravedad_falta_id');
     }
 }
+

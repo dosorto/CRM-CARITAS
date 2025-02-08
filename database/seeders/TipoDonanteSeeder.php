@@ -15,15 +15,21 @@ class TipoDonanteSeeder extends Seeder
         DB::table('tipo_donante')->insert([
             [
                 'descripcion' => 'ONG',
-                'created_by' => 1
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'descripcion' => 'Organización Gubernamental',
-                'created_by' => 1
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
-                'descripcion' => 'Persona Natural',
-                'created_by' => 1
+                'descripcion' => 'Persona',
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ]);
     }

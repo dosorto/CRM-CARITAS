@@ -27,7 +27,6 @@ class VerSolicitudesInsumos extends Component
         // Buscar el solicitud de entrega por su ID
         $solicitud = SolicitudInsumos::with('user', 'detalles_solicitud_insumos.articulo')->findOrFail($id);
 
-
         // Obtener los artículos y cantidades desde los detalles del solicitud
         $articulos = $solicitud->detalles_solicitud_insumos->pluck('articulo');
         $cantidades = $solicitud->detalles_solicitud_insumos->pluck('cantidad');
@@ -42,7 +41,7 @@ class VerSolicitudesInsumos extends Component
         ]);
 
         // Redirigir a la ruta donde se mostrará la vista de impresión
-        return redirect()->route('info-solicitud-insumos');
+        return $this->redirectRoute('info-solicitud-insumos');
     }
 
     public function render()

@@ -17,3 +17,4 @@ class AsesorMigratorio extends BaseModel
         return $this->hasMany(Expediente::class, 'asesor_migratorio_id');
     }
 }
+

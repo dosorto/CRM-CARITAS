@@ -23,7 +23,11 @@ class FronteraSeeder extends Seeder
         ];
 
         foreach ($fronteras as $frontera) {
-            DB::table('fronteras')->insert(array_merge($frontera, ['created_by' => 1]));
+            DB::table('fronteras')->insert(array_merge($frontera, [
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]));
         }
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AboutUs\AboutPage;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Crud\Articulos\VerArticulos;
@@ -61,6 +62,9 @@ Route::post('/logout', function () {
     return redirect('/'); // Redirecciona a la página de login
 })->name('logout');
 
+Route::get('/acerca-de-nosotros', AboutPage::class)
+    ->name('about-us');
+
 Route::middleware(['auth'])->group(function () {
 
     // ---------------- Dashboard ----------------
@@ -88,7 +92,7 @@ Route::middleware(['auth'])->group(function () {
 
     // ---------------- Expedientes de Migrantes ----------------
 
-    Route::get('/ver-expediente', VerFormularios::class)
+    Route::get('/ver-expediente/{expedienteId}', VerFormularios::class)
         ->name('ver-expediente');
 
     Route::get('/discapacidades', VerDiscapacidades::class)
@@ -123,14 +127,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
         ->name('ver-solicitudes-pendientes');
-
-    // Route::get('/detalle-solicitud-traslado/{id}', InfoSolicitudTraslado::class)
-    //     ->name('detalle-solicitud-traslado')
-    //     ->middleware('auth');
-
-    // Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
-    //     ->name('detalle-solicitud-insumo')
-    //     ->middleware('auth');
 
     Route::get('/administracion', Administracion::class)
         ->name('administracion');
@@ -258,4 +254,3 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
 //     ->name('detalle-solicitud-insumo')
 //     ->middleware('auth');
-

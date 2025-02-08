@@ -25,3 +25,4 @@ class Departamento extends BaseModel
         return $this->hasMany(Ciudad::class);
     }
 }
+

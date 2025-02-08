@@ -11,3 +11,4 @@ class MotivoSalidaPais extends BaseModel
 
     protected $table = 'motivos_salida_pais';
 }
+

@@ -56,12 +56,14 @@ class VerDonaciones extends Component
 
     public $paginationSize = 9;
     public $itemClass = Donacion::class;
-    public $idCreateModal = 'createDonacionModal';
-
-
 
     public function render()
     {
         return view('livewire.crud.donaciones.ver-donaciones');
+    }
+
+    public function crearDonacion()
+    {
+        return $this->redirectRoute('crear-donacion');
     }
 }
