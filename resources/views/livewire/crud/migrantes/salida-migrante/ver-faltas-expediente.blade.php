@@ -92,7 +92,7 @@
 
             <footer class="modal-action mt-6 flex flex-row items-center justify-between">
 
-                <a class="btn btn-warning" href="#">
+                <a class="btn btn-warning" href="{{ route('registro-conducta', $migranteId) }}" target="_blank">
                     <span class="icon-[iconamoon--link-external-bold] size-5"></span>
                     Administrar
                 </a>

@@ -6,7 +6,7 @@
         </div>
     </header>
 
-    <main class="h-full flex flex-grow overflow-hidden w-full p-4">
+    <main class="h-full flex grow overflow-hidden w-full p-4">
         {{-- Sección de expedientes --}}
         <section class="w-3/5 pr-4 flex flex-col overflow-hidden">
 

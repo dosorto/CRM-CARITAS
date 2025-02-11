@@ -5,7 +5,6 @@ namespace App\Livewire\Crud\Migrantes\Form;
 use App\Livewire\Crud\Migrantes\RegistrarMigrante;
 use App\Models\AsesorMigratorio;
 use App\Models\Frontera;
-use App\Models\MotivoSalidaPais;
 use App\Models\SituacionMigratoria;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -31,7 +30,6 @@ class DatosMigratoriosStep extends Component
 
     public function mount()
     {
-        // dd(session()->all());
         // obtiene los valores de la sesion, en caso de que exista, si no, asigna por defecto el segundo parametro de session()
         $this->asesorId = session('formMigranteData.expediente.asesorId', '');
         $this->fronteraId = session('formMigranteData.expediente.fronteraId', '');

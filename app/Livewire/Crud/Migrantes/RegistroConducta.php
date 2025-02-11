@@ -4,10 +4,10 @@ namespace App\Livewire\Crud\Migrantes;
 
 use Livewire\Component;
 
-class FaltasMigrante extends Component
+class RegistroConducta extends Component
 {
     public function render()
     {
-        return view('livewire.crud.migrantes.faltas-migrante');
+        return view('livewire.crud.migrantes.registro-conducta');
     }
 }
