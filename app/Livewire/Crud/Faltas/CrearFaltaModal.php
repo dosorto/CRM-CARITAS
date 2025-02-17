@@ -3,6 +3,7 @@
 namespace App\Livewire\Crud\Faltas;
 
 use App\Livewire\Components\ContentTable;
+use App\Livewire\Crud\Migrantes\SalidaMigrante\VerFaltasExpediente;
 use App\Models\Falta;
 use App\Models\GravedadFalta;
 use Livewire\Component;
@@ -13,6 +14,23 @@ class CrearFaltaModal extends Component
     public $GravedadId;
     public $Gravedades = [];
     public $idModal;
+
+    // parametros del boton
+    public $iconSize;
+    public $label;
+    public $btnSize;
+
+    public function mount($idModal, $iconSize = 6, $label = 'Añadir', $btnSize = 'md')
+    {
+        $this->idModal = $idModal;
+        $this->GravedadId = 1;
+        $this->Gravedades = GravedadFalta::select('id', 'gravedad_falta')->get();
+        $this->iconSize = $iconSize;
+        $this->label = $label;
+        $this->btnSize = $btnSize;
+
+    }
+
 
     public function create()
     {
@@ -29,14 +47,9 @@ class CrearFaltaModal extends Component
         // Se envía el evento de item-created a la tabla para que actualice su contenido.
         $this->dispatch('item-created')->to(ContentTable::class);
 
-        $this->closeModal();
-    }
+        $this->dispatch('falta-created')->to(VerFaltasExpediente::class);
 
-    public function mount($idModal)
-    {
-        $this->idModal = $idModal;
-        $this->GravedadId = 1;
-        $this->Gravedades = GravedadFalta::select('id', 'gravedad_falta')->get();
+        $this->closeModal();
     }
 
     public function render()

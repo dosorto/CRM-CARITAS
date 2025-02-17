@@ -7,7 +7,7 @@
         ])>
 
             <span class="icon-[heroicons-solid--identification] size-6"></span>
-            <input wire:model="identificacion" type="text" class="grow" placeholder="Escribir aquí..." />
+            <input wire:model="identificacion" type="text" class="grow h-full" placeholder="Escribir aquí..." />
             @error('identificacion')
                 <div class="tooltip tooltip-left tooltip-error flex items-center" data-tip="{{ $message }}">
                     <span class="icon-[bx--error] size-6 text-error"></span>

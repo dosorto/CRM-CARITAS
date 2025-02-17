@@ -40,7 +40,7 @@ module.exports = {
                     "base-content":     "#2A2222",  // Color de los textos e íconos de los elementos en el fondo general
 
                     "accent":           "#E3DFDF",  // Color del encabezado de tablas, bordes y elementos de formulario especiales
-                    "accent-content":   "#F6EFEF",  // Color del cuerpo de las tablas y elementos de formulario comunes
+                    "accent-content":   "#2A2222",  // Color del cuerpo de las tablas y elementos de formulario comunes
 
                     "error-content":    "#F6EFEF", // Color de alertas de validacion de formularios
 
@@ -73,7 +73,7 @@ module.exports = {
                     "base-300":         "#1F2937",
 
                     "accent":           "#536074",
-                    "accent-content":   "#424D5F",
+                    "accent-content":   "#FAFAFA",
 
                     // Sin usar por el momento
                     "secondary":        "#AAAAAA",
@@ -89,7 +89,7 @@ module.exports = {
                     // "success-content":  "16a34a",
                     "warning":          "#C48200",
                     "warning-content":  "#FFFFFF",
-                    "error":            "#B21111",
+                    "error":            "#981915",
                     "error-content":    "#EEE",
                 },
             },

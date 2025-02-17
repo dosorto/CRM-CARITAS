@@ -1,13 +1,13 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}" class="btn btn-accent text-base-content gap-2 pl-3">
-        <span class="icon-[mdi--plus-circle] size-6"></span>
-        Añadir
+    <label for="{{ $idModal }}" class="flex w-full btn btn-{{ $btnSize }} btn-accent text-base-content gap-2 pl-3">
+        <span class="icon-[mdi--plus-circle] size-{{ $iconSize }}"></span>
+        {{ $label }}
     </label>
 
     <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-1/2 bg-neutral">
+        <div class="modal-box max-w-5xl w-2/3 bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Añadir Falta Disciplinaria</h3>
@@ -55,7 +55,7 @@
     <script>
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
-            document.getElementById('{{$idModal}}').checked = false;
+            document.getElementById('{{ $idModal }}').checked = false;
         });
     </script>
 @endscript

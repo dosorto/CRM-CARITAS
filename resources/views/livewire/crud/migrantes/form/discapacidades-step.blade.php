@@ -9,7 +9,7 @@
                 placeholder="Buscar..." />
             <span wire:loading.remove wire:target="textoBusquedaDiscapacidades"
                 class="icon-[map--search] size-5 text-gray-400"></span>
-            <span wire:loading wire:target="textoBusquedaMotivos" class="loading loading-dots loading-sm"></span>
+            <span wire:loading wire:target="textoBusquedaDiscapacidades" class="loading loading-dots loading-sm"></span>
         </div>
         @error('discapacidadesSelected')
             <span class="text-error font-semibold">* {{ $message }}</span>

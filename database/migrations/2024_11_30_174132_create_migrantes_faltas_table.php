@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('migrantes_faltas', function (Blueprint $table) {
+            $table->id(); // Autoincremental para permitir duplicados
             $table->unsignedBigInteger('migrante_id');
             $table->unsignedBigInteger('falta_id');
 
-            $table->primary(['migrante_id', 'falta_id']);
-
             $table->foreign('migrante_id')->references('id')->on('migrantes')->onDelete('cascade');
             $table->foreign('falta_id')->references('id')->on('faltas')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@
                 'border-b-4 border-b-error' => $errors->has('nombres'),
             ])>
                 <span class="icon-[ion--person-circle-sharp] size-6"></span>
-                <input wire:model="nombres" type="text" class="grow" placeholder="Escribir aquí..." />
+                <input wire:model="nombres" type="text" class="grow h-full" placeholder="Escribir aquí..." />
                 @error('nombres')
                     <div class="tooltip tooltip-left tooltip-error flex items-center" data-tip="{{ $message }}">
                         <span class="icon-[bx--error] size-6 text-error"></span>
@@ -26,7 +26,7 @@
                 'border-b-4 border-b-error' => $errors->has('apellidos'),
             ])>
                 <span class="icon-[ion--person-circle-sharp] size-6"></span>
-                <input wire:model="apellidos" type="text" class="grow" placeholder="Escribir aquí...">
+                <input wire:model="apellidos" type="text" class="grow h-full" placeholder="Escribir aquí...">
                 @error('apellidos')
                     <div class="tooltip tooltip-left tooltip-error flex items-center" data-tip="{{ $message }}">
                         <span class="icon-[bx--error] size-6 text-error"></span>
@@ -67,7 +67,7 @@
                 'border-b-4 border-b-error' => $errors->has('fechaNacimiento'),
             ])>
                 <span class="icon-[f7--calendar-circle-fill] size-6"></span>
-                <input wire:model="fechaNacimiento" type="date" class="grow bg-accent"
+                <input wire:model="fechaNacimiento" type="date" class="grow h-full"
                     placeholder="Escribir aquí...">
                 @error('fechaNacimiento')
                     <div class="tooltip tooltip-left tooltip-error flex items-center" data-tip="{{ $message }}">

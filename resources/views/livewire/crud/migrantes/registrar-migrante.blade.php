@@ -111,7 +111,10 @@
                 Para cambiar o alterar los registros de migrantes posteriormente,
                 se deberá solicitar formalmente a un usuario con los permisos pertinentes.</p> --}}
             <div class="modal-action">
-                <button wire:click="guardarRegistro" class="btn btn-success">Confirmar</button>
+                <button wire:click="guardarRegistro" class="btn btn-success">
+                    <span class="icon-[fa-solid--check] size-6"></span>
+                    Confirmar
+                </button>
                 <label for="confirmarRegistroExpedienteModal" class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>

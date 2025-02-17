@@ -2,59 +2,86 @@
 
 namespace App\Livewire\Crud\Migrantes\SalidaMigrante;
 
-use App\Models\Expediente;
 use App\Models\Falta;
+use App\Models\Migrante;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class VerFaltasExpediente extends Component
 {
     public $faltas;
+    public $faltasSelected = [];
     public $nombre;
     public $identidad;
     public $faltasMigrante;
     public $migranteId;
+    public $migrante;
+
+    public $modalTitle = "Resumen de Conducta";
+
+    public $pantallaAsignar = false;
+
+    public $textoBusquedaFaltas = '';
 
     public function mount($migranteId)
     {
-        // obtener ultimo expediente
-        $expediente = Expediente::where('migrante_id', $migranteId)
-            ->orderBy('id', 'desc')
-            ->first();
+        $this->migranteId = $migranteId;
 
-        $migrante = $expediente->migrante;
-        $this->migranteId = $migrante->id;
+        $this->migrante = Migrante::find($migranteId);
 
-        $this->faltas = $expediente->faltas;
+        $this->nombre = $this->migrante->primer_nombre . ' ' .
+            $this->migrante->segundo_nombre . ' ' .
+            $this->migrante->primer_apellido . ' ' .
+            $this->migrante->segundo_apellido;
 
-        $this->nombre = $migrante->primer_nombre . ' ' .
-            $migrante->segundo_nombre . ' ' .
-            $migrante->primer_apellido . ' ' .
-            $migrante->segundo_apellido;
+        $this->identidad = $this->migrante->numero_identificacion;
 
-        $this->identidad = $migrante->numero_identificacion;
+        $this->actualizarFaltasMigrante();
 
-        $this->faltasMigrante = $migrante->faltas;
-
-
-        // // Obtener las faltas asociadas al expediente
-        // $faltasAgrupadas = Falta::whereHas('expedientes', function ($query) use ($expedienteId) {
-        //     $query->where('expediente_id', $expedienteId);
-        // })
-        //     ->with('gravedad') // Carga la relación de la gravedad
-        //     ->get()
-        //     ->groupBy(function ($falta) {
-        //         return $falta->gravedad->gravedad_falta; // Agrupa por el nombre de la gravedad
-        //     });
-
-        // // Convertir el resultado a un array asociativo
-        // $this->faltas = $faltasAgrupadas->mapWithKeys(function ($items, $key) {
-        //     return [$key => $items->pluck('falta')->toArray()]; // Extrae solo los nombres de las faltas
-        // })->toArray();
-
-        // dd($this->faltas);
+        $this->actualizarFaltas();
     }
 
+
+    public function switchPantallaAsignar()
+    {
+        $this->pantallaAsignar = !$this->pantallaAsignar;
+        $this->faltasSelected = [];
+        $this->resetErrorBag();
+
+        if ($this->pantallaAsignar) {
+            $this->modalTitle = "Asignar Faltas Disciplinarias";
+        } else {
+            $this->modalTitle = "Resumen de Conducta";
+        }
+    }
+
+
+    public function updatedTextoBusquedaFaltas($value)
+    {
+        $query = Falta::orderBy('gravedad_falta_id');
+
+        if (trim($value) !== '') {
+            $query->where('falta', 'LIKE', '%' . trim($value) . '%');
+        }
+
+        $this->faltas = $query->get();
+    }
+
+    public function asignarFaltas()
+    {
+        $this->validate([
+            'faltasSelected' => 'array|min:1',
+        ]);
+
+        $datos = [];
+
+        foreach ($this->faltasSelected as $falta_id) {
+            $datos[$falta_id] = ['created_at' => now(), 'updated_at' => now()];
+        }
+        $this->migrante->faltas()->attach($datos);
+        $this->switchPantallaAsignar();
+        $this->actualizarFaltasMigrante();
+    }
 
     public function render()
     {
@@ -62,7 +89,17 @@ class VerFaltasExpediente extends Component
     }
 
     #[On('falta-asignada')]
-    public function faltaAsignada()
+    public function faltaAsignada() {}
+
+
+    #[On('falta-created')]
+    public function actualizarFaltas()
     {
+        $this->faltas = Falta::orderBy('gravedad_falta_id')->get();
+    }
+
+    public function actualizarFaltasMigrante()
+    {
+        $this->faltasMigrante = $this->migrante->faltas;
     }
 }

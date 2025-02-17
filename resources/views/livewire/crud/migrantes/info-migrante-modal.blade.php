@@ -51,7 +51,8 @@
             </main>
 
             <div class="modal-action">
-                <label for="{{ $idModal }}-{{ $persona->id }}" class="btn btn-accent text-base-content">Cerrar</label>
+                <label for="{{ $idModal }}-{{ $persona->id }}"
+                    class="btn btn-accent text-base-content">Cerrar</label>
             </div>
         </div>
     </div>
