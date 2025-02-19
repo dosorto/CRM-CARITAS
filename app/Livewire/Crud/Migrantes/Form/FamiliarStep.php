@@ -28,6 +28,7 @@ class FamiliarStep extends Component
     ];
 
     public $personas = [];
+    public $noHayRegistros;
     public $nuevoCodigoFamiliar;
     public $codigoFamiliar = 0;
 
@@ -56,7 +57,8 @@ class FamiliarStep extends Component
             $this->codigoFamiliar = $this->nuevoCodigoFamiliar;
         }
 
-        $this->personas = $this->getMigranteService()->obtenerCandidatosFamiliar();
+        $this->personas = Migrante::whereNot('codigo_familiar', 0)->get();
+        $this->noHayRegistros = Migrante::all()->isEmpty();
     }
 
     public function render()
@@ -96,6 +98,13 @@ class FamiliarStep extends Component
             $this->familiarSeleccionado = null;
             session()->forget('formMigranteData.migrante.familiarSeleccionado');
         }
+    }
+
+    public function updatedTextToFind()
+    {
+        $this->personas = Migrante::where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')
+            ->whereNot('codigo_familiar', 0)->get();
+
     }
 
     public function selectFamiliar($personaId)

@@ -17,6 +17,8 @@ class RegistrarSalidaMigrante extends Component
 
     public $expedienteId;
     public $migranteId;
+    public $nombreMigrante;
+    public $identificacion;
 
     public $atencionPsicologica = 0;
     public $asesoriaPsicologica = 0;
@@ -65,22 +67,15 @@ class RegistrarSalidaMigrante extends Component
         }
 
 
-        $nombre = $migrante->primer_nombre . ' ' .
+        $this->nombreMigrante = $migrante->primer_nombre . ' ' .
             $migrante->segundo_nombre . ' ' .
             $migrante->primer_apellido . ' ' .
             $migrante->segundo_apellido;
+        $this->identificacion = $migrante->numero_identificacion;
 
         $this->expedienteId = $expediente->id;
         $this->migranteId = $migranteId;
 
-        $this->datosPersonales = [
-            'Nombre Completo' => $nombre,
-            'Número de Identidad' => $migrante->numero_identificacion,
-            'País de Procedencia' => $migrante->pais->nombre_pais,
-            'Fecha de Ingreso' => $fechaIngreso,
-            'Edad' => $this->getMigranteService()->calcularEdad($migrante->fecha_nacimiento),
-            'Dias de Estancia' => round(Carbon::parse($fechaIngreso)->diffInDays(Carbon::now())),
-        ];
         $this->Observaciones = $expediente->observacion;
         $this->fechaSalida = Carbon::now()->format('Y-m-d');
     }

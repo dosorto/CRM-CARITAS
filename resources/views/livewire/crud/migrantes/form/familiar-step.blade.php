@@ -41,15 +41,14 @@
         {{-- Tabla para buscar en caso de que ya tenga un familiar registrado --}}
         @if ($viajaEnGrupo && $tieneFamiliar)
             <div class="overflow-auto">
-                <div class="px-4 pt-4 join w-full {{ sizeof($personas) === 0 ? 'hidden' : '' }}">
+                <div class="px-4 pt-4 join w-full {{ $noHayRegistros ? 'hidden' : '' }}">
                     <select wire:model.live="colSelected" class="select-sm select join-item w-min bg-accent">
                         <option>Identificación</option>
                         <option>Nombre</option>
                     </select>
                     <div
                         class="w-full input-sm input join-item bg-neutral border-2 border-accent flex items-center justify-between gap-2">
-                        <input wire:model.live.debounce.300ms="textToFind" placeholder="Buscar..." type="text"
-                            class="w-full" />
+                        <input wire:model.live="textToFind" placeholder="Buscar..." type="text" class="w-full" />
 
                         {{-- Lógica para mostrar el ícono de cargando o el ícono de búsqueda --}}
                         <span wire:loading.remove class="icon-[map--search] size-4 text-gray-400"></span>
@@ -57,7 +56,27 @@
                     </div>
                 </div>
                 <div class="m-4">
-                    @if (sizeof($personas) > 0)
+                    @if ($noHayRegistros)
+                        <div class="text-center p-3 w-full">
+
+                            <p class="flex flex-col gap-2 items-center">
+                                <span class="tooltip tooltip-primary tooltip-right" data-tip="*Sonido de Grillo*">
+                                    <span class="icon-[twemoji--cricket] size-10"></span>
+                                </span>
+
+                                <span class="text-error font-semibold">No hay personas registradas.</span>
+
+                                <span>Si esta persona viaja sola, seleccione <b>"No"</b> en la pregunta:
+                                    <b>¿Viaja en Grupo?</b>
+                                    Para NO asignarle código familiar.</span>
+
+                                <span>Si es la primera persona de un grupo o familia en registrarse,
+                                    seleccione <b>"No"</b> en la pregunta:
+                                    <b>¿Tiene ya un familiar registrado?</b> para generar un nuevo código
+                                    familiar y relacionar a los siguientes miembros a registrarse.</span>
+                            </p>
+                        </div>
+                    @elseif (sizeof($personas) > 0)
                         <table class="table table-sm w-full table-pin-rows">
                             <thead>
                                 <tr class="bg-accent text-sm border-b border-accent">
@@ -73,7 +92,7 @@
                                         <td>{{ $persona->primer_nombre . ' ' . $persona->primer_apellido }}</td>
                                         <td>{{ $persona->numero_identificacion }} </td>
                                         <td class="flex gap-2">
-                                            <div class="tooltip tooltip-primary" data-tip="Información Personal">
+                                            <div class="tooltip tooltip-primary" data-tip="Datos Personales">
                                                 <livewire:crud.migrantes.info-migrante-modal
                                                     :wire:key="'info-familiar-'.$persona->id" iconSize="4"
                                                     btnSize="xs" label="" :personaId="$persona->id"
@@ -93,23 +112,18 @@
                             </tbody>
                         </table>
                     @else
-                        <div class="text-center p-6 w-full">
+                        <div class="text-center p-3 w-full">
 
-                            <p class="flex flex-col gap-3 items-center">
+                            <p class="flex flex-col gap-2 items-center">
                                 <span class="tooltip tooltip-primary tooltip-right" data-tip="*Sonido de Grillo*">
-                                    <span class="icon-[twemoji--cricket] size-8"></span>
+                                    <span class="icon-[twemoji--cricket] size-10"></span>
                                 </span>
 
-                                <span class="text-error font-semibold">No hay personas registradas.</span>
+                                <span class="text-error font-semibold">No se encontraron resultados.</span>
 
-                                <span>Si esta persona viaja sola, seleccione <b>"No"</b> en la pregunta:
-                                    <b>¿Viaja en Grupo?</b>
-                                    Para NO asignarle código familiar.</span>
-
-                                <span>Si es la primera persona de un grupo o familia en registrarse,
-                                    seleccione <b>"No"</b> en la pregunta:
-                                    <b>¿Tiene ya un familiar registrado?</b> para generar un nuevo código
-                                    familiar y relacionar a los siguientes miembros a registrarse.</span>
+                                <span>
+                                    Verifique que se hayan ingresado los datos de búsqueda correctamente.
+                                </span>
                             </p>
                         </div>
                     @endif

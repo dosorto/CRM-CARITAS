@@ -174,10 +174,5 @@ class MigranteService
             ->get();
     }
 
-    public function obtenerCandidatosFamiliar()
-    {
-        return Migrante::whereNot('codigo_familiar', 0)->get();
-    }
-
     public function registrarSalida($datosSalida) {}
 }

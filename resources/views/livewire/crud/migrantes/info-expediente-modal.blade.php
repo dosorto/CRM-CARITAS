@@ -86,7 +86,7 @@
             </main>
 
             <div class="modal-action">
-                <button class="btn btn-success text-base-content" wire:click="imprimir({{ $item->id }})">
+                <button class="btn btn-info" wire:click="imprimir({{ $item->id }})">
                     <span class="icon-[material-symbols--print] size-6"></span>
                     Imprimir
                 </button>

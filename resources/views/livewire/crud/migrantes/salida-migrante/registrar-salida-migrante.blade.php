@@ -1,6 +1,6 @@
-<div class="h-screen w-full flex flex-col px-5">
+<div class="h-screen w-full flex flex-col">
     {{-- Título y cosa extra --}}
-    <header class="h-max flex justify-between items-center border-b-2 border-accent py-4">
+    <header class="h-max flex justify-between items-center border-b-2 border-accent p-4">
         <h1 class="text-xl font-bold">Registro de Salida de Migrante</h1>
         <button wire:click="cancelar" class="btn btn-sm btn-accent text-base-content">
             <span class="icon-[typcn--cancel] size-5"></span>
@@ -8,17 +8,16 @@
         </button>
     </header>
 
-    <main class="flex flex-grow gap-16 size-full items-center justify-center overflow-auto">
-        <section class="flex flex-col h-full w-1/2 gap-4 py-5">
-
-            <div class="h-full w-full flex flex-col overflow-auto ">
+    <main class="flex flex-grow size-full items-center justify-center overflow-auto">
+        <section class="flex flex-col h-full w-1/2 gap-4 p-5 pr-8">
+            <div class="h-full w-full flex flex-col overflow-auto">
 
                 {{-- Preguntas --}}
                 @foreach ($preguntas as $nombre => $pregunta)
                     <div @class([
-                        'border-b-2 border-dotted flex justify-between gap-2 py-2 px-2 mb-4 border-gray-400',
-                        // 'border-success' => $this->{$nombre},
-                        // 'border-error' => !$this->{$nombre},
+                        'border-b-2 border-dotted flex justify-between gap-2 py-2 px-2 mb-4',
+                        'border-success' => $this->{$nombre},
+                        'border-error' => !$this->{$nombre},
                     ])>
                         <label class="font-semibold">{{ $pregunta }}</label>
 
@@ -32,7 +31,17 @@
                 @endforeach
             </div>
         </section>
-        <section class="flex flex-col justify-start h-full w-1/2 py-5 overflow-auto">
+        <section class="flex flex-col justify-start h-full w-1/2 p-5 pl-8 overflow-auto border-r-2 border-accent">
+
+            {{-- Info Personal --}}
+            {{-- <article class="flex p-4 border-4 border-accent rounded-xl mb-5">
+                <div class="flex flex-col">
+                    <span><b>Nombre:</b> {{ $nombreMigrante }}</span>
+                    <span><b>Identificación:</b> {{ $identificacion }}</span>
+                </div>
+            </article> --}}
+
+
 
             <label class="font-semibold label">
                 Observaciones
@@ -44,22 +53,25 @@
             <input type="date" class="input bg-accent" wire:model.live="fechaSalida">
 
         </section>
+
     </main>
 
-    <footer class="flex flex-row h-max w-full justify-between py-4">
+    <footer class="flex flex-row h-max w-full justify-between p-4">
         <div class="flex gap-4">
-            <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente migranteId="{{ $migranteId }}" botonGrande="{{ true }}"/>
+            <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente migranteId="{{ $migranteId }}"
+                botonGrande="{{ true }}" />
+            <livewire:crud.migrantes.info-migrante-modal idModal="infoMigranteSalida" iconSize="6" btnSize="md"
+                label="Datos Personales" :personaId="$migranteId" />
         </div>
 
         <div class="flex gap-4">
             <!-- Botón para abrir el modal -->
             <label for="confirmarSalidaMigrante" class="btn btn-success text-nowrap">
-                <span class="icon-[bxs--save] size-6"></span>
+                <span class="icon-[mdi--account-arrow-right-outline] size-7"></span>
                 Registrar Salida
             </label>
         </div>
     </footer>
-
 
 
 

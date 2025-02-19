@@ -50,7 +50,6 @@ use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
 use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 use App\Livewire\Reportes\ReporteArticulo;
 use App\Livewire\Crud\Migrantes\HistorialMigrante;
-use App\Livewire\Crud\Migrantes\RegistroConducta;
 
 Route::get('/', Login::class)
     ->name('login');
@@ -88,9 +87,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/listado-migrantes', VerMigrantes::class)
         ->name('ver-migrantes');
-
-    Route::get('/registro-conducta/{migranteId}', RegistroConducta::class)
-        ->name('registro-conducta');
 
     // ---------------- Expedientes de Migrantes ----------------
 
