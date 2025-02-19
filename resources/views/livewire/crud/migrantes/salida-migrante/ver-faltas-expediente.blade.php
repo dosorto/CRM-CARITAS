@@ -1,12 +1,12 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="verFaltasExpediente-{{ $migranteId }}" class="btn btn-primary text-nowrap text-primary-content">
+    <label for="verFaltasExpediente-{{ $migrante->id }}" class="btn btn-primary text-nowrap text-primary-content">
         <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
         Faltas Disciplinarias
     </label>
 
     {{-- Modal --}}
-    <input type="checkbox" id="verFaltasExpediente-{{ $migranteId }}" class="modal-toggle" />
+    <input type="checkbox" id="verFaltasExpediente-{{ $migrante->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box max-w-5xl size-full bg-neutral border-2 border-accent flex flex-col">
 
@@ -104,23 +104,25 @@
                             <tbody>
 
                                 @foreach ($faltasMigrante as $faltaMigrante)
-                                    <tr class="border-b-2 border-accent">
+                                    <tr wire:key="faltasMigrante-{{ $faltaMigrante->id }}"
+                                        class="border-b-2 border-accent">
                                         <td @class([
                                             'font-bold text-primary-content',
-                                            'bg-success' => $faltaMigrante->gravedad_falta_id == 1,
-                                            'bg-warning' => $faltaMigrante->gravedad_falta_id == 2,
-                                            'bg-error' => $faltaMigrante->gravedad_falta_id == 3,
+                                            'bg-success' => $faltaMigrante->falta->gravedad_falta_id == 1,
+                                            'bg-warning' => $faltaMigrante->falta->gravedad_falta_id == 2,
+                                            'bg-error' => $faltaMigrante->falta->gravedad_falta_id == 3,
                                         ])>
-                                            {{ $faltaMigrante->gravedad->gravedad_falta }}
+                                            {{ $faltaMigrante->falta->gravedad->gravedad_falta }}
                                         </td>
                                         <td>
-                                            {{ $faltaMigrante->falta }}
+                                            {{ $faltaMigrante->falta->falta }}
                                         </td>
                                         <td>
                                             {{ optional($faltaMigrante->created_at)->format('d-m-Y') }}
                                         </td>
                                         <td class="flex justify-end">
-                                            <label for="confirmarEliminarFalta-{{$faltaMigrante->id}}" class="btn btn-sm btn-primary"><span
+                                            <label for="confirmarEliminarFalta-{{ $faltaMigrante->id }}"
+                                                class="btn btn-sm btn-primary"><span
                                                     class="icon-[mingcute--delete-2-fill] size-4"></span>
                                             </label>
                                         </td>
@@ -128,18 +130,19 @@
 
                                     {{-- Cuerpo del modal para eliminar Falta --}}
                                     <div>
-                                        <!-- Put this part before </body> tag -->
-                                        <input type="checkbox" id="confirmarEliminarFalta-{{$faltaMigrante->id}}" class="modal-toggle" />
+                                        <input type="checkbox" id="confirmarEliminarFalta-{{ $faltaMigrante->id }}"
+                                            class="modal-toggle" />
                                         <div class="modal" role="dialog">
-                                            <div class="modal-box">
-                                                <h3 class="text-lg font-bold">Hello!</h3>
-                                                <p class="py-4">This modal works with a hidden checkbox!</p>
+                                            <div class="modal-box bg-neutral border-2 border-error">
+                                                <h3 class="text-lg font-bold text-center">¿Seguro que desea eliminar la siguiente falta disciplinaria del historial de esta persona?</h3>
+                                                <p class="py-4 text-center font-semibold">{{ $faltaMigrante->falta->falta }}</p>
                                                 <div class="modal-action">
-                                                    <button class="btn btn-success">
+                                                    <button class="btn btn-success" wire:click="eliminarFalta({{$faltaMigrante->id}})">
                                                         <span class="icon-[fa-solid--check] size-6"></span>
                                                         Confirmar
                                                     </button>
-                                                    <label for="confirmarEliminarFalta-{{$faltaMigrante->id}}" class="btn">
+                                                    <label for="confirmarEliminarFalta-{{ $faltaMigrante->id }}"
+                                                        class="btn btn-accent">
                                                         <span class="icon-[f7--xmark] size-6"></span>
                                                         Cancelar
                                                     </label>
@@ -179,7 +182,7 @@
                         </button>
                         <span wire:loading class="loading loading-spinner text-base-content h-full w-8"></span>
                     </div>
-                    <label for="verFaltasExpediente-{{ $migranteId }}" class="btn btn-accent text-base-content">
+                    <label for="verFaltasExpediente-{{ $migrante->id }}" class="btn btn-accent text-base-content">
                         Cerrar
                     </label>
                 @endif
@@ -193,7 +196,7 @@
     <script>
         $wire.on('close-modal', () => {
             // Cerrar el modal desactivando el checkbox
-            document.getElementById('verFaltasExpediente-{{ $migranteId }}').checked = false;
+            document.getElementById('verFaltasExpediente-{{ $migrante->id }}').checked = false;
         });
     </script>
 @endscript

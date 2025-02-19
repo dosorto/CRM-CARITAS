@@ -4,6 +4,7 @@ namespace App\Livewire\Crud\Migrantes\SalidaMigrante;
 
 use App\Models\Falta;
 use App\Models\Migrante;
+use App\Models\MigranteFalta;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -14,7 +15,6 @@ class VerFaltasExpediente extends Component
     public $nombre;
     public $identidad;
     public $faltasMigrante;
-    public $migranteId;
     public $migrante;
 
     public $modalTitle = "Resumen de Conducta";
@@ -25,8 +25,6 @@ class VerFaltasExpediente extends Component
 
     public function mount($migranteId)
     {
-        $this->migranteId = $migranteId;
-
         $this->migrante = Migrante::find($migranteId);
 
         $this->nombre = $this->migrante->primer_nombre . ' ' .
@@ -100,6 +98,16 @@ class VerFaltasExpediente extends Component
 
     public function actualizarFaltasMigrante()
     {
-        $this->faltasMigrante = $this->migrante->faltas;
+        $this->faltasMigrante = MigranteFalta::where('migrante_id', $this->migrante->id)->get()->sortBy('falta.gravedad_falta_id');
+    }
+
+    public function eliminarFalta($faltaMigranteId)
+    {
+        $falta = MigranteFalta::find($faltaMigranteId);
+        $falta->delete();
+
+        $this->actualizarFaltasMigrante();
+
+        $this->dispatch('')->self();
     }
 }
