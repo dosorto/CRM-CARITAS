@@ -82,7 +82,7 @@
                                     <div class="tooltip tooltip-primary" data-tip="Registrar Salida">
                                         <button wire:click="registrarSalida({{ $item->id }})"
                                             class="btn btn-accent btn-sm text-base-content w-12" type="button">
-                                            <span class="icon-[heroicons-outline--logout] size-6"></span>
+                                            <span class="icon-[mdi--account-arrow-right-outline] size-6"></span>
                                         </button>
                                     </div>
                                     {{-- @else

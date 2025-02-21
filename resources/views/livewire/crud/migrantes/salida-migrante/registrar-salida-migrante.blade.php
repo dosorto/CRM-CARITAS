@@ -41,8 +41,6 @@
                 </div>
             </article> --}}
 
-
-
             <label class="font-semibold label">
                 Observaciones
             </label>
