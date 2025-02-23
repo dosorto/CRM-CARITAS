@@ -31,7 +31,7 @@ module.exports = {
 
                     "neutral":          "#FFFFFF",  // Color del Fondo Completo de la página
 
-                    "base-100":         "#FFFFFF",  // Color de fondo de elementos varios por encima del fondo general
+                    "base-100":         "#EFEFEF",  // Color de fondo de elementos varios por encima del fondo general
 
                     "base-200":         "#EDDDDD",
 
@@ -39,7 +39,7 @@ module.exports = {
 
                     "base-content":     "#2A2222",  // Color de los textos e íconos de los elementos en el fondo general
 
-                    "accent":           "#E3DFDF",  // Color del encabezado de tablas, bordes y elementos de formulario especiales
+                    "accent":           "#D3CACA",  // Color del encabezado de tablas, bordes y elementos de formulario especiales
                     "accent-content":   "#2A2222",  // Color del cuerpo de las tablas y elementos de formulario comunes
 
                     "error-content":    "#F6EFEF", // Color de alertas de validacion de formularios
@@ -64,7 +64,7 @@ module.exports = {
                     "primary":          "#981915",  // Color de Fondo de la sidebar
                     "primary-content":  "#D1D5DB",  // Color del contenido de la Sidebar
 
-                    "neutral":          "#374151",  // Color del Fondo Completo de la página
+                    "neutral":          "#2E3745",  // Color del Fondo Completo de la página
 
                     "base-100":         "#1F2937",  // Color de fondo de elementos varios por encima del fondo general
                     "base-content":     "#FAFAFA",  // Color de los textos e íconos de los elementos en el fondo general

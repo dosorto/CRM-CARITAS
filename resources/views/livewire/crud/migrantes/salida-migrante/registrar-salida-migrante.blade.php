@@ -17,14 +17,14 @@
                     <div @class([
                         'border-b-2 border-dotted flex justify-between gap-2 py-2 px-2 mb-4',
                         'border-success' => $this->{$nombre},
-                        'border-error' => !$this->{$nombre},
+                        'border-primary' => !$this->{$nombre},
                     ])>
                         <label class="font-semibold">{{ $pregunta }}</label>
 
                         <input type="checkbox" @class([
                             'toggle',
                             'toggle-success' => $this->{$nombre},
-                            'bg-error hover:bg-error' => !$this->{$nombre},
+                            'bg-primary hover:bg-primary' => !$this->{$nombre},
                         ]) wire:model.live="{{ $nombre }}" />
 
                     </div>
@@ -89,11 +89,11 @@
             <h3 class="text-xl font-bold text-center mb-5">¿Seguro que desea registrar la salida de esta persona?</h3>
 
             <div class="modal-action">
-                <button wire:click="guardarDatosSalida" class="btn btn-success text-base-content">
+                <button wire:click="guardarDatosSalida" class="btn btn-success">
                     <span class="icon-[fa-solid--check] size-6"></span>
                     Confirmar
                 </button>
-                <label for="confirmarSalidaMigrante" class="btn btn-error text-base-content">Cancelar</label>
+                <label for="confirmarSalidaMigrante" class="btn btn-error">Cancelar</label>
             </div>
         </div>
     </div>
