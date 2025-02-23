@@ -61,7 +61,7 @@ class VerFormularios extends Component
 
         $this->pais = $migrante->pais->nombre_pais ?? ' - ';
 
-        $this->esLGBT = $migrante->esLGBT ? 'Si' : 'No' ?? ' - ';
+        $this->esLGBT = $migrante->es_lgbt ? 'Si' : 'No' ?? ' - ';
 
         $this->situacion = $expediente->situacionMigratoria->situacion_migratoria ?? ' - ';
 
