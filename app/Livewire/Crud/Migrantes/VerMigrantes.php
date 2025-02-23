@@ -14,15 +14,6 @@ class VerMigrantes extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    public function placeholder()
-    {
-        return <<<'HTML'
-        <div class="size-full h-screen flex items-center justify-center">
-            <span class="loading loading-ring loading-lg"></span>
-        </div>
-        HTML;
-    }
-
     public $fakeColNames = [
         'Número de Identificación' => 'numero_identificacion',
         'Primer Nombre' => 'primer_nombre',
@@ -88,5 +79,14 @@ class VerMigrantes extends Component
     public function verHistorial($id)
     {
         return $this->redirectRoute('ver-historial', ['migranteId' => $id]);
+    }
+
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div class="size-full h-screen flex items-center justify-center">
+            <span class="loading loading-ring loading-lg"></span>
+        </div>
+        HTML;
     }
 }

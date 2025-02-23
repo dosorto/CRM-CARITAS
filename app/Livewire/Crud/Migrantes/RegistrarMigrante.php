@@ -163,7 +163,6 @@ class RegistrarMigrante extends Component
         $nombres = $this->getMigranteService()->separarNombres(session('formMigranteData.migrante.nombres'));
         $apellidos = $this->getMigranteService()->separarNombres(session('formMigranteData.migrante.apellidos'));
 
-
         $migranteId = $this->getMigranteService()->guardarDatosPersonales(
             $nombres[0],
             $nombres[1],

@@ -110,7 +110,7 @@
                                             'font-bold text-primary-content',
                                             'bg-success' => $faltaMigrante->falta->gravedad_falta_id == 1,
                                             'bg-warning' => $faltaMigrante->falta->gravedad_falta_id == 2,
-                                            'bg-error' => $faltaMigrante->falta->gravedad_falta_id == 3,
+                                            'bg-primary' => $faltaMigrante->falta->gravedad_falta_id == 3,
                                         ])>
                                             {{ $faltaMigrante->falta->gravedad->gravedad_falta }}
                                         </td>
@@ -134,10 +134,13 @@
                                             class="modal-toggle" />
                                         <div class="modal" role="dialog">
                                             <div class="modal-box bg-neutral border-2 border-error">
-                                                <h3 class="text-lg font-bold text-center">¿Seguro que desea eliminar la siguiente falta disciplinaria del historial de esta persona?</h3>
-                                                <p class="py-4 text-center font-semibold">{{ $faltaMigrante->falta->falta }}</p>
+                                                <h3 class="text-lg font-bold text-center">¿Seguro que desea eliminar la
+                                                    siguiente falta disciplinaria del historial de esta persona?</h3>
+                                                <p class="py-4 text-center font-semibold">
+                                                    {{ $faltaMigrante->falta->falta }}</p>
                                                 <div class="modal-action">
-                                                    <button class="btn btn-success" wire:click="eliminarFalta({{$faltaMigrante->id}})">
+                                                    <button class="btn btn-success"
+                                                        wire:click="eliminarFalta({{ $faltaMigrante->id }})">
                                                         <span class="icon-[fa-solid--check] size-6"></span>
                                                         Confirmar
                                                     </button>
@@ -191,12 +194,3 @@
         </div>
     </div>
 </div>
-
-@script
-    <script>
-        $wire.on('close-modal', () => {
-            // Cerrar el modal desactivando el checkbox
-            document.getElementById('verFaltasExpediente-{{ $migrante->id }}').checked = false;
-        });
-    </script>
-@endscript

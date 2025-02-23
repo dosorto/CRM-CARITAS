@@ -35,24 +35,9 @@ class VerFormularios extends Component
     public $discapacidades;
 
 
-    // public function mount()
-    // {
-    //     // dd(session()->all());
-
-    //     // Se extrae el expediente de la sesión.
-    //     if (session()->has('expedienteId')) {
-    //         $expedienteId = session('expedienteId');
-    //     } else {
-    //         return $this->redirectRoute('ver-migrantes');
-    //     }
-    // }
-
     public function mount($expedienteId)
     {
-        // session()->forget('expedienteId);
         $expediente = Expediente::find($expedienteId);
-
-        // dd(session('expedienteId'));
 
         $migrante = Migrante::find($expediente->migrante_id);
 

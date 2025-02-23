@@ -89,7 +89,7 @@ module.exports = {
                     // "success-content":  "16a34a",
                     "warning":          "#C48200",
                     "warning-content":  "#FFFFFF",
-                    "error":            "#981915",
+                    "error":            "#F98585",
                     "error-content":    "#EEE",
                 },
             },

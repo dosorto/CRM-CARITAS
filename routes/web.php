@@ -18,7 +18,6 @@ use App\Livewire\Pages\Administracion;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use App\Livewire\Crud\SubCategorias\VerSubCategorias;
 use App\Livewire\Crud\Mobiliarios\VerMobiliarios;
-use App\Livewire\Crud\Formularios\VerFormularios;
 use App\Livewire\Reportes\ReporteMensual;
 
 use App\Livewire\Actas\ActasEntrega\CrearActaEntrega;
@@ -50,6 +49,7 @@ use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
 use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 use App\Livewire\Reportes\ReporteArticulo;
 use App\Livewire\Crud\Migrantes\HistorialMigrante;
+use App\Livewire\Crud\Migrantes\VerExpediente;
 
 Route::get('/', Login::class)
     ->name('login');
@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
 
     // ---------------- Expedientes de Migrantes ----------------
 
-    Route::get('/ver-expediente/{expedienteId}', VerFormularios::class)
+    Route::get('/ver-expediente/{expedienteId}', VerExpediente::class)
         ->name('ver-expediente');
 
     Route::get('/discapacidades', VerDiscapacidades::class)

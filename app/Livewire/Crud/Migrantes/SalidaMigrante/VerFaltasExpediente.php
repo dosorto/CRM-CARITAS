@@ -74,7 +74,13 @@ class VerFaltasExpediente extends Component
         $datos = [];
 
         foreach ($this->faltasSelected as $falta_id) {
-            $datos[$falta_id] = ['created_at' => now(), 'updated_at' => now()];
+
+            $migranteFalta = new MigranteFalta;
+            $migranteFalta->migrante_id = $this->migrante->id;
+            $migranteFalta->falta_id = $falta_id;
+            $migranteFalta->save();
+
+            // $datos[$falta_id] = ['created_at' => now(), 'updated_at' => now()];
         }
         $this->migrante->faltas()->attach($datos);
         $this->switchPantallaAsignar();
