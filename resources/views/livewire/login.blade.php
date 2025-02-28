@@ -48,7 +48,7 @@
         <!-- Footer -->
         <footer class="w-full h-max text-center py-4 text-primary-content">
             <a href="{{ route('about-us') }}">
-                Acerca de Nosotros
+                Equipo detrás de Éxodo
             </a>
         </footer>
     </div>

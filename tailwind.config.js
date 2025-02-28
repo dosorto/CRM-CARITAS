@@ -39,7 +39,7 @@ module.exports = {
 
                     "base-content":     "#2A2222",  // Color de los textos e íconos de los elementos en el fondo general
 
-                    "accent":           "#D3CACA",  // Color del encabezado de tablas, bordes y elementos de formulario especiales
+                    "accent":           "#CAC7C7",  // Color del encabezado de tablas, bordes y elementos de formulario especiales
                     "accent-content":   "#2A2222",  // Color del cuerpo de las tablas y elementos de formulario comunes
 
                     "error-content":    "#F6EFEF", // Color de alertas de validacion de formularios
