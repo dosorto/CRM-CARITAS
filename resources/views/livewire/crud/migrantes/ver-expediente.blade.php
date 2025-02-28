@@ -161,10 +161,11 @@
 
                 <section class="my-2">
                     <p>
-                        El migrante, al firmar este documento, declara conocer y aceptar las normas del centro, así como
-                        las consecuencias de su incumplimiento. A su vez, el centro le garantiza el derecho a <b>
-                            comida,
-                            agua y alojamiento.</b>
+                        Solicito estadía temporal en el Centro de Atención Cáritas Mons. Guido Charbonneau. Declaro
+                        conocer y aceptar su reglamento, comprometiéndome a su cumplimiento. Asimismo, autorizo el uso y
+                        compartición de mi información con ACNUR y otras organizaciones internacionales de apoyo
+                        migratorio. Entiendo que, al firmar este documento, tengo derecho a recibir comida, agua y
+                        alojamiento. Firmo para constancia.
                     </p>
                 </section>
 
