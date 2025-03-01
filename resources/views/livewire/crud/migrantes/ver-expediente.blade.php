@@ -1,6 +1,6 @@
 <div class="h-screen w-full flex flex-col">
     <section class="w-full grow flex justify-center overflow-auto">
-        <div class="p-10 mt-8 size-max shadow-lg border-2 border-accent rounded-lg bg-white">
+        <div class="p-10 my-10 size-max shadow-lg border-2 border-accent rounded-lg bg-white">
 
             <article class="prose max-w-none w-[216mm] h-[279mm] max-h-none flex flex-col">
                 <header class="relative flex justify-center min-h-[100px]">
@@ -23,7 +23,7 @@
                 </header>
 
                 {{-- Información --}}
-                <section class="flex flex-col mt-4 text-sm justify-start">
+                <section class="flex flex-col mt-6 text-sm justify-start">
 
                     <h3 class="font-bold text-base mb-1">I. Datos Personales</h3>
 
@@ -32,7 +32,7 @@
                         <div class="flex border-b border-zinc-600">
                             <div class="flex flex-col w-2/3 ">
                                 <div class="flex w-full border-b border-zinc-600">
-                                    <div class="flex w-[85%] h-full pl-2 pr-6 gap-1 items-center min-h-8 py-1">
+                                    <div class="flex h-full pl-2 pr-6 gap-1 items-center min-h-8">
                                         <b>Nombre: </b> {{ $nombre }}
                                     </div>
 
@@ -42,118 +42,180 @@
                                 <div class="flex pl-2 min-h-8">
 
                                     <span
-                                        class="flex items-center text-wrap h-max min-w-80 pr-6 py-1 min-h-8 max-w-96 gap-1">
+                                        class="flex items-center text-wrap h-max min-w-80 pr-6 min-h-8 max-w-96 gap-1">
                                         <b>Identificación: </b> {{ $identificacion }}
                                     </span>
                                     <span class="flex items-center justify-start pl-2 gap-1 border-l border-zinc-600">
-                                        <b>Sexo:</b> {{ $sexo }}
-                                    </span>
+                                        <b>Sexo:</b>
+                                        {{ $sexo }}
+                                        <span @class([
+                                            'size-4',
+                                            'icon-[twemoji--female-sign]' => $sexo === 'Femenino',
+                                            'icon-[twemoji--male-sign]' => $sexo === 'Masculino',
+                                        ])>
+                                        </span>
 
                                 </div>
                             </div>
 
                             <div class="flex flex-col justify-center w-1/3 border-l border-zinc-600 pl-4 min-h-16">
-                                <span>¿Viaja en <b>Grupo</b> o <b>Familia</b>? </span>
+                                <span>¿Pertenece a la comunidad <b>LGBTQI+</b>? </span>
                                 <div class="flex mt-1 font-bold items-center">
-                                    <span class="icon-[fa-solid--users] size-6 text-zinc-600"></span>
-                                    <span class="ml-3 flex items-center gap-1">
-                                        <span class="icon-[cuida--checkbox-checked-outlined] size-6"></span>
+                                    <span class="icon-[circle-flags--lgbt] size-6"></span>
+                                    <span class="ml-3 flex items-center gap-0.5">
+
+                                        <span @class([
+                                            'size-6',
+                                            'icon-[cuida--checkbox-checked-outlined]' => $esLGBT === 1,
+                                            'icon-[ci--checkbox-unchecked]' => $esLGBT === 0 || $esLGBT === 'void',
+                                        ])></span>
                                         Si
                                     </span>
-                                    <span class="ml-4 flex items-center gap-1">
-                                        <span class="icon-[ci--checkbox-unchecked] size-6"></span>
+
+                                    <span class="ml-4 flex items-center gap-0.5">
+                                        <span @class([
+                                            'size-6',
+                                            'icon-[cuida--checkbox-checked-outlined]' => $esLGBT === 0,
+                                            'icon-[ci--checkbox-unchecked]' => $esLGBT === 1 || $esLGBT === 'void',
+                                        ])></span>
                                         No
                                     </span>
                                 </div>
+
                             </div>
 
                         </div>
 
 
-                        <div class="flex">
+                        <div class="flex border-b border-zinc-600">
                             <div class="flex flex-col w-2/3">
                                 <div class="flex pl-2 min-h-8 border-b border-zinc-600">
                                     <span
-                                        class="flex items-center text-wrap h-max min-w-80 pr-6 py-1 min-h-8 max-w-96 gap-1">
-                                        <b>Fecha de Nacimiento: </b> {{ $fechaNacimiento }}
+                                        class="flex items-center text-wrap h-max min-w-80 pr-6 min-h-8 max-w-96 gap-1">
+                                        <b>Tipo de Identificación: </b> {{ $tipoIdentificacion }}
+
                                     </span>
                                     <span class="flex items-center justify-start pl-2 gap-1 border-l border-zinc-600">
-                                        <b>Estado Civil:</b> {{ $estadoCivil }}
+                                        <b>Estado Civil: </b> {{ $estadoCivil }}
                                     </span>
 
                                 </div>
 
                                 <div class="flex pl-2 min-h-8">
                                     <span class="flex items-center text-wrap h-full min-w-80 pr-6 gap-1">
-                                        <b>País: </b> {{ $pais }}
+                                        <b>Fecha de Nacimiento: </b> {{ $fechaNacimiento }}
                                     </span>
 
-                                    @if ($codigoFamiliar)
-                                        <span
-                                            class="flex h-full w-full items-center pl-2 gap-1 border-l border-zinc-600">
-                                            <b>Familia # </b> {{ $codigoFamiliar }}
-                                        </span>
-                                    @endif
-                                    <div class="flex font-bold w-max h-full border-l border-zinc-600 items-center px-2">
-                                        <span class="icon-[noto--drop-of-blood] size-5"></span>
-                                        <span class="font-bold text-base">{{ $tipoSangre }}</span>
-                                    </div>
+
+                                    <span class="flex h-full w-full items-center pl-2 gap-1 border-l border-zinc-600">
+                                        <b>Edad:</b> {{ $edad }}
+
+
+                                    </span>
+
                                 </div>
 
                             </div>
 
 
                             <div class="flex flex-col justify-center w-1/3 border-l border-zinc-600 pl-4 min-h-16">
-                                <span>¿Pertenece a la comunidad <b>LGBTQI+</b>? </span>
+                                <span>¿Viaja en <b>Grupo</b> o <b>Familia</b>? </span>
                                 <div class="flex mt-1 font-bold items-center">
-                                    <span class="icon-[circle-flags--lgbt] size-6"></span>
-                                    <span class="ml-3 flex items-center gap-1">
-                                        <span class="icon-[ci--checkbox-unchecked] size-6"></span>
+                                    <span class="icon-[fa-solid--users] size-6 text-zinc-600"></span>
+                                    <span class="ml-3 flex items-center gap-0.5">
+                                        <span @class([
+                                            'size-6',
+                                            'icon-[cuida--checkbox-checked-outlined]' => $codigoFamiliar === 1,
+                                            'icon-[ci--checkbox-unchecked]' =>
+                                                $codigoFamiliar === 0 || $codigoFamiliar === 'void',
+                                        ])></span>
                                         Si
-                                    </span>
 
-                                    <span class="ml-4 flex items-center gap-1">
-                                        <span class="icon-[cuida--checkbox-checked-outlined] size-6"></span>
+                                    </span>
+                                    <span class="ml-4 flex items-center gap-0.5">
+                                        <span @class([
+                                            'size-6',
+                                            'icon-[cuida--checkbox-checked-outlined]' => $codigoFamiliar === 0,
+                                            'icon-[ci--checkbox-unchecked]' =>
+                                                $codigoFamiliar === 1 || $codigoFamiliar === 'void',
+                                        ])></span>
                                         No
                                     </span>
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="flex">
+                            <div class="flex flex-col w-2/3">
+                                <div class="flex pl-2 min-h-8">
+                                    <span
+                                        class="flex items-center text-wrap h-max min-w-80 pr-6 min-h-8 max-w-96 gap-1">
+                                        <b>País: </b> {{ $pais }}
+
+                                    </span>
+                                    <span class="flex items-center justify-start pl-2 gap-1 border-l border-zinc-600">
+                                        <b>Grupo Sanguíneo:</b>
+                                        <span class="icon-[noto--drop-of-blood] size-5"></span>
+                                        <span class="font-semibold text-base">{{ $tipoSangre }}</span>
+
+                                    </span>
+
+                                </div>
+
+
+
+                            </div>
+
+                            @if ($codigoFamiliar !== 0)
+                                <div class="flex justify-center items-center w-1/3 border-r border-zinc-600 pl-2">
+                                    <b>Familia # </b> {{ $codigoFamiliar }}
+                                </div>
+                            @endif
+
+                        </div>
+
+
                     </div>
                 </section>
 
-                <section class="flex flex-col my-6 text-sm">
+                <section class="flex flex-col my-8 text-sm">
                     <h3 class="font-bold text-base mb-1">II. Datos Migratorios</h3>
 
                     <div class="flex-col flex border border-zinc-600 rounded-lg">
-                        <div class="flex border-b border-zinc-600">
-                            <div class="flex flex-col w-3/4 size-full border-r border-zinc-600">
-                                <div class="border-b border-zinc-600 py-1 px-2">
+                        <div class="flex">
+                            <div class="flex flex-col size-full">
+                                <div class="px-2 min-h-8 items-center flex border-b border-zinc-600">
                                     <span><b>Situación Migratoria: </b>{{ $situacionMigratoria }}</span>
                                 </div>
-                                <div class="py-1 px-2">
-                                    <span><b>Necesidades: </b> {{ $necesidades }}.
-                                    </span>
+                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                    <span><b>Frontera por la que Ingresó al País: </b> {{ $frontera }}</span>
                                 </div>
-                            </div>
-                            <div class="flex flex-col w-1/4 text-center justify-center">
-                                <span><b>Fecha de Ingreso:</b></span>
-                                <span>{{ $fechaIngreso }}</span>
-                            </div>
-                        </div>
-
-                        <div class="flex">
-                            <div class="flex flex-col w-3/4 size-full border-r border-zinc-600">
-                                <div class="border-b border-zinc-600 py-1 px-2">
-                                    <span><b>Discapacidades: </b>{{ $discapacidades }}</span>
+                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                    <span><b>Entidad que lo Guió al Centro: </b>{{ $asesorMigratorio }}</span>
                                 </div>
-                                <div class="py-1 px-2">
+                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                    <span><b>Motivos por los que Salió del País: </b>{{ $motivos }}.</span>
+                                </div>
+                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                    <span><b>Discapacidades: </b>{{ $discapacidades }}.</span>
+                                </div>
+                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                    <span><b>Necesidades: </b>{{ $necesidades }}.</span>
+                                </div>
+                                <div class="min-h-16 flex px-2 py-1 border-b border-zinc-600 break-all">
                                     <span><b>Observación: </b> {{ $observacion }}</span>
                                 </div>
-                            </div>
-                            <div class="flex flex-col w-1/4 text-center justify-start p-1.5">
-                                <span><b>Fecha de Salida:</b></span>
-                                <span></span>
+                                <div class="min-h-10 items-center flex w-full">
+                                    <div class="size-full flex gap-1 items-center border-r border-zinc-600 pl-2">
+                                        <b>Fecha de Ingreso:</b>
+                                        {{ $fechaIngreso }}
+                                    </div>
+                                    <div class="size-full flex gap-1 items-center pl-2">
+                                        <b>Fecha de Salida:</b>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -169,20 +231,29 @@
                     </p>
                 </section>
 
-                {{-- Firmas --}}
-                <section>
+                {{-- Firma --}}
+                <section class="grow justify-end flex flex-col items-center gap-2">
 
+                    <hr class="border border-zinc-500  w-1/2">
+
+                    <span class="font-semibold">Firma de Ingreso.</span>
                 </section>
 
             </article>
         </div>
     </section>
 
-    <footer class="w-full flex flex-col gap-6 p-4 h-max print:hidden shadow-inner border-t border-accent">
+    <footer class="w-full flex p-4 h-max print:hidden shadow-inner border-t border-accent justify-between">
         <button class="btn btn-info flex-nowrap w-max" onclick="window.print();">
             <span class="icon-[material-symbols--print] size-6"></span>
             Imprimir
         </button>
+        <div class="flex gap-4">
+            <button class="btn btn-accent flex-nowrap w-max" wire:click="verMigrantes">
+                <span class="icon-[fa-solid--users] size-6"></span>
+                Listado de Migrantes
+            </button>
+        </div>
     </footer>
 
     {{-- Estilos específicos para impresión y visualización --}}

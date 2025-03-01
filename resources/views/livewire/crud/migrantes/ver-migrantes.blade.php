@@ -14,14 +14,14 @@
         <div class="w-[55%]">
             <div class="flex">
                 <div class="join w-full">
-                    <select wire:model.live.debounce.10ms="colSelected" class="select join-item w-min bg-accent">
+                    <select wire:model.live="colSelected" class="select join-item w-min bg-accent">
                         @foreach ($fakeColNames as $key => $value)
                             <option value="{{ $key }}">{{ $key }}</option>
                         @endforeach
                     </select>
                     <label
                         class="w-full input join-item bg-neutral border-2 border-accent input-bordered flex items-center justify-between gap-2">
-                        <input wire:model.live.debounce.300ms="textToFind" placeholder="Buscar..." type="text" />
+                        <input wire:model.live="textToFind" placeholder="Buscar..." type="text" />
 
                         {{-- Lógica para mostrar el ícono de cargando o el ícono de búsqueda --}}
                         <span wire:loading.remove class="icon-[map--search] size-5 text-gray-400"></span>
@@ -42,11 +42,11 @@
         </div>
     </section>
 
-    <main class="flex-grow overflow-hidden flex flex-col">
-        <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent z-0">
+    <main class="grow overflow-hidden flex flex-col">
+        <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent">
             <table class="table table-sm table-pin-rows w-full">
                 <thead class="text-sm">
-                    <tr class="border-b border-l border-accent bg-accent">
+                    <tr class="border-b border-x border-accent bg-accent">
                         <th>Número de Identificación</th>
                         <th>Nombre Completo</th>
                         <th>Pais</th>
