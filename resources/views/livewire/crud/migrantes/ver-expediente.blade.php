@@ -167,12 +167,17 @@
 
                             </div>
 
-                            @if ($codigoFamiliar !== 0)
+                            @if ($codigoFamiliar && $codigoFamiliar !== 'void')
                                 <div class="flex justify-center items-center w-1/3 border-r border-zinc-600 pl-2">
                                     <b>Familia # </b> {{ $codigoFamiliar }}
                                 </div>
                             @endif
 
+                        </div>
+
+                        <div
+                            class="flex border-t border-zinc-600 min-h-16 px-2 py-1 {{ $codigoFamiliar !== 'void' ? 'hidden' : '' }}">
+                            <b>Información del Familiar: </b>
                         </div>
 
 
