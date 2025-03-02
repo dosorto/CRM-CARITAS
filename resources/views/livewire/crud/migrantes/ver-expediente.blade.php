@@ -1,8 +1,10 @@
 <div class="h-screen w-full flex flex-col">
     <section class="w-full grow flex justify-center overflow-auto">
-        <div class="p-10 my-10 size-max shadow-lg border-2 border-accent rounded-lg bg-white">
 
-            <article class="prose max-w-none w-[216mm] h-[279mm] max-h-none flex flex-col">
+        <div class="p-12 my-10 size-max shadow-lg border-2 border-accent rounded-lg bg-white">
+
+            <article
+                class="prose max-w-none w-[216mm] h-[279mm] max-h-none flex flex-col text-gray-800 bg-white pb-0 mb-0">
                 <header class="relative flex justify-center min-h-[100px]">
                     <!-- Logo superior izquierdo -->
                     <img src="/img/logo-centro.jpg" class="absolute left-1 top-0 h-20" alt="Logo izquierdo">
@@ -226,7 +228,7 @@
                     </div>
                 </section>
 
-                <section class="my-2">
+                <section class="my-2 grow">
                     <p>
                         Solicito estadía temporal en el Centro de Atención Cáritas Mons. Guido Charbonneau. Declaro
                         conocer y aceptar su reglamento, comprometiéndome a su cumplimiento. Asimismo, autorizo el uso y
@@ -237,13 +239,10 @@
                 </section>
 
                 {{-- Firma --}}
-                <section class="grow justify-end flex flex-col items-center gap-2">
-
+                <section class="justify-end flex flex-col items-center gap-2">
                     <hr class="border border-zinc-500  w-1/2">
-
                     <span class="font-semibold">Firma de Ingreso.</span>
                 </section>
-
             </article>
         </div>
     </section>
@@ -282,16 +281,24 @@
         @media print {
             @page {
                 size: Letter;
-                margin: 10mm;
+                margin-top: 10mm;
+                margin-bottom: 0mm;
+                margin-left: 10mm;
+                margin-right: 10mm;
+                background: white !important;
             }
 
             * {
-                -webkit-print-color-adjust: exact;
+                -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact;
             }
 
             body * {
                 visibility: hidden;
+            }
+
+            body {
+                background: white !important;
             }
 
             article,
@@ -310,19 +317,6 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 transform-origin: top left;
-            }
-
-            /* Mantener tamaños de fuente fijos */
-            article h2 {
-                font-size: 24px !important;
-            }
-
-            article h3 {
-                font-size: 18px !important;
-            }
-
-            article h4 {
-                font-size: 16px !important;
             }
         }
     </style>
