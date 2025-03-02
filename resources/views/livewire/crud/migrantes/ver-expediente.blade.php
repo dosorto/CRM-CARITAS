@@ -4,7 +4,7 @@
         <div class="p-12 my-10 size-max shadow-lg border-2 border-accent rounded-lg bg-white">
 
             <article
-                class="prose max-w-none w-[216mm] h-[279mm] max-h-none flex flex-col text-gray-800 bg-white pb-0 mb-0">
+                class="prose max-w-none w-[216mm] h-[279mm] max-h-none flex flex-col text-gray-800 bg-white border-none">
                 <header class="relative flex justify-center min-h-[100px]">
                     <!-- Logo superior izquierdo -->
                     <img src="/img/logo-centro.jpg" class="absolute left-1 top-0 h-20" alt="Logo izquierdo">
@@ -239,9 +239,17 @@
                 </section>
 
                 {{-- Firma --}}
-                <section class="justify-end flex flex-col items-center gap-2">
-                    <hr class="border border-zinc-500  w-1/2">
-                    <span class="font-semibold">Firma de Ingreso.</span>
+                <section class="flex items-end w-full">
+                    {{-- Firma de Entrada --}}
+                    <div class="w-full flex flex-col items-center">
+                        <hr class="border border-zinc-500  w-2/3">
+                        <span class="font-semibold">Firma de Ingreso.</span>
+                    </div>
+                    {{-- Firma de Salida --}}
+                    <div class="w-full flex flex-col items-center">
+                        <hr class="border border-zinc-500 w-2/3">
+                        <span class="font-semibold">Firma de Salida.</span>
+                    </div>
                 </section>
             </article>
         </div>
