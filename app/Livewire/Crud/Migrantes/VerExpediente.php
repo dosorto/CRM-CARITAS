@@ -38,13 +38,13 @@ class VerExpediente extends Component
     public function mount($expedienteId = 0)
     {
         $this->expedienteId = $expedienteId;
+        $expediente = Expediente::find($expedienteId);
 
-        if(!$expedienteId)
+        if(!$expedienteId || !$expediente)
         {
             return $this->cargarVacio();
         }
 
-        $expediente = Expediente::find($expedienteId);
         $migrante = $expediente->migrante;
 
         $this->nombre = $migrante->primer_nombre . ' ' .
