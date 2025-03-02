@@ -6,7 +6,7 @@
 
     <input type="checkbox" id="{{ $idModal }}-{{ $item->id }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-1/2 bg-neutral">
+        <div class="modal-box w-1/2 max-w-5xl bg-neutral">
 
             {{-- Título del Modal --}}
             <h3 class="text-lg font-bold text-center">Editar Falta Disciplinaria</h3>

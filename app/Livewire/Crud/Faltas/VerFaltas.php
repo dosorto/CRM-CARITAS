@@ -52,7 +52,7 @@ class VerFaltas extends Component
             'parameters' => ['idModal' => 'deleteFaltaModal']
         ],
     ];
-    public $paginationSize = 10; // Número de Registros por página
+    public $paginationSize = 20; // Número de Registros por página
     public $itemClass = Falta::class; // Clase a mostrar en la tabla
     public $idCreateModal = 'createFaltaModal'; // id del modal de Crear
     // Debido a que solo es uno, se pasa por aparte

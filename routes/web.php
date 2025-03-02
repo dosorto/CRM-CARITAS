@@ -111,17 +111,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/faltas-disciplinarias', VerFaltas::class)
         ->name('ver-faltas');
 
-    Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
-        ->name('ver-gravedades-faltas');
+    // Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
+    //     ->name('ver-gravedades-faltas');
 
     Route::get('/historial/{migranteId}', HistorialMigrante::class)
         ->name('ver-historial');
 
 
     // ---------------- Manteminiento General ----------------
-
-    Route::get('/gravedades-faltas', VerGravedadesFaltas::class)
-        ->name('ver-gravedades-faltas');
 
     Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
         ->name('ver-solicitudes-pendientes');

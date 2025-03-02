@@ -168,7 +168,7 @@
                             </div>
 
                             @if ($codigoFamiliar && $codigoFamiliar !== 'void')
-                                <div class="flex justify-center items-center w-1/3 border-r border-zinc-600 pl-2">
+                                <div class="flex justify-center items-center w-1/3 border-l border-zinc-600 pl-2">
                                     <b>Familia # </b> {{ $codigoFamiliar }}
                                 </div>
                             @endif
