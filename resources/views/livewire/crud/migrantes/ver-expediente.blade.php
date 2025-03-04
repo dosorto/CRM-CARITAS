@@ -218,8 +218,23 @@
                                         <b>Fecha de Ingreso:</b>
                                         {{ $fechaIngreso }}
                                     </div>
-                                    <div class="size-full flex gap-1 items-center pl-2">
-                                        <b>Fecha de Salida:</b>
+                                    <div class="size-full flex justify-between gap-1 items-center px-2">
+                                        <span>
+                                            <b>Fecha de Salida:</b>
+                                            @if ($mostrarFechaSalida)
+                                                {{ $fechaSalida }}
+                                            @endif
+                                        </span>
+
+                                        @if ($fechaSalida)
+                                            <div class="tooltip tooltip-primary tooltip-left print:hidden"
+                                                data-tip="Ocultar / Mostrar la fecha de Salida">
+                                                <button class="btn btn-ghost btn-sm p-1"
+                                                    wire:click="cambiarVisibilidadFechaSalida">
+                                                    <span class="icon-[iconoir--eye] size-6"></span>
+                                                </button>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -256,10 +271,17 @@
     </section>
 
     <footer class="w-full flex p-4 h-max print:hidden shadow-inner border-t border-accent justify-between">
-        <button class="btn btn-info flex-nowrap w-max" onclick="window.print();">
-            <span class="icon-[material-symbols--print] size-6"></span>
-            Imprimir
-        </button>
+        <div class="flex gap-4">
+            <button class="btn btn-info flex-nowrap w-max" onclick="window.print();">
+                <span class="icon-[material-symbols--print] size-6"></span>
+                Imprimir
+            </button>
+            <div wire:loading class="h-full flex items-center">
+                <div class="h-full">
+                    <span class=" loading loading-spinner loading-lg"></span>
+                </div>
+            </div>
+        </div>
         <div class="flex gap-4">
             <button class="btn btn-accent flex-nowrap w-max" wire:click="verMigrantes">
                 <span class="icon-[fa-solid--users] size-6"></span>
