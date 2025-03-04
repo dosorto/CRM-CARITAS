@@ -72,6 +72,14 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
+
+        /* Configuración para usar la tipografía Figtree */
+        body {
+            font-family: 'Figtree', sans-serif;
+        }
+    </style>
 </body>
 
 </html>

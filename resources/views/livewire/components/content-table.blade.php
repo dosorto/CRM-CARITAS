@@ -5,8 +5,8 @@
             <thead class="text-base">
                 <tr class="border-b border-l border-accent bg-accent">
                     @foreach ($colNames as $colName)
-                        <th wire:key="TableColName-{{$colName}}"> 
-                            {{ $colName }} 
+                        <th wire:key="TableColName-{{$colName}}">
+                            {{ $colName }}
                         </th>
                     @endforeach
                     <th> Opciones </th>
@@ -45,7 +45,7 @@
     </article>
 
     {{-- Footer fijo en el fondo --}}
-    <footer class="py-4 border-t border-accent mb-0">
+    <footer class="py-4 border-accent mb-0">
         {{ $items->links() }}
     </footer>
 </main>

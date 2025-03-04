@@ -19,10 +19,6 @@
                         route="registrar-migrante" />
                 </article>
                 <article>
-                    <livewire:components.link-card title="Faltas Disciplinarias" cardWidth="w-full" iconClass="icon-[fluent--clipboard-error-16-filled] size-6"
-                        route="ver-faltas" />
-                </article>
-                <article>
                     <livewire:components.link-card title="Formato de Ficha de Registro" cardWidth="w-full" iconClass="icon-[material-symbols--print] size-6"
                         route="ver-expediente" />
                 </article>

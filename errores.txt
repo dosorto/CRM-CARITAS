@@ -2,3 +2,4 @@
 2. Falta crud de motivos de salida del país
 3. Las preguntas de asesoria psicosocial, psicologica, etc, aparecen en "NO" Antes de registrar la salida.
 4. Limitar la cantidad de migrantes que se muestran al seleccionar familiar.
+5. Falta validacion de cuando se crea un rol con un nombre existente, desconozco si pasa en otros cruds

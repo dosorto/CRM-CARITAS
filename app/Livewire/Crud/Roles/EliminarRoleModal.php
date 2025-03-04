@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Livewire\Crud\Paises;
+namespace App\Livewire\Crud\Roles;
 
 use App\Livewire\Components\ContentTable;
-use App\Models\Pais;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
-class EliminarPaisModal extends Component
+class EliminarRoleModal extends Component
 {
     public $item; // Modelo que contiene la información que se mostrará al eliminar
     public $idModal; // Identificador único del modal, debido a que hay varias instancias
@@ -17,13 +17,6 @@ class EliminarPaisModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-    }
-
-    // Renderiza el componente, esta función se llama cuando se ejecuta una función mediante un evento,
-    // como un wire:click o un #[On()]
-    public function render()
-    {
-        return view('livewire.crud.paises.eliminar-pais-modal');
     }
 
     // ELimina el item
@@ -45,9 +38,12 @@ class EliminarPaisModal extends Component
         // para evitar que todos los modales de eliminar se actualicen con los datos del unico item editado.
         if ($this->item->id === $id)
         {
-            $this->item = Pais::find($id);
+            $this->item = Role::find($id);
         }
     }
 
-
+    public function render()
+    {
+        return view('livewire.crud.roles.eliminar-role-modal');
+    }
 }

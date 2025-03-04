@@ -1,109 +1,118 @@
 <div class="h-screen w-full flex flex-col">
-    <header class="h-[10%] flex justify-between items-center p-4 border-b border-gray-300">
-        <h1 class="text-xl font-bold">Administración General</h1>
+    <header class="h-[10%] flex justify-between items-center p-4 border-b border-gray-600">
+        <h1 class="text-xl font-bold">Administración de Módulos</h1>
         <div>
             <!-- Espacio para cosas adicionales -->
         </div>
     </header>
 
-    <main class="overflow-auto size-full p-4 flex flex-col">
+    <main class="overflow-auto size-full p-4 flex gap-6 flex-wrap">
+        <section class="flex flex-col border-2 border-accent size-max rounded-lg">
+            <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
+                Expedientes
+            </h4>
+            <div class="flex flex-col gap-4 flex-wrap max-w-max p-3">
+                <a href="{{ route('ver-discapacidades') }}"
+                    class="btn btn-sm btn-accent w-max flex flex-col hover:scale-105">
+                    <span class="icon-[material-symbols--accessibility-rounded] size-5"></span>
+                    <span>Discapacidades</span>
+                </a>
 
+                <a href="{{ route('ver-situaciones-migratorias') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[fa6-solid--person-walking-luggage] size-5"></span>
+                    <span>Situaciones Migratorias</span>
+                </a>
 
-        <div class="flex flex-col">
-            <h2 class="text-xl font-semibold">
-                Regiones
-            </h2>
-            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
-                @can('Administrar Paises')
-                    <article>
-                        <livewire:components.link-card title="Paises" cardWidth="w-full" iconClass="icon-[vaadin--flag] size-6"
-                            route="ver-paises" />
-                    </article>
-                @endcan
-                @can('Administrar Departamentos')
-                    <article>
-                        <livewire:components.link-card title="Departamentos" cardWidth="w-full"
-                            iconClass="icon-[fluent--location-ripple-16-filled] size-6" route="ver-departamentos" />
-                    </article>
-                @endcan
-                @can('Administrar Ciudades')
-                    <article>
-                        <livewire:components.link-card title="Ciudades" cardWidth=" w-full"
-                            iconClass="icon-[solar--city-bold] size-6" route="ver-ciudades" />
-                    </article>
-                @endcan
+                <a href="{{ route('ver-asesores-migratorios') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[tabler--navigation-heart] size-5"></span>
+                    <span>Asesores Migratorios</span>
+                </a>
+
+                <a href="{{ route('ver-fronteras') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[maki--police] size-5"></span>
+                    <span>Fronteras</span>
+                </a>
+
+                <a href="{{ route('ver-necesidades') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[hugeicons--bubble-chat-favourite] size-6"></span>
+                    <span>Necesidades</span>
+                </a>
+
+                <a href="{{ route('ver-faltas') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[fluent--clipboard-error-16-filled] size-6"></span>
+                    <span>Faltas Disciplinarias</span>
+                </a>
+
             </div>
+        </section>
 
-        </div>
-        <hr class="border-2 border-accent">
+        <section class="flex flex-col border-2 border-accent size-max rounded-lg">
+            <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
+                Usuarios
+            </h4>
+            <div class="flex flex-col gap-4 flex-wrap max-w-max p-3">
+                <a href="{{ route('ver-usuarios') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[fa6-solid--users-gear] size-5"></span>
+                    <span>Usuarios</span>
+                </a>
+                <a href="{{ route('ver-roles') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[ic--sharp-manage-accounts] size-5"></span>
+                    <span>Roles</span>
+                </a>
+            </div>
+        </section>
 
-
-        <div class="flex flex-col mt-6">
-            <h2 class="text-xl font-semibold">
+        <section class="flex flex-col border-2 border-accent size-max rounded-lg">
+            <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
                 Donaciones
-            </h2>
-            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
-                <article>
-                    <livewire:components.link-card title="Donantes" cardWidth=" w-full"
-                        iconClass="icon-[streamline--give-gift-solid] size-6" route="ver-donantes" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="TipoDonantes" cardWidth=" w-full"
-                        iconClass="icon-[fa-solid--hands-helping] size-6" route="ver-tipo-donantes" />
-                </article>
+            </h4>
+            <div class="flex flex-col gap-4 flex-wrap max-w-max p-3">
+                <a href="{{ route('ver-donantes') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[streamline--give-gift-solid] size-5"></span>
+                    <span>Donantes</span>
+                </a>
+                <a href="{{ route('ver-tipo-donantes') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[fa-solid--hands-helping] size-5"></span>
+                    <span>Tipos de Donantes</span>
+                </a>
             </div>
+        </section>
 
-        </div>
-        <hr class="border-2 border-accent">
-
-
-        <div class="flex flex-col mt-6">
-            <h2 class="text-xl font-semibold">
-                Expedientes de Migrantes
-            </h2>
-            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
-                <article>
-                    <livewire:components.link-card title="Discapacidades" cardWidth="w-full"
-                        iconClass="icon-[material-symbols--accessibility-rounded] size-6" route="ver-discapacidades" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Situaciones Migratorias" cardWidth="w-full"
-                        iconClass="icon-[fa6-solid--person-walking-luggage] size-6"
-                        route="ver-situaciones-migratorias" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Asesores Migratorios" cardWidth="w-full"
-                        iconClass="icon-[tabler--navigation-heart] size-6" route="ver-asesores-migratorios" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Fronteras" cardWidth="w-full"
-                        iconClass="icon-[maki--police] size-6" route="ver-fronteras" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Necesidades" cardWidth="w-full"
-                        iconClass="icon-[hugeicons--bubble-chat-favourite] size-6" route="ver-necesidades" />
-                </article>
+        <section class="flex flex-col border-2 border-accent size-max rounded-lg">
+            <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
+                Inventario
+            </h4>
+            <div class="flex flex-col gap-4 flex-wrap max-w-max p-3">
+                <a href="{{ route('ver-articulos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[material-symbols--sanitizer-rounded] size-5"></span>
+                    <span>Artículos</span>
+                </a>
+                <a href="{{ route('ver-mobiliarios') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[icon-park-solid--bedside-two] size-5"></span>
+                    <span>Mobiliario</span>
+                </a>
             </div>
-        </div>
-        <hr class="border-2 border-accent">
+        </section>
 
-
-        <div class="flex flex-col mt-6">
-            <h2 class="text-xl font-semibold">
-                Artículos y Mobiliario
-            </h2>
-            <div class="flex flex-row gap-4 mt-4 pb-4 overflow-x-auto h-full text-nowrap">
-                <article>
-                    <livewire:components.link-card title="Artículos" cardWidth="w-full"
-                        iconClass="icon-[material-symbols--sanitizer-rounded] size-6" route="ver-articulos" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Mobiliario" cardWidth="w-full"
-                        iconClass="icon-[icon-park-solid--bedside-two] size-6" route="ver-mobiliarios" />
-                </article>
+        <section class="flex flex-col border-2 border-accent size-max rounded-lg">
+            <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
+                Regiones
+            </h4>
+            <div class="flex flex-col gap-4 flex-wrap max-w-max p-3">
+                <a href="{{ route('ver-paises') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[clarity--flag-solid] size-5"></span>
+                    <span>Países</span>
+                </a>
+                <a href="{{ route('ver-departamentos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[fluent--location-ripple-16-filled] size-5"></span>
+                    <span>Departamentos</span>
+                </a>
+                <a href="{{ route('ver-departamentos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[solar--city-bold] size-5"></span>
+                    <span>Ciudades</span>
+                </a>
             </div>
-        </div>
-        <hr class="border-2 border-accent">
+        </section>
     </main>
 
 

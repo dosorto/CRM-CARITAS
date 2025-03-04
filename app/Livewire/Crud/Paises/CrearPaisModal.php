@@ -26,10 +26,7 @@ class CrearPaisModal extends Component
         $this->idModal = $idModal;
     }
 
-    public function render()
-    {
-        return view('livewire.crud.paises.crear-pais-modal');
-    }
+
 
     public function create()
     {
@@ -51,7 +48,7 @@ class CrearPaisModal extends Component
         // Se envía el evento de item-created a la tabla para que actualice su contenido.
         $this->dispatch('item-created')->to(ContentTable::class);
 
-        // este evento se envia en este mismo componente y se escucha en la vista con un script, 
+        // este evento se envia en este mismo componente y se escucha en la vista con un script,
         // que cambia el valor del checkbox del modal a 'false', cerrándolo.
         $this->closeModal();
     }
@@ -67,5 +64,10 @@ class CrearPaisModal extends Component
         $this->Nombre = '';
         $this->Alfa3 = '';
         $this->Numerico = '';
+    }
+
+    public function render()
+    {
+        return view('livewire.crud.paises.crear-pais-modal');
     }
 }

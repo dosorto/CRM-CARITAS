@@ -35,7 +35,6 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Donaciones\CrearDonaciones;
 use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
-use App\Livewire\Crud\GravedadesFaltas\VerGravedadesFaltas;
 use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
@@ -50,6 +49,8 @@ use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
 use App\Livewire\Reportes\ReporteArticulo;
 use App\Livewire\Crud\Migrantes\HistorialMigrante;
 use App\Livewire\Crud\Migrantes\VerExpediente;
+use App\Livewire\Crud\Roles\VerRoles;
+use App\Livewire\Crud\Usuarios\VerUsuarios;
 
 Route::get('/', Login::class)
     ->name('login');
@@ -116,6 +117,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/historial/{migranteId}', HistorialMigrante::class)
         ->name('ver-historial');
+
+
+
+    // ---------------- Usuarios ----------------
+
+    Route::get('/usuarios', VerUsuarios::class)
+        ->name('ver-usuarios');
+
+    Route::get('/roles', VerRoles::class)
+        ->name('ver-roles');
 
 
     // ---------------- Manteminiento General ----------------

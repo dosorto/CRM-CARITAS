@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\Crud\Paises;
+namespace App\Livewire\Crud\Roles;
 
-use Livewire\Component;
 use App\Livewire\Components\ContentTable;
+use Livewire\Component;
 
-class EditarPaisModal extends Component
+class EditRoleModal extends Component
 {
     public $item;
     public $Nombre;
@@ -19,7 +19,7 @@ class EditarPaisModal extends Component
     {
         $this->item = $parameters['item'];
         $this->idModal = $parameters['idModal'];
-        $this->resetForm();
+        $this->Nombre = $this->item->name;
     }
 
 
@@ -31,21 +31,17 @@ class EditarPaisModal extends Component
         // Valida los datos de los inputs ingresados
         $validated = $this->validate([
             // 'wire:model de input' => 'validacion necesaria'
-            'Nombre' => 'required',
-            'Alfa3' => 'required|size:3',
-            'Numerico' => 'required|size:3',
+            'Nombre' => 'required'
         ]);
 
         // Lógica para editar el item, se utilizan los valores validados de la variable '$validated' de arriba
-        $paisEdited = $this->item;
-        $paisEdited->nombre_pais = $validated['Nombre'];
-        $paisEdited->codigo_alfa3 = $validated['Alfa3'];
-        $paisEdited->codigo_numerico = $validated['Numerico'];
-        $paisEdited->save();
+        $rolEdited = $this->item;
+        $rolEdited->name = $validated['Nombre'];
+        $rolEdited->save();
 
         // Se envía un evento con el id del pais a ELiminarPaisModal,
         // para actualizar la información instantáneamente cuando se edite el item en específico.
-        $this->dispatch('update-delete-modal', id: $paisEdited->id)->to(EliminarPaisModal::class);
+        $this->dispatch('update-delete-modal', id: $rolEdited->id)->to(EliminarRoleModal::class);
 
         // De igual manera, se envía el evento de item-edited a la tabla para que actualice su contenido.
         $this->dispatch('item-edited')->to(ContentTable::class);
@@ -55,26 +51,16 @@ class EditarPaisModal extends Component
         $this->dispatch('close-modal')->self();
     }
 
-    // Resetea los valores predeterminados del formulario, en este caso de editar,
-    // con los valores de item correspondiente al modal.
-    public function resetForm()
-    {
-        $this->Nombre = $this->item->nombre_pais;
-        $this->Alfa3 = $this->item->codigo_alfa3;
-        $this->Numerico = $this->item->codigo_numerico;
-    }
-
     // Esta función se ejecuta cuando se presiona "Cancelar",
     // se resetea el formulario a los últimos valores cargados justo antes de cerrarlo.
     public function closeModal()
     {
-        $this->resetForm();
+        $this->Nombre = $this->item->name;
         $this->dispatch('close-modal')->self();
     }
 
-        // Renderizado de la vista del componente.
     public function render()
     {
-        return view('livewire.crud.paises.editar-pais-modal');
+        return view('livewire.crud.roles.edit-role-modal');
     }
 }
