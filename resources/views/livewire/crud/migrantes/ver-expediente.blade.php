@@ -192,22 +192,22 @@
                     <div class="flex-col flex border border-zinc-600 rounded-lg">
                         <div class="flex">
                             <div class="flex flex-col size-full">
-                                <div class="px-2 min-h-8 items-center flex border-b border-zinc-600">
+                                <div class="px-2 min-h-8 py-1 items-center flex border-b border-zinc-600">
                                     <span><b>Situación Migratoria: </b>{{ $situacionMigratoria }}</span>
                                 </div>
-                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                <div class="min-h-8 py-1 items-center flex px-2 border-b border-zinc-600">
                                     <span><b>Frontera por la que Ingresó al País: </b> {{ $frontera }}</span>
                                 </div>
-                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                <div class="min-h-8 py-1 items-center flex px-2 border-b border-zinc-600">
                                     <span><b>Entidad que lo Guió al Centro: </b>{{ $asesorMigratorio }}</span>
                                 </div>
-                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                <div class="min-h-8 py-1 items-center flex px-2 border-b border-zinc-600">
                                     <span><b>Motivos por los que Salió del País: </b>{{ $motivos }}.</span>
                                 </div>
-                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                <div class="min-h-8 py-1 items-center flex px-2 border-b border-zinc-600">
                                     <span><b>Discapacidades: </b>{{ $discapacidades }}.</span>
                                 </div>
-                                <div class="min-h-8 items-center flex px-2 border-b border-zinc-600">
+                                <div class="min-h-8 py-1 items-center flex px-2 border-b border-zinc-600">
                                     <span><b>Necesidades: </b>{{ $necesidades }}.</span>
                                 </div>
                                 <div class="min-h-16 flex px-2 py-1 border-b border-zinc-600 break-all">
@@ -248,8 +248,8 @@
                         Solicito estadía temporal en el Centro de Atención Cáritas Mons. Guido Charbonneau. Declaro
                         conocer y aceptar su reglamento, comprometiéndome a su cumplimiento. Asimismo, autorizo el uso y
                         compartición de mi información con ACNUR y otras organizaciones internacionales de apoyo
-                        migratorio. Entiendo que, al firmar este documento, tengo derecho a recibir comida, agua y
-                        alojamiento. Firmo para constancia.
+                        migratorio. Entiendo que, al firmar este documento, tengo derecho a recibir acceso a internet,
+                        comida, agua y alojamiento. Firmo para constancia.
                     </p>
                 </section>
 
