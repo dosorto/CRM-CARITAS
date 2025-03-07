@@ -57,7 +57,11 @@ class FamiliarStep extends Component
             $this->codigoFamiliar = $this->nuevoCodigoFamiliar;
         }
 
-        $this->personas = Migrante::whereNot('codigo_familiar', 0)->get();
+        $this->personas = Migrante::whereNot('codigo_familiar', 0)
+            ->orderBy('id', 'desc')
+            ->take(20)
+            ->get();
+
         $this->noHayRegistros = Migrante::all()->isEmpty();
     }
 
@@ -104,7 +108,6 @@ class FamiliarStep extends Component
     {
         $this->personas = Migrante::where($this->fakeColNames[$this->colSelected], 'LIKE', '%' . $this->textToFind . '%')
             ->whereNot('codigo_familiar', 0)->get();
-
     }
 
     public function selectFamiliar($personaId)

@@ -19,6 +19,8 @@ class ContentTable extends Component
 
     public $textToFind = '';
     public $colSelected;
+    public $tableSize = 'md';
+    public $textSize = 'base';
 
 
     public function filterData()
@@ -29,13 +31,15 @@ class ContentTable extends Component
             $this->itemClass::where($this->colSelected, 'LIKE', '%' . $this->textToFind . '%')->paginate($this->paginationSize);
     }
 
-    public function mount($colNames, $keys, $paginationSize = 15, $itemClass, $actions)
+    public function mount($colNames, $keys, $paginationSize = 15, $itemClass, $actions, $tableSize = '', $textSize = 'base')
     {
         $this->colNames = $colNames;
         $this->keys = $keys;
         $this->paginationSize = $paginationSize;
         $this->itemClass = $itemClass;
         $this->actions = $actions;
+        $this->tableSize = $tableSize;
+        $this->textSize = $textSize;
 
         $this->colSelected = array_key_first($colNames);
     }

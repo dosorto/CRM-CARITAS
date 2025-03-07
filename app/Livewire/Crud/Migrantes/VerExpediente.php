@@ -28,20 +28,21 @@ class VerExpediente extends Component
     public $situacionMigratoria;
     public $asesorMigratorio;
     public $frontera;
-    public $faltas;
     public $fechaIngreso;
+    public $fechaSalida;
     public $necesidades;
     public $discapacidades;
     public $motivos;
     public $observacion;
+
+    public $mostrarFechaSalida = true;
 
     public function mount($expedienteId = 0)
     {
         $this->expedienteId = $expedienteId;
         $expediente = Expediente::find($expedienteId);
 
-        if(!$expedienteId || !$expediente)
-        {
+        if (!$expedienteId || !$expediente) {
             return $this->cargarVacio();
         }
 
@@ -71,10 +72,16 @@ class VerExpediente extends Component
 
 
 
-        $this->situacionMigratoria = $expediente->situacionMigratoria->situacion_migratoria;
         $this->fechaIngreso = $expediente->fecha_ingreso
             ? Carbon::parse($expediente->fecha_ingreso)->format('d-m-Y')
             : '';
+
+
+        $this->fechaSalida = $expediente->fecha_salida
+            ? Carbon::parse($expediente->fecha_salida)->format('d-m-Y')
+            : '';
+
+        $this->situacionMigratoria = $expediente->situacionMigratoria->situacion_migratoria;
         $this->asesorMigratorio = $expediente->asesorMigratorio->asesor_migratorio;
         $this->frontera = $expediente->frontera->frontera;
         $this->necesidades = $expediente->necesidades->pluck('necesidad')->join(', ');
@@ -114,6 +121,11 @@ class VerExpediente extends Component
         $this->discapacidades = '';
         $this->observacion = '';
         $this->motivos = '';
+    }
+
+    public function cambiarVisibilidadFechaSalida()
+    {
+        $this->mostrarFechaSalida = !$this->mostrarFechaSalida;
     }
 
     public function render()
