@@ -10,7 +10,7 @@
         {{-- Permiso para ver expedientes --}}
 
         @canany(['ver-discapacidades', 'ver-situaciones-migratorias', 'ver-asesores-migratorios', 'ver-fronteras',
-            'ver-necesidades', 'ver-faltas-disciplinarias'])
+            'ver-necesidades', 'ver-motivos-salida-de-pais', 'ver-faltas-disciplinarias'])
             <section class="flex flex-col border-2 border-accent size-max rounded-lg">
                 <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
                     Expedientes
@@ -43,14 +43,15 @@
                         </a>
                     @endcan
                     @can('ver-necesidades')
-                <a href="{{ route('ver-motivos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
-                    <span class="icon-[streamline--travel-airport-earth-airplane-travel-plane-trip-airplane-international-adventure-globe-world] size-6"></span>
-                    <span>Motivos de Salida del País</span>
-                </a>
-
                         <a href="{{ route('ver-necesidades') }}" class="btn btn-sm btn-accent w-max flex flex-col">
                             <span class="icon-[hugeicons--bubble-chat-favourite] size-6"></span>
                             <span>Necesidades</span>
+                        </a>
+                    @endcan
+                    @can('ver-motivos-salida-de-pais')
+                        <a href="{{ route('ver-motivos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                            <span class="icon-[streamline--travel-airport-earth-airplane-travel-plane-trip-airplane-international-adventure-globe-world] size-6"></span>
+                            <span>Motivos de Salida del País</span>
                         </a>
                     @endcan
                     @can('ver-faltas-disciplinarias')

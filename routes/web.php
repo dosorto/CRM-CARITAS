@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('ver-necesidades');
 
     Route::get('/motivos', VerMotivos::class)
+        ->middleware('can:ver-motivos-salida-de-pais')
         ->name('ver-motivos');
 
     Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)

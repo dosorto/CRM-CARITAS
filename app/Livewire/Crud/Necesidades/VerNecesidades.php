@@ -44,11 +44,11 @@ class VerNecesidades extends Component
             'component' => 'crud.necesidades.editar-necesidad-modal',
             'parameters' => ['idModal' => 'editNecesidadModal']
         ],
-        // [
-        //     'name' => 'deleteNecesidad',
-        //     'component' => 'crud.necesidades.eliminar-necesidad-modal',
-        //     'parameters' => ['idModal' => 'deleteNecesidadModal']
-        // ]
+        [
+            'name' => 'deleteNecesidad',
+            'component' => 'crud.necesidades.eliminar-necesidad-modal',
+            'parameters' => ['idModal' => 'deleteNecesidadModal']
+        ]
     ];
 
     // Parametros adicionales para la content-table
