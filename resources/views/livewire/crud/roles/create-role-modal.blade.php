@@ -18,7 +18,7 @@
                 {{-- Contenido --}}
                 <div class="flex w-full flex-col mt-6">
                     <label class="mb-1"> Nombre del Rol </label>
-                    <input wire:model="Nombre" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
+                    <input wire:model="Nombre" class="input input-bordered input-sm bg-accent" type="text" placeholder="Escribir aquí..." />
                     <div class="mt-1 text-error-content font-bold">
                         @error('Nombre')
                             {{ $message }}
@@ -32,7 +32,7 @@
                 <div class="flex flex-col mt-6 overflow-auto">
 
                     <label class="mb-1"> Seleccione los Permisos que Tendrá este Rol </label>
-                    <div class="w-full input input-sm bg-accent input-bordered flex items-center justify-between my-2">
+                    <div class="w-full input input-sm bg-accent input-bordered flex items-center justify-between mb-2">
                         <input wire:model.live.debounce.200ms="textoBusquedaPermisos" type="text" class="w-full mr-2"
                             placeholder="Buscar..." />
                         <span wire:loading.remove wire:target="textoBusquedaPermisos"
@@ -42,7 +42,7 @@
                     <div class="border-2 border-accent rounded-lg flex flex-col grow p-4 gap-2 overflow-auto">
 
                         @foreach ($permissions as $id => $name)
-                            <label class="flex items-center gap-2">
+                            <label class="flex items-center gap-2" wire:key="permissionCreateModal-{{ $id }}">
                                 <input type="checkbox" wire:model="selectedPermissions" value="{{ $id }}" class="checkbox checkbox-accent" />
                                 <span>{{ $name }}</span>
                             </label>
@@ -56,7 +56,7 @@
 
             <div class="modal-action">
                 <div wire:loading class="flex items-center p-2 justify-start size-full">
-                    <span class="loading loading-spinner loading-lg text-gray-600"></span>
+                    <span class="loading loading-spinner text-gray-500"></span>
                 </div>
                 <button type="button" wire:click="create" class="btn btn-success gap-1 pl-3">
                     <span class="icon-[mdi--plus-circle] size-5"></span>

@@ -1,6 +1,6 @@
 <div>
     <!-- Botón para abrir el modal -->
-    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-accent text-base-content gap-2">
+    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-accent">
         <span class="icon-[pajamas--information-o] size-4"></span>
     </label>
 

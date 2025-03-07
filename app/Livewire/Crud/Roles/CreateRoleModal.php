@@ -25,16 +25,15 @@ class CreateRoleModal extends Component
     }
 
     public function updatedTextoBusquedaPermisos($value)
-{
-    $query = Permission::orderBy('id', 'desc');
+    {
+        $query = Permission::orderBy('id', 'desc');
 
-    if (trim($value) !== '') {
-        $query->where('name', 'LIKE', '%' . trim($value) . '%');
+        if (trim($value) !== '') {
+            $query->where('name', 'LIKE', '%' . trim($value) . '%');
+        }
+
+        $this->permissions = $query->pluck('name', 'id')->toArray();
     }
-
-    $this->permissions = $query->pluck('name', 'id')->toArray();
-
-}
 
 
 

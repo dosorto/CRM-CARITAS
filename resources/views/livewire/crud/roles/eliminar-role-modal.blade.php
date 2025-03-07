@@ -1,6 +1,6 @@
 <div>
     {{-- Botón para activar el Modal --}}
-    <label for="{{ $idModal }}-{{ $item->id }}" class="btn btn-sm btn-error text-primary-content gap-2">
+    <label for="{{ $idModal }}-{{ $item->id }}" @class(['btn btn-sm btn-primary  gap-2', 'hidden' => $item->name=='admin'])>
         <span class="icon-[mingcute--delete-2-fill] size-4"></span>
     </label>
 
