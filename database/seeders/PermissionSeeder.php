@@ -43,6 +43,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'ver-asesores-migratorios']);
         Permission::create(['name' => 'ver-fronteras']);
         Permission::create(['name' => 'ver-necesidades']);
+        Permission::create(['name' => 'ver-motivos-salida-de-pais']);
         Permission::create(['name' => 'ver-faltas-disciplinarias']);
 
         // Permisos para administrar todo lo de Expedientes

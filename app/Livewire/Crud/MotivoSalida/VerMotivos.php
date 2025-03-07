@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Crud\Necesidades;
-
-use App\Models\Necesidad;
+namespace App\Livewire\Crud\MotivoSalida;
+use App\Models\MotivoSalidaPais;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 
 #[Lazy()]
-class VerNecesidades extends Component
-{ 
+class VerMotivos extends Component
+{
+
     // Anillo de Cargando cuando el componente tarda
     public function placeholder()
     {
@@ -20,44 +20,41 @@ class VerNecesidades extends Component
     }
 
     // Esto es para el buscador
-    // $fakeColNames = [
-    //     'Nombre que aparece en el select' => 'nombre del atributo'
-    // ]
     public $fakeColNames = [
-        'Necesidad' => 'necesidad',
+        'Motivo' => 'motivo_salida_pais',
     ];
 
     // Nombre de los encabezados de las columnas
     public $colNames = [
-        'Necesidad',
+        'Motivo de Salida del Pais',
     ];
 
     // Atributos, deben estar en el mismo orden que las $colNames
     public $keys = [
-        'necesidad',
+        'motivo_salida_pais',
     ];
 
     // datos de botones, 'name' se usará para el identificador único del modal
     public $actions = [
         [
-            'name' => 'editNecesidad',
-            'component' => 'crud.necesidades.editar-necesidad-modal',
-            'parameters' => ['idModal' => 'editNecesidadModal']
+            'name' => 'editMotivo',
+            'component' => 'crud.motivo-salida.editar-motivo-modal',
+            'parameters' => ['idModal' => 'editMotivoModal']
         ],
         [
-            'name' => 'deleteNecesidad',
-            'component' => 'crud.necesidades.eliminar-necesidad-modal',
-            'parameters' => ['idModal' => 'deleteNecesidadModal']
+            'name' => 'deleteMotivo',
+            'component' => 'crud.motivo-salida.eliminar-motivo-modal',
+            'parameters' => ['idModal' => 'deleteMotivoModal']
         ]
     ];
 
     // Parametros adicionales para la content-table
     public $paginationSize = 15; // Número de registros por página
-    public $itemClass = Necesidad::class; // Clase que se mostrará
-    public $idCreateModal = "createNecesidadModal"; // id del modal de crear, debido a que solo hay una instancia, se pasa normalmente.
+    public $itemClass = MotivoSalidaPais::class; // Clase que se mostrará
+    public $idCreateModal = "createMotivoModal"; // id del modal de crear, debido a que solo hay una instancia, se pasa normalmente.
 
     public function render()
     {
-        return view('livewire.crud.necesidades.ver-necesidades');
+        return view('livewire.crud.motivo-salida.ver-motivos');
     }
 }

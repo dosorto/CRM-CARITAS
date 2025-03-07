@@ -37,6 +37,7 @@ use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
+use App\Livewire\Crud\MotivoSalida\VerMotivos;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 use App\Livewire\Pages\Actas\ActasEntregaPage;
@@ -103,6 +104,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/necesidades', VerNecesidades::class)
         ->middleware('can:ver-necesidades')
         ->name('ver-necesidades');
+
+    Route::get('/motivos', VerMotivos::class)
+        ->middleware('can:ver-motivos-salida-de-pais')
+        ->name('ver-motivos');
 
     Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
         ->middleware('can:ver-situaciones-migratorias')
@@ -213,7 +218,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('actas');
 
     Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
-        ->middleware('can:autorizar-solicitudes-pendientes')
+        ->middleware('can:autorizar-solicitudes')
         ->name('ver-solicitudes-pendientes');
 
 

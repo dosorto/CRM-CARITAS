@@ -59,6 +59,6 @@ registrar-donacion
 
 generar-reportes-de-migrantes
 
-autorizar-solicitudes-pendientes
+autorizar-solicitudes
 
 
