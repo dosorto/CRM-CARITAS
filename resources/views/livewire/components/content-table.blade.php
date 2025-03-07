@@ -1,11 +1,11 @@
 {{-- Tabla --}}
 <main class="flex-grow overflow-hidden flex flex-col">
     <article class="flex-grow overflow-y-auto rounded-lg border-2 border-accent">
-        <table class="table table-pin-rows w-full">
-            <thead class="text-base">
+        <table class="table table-pin-rows w-full table-{{ $tableSize }}">
+            <thead class="text-{{ $textSize }}">
                 <tr class="border-b border-l border-accent bg-accent">
                     @foreach ($colNames as $colName)
-                        <th wire:key="TableColName-{{$colName}}">
+                        <th wire:key="TableColName-{{ $colName }}">
                             {{ $colName }}
                         </th>
                     @endforeach
@@ -28,14 +28,11 @@
                                     }
                                 }
                             @endphp
-                            <td wire:key="{{$item->id}}-{{$key}}">{{ $value }}</td>
+                            <td wire:key="{{ $item->id }}-{{ $key }}">{{ $value }}</td>
                         @endforeach
                         <td class="flex gap-2">
                             @foreach ($actions as $action)
-                                <livewire:dynamic-component
-                                    :key="$action['name'] . '-' . $item->id"
-                                    :component="$action['component']"
-                                    :parameters="array_merge(['item' => $item], $action['parameters'] ?? [])"/>
+                                <livewire:dynamic-component :key="$action['name'] . '-' . $item->id" :component="$action['component']" :parameters="array_merge(['item' => $item], $action['parameters'] ?? [])" />
                             @endforeach
                         </td>
                     </tr>

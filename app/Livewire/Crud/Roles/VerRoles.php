@@ -40,6 +40,12 @@ class VerRoles extends Component
             'component' => 'crud.roles.eliminar-role-modal',
             'parameters' => ['idModal' => 'deleteRoleModal']
         ],
+
+        [
+            'name' => 'mostrarPermisosRol',
+            'component' => 'crud.roles.mostrar-permisos-rol-modal',
+            'parameters' => ['idModal' => 'mostrarPermisosRolModal']
+        ],
     ];
     public $paginationSize = 10; // Número de Registros por página
     public $itemClass = Role::class; // Clase a mostrar en la tabla

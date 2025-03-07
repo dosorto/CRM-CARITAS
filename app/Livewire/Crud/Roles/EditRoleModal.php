@@ -4,63 +4,73 @@ namespace App\Livewire\Crud\Roles;
 
 use App\Livewire\Components\ContentTable;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class EditRoleModal extends Component
 {
     public $item;
     public $Nombre;
-    public $Alfa3;
-    public $Numerico;
     public $idModal;
+    public $permissions = []; // Todos los permisos disponibles
+    public $selectedPermissions = []; // Permisos asignados al rol
 
-    // Esta funcion se ejecuta una vez, antes de renderizar el componente,
-    // hasta que se recargue toda la pagina, no se vuelve a ejecutar.
     public function mount($parameters)
     {
-        $this->item = $parameters['item'];
+        $this->item = Role::with('permissions')->find($parameters['item']->id);
         $this->idModal = $parameters['idModal'];
         $this->Nombre = $this->item->name;
+
+        // Obtener todos los permisos
+        $this->permissions = Permission::pluck('name', 'id')->toArray();
+
+        // Cargar permisos del rol
+        $this->selectedPermissions = $this->item->permissions()->pluck('id')->toArray();
     }
 
-
-
-
-    // Función para editar el item
-    public function  editItem()
+    public function updateRole()
     {
-        // Valida los datos de los inputs ingresados
+        // Validar datos
         $validated = $this->validate([
-            // 'wire:model de input' => 'validacion necesaria'
-            'Nombre' => 'required'
+            'Nombre' => 'required|string|max:255',
+            'selectedPermissions' => 'array', // Asegurar que es un array
         ]);
 
-        // Lógica para editar el item, se utilizan los valores validados de la variable '$validated' de arriba
-        $rolEdited = $this->item;
-        $rolEdited->name = $validated['Nombre'];
-        $rolEdited->save();
+        // Actualizar nombre del rol
+        $this->item->name = $validated['Nombre'];
+        $this->item->save();
 
-        // Se envía un evento con el id del pais a ELiminarPaisModal,
+        // Sincronizar permisos
+        $permissions = Permission::whereIn('id', $this->selectedPermissions)->get();
+        $this->item->syncPermissions($permissions);
+
+        $this->dispatch('item-edited')->to(ContentTable::class);
+        // Cerrar modal
+        $this->dispatch('close-modal')->self();
+        //$this->dispatch('role-updated');
+
+        // Se envía un evento con el id del departamento a EliminarDepartamentoModal,
         // para actualizar la información instantáneamente cuando se edite el item en específico.
-        $this->dispatch('update-delete-modal', id: $rolEdited->id)->to(EliminarRoleModal::class);
+        $this->dispatch('update-delete-modal', id: $this->item->id)->to(MostrarPermisosRolModal::class);
 
         // De igual manera, se envía el evento de item-edited a la tabla para que actualice su contenido.
         $this->dispatch('item-edited')->to(ContentTable::class);
-
-        // este evento se envia en este mismo componente y se escucha en la vista con un script,
-        // que cambia el valor del checkbox del modal a 'false', cerrándolo.
-        $this->dispatch('close-modal')->self();
     }
 
-    // Esta función se ejecuta cuando se presiona "Cancelar",
-    // se resetea el formulario a los últimos valores cargados justo antes de cerrarlo.
     public function closeModal()
     {
         $this->Nombre = $this->item->name;
+        $this->selectedPermissions = $this->item->permissions()->pluck('id')->toArray();
         $this->dispatch('close-modal')->self();
     }
 
+
+
+
     public function render()
     {
-        return view('livewire.crud.roles.edit-role-modal');
+        return view('livewire.crud.roles.edit-role-modal', [
+            'permissions' => $this->permissions
+        ]);
     }
 }

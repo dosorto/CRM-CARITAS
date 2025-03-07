@@ -105,14 +105,19 @@ class RegistrarMigrante extends Component
             if ($migrante === null) {
                 $this->nextStep();
             }
+
             // Caso 2: El numero de identificacion ya existe
             else {
-
                 // Verificar que el migrante no tenga expedientes activos
-                if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id)){
-                    $this->dispatch('expediente-aun-activo')->self();
-                    session()->forget(['formMigranteData']);
-                }
+
+
+
+                // De momento no se permiten re ingresos, por lo que si el migrante existe ya se activa el modal
+                // if ($this->getMigranteService()->tieneExpedienteActivo($migrante->id)) {
+                $this->dispatch('expediente-aun-activo')->self();
+                session()->forget(['formMigranteData']);
+                // }
+
 
 
                 // session(['formData.migranteFound' => true]);
@@ -120,6 +125,7 @@ class RegistrarMigrante extends Component
                 // $this->currentStep = 4;
             }
 
+            // No se hará de momento con este caso.
             // Caso 3: El formulario se abrió desde el listado de migrantes.
         }
     }

@@ -12,34 +12,45 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+        // Regiones
+        Permission::create(['name' => 'ver-paises']);
+        Permission::create(['name' => 'administrar-paises']);
 
-        // //Permisos del DASHBOARD
-        Permission::create(['name' => 'Ver Dashboard']);
+        Permission::create(['name' => 'ver-departamentos']);
+        Permission::create(['name' => 'administrar-departamentos']);
 
-        //Permisos del CRUD PAIS
-        Permission::create(['name' => 'Administrar Paises']);
+        Permission::create(['name' => 'ver-ciudades']);
+        Permission::create(['name' => 'administrar-ciudades']);
 
-        //Permisos del CRUD DEPARTAMENTO
-        Permission::create(['name' => 'Administrar Departamentos']);
-
-        //Permisos del CRUD CIUDAD
-        Permission::create(['name' => 'Administrar Ciudades']);
-
-        //Permisos del CRUD ROLES
-        Permission::create(['name' => 'Administrar Roles']);
-
-        //Permisos del CRUD PERMISOS
-        Permission::create(['name' => 'Administrar Permisos']);
-
-        //Permisos del CRUD ROLES
-        Permission::create(['name' => 'Administrar Usuarios']);
-
-        //Permisos del CRUD EMPLEADOS
-        Permission::create(['name' => 'Administrar Empleados']);
+        // Usuarios, Roles y Permisos
+        Permission::create(['name' => 'ver-usuarios']);
+        Permission::create(['name' => 'ver-roles']);
+        Permission::create(['name' => 'administrar-usuarios']);
+        Permission::create(['name' => 'administrar-roles']);
 
         // Migrantes
-        Permission::create(['name' => 'Registrar Migrante']);
-        Permission::create(['name' => 'Registrar Salida Migrante']);
-        Permission::create(['name' => 'Ver Migrantes']);
+        Permission::create(['name' => 'ver-migrantes']);
+        Permission::create(['name' => 'registrar-migrantes']);
+        Permission::create(['name' => 'registrar-salida-de-migrante']);
+        Permission::create(['name' => 'ver-faltas-de-migrante']);
+        Permission::create(['name' => 'asignar-falta-a-migrante']);
+
+        // Expedientes
+        Permission::create(['name' => 'ver-expediente']);
+        Permission::create(['name' => 'imprimir-expediente']);
+        Permission::create(['name' => 'ver-discapacidades']);
+        Permission::create(['name' => 'ver-situaciones-migratorias']);
+        Permission::create(['name' => 'ver-asesores-migratorios']);
+        Permission::create(['name' => 'ver-fronteras']);
+        Permission::create(['name' => 'ver-necesidades']);
+        Permission::create(['name' => 'ver-faltas-disciplinarias']);
+
+        // Permisos para administrar todo lo de Expedientes
+        Permission::create(['name' => 'administrar-discapacidades']);
+        Permission::create(['name' => 'administrar-situaciones-migratorias']);
+        Permission::create(['name' => 'administrar-asesores-migratorios']);
+        Permission::create(['name' => 'administrar-fronteras']);
+        Permission::create(['name' => 'administrar-necesidades']);
+        Permission::create(['name' => 'administrar-faltas-disciplinarias']);
     }
 }
