@@ -33,6 +33,11 @@
                     <span>Fronteras</span>
                 </a>
 
+                <a href="{{ route('ver-motivos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                    <span class="icon-[streamline--travel-airport-earth-airplane-travel-plane-trip-airplane-international-adventure-globe-world] size-6"></span>
+                    <span>Motivos de Salida del País</span>
+                </a>
+
                 <a href="{{ route('ver-necesidades') }}" class="btn btn-sm btn-accent w-max flex flex-col">
                     <span class="icon-[hugeicons--bubble-chat-favourite] size-6"></span>
                     <span>Necesidades</span>

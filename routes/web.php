@@ -37,6 +37,7 @@ use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
 use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
+use App\Livewire\Crud\MotivoSalida\VerMotivos;
 use App\Livewire\Crud\SituacionesMigratorias\VerSituacionesMigratorias;
 use App\Livewire\Crud\TipoDonantes\VerTipoDonantes;
 use App\Livewire\Pages\Actas\ActasEntregaPage;
@@ -99,6 +100,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/necesidades', VerNecesidades::class)
         ->name('ver-necesidades');
+
+    Route::get('/motivos', VerMotivos::class)
+        ->name('ver-motivos');
 
     Route::get('/situaciones-migratorias', VerSituacionesMigratorias::class)
         ->name('ver-situaciones-migratorias');
