@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 #[Lazy()]
 class VerRoles extends Component
 {
-        // Esto es para el buscador
+    // Esto es para el buscador
     // $fakeColNames = [
     //     'Nombre que aparece en el select' => 'nombre del atributo'
     // ]
@@ -31,6 +31,11 @@ class VerRoles extends Component
     // Atributos de los botones (Componentes dinámicos) de cada fila (registro)
     public $actions = [
         [
+            'name' => 'mostrarPermisosRol',
+            'component' => 'crud.roles.mostrar-permisos-rol-modal',
+            'parameters' => ['idModal' => 'mostrarPermisosRolModal']
+        ],
+        [
             'name' => 'editRole',
             'component' => 'crud.roles.edit-role-modal',
             'parameters' => ['idModal' => 'editRoleModal']
@@ -39,12 +44,6 @@ class VerRoles extends Component
             'name' => 'deleteRole',
             'component' => 'crud.roles.eliminar-role-modal',
             'parameters' => ['idModal' => 'deleteRoleModal']
-        ],
-
-        [
-            'name' => 'mostrarPermisosRol',
-            'component' => 'crud.roles.mostrar-permisos-rol-modal',
-            'parameters' => ['idModal' => 'mostrarPermisosRolModal']
         ],
     ];
     public $paginationSize = 10; // Número de Registros por página

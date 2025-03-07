@@ -213,7 +213,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('actas');
 
     Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)
-        ->middleware('can:autorizar-solicitudes-pendientes')
+        ->middleware('can:autorizar-solicitudes')
         ->name('ver-solicitudes-pendientes');
 
 

@@ -15,6 +15,9 @@ class EditRoleModal extends Component
     public $permissions = []; // Todos los permisos disponibles
     public $selectedPermissions = []; // Permisos asignados al rol
 
+    public $search = '';
+    public $textoBusquedaPermisos = '';
+
     public function mount($parameters)
     {
         $this->item = Role::with('permissions')->find($parameters['item']->id);
@@ -52,6 +55,7 @@ class EditRoleModal extends Component
         // Se envía un evento con el id del departamento a EliminarDepartamentoModal,
         // para actualizar la información instantáneamente cuando se edite el item en específico.
         $this->dispatch('update-delete-modal', id: $this->item->id)->to(MostrarPermisosRolModal::class);
+        $this->dispatch('update-delete-modal', id: $this->item->id)->to(EliminarRoleModal::class);
 
         // De igual manera, se envía el evento de item-edited a la tabla para que actualice su contenido.
         $this->dispatch('item-edited')->to(ContentTable::class);
@@ -64,7 +68,16 @@ class EditRoleModal extends Component
         $this->dispatch('close-modal')->self();
     }
 
+    public function updatedTextoBusquedaPermisos($value)
+    {
+        $query = Permission::orderBy('id', 'desc');
 
+        if (trim($value) !== '') {
+            $query->where('name', 'LIKE', '%' . trim($value) . '%');
+        }
+
+        $this->permissions = $query->pluck('name', 'id')->toArray();
+    }
 
 
     public function render()
