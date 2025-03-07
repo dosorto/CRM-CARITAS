@@ -27,28 +27,27 @@
                 </div>
 
                 {{-- Aqui van los permisos --}}
+
+
                 <div class="flex flex-col mt-6 overflow-auto">
 
                     <label class="mb-1"> Seleccione los Permisos que Tendrá este Rol </label>
-                    <input type="text" class="input bg-accent input-sm input-bordered mb-2"
-                        placeholder="Buscar permisos..." />
+                    <div class="w-full input input-sm bg-accent input-bordered flex items-center justify-between my-2">
+                        <input wire:model.live.debounce.200ms="textoBusquedaPermisos" type="text" class="w-full mr-2"
+                            placeholder="Buscar..." />
+                        <span wire:loading.remove wire:target="textoBusquedaPermisos"
+                            class="icon-[map--search] size-5 text-gray-400"></span>
+                        <span wire:loading wire:target="textoBusquedaPermisos" class="loading loading-dots loading-sm"></span>
+                    </div>
                     <div class="border-2 border-accent rounded-lg flex flex-col grow p-4 gap-2 overflow-auto">
-                        {{-- Hacer un ciclo con checkboxes para todos los permisos --}}
-                        <p>1</p>
-                        <p>2</p>
-                        <p>3</p>
-                        <p>4</p>
-                        <p>5</p>
-                        <p>6</p>
-                        <p>7</p>
-                        <p>8</p>
-                        <p>9</p>
-                        <p>10</p>
-                        <p>11</p>
-                        <p>12</p>
-                        <p>13</p>
-                        <p>14</p>
-                        <p>15</p>
+
+                        @foreach ($permissions as $id => $name)
+                            <label class="flex items-center gap-2">
+                                <input type="checkbox" wire:model="selectedPermissions" value="{{ $id }}" class="checkbox checkbox-accent" />
+                                <span>{{ $name }}</span>
+                            </label>
+                        @endforeach
+
                     </div>
 
                 </div>
