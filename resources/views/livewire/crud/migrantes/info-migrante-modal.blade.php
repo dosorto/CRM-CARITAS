@@ -34,7 +34,7 @@
                 </span>
                 <span>
                     <b>País de Procedencia: </b>
-                    {{ $persona->pais->nombre_pais }}
+                    {{ $persona->pais?->nombre_pais ?? '-'}}
                 </span>
                 <span>
                     <b>Código Familiar: </b>

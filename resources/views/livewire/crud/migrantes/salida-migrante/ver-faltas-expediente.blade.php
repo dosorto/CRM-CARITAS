@@ -57,11 +57,11 @@
                                     <span>{{ $falta->falta }}</span>
                                     <span @class([
                                         'font-bold',
-                                        'text-success' => $falta->gravedad_falta_id == 1,
-                                        'text-warning' => $falta->gravedad_falta_id == 2,
-                                        'text-error' => $falta->gravedad_falta_id == 3,
+                                        'text-success' => $falta?->gravedad_falta_id == 1,
+                                        'text-warning' => $falta?->gravedad_falta_id == 2,
+                                        'text-error' => $falta?->gravedad_falta_id == 3,
                                     ])>
-                                        {{ $falta->gravedad->gravedad_falta }}</span>
+                                        {{ $falta?->gravedad->gravedad_falta }}</span>
                                 </div>
                             </div>
                             <hr class="border border-accent">
@@ -108,14 +108,14 @@
                                         class="border-b-2 border-accent">
                                         <td @class([
                                             'font-bold text-primary-content',
-                                            'bg-success' => $faltaMigrante->falta->gravedad_falta_id == 1,
-                                            'bg-warning' => $faltaMigrante->falta->gravedad_falta_id == 2,
-                                            'bg-primary' => $faltaMigrante->falta->gravedad_falta_id == 3,
+                                            'bg-success' => $faltaMigrante->falta?->gravedad_falta_id == 1,
+                                            'bg-warning' => $faltaMigrante->falta?->gravedad_falta_id == 2,
+                                            'bg-primary' => $faltaMigrante->falta?->gravedad_falta_id == 3,
                                         ])>
-                                            {{ $faltaMigrante->falta->gravedad->gravedad_falta }}
+                                            {{ $faltaMigrante->falta?->gravedad->gravedad_falta }}
                                         </td>
                                         <td>
-                                            {{ $faltaMigrante->falta->falta }}
+                                            {{ $faltaMigrante->falta?->falta }}
                                         </td>
                                         <td>
                                             {{ optional($faltaMigrante->created_at)->format('d-m-Y') }}
@@ -137,7 +137,7 @@
                                                 <h3 class="text-lg font-bold text-center">¿Seguro que desea eliminar la
                                                     siguiente falta disciplinaria del historial de esta persona?</h3>
                                                 <p class="py-4 text-center font-semibold">
-                                                    {{ $faltaMigrante->falta->falta }}</p>
+                                                    {{ $faltaMigrante->falta?->falta }}</p>
                                                 <div class="modal-action">
                                                     <button class="btn btn-success"
                                                         wire:click="eliminarFalta({{ $faltaMigrante->id }})">

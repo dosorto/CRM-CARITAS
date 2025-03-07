@@ -272,21 +272,27 @@
 
     <footer class="w-full flex p-4 h-max print:hidden shadow-inner border-t border-accent justify-between">
         <div class="flex gap-4">
-            <button class="btn btn-info flex-nowrap w-max" onclick="window.print();">
-                <span class="icon-[material-symbols--print] size-6"></span>
-                Imprimir
-            </button>
+            @can('imprimir-expediente')
+                <button class="btn btn-info flex-nowrap w-max" onclick="window.print();">
+                    <span class="icon-[material-symbols--print] size-6"></span>
+                    Imprimir
+                </button>
+            @endcan
             <div wire:loading class="h-full flex items-center">
                 <div class="h-full">
                     <span class=" loading loading-spinner loading-lg"></span>
                 </div>
             </div>
         </div>
+
+
         <div class="flex gap-4">
-            <button class="btn btn-accent flex-nowrap w-max" wire:click="verMigrantes">
-                <span class="icon-[fa-solid--users] size-6"></span>
-                Listado de Migrantes
-            </button>
+            @can('ver-migrantes')
+                <button class="btn btn-accent flex-nowrap w-max" wire:click="verMigrantes">
+                    <span class="icon-[fa-solid--users] size-6"></span>
+                    Listado de Migrantes
+                </button>
+            @endcan
         </div>
     </footer>
 

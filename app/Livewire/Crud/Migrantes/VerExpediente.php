@@ -81,9 +81,9 @@ class VerExpediente extends Component
             ? Carbon::parse($expediente->fecha_salida)->format('d-m-Y')
             : '';
 
-        $this->situacionMigratoria = $expediente->situacionMigratoria->situacion_migratoria;
-        $this->asesorMigratorio = $expediente->asesorMigratorio->asesor_migratorio;
-        $this->frontera = $expediente->frontera->frontera;
+        $this->situacionMigratoria = $expediente->situacionMigratoria?->situacion_migratoria ?? '-';
+        $this->asesorMigratorio = $expediente->asesorMigratorio?->asesor_migratorio ?? '-';
+        $this->frontera = $expediente->frontera?->frontera ?? '-';
         $this->necesidades = $expediente->necesidades->pluck('necesidad')->join(', ');
         $this->discapacidades = $expediente->discapacidades->pluck('discapacidad')->join(', ');
         $this->motivos = $expediente->motivosSalidaPais->pluck('motivo_salida_pais')->join(', ');

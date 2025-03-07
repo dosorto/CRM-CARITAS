@@ -44,7 +44,7 @@ class RegistrarMigrante extends Component
     public function cancelar()
     {
         session()->forget(['currentStep', 'formMigranteData']);
-        $this->redirectRoute('ver-migrantes');
+        $this->redirectRoute('inicio');
     }
 
     // Esta funcion se ejecuta al presionar el boton de "siguiente"

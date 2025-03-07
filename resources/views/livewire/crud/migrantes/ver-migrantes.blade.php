@@ -67,7 +67,7 @@
                                     ' ' .
                                     $item->segundo_apellido }}
                             </td>
-                            <td>{{ $item->pais->nombre_pais }}</td>
+                            <td>{{ $item->pais?->nombre_pais ?? '-' }}</td>
                             <td>{{ $item->codigo_familiar }}</td>
                             <td class="flex gap-2">
 

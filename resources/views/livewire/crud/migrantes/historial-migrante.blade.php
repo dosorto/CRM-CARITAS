@@ -102,7 +102,7 @@
                 </span>
                 <span>
                     <strong>País de Origen: </strong>
-                    {{ $migrante->pais->nombre ?? 'No especificado' }}
+                    {{ $migrante->pais?->nombre ?? 'No especificado' }}
                 </span>
                 <span>
                     <strong>LGBT: </strong>

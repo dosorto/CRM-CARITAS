@@ -8,7 +8,7 @@
     {{-- Modal --}}
     <input type="checkbox" id="{{ $idModal }}" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/3 h-max max-w-5xl bg-neutral border-2 border-accent">
+        <div class="modal-box size-full max-w-5xl bg-neutral border-2 border-accent">
 
             {{-- Título del Modal --}}
             <h3 class="text-xl font-bold text-center mb-4">Expediente</h3>
@@ -51,15 +51,15 @@
                     <div class="flex flex-col space-y-2 w-2/3 pl-8 border-l-2 border-accent items-start justify-start">
                         <div class="flex gap-2">
                             <span class="font-bold">Situación Migratoria:</span>
-                            <p>{{ $item->situacionMigratoria->situacion_migratoria }}</p>
+                            <p>{{ $item->situacionMigratoria?->situacion_migratoria ?? '-' }}</p>
                         </div>
                         <div class="flex gap-2">
                             <span class="font-bold">Frontera por la que Ingresó:</span>
-                            <p>{{ $item->frontera->frontera }}</p>
+                            <p>{{ $item->frontera?->frontera ?? '-'}}</p>
                         </div>
                         <div class="flex gap-2">
                             <span class="font-bold">Asesor Migrartoio:</span>
-                            <p>{{ $item->asesorMigratorio->asesor_migratorio }}</p>
+                            <p>{{ $item->asesorMigratorio?->asesor_migratorio ?? '-' }}</p>
                         </div>
                         <div class="flex gap-2">
                             <span class="font-bold">Observaciones:</span>
@@ -88,7 +88,7 @@
             <div class="modal-action">
                 <button class="btn btn-info" wire:click="imprimir({{ $item->id }})">
                     <span class="icon-[material-symbols--print] size-6"></span>
-                    Imprimir
+                    Mostrar Formato de Impresión
                 </button>
                 <label for="{{ $idModal }}"
                     class="btn btn-accent text-base-content">Cerrar</label>

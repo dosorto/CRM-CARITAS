@@ -10,17 +10,21 @@
         <main class="flex items-center h-full">
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
+                @can('ver-migrantes')
+                    <article>
+                        <livewire:components.link-card title="Listado de Migrantes" cardWidth="w-full"
+                            iconClass="icon-[fa-solid--users] size-6" route="ver-migrantes" />
+                    </article>
+                @endcan
+                @can('registrar-migrantes')
+                    <article>
+                        <livewire:components.link-card title="Registrar Migrante" cardWidth="w-full"
+                            iconClass="icon-[mingcute--user-add-2-fill] size-6" route="registrar-migrante" />
+                    </article>
+                @endcan
                 <article>
-                    <livewire:components.link-card title="Listado de Migrantes" cardWidth="w-full" iconClass="icon-[fa-solid--users] size-6"
-                        route="ver-migrantes" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Registrar Migrante" cardWidth="w-full" iconClass="icon-[mingcute--user-add-2-fill] size-6"
-                        route="registrar-migrante" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Formato de Ficha de Registro" cardWidth="w-full" iconClass="icon-[material-symbols--print] size-6"
-                        route="ver-expediente" />
+                    <livewire:components.link-card title="Formato de Ficha de Registro" cardWidth="w-full"
+                        iconClass="icon-[material-symbols--print] size-6" route="ver-expediente" />
                 </article>
             </div>
         </main>
