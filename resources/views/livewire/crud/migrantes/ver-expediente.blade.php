@@ -159,7 +159,7 @@
                                     <span class="flex items-center justify-start pl-2 gap-1 border-l border-zinc-600">
                                         <b>Grupo Sanguíneo:</b>
                                         <span class="icon-[noto--drop-of-blood] size-5"></span>
-                                        <span class="font-semibold text-base">{{ $tipoSangre }}</span>
+                                        <span class="font-semibold text-base">{{ $tipoSangre == 'Desconocido' ? '?' : $tipoSangre}}</span>
 
                                     </span>
 
