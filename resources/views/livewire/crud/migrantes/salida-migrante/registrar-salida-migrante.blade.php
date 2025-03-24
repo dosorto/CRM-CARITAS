@@ -1,7 +1,8 @@
 <div class="h-screen w-full flex flex-col">
     {{-- Título y cosa extra --}}
     <header class="h-max flex justify-between items-center border-b-2 border-accent p-4">
-        <h1 class="text-xl font-bold">Registro de Salida de Migrante</h1>
+        <h1 class="text-xl font-bold">Registro de Salida de
+            {{ $migrante->primer_nombre . ' ' . $migrante->primer_apellido }}</h1>
         <button wire:click="cancelar" class="btn btn-sm btn-accent text-base-content">
             <span class="icon-[typcn--cancel] size-5"></span>
             Cancelar
@@ -21,12 +22,22 @@
                     ])>
                         <label class="font-semibold">{{ $pregunta }}</label>
 
-                        <input type="checkbox" @class([
-                            'toggle',
-                            'toggle-success' => $this->{$nombre},
-                            'bg-primary hover:bg-primary' => !$this->{$nombre},
-                        ]) wire:model.live="{{ $nombre }}" />
+                        <div data-tip="No tiene permisos" @class([
+                            'h-full flex items-center gap-2',
+                            'tooltip tooltip-left tooltip-primary' => !auth()->user()->can('editar-registros-de-asesoria'),
+                        ])>
+                            <span class="font-semibold">
+                                {{ $this->{$nombre} ? 'Sí' : 'No' }}
+                            </span>
 
+                            <input type="checkbox" @class([
+                                'toggle',
+                                'toggle-success' => $this->{$nombre},
+                                'bg-primary hover:bg-primary' => !$this->{$nombre},
+                            ]) wire:model.live="{{ $nombre }}"
+                                @disabled(!auth()->user()->can('editar-registros-de-asesoria'))
+                                @checked($this->{$nombre}) />
+                        </div>
                     </div>
                 @endforeach
             </div>
@@ -56,8 +67,7 @@
 
     <footer class="flex flex-row h-max w-full justify-between p-4">
         <div class="flex gap-4">
-            <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente migranteId="{{ $migranteId }}"
-                botonGrande="{{ true }}" />
+            <livewire:crud.migrantes.salida-migrante.ver-faltas-expediente migranteId="{{ $migrante->id }}" />
             <livewire:crud.migrantes.info-migrante-modal idModal="infoMigranteSalida" iconSize="6" btnSize="md"
                 label="Datos Personales" :personaId="$migranteId" />
         </div>

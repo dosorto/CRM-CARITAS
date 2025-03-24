@@ -53,5 +53,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'administrar-fronteras']);
         Permission::create(['name' => 'administrar-necesidades']);
         Permission::create(['name' => 'administrar-faltas-disciplinarias']);
+
+        Permission::create(['name' => 'editar-registros-de-asesoria']);
+
     }
 }
