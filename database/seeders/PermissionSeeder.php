@@ -53,5 +53,12 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'administrar-fronteras']);
         Permission::create(['name' => 'administrar-necesidades']);
         Permission::create(['name' => 'administrar-faltas-disciplinarias']);
+
+        // Donaciones
+        Permission::create(['name' => 'ver-donantes']);
+        Permission::create(['name' => 'ver-tipos-de-donantes']);
+        Permission::create(['name' => 'ver-donaciones']);
+        Permission::create(['name' => 'donaciones']);
+        Permission::create(['name' => 'crear-donaciones']);
     }
 }

@@ -10,7 +10,7 @@ use Livewire\Attributes\Lazy;
 class VerTipoDonantes extends Component
 {
     public $fakeColNames = [
-        'Descripción del Tipo de Donante' => 'descripcion',
+        'Tipo de Donante' => 'descripcion',
     ];
 
     public $colNames = [

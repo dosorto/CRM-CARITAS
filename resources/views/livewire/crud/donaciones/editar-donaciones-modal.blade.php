@@ -27,20 +27,28 @@
 
                 {{-- Artículos Donados --}}
                 @foreach ($articulosSeleccionados as $index => $articulo)
-                    <div class="flex items-center mt-6">
-                        <select wire:model="articulosSeleccionados.{{ $index }}.id_articulo" class="select bg-accent text-base-content w-2/3">
+                <div class="flex gap-4 mt-6">
+                    {{-- Artículo --}}
+                    <div class="flex flex-col w-2/3">
+                        <label class="mb-1">Artículo Donado</label>
+                        <select wire:model="articulosSeleccionados.{{ $index }}.id_articulo" class="select bg-accent text-base-content w-full">
                             <option value="">Seleccione un artículo...</option>
                             @foreach ($articulos as $articuloDisponible)
                                 <option value="{{ $articuloDisponible->id }}">{{ $articuloDisponible->nombre }}</option>
                             @endforeach
                         </select>
-
-                        <input wire:model="articulosSeleccionados.{{ $index }}.cantidad_donacion" 
-                               class="input bg-accent w-1/3" 
-                               type="number" 
-                               min="1" 
-                               placeholder="Cantidad" />
                     </div>
+
+                    {{-- Cantidad --}}
+                    <div class="flex flex-col w-1/3">
+                        <label class="mb-1">Cantidad</label>
+                        <input wire:model="articulosSeleccionados.{{ $index }}.cantidad_donacion" 
+                            class="input bg-accent w-full" 
+                            type="number" 
+                            min="1" 
+                            placeholder="Cantidad" />
+                    </div>
+                </div>
                 @endforeach
 
                 {{-- Fecha de Donación --}}

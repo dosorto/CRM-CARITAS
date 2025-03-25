@@ -9,6 +9,7 @@ use Livewire\Attributes\Lazy;
 #[Lazy()]
 class VerDonaciones extends Component
 {
+
     public function placeholder()
     {
         return <<<'HTML'

@@ -28,4 +28,5 @@
 
     <livewire:components.content-table :colNames="$colNames" :keys="$keys" :itemClass="$itemClass" :paginationSize="$paginationSize"
         :actions="$actions" />
+    
 </div>

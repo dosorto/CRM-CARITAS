@@ -39,7 +39,7 @@
             <form wire:submit.prevent="selectArticulo">
                 <div class="flex gap-4">
                     <div class="flex flex-col w-3/5 mb-4">
-                        <label for="articulo" class="text-lg font-semibold">Codigo del Artículo</label>
+                        <label for="articulo" class="text-lg font-semibold">Código del Artículo</label>
                         <input wire:model="codigo_barra" list="dataArticulos" id="articulo" type="text"
                             class="input bg-accent" placeholder="Escribir nombre del artículo...">
                         <datalist id="dataArticulos">
@@ -68,9 +68,11 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-success text-base-content w-1/2 mt-4">
-                    Seleccionar Artículo
-                </button>
+                <div class="flex justify-center mt-4">
+                    <button type="submit" class="btn bg-gray-500 hover:bg-gray-600 text-white font-semibold tracking-wide w-1/2 rounded-md shadow-md transition duration-200">
+                        Seleccionar Artículo
+                    </button>
+                </div>                           
             </form>
         </section>
 
@@ -100,6 +102,8 @@
     </main>
 
     <footer class="py-4 text-center">
-        <button wire:click="create" class="btn btn-primary w-1/3">Crear Donación</button>
-    </footer>
+        <button wire:click="create" class="btn bg-green-600 hover:bg-green-700 text-white font-semibold tracking-wide w-1/3 rounded-md shadow-md transition duration-200">
+            Crear Donación
+        </button>              
+    </footer>    
 </div>

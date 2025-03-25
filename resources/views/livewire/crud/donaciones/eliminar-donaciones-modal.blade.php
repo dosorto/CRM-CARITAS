@@ -15,7 +15,7 @@
             {{-- Contenido --}}
             <main class="h-max flex flex-col w-full text-center">
                 <p>¿Estás seguro de que deseas eliminar esta donación?</p>
-                <p class="font-bold mt-2">{{ $item->donante->nombre_donante }} del {{ $item->fecha_donacion }}</p>
+                <p class="font-bold mt-2">Realizada por {{ $item->donante->nombre_donante }} del {{ $item->fecha_donacion }}</p>
             </main>
 
             {{-- Acciones del Modal --}}

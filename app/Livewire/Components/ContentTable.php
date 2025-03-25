@@ -40,6 +40,7 @@ class ContentTable extends Component
         $this->actions = $actions;
         $this->tableSize = $tableSize;
         $this->textSize = $textSize;
+        
 
         $this->colSelected = array_key_first($colNames);
     }

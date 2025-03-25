@@ -23,7 +23,7 @@
             Actas y Solicitudes
         </a>
     @endcanany
-    @canany(['ver-donaciones', 'registrar-donacion', 'ver-donaciones'])
+    @canany(['ver-donaciones', 'crear-donaciones', 'ver-donaciones'])
         <a href="{{ route('donaciones') }}" class="btn btn-primary w-full flex justify-start">
             <span class="icon-[bx--donate-heart] size-5"></span>
             Donaciones

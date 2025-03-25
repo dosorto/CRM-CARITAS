@@ -18,7 +18,7 @@
 
                 {{-- Contenedor del nombre del Tipo de Donante --}}
                 <div class="flex flex-col mt-6">
-                    <label class="mb-1">Descripción del Tipo de Donante</label>
+                    <label class="mb-1">Tipo de Donante</label>
                     <input wire:model="descripcion" class="input bg-accent" type="text" placeholder="Escribir aquí..." />
                     <div class="mt-1 text-error-content font-bold">
                         @error('descripcion')

@@ -10,14 +10,18 @@
         <main class="flex items-center h-full">
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-8">
-                <article>
-                    <livewire:components.link-card title="Ver Donaciones" cardWidth="w-full"
-                        iconClass="icon-[mdi--charity] size-6" route="ver-donaciones" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Agregar nueva Donación" cardWidth="w-full"
-                        iconClass="icon-[fluent--gift-card-add-24-regular] size-6" route="crear-donacion" />
-                </article>
+                @can('ver-donaciones')
+                    <article>
+                        <livewire:components.link-card title="Ver Donaciones" cardWidth="w-full"
+                            iconClass="icon-[mdi--charity] size-6" route="ver-donaciones" />
+                    </article>
+                @endcan
+                @can('crear-donaciones')
+                    <article>
+                        <livewire:components.link-card title="Agregar nueva Donación" cardWidth="w-full"
+                            iconClass="icon-[fluent--gift-card-add-24-regular] size-6" route="crear-donacion" />
+                    </article>
+                @endcan
             </div>
         </main>
 
