@@ -5,6 +5,8 @@ namespace App\Livewire\Crud\Migrantes;
 use App\Models\Expediente;
 use App\Models\Migrante;
 use App\Services\MigranteService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 
@@ -46,6 +48,8 @@ class HistorialMigrante extends Component
             $this->motivos = $this->expediente->motivosSalidaPais->pluck('motivo_salida_pais')->join(', ');
             $this->discapacidades = $this->expediente->discapacidades->pluck('discapacidad')->join(', ');
         }
+
+        // dd(Hash::check('123', Auth::user()->password), Auth::user()->password);
     }
 
     public function updatedAtencionPsicologica()

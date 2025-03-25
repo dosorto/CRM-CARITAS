@@ -104,4 +104,8 @@ class RegistrarSalidaMigrante extends Component
 
         return $this->redirectRoute('ver-migrantes');
     }
+    public function realizarEncuesta()
+    {
+
+    }
 }

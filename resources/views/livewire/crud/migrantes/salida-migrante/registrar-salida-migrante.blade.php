@@ -35,8 +35,7 @@
                                 'toggle-success' => $this->{$nombre},
                                 'bg-primary hover:bg-primary' => !$this->{$nombre},
                             ]) wire:model.live="{{ $nombre }}"
-                                @disabled(!auth()->user()->can('editar-registros-de-asesoria'))
-                                @checked($this->{$nombre}) />
+                                @disabled(!auth()->user()->can('editar-registros-de-asesoria')) @checked($this->{$nombre}) />
                         </div>
                     </div>
                 @endforeach
@@ -93,17 +92,45 @@
     {{-- Cuerpo del Modal --}}
     <input type="checkbox" id="confirmarSalidaMigrante" class="modal-toggle" />
     <div class="modal" role="dialog">
-        <div class="modal-box w-2/5 max-w-5xl bg-neutral border-2 border-primary">
+        <div class="modal-box w-2/3 max-w-5xl bg-neutral border-2 border-primary">
 
             {{-- Título del Modal --}}
-            <h3 class="text-xl font-bold text-center mb-5">¿Seguro que desea registrar la salida de esta persona?</h3>
+            <h3 class="text-xl font-bold text-center">
+                ¿Seguro que desea registrar la salida de esta persona?
+            </h3>
 
-            <div class="modal-action">
-                <button wire:click="guardarDatosSalida" class="btn btn-success">
+
+            <div class="text-center flex flex-col gap-4">
+                <div class="w-full flex justify-center mt-4">
+                    <span class="icon-[ep--warning-filled] size-8 text-warning text-center"></span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span>
+                        Puede realizar una Encuesta de Satisfacción al migrante sobre los servicios brindados en el
+                        centro.
+                    </span>
+                    <span>
+                        Al iniciar la encuesta, su sesión se cerrará temporalmente. Para volver a
+                        ingresar al sistema, deberá introducir su contraseña o iniciar sesión con otro usuario.
+                    </span>
+                </div>
+            </div>
+
+            <div class="modal-action flex justify-between">
+                <button wire:click="realizarEncuesta" class="btn btn-success">
                     <span class="icon-[fa-solid--check] size-6"></span>
-                    Confirmar
+                    Guardar Salida y Realizar Encuesta de Satisfacción
                 </button>
-                <label for="confirmarSalidaMigrante" class="btn btn-error">Cancelar</label>
+                <div class="flex gap-4">
+                    <button wire:click="guardarDatosSalida" class="btn btn-info">
+                        <span class="icon-[material-symbols--save] size-6"></span>
+                        Solo Guardar Salida
+                    </button>
+                    <label for="confirmarSalidaMigrante" class="btn btn-error">
+                        <span class="icon-[f7--xmark] size-6"></span>
+                        Cancelar
+                    </label>
+                </div>
             </div>
         </div>
     </div>
