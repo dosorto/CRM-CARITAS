@@ -4,6 +4,7 @@ namespace App\Livewire\Crud\Migrantes;
 
 use App\Models\Expediente;
 use App\Models\Migrante;
+use App\Models\SituacionMigratoria;
 use App\Services\MigranteService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,6 +33,10 @@ class HistorialMigrante extends Component
     public $motivos;
     public $discapacidades;
 
+    // variables para seleccionar la nueva situacion migratoria
+    public $situacionesMigratorias;
+    public $situacionMigratoriaId;
+
 
     public function mount($migranteId)
     {
@@ -47,7 +52,11 @@ class HistorialMigrante extends Component
             $this->necesidades = $this->expediente->necesidades->pluck('necesidad')->join(', ');
             $this->motivos = $this->expediente->motivosSalidaPais->pluck('motivo_salida_pais')->join(', ');
             $this->discapacidades = $this->expediente->discapacidades->pluck('discapacidad')->join(', ');
+
+            $this->situacionMigratoriaId = $this->expediente->situacion_migratoria_id;
         }
+
+        $this->situacionesMigratorias = SituacionMigratoria::all();
 
         // dd(Hash::check('123', Auth::user()->password), Auth::user()->password);
     }
@@ -76,7 +85,27 @@ class HistorialMigrante extends Component
         $this->expediente->save();
     }
 
+    public function salir()
+    {
+        $this->redirectRoute('ver-migrantes');
+    }
 
+    public function guardarSituacion()
+    {
+        $this->expediente->situacion_migratoria_id = $this->situacionMigratoriaId;
+        $this->expediente->save();
+        $this->dispatch('cerrar-modal-situacion')->self();
+    }
+    public function cancelarSituacion()
+    {
+        $this->situacionMigratoriaId = $this->expediente->situacion_migratoria_id;
+        $this->dispatch('cerrar-modal-situacion')->self();
+    }
+
+    public function imprimir()
+    {
+        $this->redirectRoute('ver-expediente', ['expedienteId' => $this->expediente->id]);
+    }
 
     public function getMigranteService()
     {
