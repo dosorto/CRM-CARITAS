@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\KPI;
 use App\Models\Pregunta;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EncuestasSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class EncuestasSeeder extends Seeder
      */
     public function run(): void
     {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('kpis')->truncate();
+        DB::table('preguntas')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $kpis = [
             'Satisfacción de estadía en el centro',
             'Higiene y seguridad del centro',

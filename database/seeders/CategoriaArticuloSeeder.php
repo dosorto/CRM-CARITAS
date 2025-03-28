@@ -4,11 +4,16 @@ namespace Database\Seeders;
 
 use App\Models\CategoriaArticulo;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaArticuloSeeder extends Seeder
 {
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::table('categoria_articulos')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $categoriaArticulos = [
             [
                 'name_categoria' => 'Higiene Personal',
@@ -16,10 +21,6 @@ class CategoriaArticuloSeeder extends Seeder
             ],
             [
                 'name_categoria' => 'Limpieza General',
-                'created_by' => 1
-            ],
-            [
-                'name_categoria' => 'Productos de Belleza',
                 'created_by' => 1
             ],
             [
@@ -32,8 +33,7 @@ class CategoriaArticuloSeeder extends Seeder
             ],
         ];
 
-        foreach ($categoriaArticulos as $categoria)
-        {
+        foreach ($categoriaArticulos as $categoria) {
             CategoriaArticulo::create($categoria);
         }
     }

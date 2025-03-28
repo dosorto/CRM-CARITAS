@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Encuesta;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,18 +12,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+
+            // Ejecutados
+            // -----------------------------------------
             PaisSeeder::class,
             DepartamentoSeeder::class,
             CiudadSeeder::class,
-            PermissionSeeder::class,
-            RoleSeeder::class,
-            UserSeeder::class,
-            CategoriaSeeder::class,
-            SubCategoriaSeeder::class,
-            MobiliarioSeeder::class,
-            CategoriaArticuloSeeder::class,
-            ArticuloSeeder::class,
-            TipoDonanteSeeder::class,
             DiscapacidadSeeder::class,
             SituacionMigratoriaSeeder::class,
             AsesorMigratorioSeeder::class,
@@ -32,8 +25,26 @@ class DatabaseSeeder extends Seeder
             MotivoSalidaPaisSeeder::class,
             NecesidadSeeder::class,
             FaltasSeeder::class,
+            // -----------------------------------------
+
+            // a truncar, revisar si ya se ejecutaron igual
+            CategoriaSeeder::class,
+            SubCategoriaSeeder::class,
+            MobiliarioSeeder::class,
+            ArticuloSeeder::class,
             DonanteSeeder::class,
+
+            // a ejecutar
+            CategoriaArticuloSeeder::class,
             EncuestasSeeder::class,
+
+            // Revisar si ya se ejecutaron
+            TipoDonanteSeeder::class,
+
+            // Permisos y Usuarios
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

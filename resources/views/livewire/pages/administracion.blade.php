@@ -6,7 +6,7 @@
         </div>
     </header>
 
-    <main class="overflow-auto size-full p-4 flex gap-6 flex-wrap">
+    <main class="overflow-auto size-full p-4 flex gap-6 flex-nowrap">
         {{-- Permiso para ver expedientes --}}
 
         @canany(['ver-discapacidades', 'ver-situaciones-migratorias', 'ver-asesores-migratorios', 'ver-fronteras',
@@ -18,8 +18,7 @@
 
                 <div class="flex flex-col gap-4 flex-wrap max-w-max p-3">
                     @can('ver-discapacidades')
-                        <a href="{{ route('ver-discapacidades') }}"
-                            class="btn btn-sm btn-accent w-max flex flex-col hover:scale-105">
+                        <a href="{{ route('ver-discapacidades') }}" class="btn btn-sm btn-accent w-max flex flex-col">
                             <span class="icon-[material-symbols--accessibility-rounded] size-5"></span>
                             <span>Discapacidades</span>
                         </a>
@@ -50,7 +49,8 @@
                     @endcan
                     @can('ver-motivos-salida-de-pais')
                         <a href="{{ route('ver-motivos') }}" class="btn btn-sm btn-accent w-max flex flex-col">
-                            <span class="icon-[streamline--travel-airport-earth-airplane-travel-plane-trip-airplane-international-adventure-globe-world] size-6"></span>
+                            <span
+                                class="icon-[streamline--travel-airport-earth-airplane-travel-plane-trip-airplane-international-adventure-globe-world] size-6"></span>
                             <span>Motivos de Salida del País</span>
                         </a>
                     @endcan
