@@ -35,20 +35,5 @@ class DatabaseSeeder extends Seeder
             DonanteSeeder::class,
             EncuestasSeeder::class,
         ]);
-
-        // Migrante::factory()->count(3)->create();
-
-        $this->call([
-            // ActaEntregaSeeder::class,
-            // DetalleActaEntregaSeeder::class,
-            // SolicitudInsumosSeeder::class,
-            // DetalleSolicitudInsumosSeeder::class,
-            // SolicitudTrasladoSeeder::class,
-            // DetalleSolicitudTrasladoSeeder::class,
-            // DonacionSeeder::class,
-            // DonacionArticuloSeeder::class,
-            // MigranteFaltaSeeder::class,
-            // ExpedienteSeeder::class,
-        ]);
     }
 }
