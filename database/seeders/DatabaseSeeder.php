@@ -15,16 +15,16 @@ class DatabaseSeeder extends Seeder
 
             // Ejecutados
             // -----------------------------------------
-            PaisSeeder::class,
-            DepartamentoSeeder::class,
-            CiudadSeeder::class,
-            DiscapacidadSeeder::class,
-            SituacionMigratoriaSeeder::class,
-            AsesorMigratorioSeeder::class,
-            FronteraSeeder::class,
-            MotivoSalidaPaisSeeder::class,
-            NecesidadSeeder::class,
-            FaltasSeeder::class,
+            // PaisSeeder::class,
+            // DepartamentoSeeder::class,
+            // CiudadSeeder::class,
+            // DiscapacidadSeeder::class,
+            // SituacionMigratoriaSeeder::class,
+            // AsesorMigratorioSeeder::class,
+            // FronteraSeeder::class,
+            // MotivoSalidaPaisSeeder::class,
+            // NecesidadSeeder::class,
+            // FaltasSeeder::class,
             // -----------------------------------------
 
             // a truncar, revisar si ya se ejecutaron igual

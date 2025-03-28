@@ -15,10 +15,10 @@ class EncuestasSeeder extends Seeder
     public function run(): void
     {
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('kpis')->truncate();
-        DB::table('preguntas')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::table('kpis')->truncate();
+        // DB::table('preguntas')->truncate();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $kpis = [
             'Satisfacción de estadía en el centro',
