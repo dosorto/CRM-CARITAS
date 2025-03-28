@@ -159,7 +159,8 @@
                                     <span class="flex items-center justify-start pl-2 gap-1 border-l border-zinc-600">
                                         <b>Grupo Sanguíneo:</b>
                                         <span class="icon-[noto--drop-of-blood] size-5"></span>
-                                        <span class="font-semibold text-base">{{ $tipoSangre == 'Desconocido' ? '?' : $tipoSangre}}</span>
+                                        <span
+                                            class="font-semibold text-base">{{ $tipoSangre == 'Desconocido' ? '?' : $tipoSangre }}</span>
 
                                     </span>
 
@@ -288,6 +289,10 @@
 
         <div class="flex gap-4">
             @can('ver-migrantes')
+                <button class="btn btn-accent w-max flex-nowrap" wire:click="verHistorial">
+                    <span class="icon-[mdi--account-file-text] size-6"></span>
+                    Historial
+                </button>
                 <button class="btn btn-accent flex-nowrap w-max" wire:click="verMigrantes">
                     <span class="icon-[fa-solid--users] size-6"></span>
                     Listado de Migrantes

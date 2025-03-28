@@ -214,7 +214,6 @@ Route::middleware(['auth'])->group(function () {
     // ---------------- Actas ----------------
 
     Route::get('/actas', ActasOptions::class)
-        ->middleware('can:ver-actas-de-entrega|ver-solicitudes-de-traslado|ver-solicitudes-de-insumos')
         ->name('actas');
 
     Route::get('/ver-solicitudes-pendientes', VerSolicitudesPendientes::class)

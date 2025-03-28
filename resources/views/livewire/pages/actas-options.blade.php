@@ -11,19 +11,28 @@
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-8">
 
-                <article>
-                    <livewire:components.link-card title="Actas de Entrega" cardWidth="w-full"
-                        iconClass="icon-[fluent-mdl2--product-list] size-6" route="actas-entrega-page" />
-                </article>
+                @can('ver-actas-de-entrega')
+                    <article>
+                        <livewire:components.link-card title="Actas de Entrega" cardWidth="w-full"
+                            iconClass="icon-[fluent-mdl2--product-list] size-6" route="actas-entrega-page" />
+                    </article>
+                @endcan
 
-                <article>
-                    <livewire:components.link-card title="Solicitud de Traslado" cardWidth="w-full"
-                        iconClass="icon-[mdi--file-replace-outline] size-6" route="solicitudes-traslado-page" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Solicitud de Insumos" cardWidth="w-full"
-                        iconClass="icon-[lsicon--goods-search-filled] size-6" route="solicitudes-insumos-page" />
-                </article>
+
+                @can('ver-solicitudes-de-traslado')
+                    <article>
+                        <livewire:components.link-card title="Solicitud de Traslado" cardWidth="w-full"
+                            iconClass="icon-[mdi--file-replace-outline] size-6" route="solicitudes-traslado-page" />
+                    </article>
+                @endcan
+
+                @can('ver-solicitudes-de-insumos')
+                    <article>
+                        <livewire:components.link-card title="Solicitud de Insumos" cardWidth="w-full"
+                            iconClass="icon-[lsicon--goods-search-filled] size-6" route="solicitudes-insumos-page" />
+                    </article>
+                @endcan
+
             </div>
         </main>
 

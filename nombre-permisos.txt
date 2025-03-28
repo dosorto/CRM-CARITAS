@@ -28,8 +28,14 @@ administrar-usuarios
 administrar-roles
 
 
-Esto es lo que se va a restringir de momento
---------------------------------------------
+Nuevos Permisos
+---------------------------------------------------------------------------------------------
+editar-registros-de-asesoria
+
+
+
+Esto es lo que se va a restringir de momento, son los permisos que están en las rutas y demás
+---------------------------------------------------------------------------------------------
 
 ver-donantes
 ver-tipos-de-donantes
