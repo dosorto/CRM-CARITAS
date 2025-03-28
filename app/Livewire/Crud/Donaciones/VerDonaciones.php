@@ -20,8 +20,8 @@ class VerDonaciones extends Component
     }
 
     public $fakeColNames = [
-        'Identificador del Donante' => 'id_donante',
         'Fecha de Donación' => 'fecha_donacion',
+        'Identificador del Donante' => 'id_donante',
 
     ];
 

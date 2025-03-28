@@ -24,7 +24,7 @@
                         @endforeach
                     </select>
                 </div>
-
+                {{-- wire:key="articulo-{{ $index }} --}}
                 {{-- Artículos Donados --}}
                 @foreach ($articulosSeleccionados as $index => $articulo)
                 <div class="flex gap-4 mt-6">
