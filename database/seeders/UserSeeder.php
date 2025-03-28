@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -73,17 +71,6 @@ class UserSeeder extends Seeder
             'fecha_nacimiento' => '2003-09-02',
             'estado_civil' => 'Soltero/a',
             'email' => 'mcarbajalg@unah.hn',
-            'password' => Hash::make('123'),
-        ]);
-
-        User::create([
-            'nombre' => 'Sabas',
-            'apellido' => 'Portillo',
-            'identidad' => '0601198000315',
-            'telefono' => '32906280',
-            'fecha_nacimiento' => '1980-11-06',
-            'estado_civil' => 'Soltero/a',
-            'email' => 'sabas.portillo@gmail.com',
             'password' => Hash::make('123'),
         ]);
 

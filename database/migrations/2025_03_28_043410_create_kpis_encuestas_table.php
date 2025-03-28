@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->decimal('respuesta');
 
-            $table->unsignedBigInteger('id_kpi')->unique();
+            $table->unsignedBigInteger('id_kpi');
             $table->foreign('id_kpi')->references('id')->on('kpis')->onDelete('cascade');
 
-            $table->unsignedBigInteger('id_encuesta')->unique();
+            $table->unsignedBigInteger('id_encuesta');
             $table->foreign('id_encuesta')->references('id')->on('encuestas')->onDelete('cascade');
 
             $table->timestamps();

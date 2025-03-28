@@ -8,6 +8,7 @@ use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use App\Models\Migrante;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Spatie\Permission\Models\Role;
 
 // #[Lazy()]
 class Dashboard extends Component
@@ -29,7 +30,6 @@ class Dashboard extends Component
 
     public function render()
     {
-
         $migrantesPorMes = Migrante::selectRaw('MONTH(created_at) as mes, COUNT(*) as total')
                                     ->whereYear('created_at', date('Y'))
                                     ->groupBy('mes')
