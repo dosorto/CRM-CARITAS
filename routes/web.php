@@ -52,6 +52,7 @@ use App\Livewire\Crud\Migrantes\HistorialMigrante;
 use App\Livewire\Crud\Migrantes\VerExpediente;
 use App\Livewire\Crud\Roles\VerRoles;
 use App\Livewire\Crud\Usuarios\VerUsuarios;
+use App\Livewire\Encuestas\RealizarEncuesta;
 
 Route::get('/', Login::class)
     ->name('login');
@@ -65,6 +66,9 @@ Route::post('/logout', function () {
 
 Route::get('/acerca-de-nosotros', AboutPage::class)
     ->name('about-us');
+
+Route::get('/encuesta-de-satisfaccion', RealizarEncuesta::class)
+    ->name('encuesta');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -287,16 +291,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reportes', Reportes::class)
         ->middleware('can:generar-reportes-de-migrantes')
         ->name('reportes');
-
-    // Route::get('/reporte-articulos', ReporteArticulo::class)
-    //     ->name('reporte-articulos');
 });
-
-
-// Route::get('/detalle-solicitud-traslado/{id}', InfoSolicitudTraslado::class)
-//     ->name('detalle-solicitud-traslado')
-//     ->middleware('auth');
-
-// Route::get('/detalle-solicitud-insumo/{id}', InfoSolicitudInsumo::class)
-//     ->name('detalle-solicitud-insumo')
-//     ->middleware('auth');

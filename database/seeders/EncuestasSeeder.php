@@ -35,7 +35,6 @@ class EncuestasSeeder extends Seeder
         foreach ($kpis as $kpi) {
             KPI::create([
                 'kpi' => $kpi,
-                'created_by' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -83,7 +82,6 @@ class EncuestasSeeder extends Seeder
                     'id_kpi' => $idKPI,
                     'pregunta' => $texto,
                     'idioma' => $idioma,
-                    'created_by' => 1,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);

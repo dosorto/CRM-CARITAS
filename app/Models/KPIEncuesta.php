@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class KPIEncuesta extends BaseModel
+class KPIEncuesta extends Model
 {
     protected $table = 'kpis_encuestas';
 

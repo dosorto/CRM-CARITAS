@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Encuesta extends BaseModel
+class Encuesta extends Model
 {
     protected $table = 'encuestas';
 

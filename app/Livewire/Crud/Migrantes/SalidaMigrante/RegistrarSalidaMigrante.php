@@ -6,6 +6,7 @@ use App\Models\Expediente;
 use App\Models\Migrante;
 use App\Services\MigranteService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 
@@ -85,11 +86,26 @@ class RegistrarSalidaMigrante extends Component
 
     public function cancelar()
     {
-        session()->forget('migranteId');
         $this->redirectRoute('ver-migrantes');
     }
 
     public function guardarDatosSalida()
+    {
+        $this->guardarDatos();
+
+        return $this->redirectRoute('ver-migrantes');
+    }
+
+    public function realizarEncuesta()
+    {
+        $this->guardarDatos();
+
+        Auth::logout();
+
+        $this->redirectRoute('encuesta');
+    }
+
+    public function guardarDatos()
     {
         $expediente = Expediente::find($this->expedienteId);
 
@@ -101,11 +117,5 @@ class RegistrarSalidaMigrante extends Component
         $expediente->observacion = $this->Observaciones;
 
         $expediente->save();
-
-        return $this->redirectRoute('ver-migrantes');
-    }
-    public function realizarEncuesta()
-    {
-
     }
 }

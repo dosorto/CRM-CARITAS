@@ -289,10 +289,12 @@
 
         <div class="flex gap-4">
             @can('ver-migrantes')
-                <button class="btn btn-accent w-max flex-nowrap" wire:click="verHistorial">
-                    <span class="icon-[mdi--account-file-text] size-6"></span>
-                    Historial
-                </button>
+                @if ($identificacion)
+                    <button class="btn btn-accent w-max flex-nowrap" wire:click="verHistorial">
+                        <span class="icon-[mdi--account-file-text] size-6"></span>
+                        Historial
+                    </button>
+                @endif
                 <button class="btn btn-accent flex-nowrap w-max" wire:click="verMigrantes">
                     <span class="icon-[fa-solid--users] size-6"></span>
                     Listado de Migrantes

@@ -21,13 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_encuesta')->unique();
             $table->foreign('id_encuesta')->references('id')->on('encuestas')->onDelete('cascade');
 
-            $table->integer("created_by");
-            $table->integer("deleted_by")->nullable();
-            $table->integer("updated_by")->nullable();
-
             $table->timestamps();
-
-            $table->softDeletes('deleted_at', precision: 0);
         });
     }
 
