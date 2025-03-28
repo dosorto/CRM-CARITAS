@@ -63,7 +63,5 @@ class PermissionSeeder extends Seeder
         //Permisos para administrar todo lo de articulos
         Permission::create(['name' => 'ver-actas-de-entrega']);
         Permission::create(['name' => 'crear-actas-de-entrega']);
-
-
     }
 }
