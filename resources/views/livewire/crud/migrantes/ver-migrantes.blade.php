@@ -68,7 +68,7 @@
                                     $item->segundo_apellido }}
                             </td>
                             <td>{{ $item->pais?->nombre_pais ?? '-' }}</td>
-                            <td>{{ $item->codigo_familiar }}</td>
+                            <td>{{ $item->codigo_familiar == 0 ? 'N/A' : $item->codigo_familiar }}</td>
                             <td class="flex gap-2">
 
                                 <div class="tooltip tooltip-primary" data-tip="Ver Historial">

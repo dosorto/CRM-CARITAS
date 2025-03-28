@@ -1,3 +1,4 @@
-2. Falta crud de motivos de salida del país
-5. Falta validacion de cuando se crea un rol con un nombre existente, desconozco si pasa en otros cruds
-6. Cambiar el color del icono de la pestaña
+1. Falta validacion de cuando se crea un rol con un nombre existente, desconozco si pasa en otros cruds
+2. Cambiar el color del icono de la pestaña
+3. Faltan la gran mayoría de validaciones al momento de eliminar registros dependientes
+4. La fecha de la falta disciplinaria debería poder seleccionarse

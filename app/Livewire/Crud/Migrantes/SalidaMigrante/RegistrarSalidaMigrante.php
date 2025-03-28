@@ -3,6 +3,7 @@
 namespace App\Livewire\Crud\Migrantes\SalidaMigrante;
 
 use App\Models\Expediente;
+use App\Models\Migrante;
 use App\Services\MigranteService;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -11,19 +12,12 @@ use Livewire\Attributes\Lazy;
 #[Lazy()]
 class RegistrarSalidaMigrante extends Component
 {
-    public $datosPersonales = [];
     public $Observaciones;
     public $fechaSalida;
 
     public $expedienteId;
+    public $migrante;
     public $migranteId;
-    public $nombreMigrante;
-    public $identificacion;
-
-    public $atencionPsicologica = 0;
-    public $asesoriaPsicologica = 0;
-    public $atencionLegal = 0;
-    public $asesoriaPsicosocial = 0;
 
     public $preguntas = [
         'atencionPsicologica' => '¿Recibió atención psicológica?',
@@ -31,6 +25,11 @@ class RegistrarSalidaMigrante extends Component
         'atencionLegal' => '¿Recibió atención legal?',
         'asesoriaPsicosocial' => '¿Recibió asesoría psicosocial?',
     ];
+
+    public $atencionPsicologica = 0;
+    public $asesoriaPsicologica = 0;
+    public $atencionLegal = 0;
+    public $asesoriaPsicosocial = 0;
 
     public function placeholder()
     {
@@ -43,19 +42,16 @@ class RegistrarSalidaMigrante extends Component
 
     public function mount($migranteId)
     {
-        $expediente = Expediente::select('id', 'created_at', 'observacion', 'fecha_salida')
-            ->orderBy('id', 'desc')
-            ->where('migrante_id', $migranteId)
-            ->first();
+        $expediente = Expediente::where('migrante_id', $migranteId)->first();
 
         if ($expediente->fecha_salida !== null) {
             // No hay expedientes con fecha nula, significa que ya se registró salida para todos
             $this->cancelar();
         }
 
-        $migrante = $this->getMigranteService()->buscar('id', intval($migranteId));
+        $this->migrante = $this->getMigranteService()->buscar('id', intval($migranteId));
 
-        if (!$migrante) {
+        if (!$this->migrante) {
             $this->cancelar();
         }
 
@@ -66,18 +62,15 @@ class RegistrarSalidaMigrante extends Component
             $this->cancelar();
         }
 
-
-        $this->nombreMigrante = $migrante->primer_nombre . ' ' .
-            $migrante->segundo_nombre . ' ' .
-            $migrante->primer_apellido . ' ' .
-            $migrante->segundo_apellido;
-        $this->identificacion = $migrante->numero_identificacion;
-
         $this->expedienteId = $expediente->id;
-        $this->migranteId = $migranteId;
 
         $this->Observaciones = $expediente->observacion;
         $this->fechaSalida = Carbon::now()->format('Y-m-d');
+
+        $this->atencionPsicologica = $expediente->atencion_psicologica ?? 0;
+        $this->asesoriaPsicologica = $expediente->asesoria_psicologica ?? 0;
+        $this->atencionLegal = $expediente->atencion_legal ?? 0;
+        $this->asesoriaPsicosocial = $expediente->asesoria_psicosocial ?? 0;
     }
 
     public function render()
@@ -96,16 +89,6 @@ class RegistrarSalidaMigrante extends Component
         $this->redirectRoute('ver-migrantes');
     }
 
-    public function updatedFechaSalida($value)
-    {
-        $fechaIngreso = $this->datosPersonales['Fecha de Ingreso'] ?? null;
-
-        if ($fechaIngreso && $value) {
-            $diasDeEstancia = round(Carbon::parse($fechaIngreso)->diffInDays(Carbon::parse($value)));
-            $this->datosPersonales['Dias de Estancia'] = $diasDeEstancia;
-        }
-    }
-
     public function guardarDatosSalida()
     {
         $expediente = Expediente::find($this->expedienteId);
@@ -120,5 +103,9 @@ class RegistrarSalidaMigrante extends Component
         $expediente->save();
 
         return $this->redirectRoute('ver-migrantes');
+    }
+    public function realizarEncuesta()
+    {
+
     }
 }

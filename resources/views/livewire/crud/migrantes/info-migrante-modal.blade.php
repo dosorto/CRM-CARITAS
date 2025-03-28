@@ -15,14 +15,14 @@
             <h3 class="text-xl font-bold text-center mb-4">Información Personal</h3>
 
             {{-- Contenido --}}
-            <main class="h-max flex flex-col w-full text-base items-start gap-2 text-start">
+            <main class="h-full flex flex-col w-full text-base items-start gap-2 text-start">
                 <span>
                     <b>Nombre Completo: </b>
                     {{ $persona->primer_nombre . ' ' . $persona->segundo_nombre . ' ' . $persona->primer_apellido . ' ' . $persona->segundo_apellido }}
                 </span>
                 <span>
                     <b>Identificación: </b>
-                    {{ $persona->numero_identificacion }}
+                    {{ $persona->numero_identificacion . ' - (' . $persona->tipo_identificacion . ')' }}
                 </span>
                 <span>
                     <b>Sexo: </b>
@@ -47,6 +47,10 @@
                 <span>
                     <b>Grupo Sanguíneo: </b>
                     {{ $persona->tipo_sangre }}
+                </span>
+                <span>
+                    <b>¿Pertenece a la Comunidad LGBTQI+?: </b>
+                    {{ $persona->es_lgbtq ? 'Sí' : 'No' }}
                 </span>
             </main>
 

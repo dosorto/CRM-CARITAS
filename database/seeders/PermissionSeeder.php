@@ -53,6 +53,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'administrar-fronteras']);
         Permission::create(['name' => 'administrar-necesidades']);
         Permission::create(['name' => 'administrar-faltas-disciplinarias']);
+        Permission::create(['name' => 'editar-registros-de-asesoria']);
+        Permission::create(['name' => 'editar-situacion-migratoria']);
 
         //Permisos para administrar todo lo de articulos
         Permission::create(['name' => 'ver-articulos']);
@@ -61,5 +63,7 @@ class PermissionSeeder extends Seeder
         //Permisos para administrar todo lo de articulos
         Permission::create(['name' => 'ver-actas-de-entrega']);
         Permission::create(['name' => 'crear-actas-de-entrega']);
+
+
     }
 }

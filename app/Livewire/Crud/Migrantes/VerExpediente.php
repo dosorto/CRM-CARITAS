@@ -37,6 +37,8 @@ class VerExpediente extends Component
 
     public $mostrarFechaSalida = true;
 
+    public $migranteId;
+
     public function mount($expedienteId = 0)
     {
         $this->expedienteId = $expedienteId;
@@ -88,12 +90,20 @@ class VerExpediente extends Component
         $this->discapacidades = $expediente->discapacidades->pluck('discapacidad')->join(', ');
         $this->motivos = $expediente->motivosSalidaPais->pluck('motivo_salida_pais')->join(', ');
         $this->observacion = $expediente->observacion;
+
+        $this->migranteId = $migrante->id;
     }
 
     public function verMigrantes()
     {
         $this->redirectRoute('ver-migrantes');
     }
+
+    public function verHistorial()
+    {
+        $this->redirectRoute('ver-historial', ['migranteId' => $this->migranteId]);
+    }
+
     public function imprimirVacio()
     {
         $this->redirectRoute('ver-expediente');
