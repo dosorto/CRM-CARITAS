@@ -10,14 +10,20 @@
         <main class="flex items-center h-full">
 
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-8">
-                <article>
-                    <livewire:components.link-card title="Ver Actas de Entrega" cardWidth="w-full"
-                        iconClass="icon-[fluent-mdl2--product-list] size-6" route="ver-actas-entrega" />
-                </article>
-                <article>
-                    <livewire:components.link-card title="Registrar Acta de Entrega" cardWidth="w-full"
-                        iconClass="icon-[line-md--document-add] size-6" route="crear-acta-entrega" />
-                </article>
+                @can('ver-actas-de-entrega')
+                    <article>
+                        <livewire:components.link-card title="Ver Actas de Entrega" cardWidth="w-full"
+                            iconClass="icon-[fluent-mdl2--product-list] size-6" route="ver-actas-entrega" />
+                    </article>
+                @endcan
+
+                @can('crear-actas-de-entrega')
+                    <article>
+                        <livewire:components.link-card title="Registrar Acta de Entrega" cardWidth="w-full"
+                            iconClass="icon-[line-md--document-add] size-6" route="crear-acta-entrega" />
+                    </article>
+                @endcan
+
             </div>
         </main>
 

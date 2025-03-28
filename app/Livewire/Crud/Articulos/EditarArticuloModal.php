@@ -20,6 +20,7 @@ class EditarArticuloModal extends Component
     public $subcategorias;
     public $idModal;
     public $categoria_articulos;
+
     public function editItem()
     {
         $validated = $this->validate([
@@ -43,6 +44,18 @@ class EditarArticuloModal extends Component
         // Emitir eventos para cerrar el modal y notificar que el artículo ha sido editado
         $this->dispatch('item-edited')->to(ContentTable::class);
         $this->closeModal();
+
+        // Cerrar modal
+        $this->dispatch('close-modal')->self();
+        //$this->dispatch('role-updated');
+
+        // Se envía un evento con el id del departamento a EliminarDepartamentoModal,
+        // para actualizar la información instantáneamente cuando se edite el item en específico.
+        $this->dispatch('update-delete-modal', id: $this->item->id)->to(InfoArticulosModal::class);
+        $this->dispatch('update-delete-modal', id: $this->item->id)->to(EliminarArticuloModal::class);
+
+        // De igual manera, se envía el evento de item-edited a la tabla para que actualice su contenido.
+        $this->dispatch('item-edited')->to(ContentTable::class);
     }
 
     public function resetForm()
