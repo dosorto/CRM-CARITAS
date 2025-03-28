@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Encuesta;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             NecesidadSeeder::class,
             FaltasSeeder::class,
             DonanteSeeder::class,
+            EncuestasSeeder::class,
         ]);
 
         // Migrante::factory()->count(3)->create();
