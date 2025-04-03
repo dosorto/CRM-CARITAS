@@ -52,8 +52,11 @@
                             </td>
                             <td>
                                 @if ($articulo->codigo_barra)
-                                    <img class="h-4 w-40" src="data:image/png;base64, {{ $articulo->codigoBarrasPNG }}"
-                                        alt="Código de Barras">
+                                    @if ($articulo->codigoBarrasPNG)
+                                        <img class="h-4 w-40"
+                                            src="data:image/png;base64, {{ $articulo->codigoBarrasPNG }}"
+                                            alt="Código de Barras">
+                                    @endif
 
                                     <p>
                                         {{ $articulo->codigo_barra }}

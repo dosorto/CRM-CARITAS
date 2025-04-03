@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Actas\ActasEntrega;
 
+use Exception;
 use Livewire\Component;
 use Picqer\Barcode\BarcodeGeneratorPNG;
 use Illuminate\Support\Carbon;
@@ -22,7 +23,7 @@ class InfoActaEntrega extends Component
     public $nombreMigrante;
     public $numeroIdentificacion;
     public $articulos;
-    public $barcode;
+    // public $barcode;
     public $year;
     public $month;
     public $day;
@@ -59,7 +60,7 @@ class InfoActaEntrega extends Component
         }
     }
 
-    
+
     public function mount()
     {
         $migrante = session('migrante');
@@ -85,7 +86,14 @@ class InfoActaEntrega extends Component
         $index = 0;
         foreach ($articulos as $articulo) {
 
-            $articulo->codigoBarrasPNG = $this->generarCodigoBarras($articulo->codigo_barra);
+            try {
+                $articulo->codigoBarrasPNG = $this->generarCodigoBarras($articulo->codigo_barra);
+            }
+            catch(Exception $e)
+            {
+                $articulo->codigoBarrasPNG = null;
+            }
+
 
             // Hay mejor manera de hacer esto?
             $articulo->cantidadEntregada = $cantidades[$index];

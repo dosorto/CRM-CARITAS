@@ -1,0 +1,14 @@
+Fernanda
+--------
+1. Revisar validaciones al momento de crear cualquier registro, que sus atributos que son unique no den error.
+
+Dacia
+-----
+1. Revisar validaciones al momento de eliminar registros dependientes, es decir,
+   Si se elimina una necesidad, al intentar acceder al expediente de un migrante con esa necesidad saltará un error.
+2. La fecha de la falta disciplinaria debería poder seleccionarse
+
+
+Generales
+---------
+1. Cambiar el color del icono de la pestaña
