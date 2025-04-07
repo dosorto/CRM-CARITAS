@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const htmlElement = document.documentElement;
 
     function setTheme(isDark) {
+
+        const themeName = isDark ? 'dark' : 'light';
+
         if (isDark) {
             htmlElement.classList.add('dark');
             htmlElement.setAttribute('data-theme', 'dark');
@@ -37,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
             htmlElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
         }
+
+        // Emitir un evento personalizado cuando cambie el tema
+        window.dispatchEvent(new CustomEvent('themeChanged', {
+            detail: { theme: themeName }
+        }));
     }
 
     function getTheme() {

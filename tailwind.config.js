@@ -31,11 +31,10 @@ module.exports = {
 
                     "neutral":          "#FFFFFF",  // Color del Fondo Completo de la página
 
-                    "base-100":         "#EFEFEF",  // Color de fondo de elementos varios por encima del fondo general
+                    "base-100":         "#EEEDED",  // Color de fondo de elementos varios por encima del fondo general
 
-                    "base-200":         "#EDDDDD",
+                    "base-200":         "#FFF",
 
-                    "base-300":         "#EEEEEE",
 
                     "base-content":     "#2A2222",  // Color de los textos e íconos de los elementos en el fondo general
 
@@ -69,8 +68,7 @@ module.exports = {
                     "base-100":         "#1F2937",  // Color de fondo de elementos varios por encima del fondo general
                     "base-content":     "#FAFAFA",  // Color de los textos e íconos de los elementos en el fondo general
 
-
-                    "base-300":         "#1F2937",
+                    "base-200":         "#323F51",  // Color de fondo de elementos varios por encima del fondo general
 
                     "accent":           "#536074",
                     "accent-content":   "#FAFAFA",
@@ -78,8 +76,6 @@ module.exports = {
                     // Sin usar por el momento
                     "secondary":        "#AAAAAA",
                     "secondary-content":"#AAAAAA",
-
-                    "base-200":         "#1F2937",
 
                     "info":             "#4868CF",
                     "info-content":     "#EEE",

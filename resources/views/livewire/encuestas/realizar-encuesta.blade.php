@@ -1,4 +1,4 @@
-<div class="h-screen size-full flex flex-col items-center bg-zinc-100 overflow-hidden">
+<div class="h-screen size-full flex flex-col items-center bg-zinc-100 overflow-hidden" data-theme="light">
     <article class="w-[48rem] max-h-[100vh] flex flex-col overflow-hidden grow pt-8">
         <header class="p-4 bg-info rounded-t-2xl text-white font-bold text-lg text-center">
             <span>{{ $titulo[$idioma] }}</span>
@@ -39,7 +39,7 @@
                     </textarea>
 
                     @error('respuestas')
-                        <div class="text-error mt-2">
+                        <div class="text-error mt-2 font-semibold">
                             {{ $message }}
                         </div>
                     @enderror
@@ -58,11 +58,11 @@
     </article>
     <section class="h-max w-full items-center p-4">
         <div class="dropdown dropdown-top">
-            <div tabindex="0" role="button" class="btn btn-accent">
+            <div tabindex="0" role="button" class="btn btn-info">
                 <span class="icon-[vs--language] size-6"></span>
                 {{ $btnLanguageLabel[$idioma] }}{{ $idioma }}
             </div>
-            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+            <ul tabindex="0" class="dropdown-content menu bg-slate-300 rounded-box z-[1] w-52 p-2 shadow font-semibold">
                 <li><button wire:click="cambiarIdioma('Español')">Español</button></li>
                 <li><button wire:click="cambiarIdioma('English')">English</button></li>
             </ul>
