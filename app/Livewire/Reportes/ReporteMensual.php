@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Reportes;
 
+use App\Models\Expediente;
 use App\Models\Migrante;
 use Livewire\Component;
 use Carbon\Carbon;
@@ -26,6 +27,10 @@ class ReporteMensual extends Component
     public $grafico = true;
     public $datasets;
 
+    public $familias = 0;
+    public $migrantesEnTransito = 0;
+    public $migrantesEnProteccion = 0;
+
 
     public function updated($propertyName)
     {
@@ -43,7 +48,7 @@ class ReporteMensual extends Component
 
             $this->cantidad_mujeres = Migrante::where('sexo', 'F')
                 ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
-                ->whereDate('fecha_nacimiento', '<=',$edad)
+                ->whereDate('fecha_nacimiento', '<=', $edad)
                 ->count();
 
             $this->cantidad_ninos = Migrante::where('sexo', 'M')
@@ -55,14 +60,23 @@ class ReporteMensual extends Component
                 ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
                 ->whereDate('fecha_nacimiento', '>=', $edad)
                 ->count();
+
+            $this->migrantesEnTransito = Expediente::where('situacion_migratoria_id', 1)
+                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
+                ->count();
+
+            $this->migrantesEnProteccion = Expediente::where('situacion_migratoria_id', 2)
+                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
+                ->count();
         } else {
             $this->cantidad_migrantes = 0;
             $this->cantidad_hombres = 0;
             $this->cantidad_mujeres = 0;
             $this->cantidad_ninos = 0;
             $this->cantidad_ninas = 0;
+            $this->migrantesEnTransito = 0;;
+            $this->migrantesEnProteccion = 0;;
         }
-
     }
     public function mount()
     {
@@ -72,7 +86,7 @@ class ReporteMensual extends Component
         $this->numeroDia = $fechaActual->day;  // Día de la semana en español con primera letra en mayúscula
         $this->currentYear = now()->year;
         $this->total_personas = Migrante::where('deleted_at', null)
-                                        ->whereYear('created_at', $this->currentYear)->count();
+            ->whereYear('created_at', date('Y'))->count();
     }
 
     public function getData()
@@ -83,26 +97,26 @@ class ReporteMensual extends Component
                 ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final]) // Filtrar por rango de fechas
                 ->groupBy('pais_id')
                 ->orderBy('total_migrantes', 'desc')
-                ->limit(7)
+                ->limit(5)
                 ->with('pais') // Asegúrate de que la relación 'pais' esté definida en el modelo Migrante
                 ->get();
 
-        $data = $this->paises->pluck('total_migrantes')->toArray();
-        $labels = $this->paises->pluck('pais.nombre_pais')->toArray();
-        // dd($labels);
+            $data = $this->paises->pluck('total_migrantes')->toArray();
+            $labels = $this->paises->pluck('pais.nombre_pais')->toArray();
+            // dd($labels);
 
 
-        $this->datasets = [
-            'datasets' => [
-                [
-                    "label" => "Migrantes",
-                    "backgroundColor" => "#ad342b",
-                    "borderColor" => "rgba(38, 185, 154, 0.7)",
-                    "data" => $data
-                ]
-            ],
-            'labels' => $labels
-        ];
+            $this->datasets = [
+                'datasets' => [
+                    [
+                        "label" => "Migrantes",
+                        "backgroundColor" => "#ad342b",
+                        "borderColor" => "rgba(38, 185, 154, 0.7)",
+                        "data" => $data
+                    ]
+                ],
+                'labels' => $labels
+            ];
         }
     }
 
@@ -114,31 +128,31 @@ class ReporteMensual extends Component
             ->livewire()
             ->model("datasets")
             ->type("bar")
-            ->size(['width' => 350, 'height' => 300])
-        ->options([
-            'indexAxis' => 'y',
-            "responsive" => true, // Asegúrate de que el gráfico sea responsivo
-            "plugins" => [
-                "legend" => [
-                    "display" => false // Oculta la leyenda
-                ]
-            ],
-            "scales" => [
-                "x" => [
-                     'position' => 'top',
-                    "display" => true, // Oculta las etiquetas del eje x
-                    "grid" => [
-                        "display" => true // Quita las líneas de cuadrícula del eje x
+            ->size(['width' => 350, 'height' => 250])
+            ->options([
+                'indexAxis' => 'y',
+                "responsive" => true, // Asegúrate de que el gráfico sea responsivo
+                "plugins" => [
+                    "legend" => [
+                        "display" => false // Oculta la leyenda
                     ]
                 ],
-                "y" => [
-                    "beginAtZero" => true,
-                    "grid" => [
-                        "display" => false // Quita las líneas de cuadrícula del eje y
+                "scales" => [
+                    "x" => [
+                        'position' => 'top',
+                        "display" => true, // Oculta las etiquetas del eje x
+                        "grid" => [
+                            "display" => true // Quita las líneas de cuadrícula del eje x
+                        ]
+                    ],
+                    "y" => [
+                        "beginAtZero" => true,
+                        "grid" => [
+                            "display" => false // Quita las líneas de cuadrícula del eje y
+                        ]
                     ]
                 ]
-            ]
-        ]);
+            ]);
     }
 
     public function render()
@@ -186,5 +200,4 @@ class ReporteMensual extends Component
 
         return view('livewire.reportes.reporte-mensual');
     }
-
 }
