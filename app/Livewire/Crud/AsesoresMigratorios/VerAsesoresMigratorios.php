@@ -44,11 +44,11 @@ class VerAsesoresMigratorios extends Component
             'component' => 'crud.asesores-migratorios.editar-asesor-migratorio-modal',
             'parameters' => ['idModal' => 'editAsesorMigratorioModal']
         ],
-        [
-            'name' => 'deleteAsesorMigratorio',
-            'component' => 'crud.asesores-migratorios.eliminar-asesor-migratorio-modal',
-            'parameters' => ['idModal' => 'deleteAsesorMigratorioModal']
-        ]
+        // [
+        //     'name' => 'deleteAsesorMigratorio',
+        //     'component' => 'crud.asesores-migratorios.eliminar-asesor-migratorio-modal',
+        //     'parameters' => ['idModal' => 'deleteAsesorMigratorioModal']
+        // ]
     ];
 
     // Parametros adicionales para la content-table

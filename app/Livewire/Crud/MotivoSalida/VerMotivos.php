@@ -41,11 +41,11 @@ class VerMotivos extends Component
             'component' => 'crud.motivo-salida.editar-motivo-modal',
             'parameters' => ['idModal' => 'editMotivoModal']
         ],
-        [
-            'name' => 'deleteMotivo',
-            'component' => 'crud.motivo-salida.eliminar-motivo-modal',
-            'parameters' => ['idModal' => 'deleteMotivoModal']
-        ]
+        // [
+        //     'name' => 'deleteMotivo',
+        //     'component' => 'crud.motivo-salida.eliminar-motivo-modal',
+        //     'parameters' => ['idModal' => 'deleteMotivoModal']
+        // ]
     ];
 
     // Parametros adicionales para la content-table

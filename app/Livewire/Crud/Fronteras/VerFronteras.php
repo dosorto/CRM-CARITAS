@@ -48,11 +48,11 @@ class VerFronteras extends Component
             'component' => 'crud.fronteras.editar-frontera-modal',
             'parameters' => ['idModal' => 'editFronteraModal']
         ],
-        [
-            'name' => 'deleteFrontera',
-            'component' => 'crud.fronteras.eliminar-frontera-modal',
-            'parameters' => ['idModal' => 'deleteFronteraModal']
-        ]
+        // [
+        //     'name' => 'deleteFrontera',
+        //     'component' => 'crud.fronteras.eliminar-frontera-modal',
+        //     'parameters' => ['idModal' => 'deleteFronteraModal']
+        // ]
     ];
 
     // Parametros adicionales para la content-table

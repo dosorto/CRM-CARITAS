@@ -36,6 +36,15 @@
                 $wire.initInfo();
             }
         });
+        Livewire.on('error', message => {
+            Swal.fire({
+                icon: 'error',
+                title: '¡No se puede eliminar!',
+                text: message,
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#d33'
+            });
+        });
         $wire.on('cerrar-modal', () => {
             // Cerrar el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

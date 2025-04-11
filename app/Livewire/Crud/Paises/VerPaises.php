@@ -50,11 +50,11 @@ class VerPaises extends Component
             'component' => 'crud.paises.editar-pais-modal',
             'parameters' => ['idModal' => 'editPaisModal']
         ],
-        [
-            'name' => 'deletePais',
-            'component' => 'crud.paises.eliminar-pais-modal',
-            'parameters' => ['idModal' => 'deletePaisModal']
-        ]
+        // [
+        //     'name' => 'deletePais',
+        //     'component' => 'crud.paises.eliminar-pais-modal',
+        //     'parameters' => ['idModal' => 'deletePaisModal']
+        // ]
     ];
 
     // Parametros adicionales para la content-table

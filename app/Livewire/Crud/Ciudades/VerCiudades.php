@@ -38,11 +38,11 @@ class VerCiudades extends Component
             'component' => 'crud.ciudades.editar-ciudad-modal',
             'parameters' => ['idModal' => 'editCiudadModal']
         ],
-        [
-            'name' => 'deleteCiudad',
-            'component' => 'crud.ciudades.eliminar-ciudad-modal',
-            'parameters' => ['idModal' => 'deleteCiudadModal']
-        ],
+        // [
+        //     'name' => 'deleteCiudad',
+        //     'component' => 'crud.ciudades.eliminar-ciudad-modal',
+        //     'parameters' => ['idModal' => 'deleteCiudadModal']
+        // ],
     ];
     public $paginationSize = 50;
     public $itemClass = Ciudad::class;

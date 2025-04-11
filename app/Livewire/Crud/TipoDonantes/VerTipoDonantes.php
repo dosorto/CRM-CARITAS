@@ -27,11 +27,11 @@ class VerTipoDonantes extends Component
             'component' => 'crud.tipo-donantes.editar-tipo-donantes-modal',
             'parameters' => ['idModal' => 'editTipoDonanteModal'],
         ],
-        [
-            'name' => 'delete',
-            'component' => 'crud.tipo-donantes.eliminar-tipo-donantes-modal',
-            'parameters' => ['idModal' => 'deleteTipoDonanteModal'],
-        ],
+        // [
+        //     'name' => 'delete',
+        //     'component' => 'crud.tipo-donantes.eliminar-tipo-donantes-modal',
+        //     'parameters' => ['idModal' => 'deleteTipoDonanteModal'],
+        // ],
     ];
 
     public $paginationSize = 10;

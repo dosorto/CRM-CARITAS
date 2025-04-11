@@ -44,11 +44,11 @@ class VerSituacionesMigratorias extends Component
             'component' => 'crud.situaciones-migratorias.editar-situacion-migratoria-modal',
             'parameters' => ['idModal' => 'editSituacionMigratoriaModal']
         ],
-        [
-            'name' => 'deleteSituacionMigratoria',
-            'component' => 'crud.situaciones-migratorias.eliminar-situacion-migratoria-modal',
-            'parameters' => ['idModal' => 'deleteSituacionMigratoriaModal']
-        ]
+        // [
+        //     'name' => 'deleteSituacionMigratoria',
+        //     'component' => 'crud.situaciones-migratorias.eliminar-situacion-migratoria-modal',
+        //     'parameters' => ['idModal' => 'deleteSituacionMigratoriaModal']
+        // ]
     ];
 
     // Parametros adicionales para la content-table

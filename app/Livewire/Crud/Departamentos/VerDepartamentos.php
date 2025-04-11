@@ -48,11 +48,11 @@ class VerDepartamentos extends Component
             'component' => 'crud.departamentos.editar-departamento-modal',
             'parameters' => ['idModal' => 'editDepartamentoModal']
         ],
-        [
-            'name' => 'deleteDepartamento',
-            'component' => 'crud.departamentos.eliminar-departamento-modal',
-            'parameters' => ['idModal' => 'deleteDepartamentoModal']
-        ],
+        // [
+        //     'name' => 'deleteDepartamento',
+        //     'component' => 'crud.departamentos.eliminar-departamento-modal',
+        //     'parameters' => ['idModal' => 'deleteDepartamentoModal']
+        // ],
     ];
     public $paginationSize = 15; // Número de Registros por página
     public $itemClass = Departamento::class; // Clase a mostrar en la tabla

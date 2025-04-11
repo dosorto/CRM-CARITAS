@@ -34,10 +34,28 @@
                     class="btn btn-accent text-base-content">Cancelar</label>
             </div>
         </div>
+        <div>
+            @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>        
     </div>
 </div>
+
 @script
     <script>
+        Livewire.on('error', message => {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Operación no permitida!',
+                text: message,
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#d33'
+            });
+        });
+
         $wire.on('close-modal', () => {
             // Cerrar el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

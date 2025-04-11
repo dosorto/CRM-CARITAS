@@ -44,11 +44,11 @@ class VerDiscapacidades extends Component
             'component' => 'crud.discapacidades.editar-discapacidad-modal',
             'parameters' => ['idModal' => 'editDiscapacidadModal']
         ],
-        [
-            'name' => 'deleteDiscapacidad',
-            'component' => 'crud.discapacidades.eliminar-discapacidad-modal',
-            'parameters' => ['idModal' => 'deleteDiscapacidadModal']
-        ]
+        // [
+        //     'name' => 'deleteDiscapacidad',
+        //     'component' => 'crud.discapacidades.eliminar-discapacidad-modal',
+        //     'parameters' => ['idModal' => 'deleteDiscapacidadModal']
+        // ]
     ];
 
     // Parametros adicionales para la content-table

@@ -35,6 +35,18 @@
 
 @script
     <script>
+        Livewire.on('error', message => {
+            Swal.fire({
+                icon: 'error',
+                title: '¡Operación no permitida!',
+                text: message,
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#d33'
+            }).then(() => {
+                // Cierra el modal después de aceptar
+                document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;
+            });
+        });
         $wire.on('close-modal', () => {
             // Cierra el modal desactivando el checkbox
             document.getElementById('{{ $idModal }}-{{ $item->id }}').checked = false;

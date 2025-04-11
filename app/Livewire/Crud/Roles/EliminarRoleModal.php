@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Livewire\Crud\Roles;
+use Illuminate\Support\Facades\DB;
+
 
 use App\Livewire\Components\ContentTable;
 use Livewire\Attributes\On;
@@ -20,16 +22,37 @@ class EliminarRoleModal extends Component
     }
 
     // ELimina el item
+    // public function deleteItem()
+    // {
+    //     $this->item->delete();
+
+    //     // Envia el evento a la tabla de contenido para actualizarla
+    //     $this->dispatch('item-deleted')->to(ContentTable::class);
+
+    //     $this->dispatch('close-modal')->self();
+    // }
+    
+
     public function deleteItem()
     {
+        // Validar si hay usuarios con este rol en la tabla model_has_roles
+        $asignadoAUsuarios = DB::table('model_has_roles')
+            ->where('role_id', $this->item->id)
+            ->where('model_type', 'App\Models\User')
+            ->exists();
+    
+        if ($asignadoAUsuarios) {
+            $this->dispatch('error', 'No se puede eliminar este rol porque está asignado a uno o más usuarios.');
+            $this->dispatch('close-modal')->self();
+            return;
+        }
+    
         $this->item->delete();
-
-        // Envia el evento a la tabla de contenido para actualizarla
+    
         $this->dispatch('item-deleted')->to(ContentTable::class);
-
         $this->dispatch('close-modal')->self();
     }
-
+    
     // Este evento se envía cuando se edita el registro en específico
     #[On('update-delete-modal')]
     public function udpateData($id)

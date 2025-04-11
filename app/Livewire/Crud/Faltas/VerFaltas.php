@@ -46,11 +46,11 @@ class VerFaltas extends Component
             'component' => 'crud.faltas.editar-falta-modal',
             'parameters' => ['idModal' => 'editFaltaModal']
         ],
-        [
-            'name' => 'deleteFalta',
-            'component' => 'crud.faltas.eliminar-falta-modal',
-            'parameters' => ['idModal' => 'deleteFaltaModal']
-        ],
+        // [
+        //     'name' => 'deleteFalta',
+        //     'component' => 'crud.faltas.eliminar-falta-modal',
+        //     'parameters' => ['idModal' => 'deleteFaltaModal']
+        // ],
     ];
     public $paginationSize = 20; // Número de Registros por página
     public $itemClass = Falta::class; // Clase a mostrar en la tabla
