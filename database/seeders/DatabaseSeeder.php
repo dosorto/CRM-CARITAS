@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             TipoDonanteSeeder::class,
             DonanteSeeder::class,
             EncuestasSeeder::class,
-            RoleSeeder::class,
             PermissionSeeder::class,
+            RoleSeeder::class,
             UserSeeder::class,
             // -----------------------------------------
 
