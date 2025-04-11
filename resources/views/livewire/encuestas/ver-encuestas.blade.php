@@ -77,19 +77,16 @@
 
                     <section class="flex flex-col text-sm size-full h-72 overflow-auto">
 
-                        @if ($comentarios)
-                            @foreach ($comentarios as $id => $comentario)
-                                <div class="flex border-2 border-accent w-full rounded-l-lg rounded-r-xl mb-5">
-                                    <span class="w-full flex items-center p-3">
-                                        {{ $comentario->comentario }}
-                                    </span>
-                                    <span
-                                        class="w-36 bg-accent px-3 py-1 flex justify-center items-center rounded-r-lg">
-                                        <b>{{ $comentario->fecha }}</b>
-                                    </span>
-                                </div>
-                            @endforeach
-                        @else
+                        @forelse ($comentarios as $id => $comentario)
+                            <div class="flex border-2 border-accent w-full rounded-l-lg rounded-r-xl mb-5">
+                                <span class="w-full flex items-center p-3">
+                                    {{ $comentario->comentario }}
+                                </span>
+                                <span class="w-36 bg-accent px-3 py-1 flex justify-center items-center rounded-r-lg">
+                                    <b>{{ $comentario->fecha }}</b>
+                                </span>
+                            </div>
+                        @empty
                             <div class="size-full flex flex-col justify-center items-center grow">
 
                                 <span class="tooltip tooltip-primary" data-tip="*Sonido de Grillo*">
@@ -97,7 +94,7 @@
                                 </span>
                                 <span>No hay comentarios...</span>
                             </div>
-                        @endif
+                        @endforelse
                     </section>
                 </div>
             </section>

@@ -6,6 +6,7 @@ use App\Models\Encuesta;
 use App\Models\KPI;
 use App\Models\KPIEncuesta;
 use App\Models\Pregunta;
+use Exception;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
@@ -53,7 +54,16 @@ class VerEncuestas extends Component
                 ->where('respuesta', 0)
                 ->count();
 
-            $this->kpis[$i]->porcentaje = round(($this->kpis[$i]->cantidadSi / $this->totalEncuestas) * 100, 2);
+                if($this->totalEncuestas)
+                {
+                    $this->kpis[$i]->porcentaje = round(($this->kpis[$i]->cantidadSi / $this->totalEncuestas) * 100, 2);
+                }
+                else
+                {
+                    $this->kpis[$i]->porcentaje = 0;
+                }
+
+
 
             $totalPorcentaje += $this->kpis[$i]->porcentaje;
         }
@@ -64,8 +74,7 @@ class VerEncuestas extends Component
             ->whereNot('comentario', null)
             ->get();
 
-        foreach ($this->comentarios as $i => $comentario)
-        {
+        foreach ($this->comentarios as $i => $comentario) {
             $this->comentarios[$i]->fecha = $comentario->created_at->format('d/m/Y');
         }
     }
