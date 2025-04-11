@@ -95,6 +95,11 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:registrar-salida-de-migrante')
         ->name('registrar-salida-migrante');
 
+
+    Route::get('/encuestas', RegistrarSalidaMigrante::class)
+        ->middleware('can:ver-encuestas')
+        ->name('registrar-salida-migrante');
+
     // ---------------- Expedientes de Migrantes ----------------
 
     Route::get('/ver-expediente/{expedienteId?}', VerExpediente::class)

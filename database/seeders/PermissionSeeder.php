@@ -55,31 +55,31 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'administrar-necesidades']);
         // Permission::create(['name' => 'administrar-faltas-disciplinarias']);
 
+        // Permission::create(['name' => 'editar-registros-de-asesoria']);
+        // Permission::create(['name' => 'editar-situacion-migratoria']);
+
+        // //Permisos para administrar todo lo de articulos
+        // Permission::create(['name' => 'ver-articulos']);
+        // Permission::create(['name' => 'ver-categorias-de-articulos']);
+
+        // //Permisos para administrar todo lo de articulos
+        // Permission::create(['name' => 'ver-actas-de-entrega']);
+        // Permission::create(['name' => 'crear-actas-de-entrega']);
+
+        // // Donaciones
+        // Permission::create(['name' => 'ver-donantes']);
+        // Permission::create(['name' => 'ver-tipos-de-donantes']);
+        // Permission::create(['name' => 'ver-donaciones']);
+        // Permission::create(['name' => 'donaciones']);
+        // Permission::create(['name' => 'crear-donaciones']);
+
 
 
 
         // NUEVOS
         // --------------------------------------------------------------------------
-
         try {
-            Permission::create(['name' => 'editar-registros-de-asesoria']);
-            Permission::create(['name' => 'editar-situacion-migratoria']);
-
-            //Permisos para administrar todo lo de articulos
-            Permission::create(['name' => 'ver-articulos']);
-            Permission::create(['name' => 'ver-categorias-de-articulos']);
-
-            //Permisos para administrar todo lo de articulos
-            Permission::create(['name' => 'ver-actas-de-entrega']);
-            Permission::create(['name' => 'crear-actas-de-entrega']);
-
-            // Donaciones
-            Permission::create(['name' => 'ver-donantes']);
-            Permission::create(['name' => 'ver-tipos-de-donantes']);
-            Permission::create(['name' => 'ver-donaciones']);
-            Permission::create(['name' => 'donaciones']);
-            Permission::create(['name' => 'crear-donaciones']);
-
+            Permission::create(['name' => 'ver-encuestas']);
         } catch (Exception $e) {
         }
     }
