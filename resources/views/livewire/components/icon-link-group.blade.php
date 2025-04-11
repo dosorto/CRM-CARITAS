@@ -35,4 +35,10 @@
             Reportes
         </a>
     @endcanany
+    @canany(['ver-encuestas'])
+        <a href="{{ route('encuestas') }}" class="btn btn-primary w-full flex justify-start">
+            <span class="icon-[whh--survey] size-6"></span>
+            Encuestas
+        </a>
+    @endcanany
 </div>

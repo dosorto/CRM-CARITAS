@@ -53,6 +53,7 @@ use App\Livewire\Crud\Migrantes\VerExpediente;
 use App\Livewire\Crud\Roles\VerRoles;
 use App\Livewire\Crud\Usuarios\VerUsuarios;
 use App\Livewire\Encuestas\RealizarEncuesta;
+use App\Livewire\Encuestas\VerEncuestas;
 
 Route::get('/', Login::class)
     ->name('login');
@@ -95,10 +96,9 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:registrar-salida-de-migrante')
         ->name('registrar-salida-migrante');
 
-
-    Route::get('/encuestas', RegistrarSalidaMigrante::class)
+    Route::get('/encuestas', VerEncuestas::class)
         ->middleware('can:ver-encuestas')
-        ->name('registrar-salida-migrante');
+        ->name('encuestas');
 
     // ---------------- Expedientes de Migrantes ----------------
 
