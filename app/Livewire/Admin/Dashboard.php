@@ -71,7 +71,7 @@ class Dashboard extends Component
         $hombres = new \stdClass();
         $hombres->cantidad = Migrante::where('sexo', 'M')
             ->where('deleted_at', null)
-            ->whereYear('fecha_nacimiento', '<', $currentYear - 18)
+            ->whereYear('fecha_nacimiento', '<', $currentYear - 15)
             ->whereHas('expedientes', function ($query) {
                 $query->where('fecha_salida', null);
             })
@@ -84,7 +84,7 @@ class Dashboard extends Component
         $mujeres = new \stdClass();
         $mujeres->cantidad = Migrante::where('sexo', 'F')
             ->where('deleted_at', null)
-            ->whereYear('fecha_nacimiento', '<', $currentYear - 18)
+            ->whereYear('fecha_nacimiento', '<', $currentYear - 15)
             ->whereHas('expedientes', function ($query) {
                 $query->where('fecha_salida', null);
             })
@@ -97,7 +97,7 @@ class Dashboard extends Component
         $ninos = new \stdClass();
         $ninos->cantidad = Migrante::where('sexo', 'M')
             ->where('deleted_at', null)
-            ->whereYear('fecha_nacimiento', '>=', $currentYear - 18)
+            ->whereYear('fecha_nacimiento', '>=', $currentYear - 15)
             ->whereHas('expedientes', function ($query) {
                 $query->where('fecha_salida', null);
             })
@@ -110,7 +110,7 @@ class Dashboard extends Component
         $ninas = new \stdClass();
         $ninas->cantidad = Migrante::where('sexo', 'F')
             ->where('deleted_at', null)
-            ->whereYear('fecha_nacimiento', '>=', $currentYear - 18)
+            ->whereYear('fecha_nacimiento', '>=', $currentYear - 15)
             ->whereHas('expedientes', function ($query) {
                 $query->where('fecha_salida', null);
             })

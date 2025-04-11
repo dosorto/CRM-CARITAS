@@ -80,6 +80,7 @@ class PermissionSeeder extends Seeder
         // --------------------------------------------------------------------------
         try {
             Permission::create(['name' => 'ver-encuestas']);
+            Permission::create(['name' => 'generar-reportes-de-migrantes']);
         } catch (Exception $e) {
         }
     }
