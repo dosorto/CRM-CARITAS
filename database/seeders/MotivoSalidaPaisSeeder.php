@@ -12,34 +12,6 @@ class MotivoSalidaPaisSeeder extends Seeder
      */
     public function run(): void
     {
-        // $motivos = [
-        //     'Persecución política',
-        //     'Mejor oportunidad de vida',
-        //     'Violencia y amenazas',
-        //     'Pobreza',
-        //     'Situación económica del país',
-        //     'Problemas políticos',
-        //     'Falta de empleo y oportunidades',
-        //     'Crisis humanitaria',
-        //     'Seguridad personal',
-        //     'Reunificación familiar',
-        //     'Corrupción del gobierno',
-        //     'Violencia doméstica',
-        //     'Desempleo',
-        //     'Mejor futuro para la familia',
-        //     'Conflicto armado',
-        //     'Persecución religiosa',
-        //     'Dictadura del gobierno',
-        //     'Discriminación y homofobia',
-        //     'Extorsión por grupos delictivos',
-        //     'Situación crítica del país',
-        //     'Escasez de alimentos',
-        //     'Ayuda para la familia',
-        //     'Problemas de salud',
-        //     'Aspiración a mejores estudios y calidad de vida',
-        //     'Problemas económicos'
-        // ];
-
         $motivos = [
                 'Persecución política',
                 'Mejor oportunidad de vida',

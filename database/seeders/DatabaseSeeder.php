@@ -12,8 +12,27 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            UserSeeder::class,
+
+            // Dev Seeders
+            // -----------------------------------------
+            PaisSeeder::class,
+            DepartamentoSeeder::class,
+            CiudadSeeder::class,
+            DiscapacidadSeeder::class,
+            SituacionMigratoriaSeeder::class,
+            AsesorMigratorioSeeder::class,
+            FronteraSeeder::class,
+            MotivoSalidaPaisSeeder::class,
+            NecesidadSeeder::class,
+            FaltasSeeder::class,
+            TipoDonanteSeeder::class,
+            DonanteSeeder::class,
+            EncuestasSeeder::class,
+            RoleSeeder::class,
             PermissionSeeder::class,
+            UserSeeder::class,
+            // -----------------------------------------
+
         ]);
     }
 }
