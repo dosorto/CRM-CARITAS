@@ -34,10 +34,20 @@
                     <x-chartjs-component :chart="$chart" />
                 </article>
 
-                <article class="w-2/5 bg-base-200 px-6 py-4 my-4 rounded-lg shadow-md">
-                    <h3 class="font-semibold text-center mb-2">Países de origen de migrantes actuales</h3>
-                    <x-chartjs-component :chart="$chartDonut" />
-                </article>
+                <div class="flex gap-4">
+                    <article class="w-2/5 bg-base-200 px-6 py-4 my-4 rounded-lg shadow-md">
+                        <h3 class="font-semibold text-center mb-2">Países de origen de migrantes en el centro</h3>
+                        <x-chartjs-component :chart="$chartDonut" />
+                    </article>
+                    <div class="w-3/5 flex flex-col py-4 gap-4">
+                        <div class="flex py-3 bg-base-200 w-full min-w-40 pl-5 rounded-lg shadow-md items-center">
+                            <span class="icon-[material-symbols-light--family-restroom-rounded] size-8"></span>
+                            <div class="flex flex-col ml-3">
+                                <span class="text-sm font-semibold">Cantidad de Grupos o Familias:</span>
+                                <span class="text-2xl font-semibold">{{ $familias }}</span>
+                            </div>
+                        </div>
+                </div>
             </section>
         </main>
 

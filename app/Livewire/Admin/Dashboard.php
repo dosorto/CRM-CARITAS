@@ -7,6 +7,7 @@ use Livewire\Component;
 // use Livewire\Attributes\Lazy;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use App\Models\Migrante;
+use App\Models\SituacionMigratoria;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 
@@ -17,9 +18,13 @@ class Dashboard extends Component
     public $nombreMes;
     public $numeroDia;
     public $total_personas = 0;
-    public $total_migrantes = 0;
+    public $total_migrantes;
 
     public $cantidadesMigrantes = [];
+
+    public $situacionesMigratorias = [];
+
+    public $familias = 0;
 
     // Anillo de Cargando cuando el componente tarda
     public function placeholder()
@@ -100,6 +105,8 @@ class Dashboard extends Component
         $ninos->label = 'Niños';
         $ninos->iconClass = 'fa6-solid--child';
 
+
+
         $ninas = new \stdClass();
         $ninas->cantidad = Migrante::where('sexo', 'F')
             ->where('deleted_at', null)
@@ -111,6 +118,8 @@ class Dashboard extends Component
         $ninas->label = 'Niñas';
         $ninas->iconClass = 'fa6-solid--child-dress';
 
+
+
         $migrantes = new \stdClass();
         $migrantes->cantidad = Expediente::where('fecha_salida', null)->count();
         $migrantes->label = 'Migrantes';
@@ -119,8 +128,6 @@ class Dashboard extends Component
         // añadir esas cantidades a un array
         $this->cantidadesMigrantes = [$migrantes, $hombres, $mujeres, $ninos, $ninas];
 
-
-        $migrantes = Expediente::where('fecha_salida', null)->count();
 
         $paises = Migrante::select('pais_id', DB::raw('count(*) as total_migrantes'))
             ->where('deleted_at', null) // Filtrar por rango de fechas
@@ -181,7 +188,7 @@ class Dashboard extends Component
                     'data' => array_values($entrantesPorMes)
                 ],
                 [
-                    "label" => "salientes",
+                    "label" => "Salientes",
                     'backgroundColor' => ['#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE', '#5175BE',],
                     'data' => array_values($salientesPorMes)
                 ],
@@ -227,14 +234,27 @@ class Dashboard extends Component
             ]);
 
 
-        $situacionesChart = Chartjs::build()
-            ->name('situacionesChart')
-            ->type('bar')
-            ->size(['width' => 600, 'height' => 150])
-            ->labels([]);
+
+        $this->familias = Migrante::select('codigo_familiar')
+            ->whereNot('codigo_familiar', 0)
+            ->whereYear('created_at', date('Y'))
+            ->whereHas('expedientes', function ($query) {
+                $query->where('fecha_salida', null);
+            })
+            ->count();
 
 
+        $situaciones = Expediente::select('situacion_migratoria', DB::raw('count(*) as cantidad'))
+            ->whereMonth('fecha_ingreso', date('m'))
+            ->join('situaciones_migratorias', 'expedientes.situacion_migratoria_id', '=', 'situaciones_migratorias.id',)
+            ->groupBy('situacion_migratoria')
+            ->orderBy('cantidad', 'desc')
+            ->limit(5)
+            ->get();
 
-        return view('livewire.admin.dashboard',  compact('chartDonut', 'chart', 'situacionesChart', 'migrantes', 'hombres', 'mujeres'));
+
+        $this->situacionesMigratorias = $situaciones->pluck('cantidad', 'situacion_migratoria')->toArray();
+
+        return view('livewire.admin.dashboard',  compact('chartDonut', 'chart'));
     }
 }
