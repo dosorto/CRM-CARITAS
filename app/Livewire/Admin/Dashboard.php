@@ -234,15 +234,13 @@ class Dashboard extends Component
             ]);
 
 
-
-        $this->familias = Migrante::select('codigo_familiar')
-            ->whereNot('codigo_familiar', 0)
+        $this->familias = Migrante::whereNot('codigo_familiar', 0)
             ->whereYear('created_at', date('Y'))
             ->whereHas('expedientes', function ($query) {
-                $query->where('fecha_salida', null);
+                $query->whereNull('fecha_salida');
             })
-            ->count();
-
+            ->distinct('codigo_familiar')
+            ->count('codigo_familiar');
 
         $situaciones = Expediente::select('situacion_migratoria', DB::raw('count(*) as cantidad'))
             ->whereMonth('fecha_ingreso', date('m'))
