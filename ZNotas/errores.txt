@@ -12,3 +12,9 @@ Dacia
 Generales
 ---------
 1. Cambiar el color del icono de la pestaña
+
+
+Migrantes
+---------
+1. Revisar que los migrantes que se muestran en la tabla de familiares sean solo los que estan en el centro
+2. Ordenar los migrantes de mas recientes primero en la tabla de listado de migrantes

@@ -24,33 +24,36 @@
 
         <div class="print-section" style="width: 8.5in; height: 11in; font-family: Arial, Helvetica, sans-serif;">
             <!-- Logos -->
-            <div class="flex w-full my-4 justify-center gap-8">
-                <img class="h-14" src="{{ asset('img/LOGO2.png') }}" alt="">
-                <img class="h-14" src="{{ asset('img/LOGO1.png') }}" alt="">
-            </div>
-            <!-- Ubicacion -->
-            <div class="flex flex-col items-center mb-4">
-
-                <span class="font-semibold text-lg">Centro de Atención Cáritas "Mons. Guido Charbonneau"</span>
-                <span>Bo. El Hospital, Choluteca, Choluteca, Honduras</span>
-                <b>{{ $numeroDia }} de {{ $nombreMes }} del {{ $currentYear }}</b>
-
-
-            </div>
+            <header class="relative flex justify-center min-h-[100px] mt-4 mb-2">
+                <!-- Logo superior izquierdo -->
+                <img src="/img/logo-centro.jpg" class="absolute left-2 top-0 h-20" alt="Logo izquierdo">
+                <!-- Logo superior derecho -->
+                <img src="/img/LOGO2.png" class="absolute right-4 top-4 h-12 alt="Logo derecho">
+                <!-- Título -->
+                <div class="flex flex-col justify-center mr-20">
+                    <h2 class="text-2xl font-bold text-center mb-0 text-gray-900" style="font-size: 18px;">
+                        Centro de Atención Cáritas "Mons. Guido Charbonneau"</h2>
+                    <h3 class="text-lg font-semibold text-center mb-0 text-gray-700" style="font-size: 16px;">
+                        Bo. El Hospital, Choluteca, Choluteca, Honduras</h3>
+                    <h4 class="text-center text-gray-800" style="font-size: 16px;">
+                        {{ $numeroDia }} de {{ $nombreMes }} del {{ $currentYear }}
+                    </h4>
+                </div>
+            </header>
 
             <!-- Recuadro rojo -->
             <div class="flex items-center justify-center w-full">
-                <div style="width: 80%; border-color: #8a2e2e; color: white;"
-                    class="fondo border flex items-center p-2 rounded-lg">
-                    <img style="" class="h-14" src="{{ asset('imagenes/reportes/icon-corazon.png') }}"
+                <div style="width: 90%; border-color: #8a2e2e; color: white;"
+                    class="fondo border justify-center flex items-center p-2 rounded-lg">
+                    <img style="" class="h-14 mr-2" src="{{ asset('imagenes/reportes/icon-corazon.png') }}"
                         alt="">
                     <div class="text-center" style="font-size: 14px;">
                         <p>
-                            Servicios que se brindan de menera gratuita y temporal: <span class="font-semibold">
-                                hospedaje,</span>
+                            Servicios que se brindan de menera gratuita y temporal:
                         </p>
                         <p class="font-semibold">
-                            alimentación, agua, asesoría legal, apoyo psicosocial, lavandería, internet y ropa
+                            Hospedaje, alimentación, agua, asesoría legal, apoyo psicosocial, lavandería, internet y
+                            ropa
                         </p>
 
                     </div>
@@ -59,29 +62,29 @@
 
 
             {{-- Personas y Familias --}}
-            <section class="flex mt-8 justify-center gap-12 mx-12">
+            <section class="flex mt-6 justify-center gap-12">
                 <article class="flex flex-col items-center">
-                    <img class="size-20" src="{{ asset('imagenes/reportes/family.png') }}" alt="">
+                    <img class="h-[4.5rem]" src="{{ asset('imagenes/reportes/family.png') }}" alt="">
                     <p style="color: #583d2b;" class="text-center font-extrabold text-2xl">{{ $cantidad_migrantes }}</p>
                     <p class="font-semibold text-sm">Personas refugiadas</p>
                 </article>
                 <article class="flex flex-col items-center">
-                    <img class="h-20" src="{{ asset('imagenes/reportes/icon-man.png') }}" alt="">
+                    <img class="h-[4.5rem]" src="{{ asset('imagenes/reportes/icon-man.png') }}" alt="">
                     <p style="color: #583d2b;" class="text-center font-extrabold text-2xl">{{ $cantidad_hombres }}</p>
                     <p class="font-semibold text-sm">Hombres</p>
                 </article>
                 <article class="flex flex-col items-center">
-                    <img class="h-20 w-max" src="{{ asset('imagenes/reportes/icon-woman.png') }}" alt="">
+                    <img class="h-[4.5rem] w-max" src="{{ asset('imagenes/reportes/icon-woman.png') }}" alt="">
                     <p style="color: #583d2b;" class="text-center font-extrabold text-2xl">{{ $cantidad_mujeres }}</p>
                     <p class="font-semibold text-sm">Mujeres</p>
                 </article>
                 <article class="flex flex-col items-center">
-                    <img class="h-20 w-max" src="{{ asset('imagenes/reportes/icon-boy.png') }}" alt="">
+                    <img class="h-[4.5rem] w-max" src="{{ asset('imagenes/reportes/icon-boy.png') }}" alt="">
                     <p style="color: #583d2b;" class="text-center font-extrabold text-2xl">{{ $cantidad_ninos }}</p>
                     <p class="font-semibold text-sm">Niños</p>
                 </article>
                 <article class="flex flex-col items-center">
-                    <img class="h-20 w-max" src="{{ asset('imagenes/reportes/icon-girl.png') }}" alt="">
+                    <img class="h-[4.5rem] w-max" src="{{ asset('imagenes/reportes/icon-girl.png') }}" alt="">
                     <p style="color: #583d2b;" class="text-center font-extrabold text-2xl">{{ $cantidad_ninas }}</p>
                     <p class="font-semibold text-sm">Niñas</p>
                 </article>
@@ -89,69 +92,73 @@
 
 
 
-            <p class="w-full text-center mt-4 mb-4 font-semibold">
+            <p class="w-full text-sm text-center mt-4 mb-4">
                 Del total de personas en movilidad, se identificó a
                 <b>{{ $familias }}</b>
                 grupos familiares.
             </p>
 
 
-            <!-- Grafico -->
-            <div class="flex flex-col justify-center w-full rounded-lg pb-3" style=" background-color: #fcf3c2;">
-                <p style="color: #8a2e2e; font-size: 20px; " class="font-bold text-center my-3">
-                    Nacionalidad
-                </p>
-                <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
+            <!-- Graficos -->
+            <div class="flex w-full rounded-xl p-4" style=" background-color: #fcf3c2;">
 
-                    <div class="flex justify-end">
+                <div class="flex flex-col w-3/5">
+                    <h3 class="text-[#8a2e2e] font-bold text-center mb-2">
+                        Nacionalidades
+                    </h3>
+                    <div class="size-full pr-3">
                         @if ($grafico)
                             {!! $this->chart->render() !!}
                         @endif
                     </div>
+                </div>
 
-                    <div class="grid justify-start items-end" style="padding-bottom: 65px;">
-                        <div style="font-size: 16px; color: #583d2b;" class="text-center w-96">
-                            <p class="flex flex-col">
-                                <span>Durante el mes,</span>
-                                <span><b>{{ $migrantesEnTransito }}</b>
-                                    {{ $migrantesEnTransito != 1 ? 'personas fueron identificadas como' : 'persona fue identificada como' }}
-                                </span>
-                                <b>{{ $migrantesEnTransito != 1 ? 'Migrantes en Tránsito' : 'Migrante en Tránsito' }},</b>
-                            </p>
+                <div class="w-2/5 flex flex-col justify-center text-[#583d2b] pl-3">
 
-                            <p class="flex flex-col">
-                                <span>y <b>{{ $migrantesEnProteccion }}</b> con necesidades de</span>
-                                <b>Protección Internacional.</b>
-                            </p>
-                        </div>
-                    </div>
+                    @if (!empty($situacionesMigratorias))
+
+                        <span class="font-semibold text-center mb-4">
+                            Durante el mes, se identificaron los siguientes perfiles de Migrantes:
+                        </span>
+
+                        <table class="table table-xs">
+                            <thead class="border-b-2 border-[#8a2e2e]">
+                                <th class="text-xs rounded-tl-lg bg-[#8a2e2e] text-white">Perfil</th>
+                                <th class="text-xs rounded-tr-lg bg-[#8a2e2e] text-white text-center">Total</th>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($situacionesMigratorias as $situacion => $cantidad)
+                                    <tr class="border-b border-[#8a2e2e] border-opacity-40">
+                                        <td>{{ $situacion }}</td>
+                                        <td class="text-center">{{ $cantidad }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <span class="text-center mt-2 font-bold">(Seleccione un rango de fechas)</span>
+                    @endif
                 </div>
             </div>
             <!-- total -->
-            <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
-                <div class="flex flex-col text-center items-end p-3">
-                    <div class="flex flex-col items-center">
-                        <div class="flex items-center justify-center"
-                            style="font-size: 30px; font-weight: 600; background-color: #ad342b; border-radius: 50%; width: 70px; height: 70px; color: #fffcf6;">
-                            {{ $total_personas }}
-                        </div>
-                        <div class="font-bold mt-2" style="color: #583d2b; font-size: 18px;">
-                            <p>Total de personas</p>
-                            <p>en condición de movilidad</p>
-                            <p>atendidas en {{ $currentYear }}</p>
-                        </div>
+
+            <div class="flex items-center justify-center mt-3">
+                <div class="flex flex-col items-center">
+                    <div class="rounded-full w-max bg-primary text-white py-2 px-4 font-bold text-xl min-w-11">
+                        {{ $total_personas }}
                     </div>
-
-
+                    <div class="font-bold mt-2 text-base text-center" style="color: #583d2b;">
+                        <p>Total de personas en condición de movilidad</p>
+                        <p>atendidas en {{ $currentYear }}</p>
+                    </div>
                 </div>
-                <div class="p-3">
-                    <img width="250px" src=" {{ asset('imagenes/reportes/inmigrante.png') }}" alt="">
-                </div>
+                <img width="200px" src=" {{ asset('imagenes/reportes/inmigrante.png') }}" alt="">
             </div>
             <div class="flex justify-center items-end mb-2 mt-4">
-                <div style="border: 1px solid #fcf3c2; width:60%; background-color: #ece2a6; color: #583d2b; font-size: 12px;"
-                    class="pt-2 text-center font-bold">
-                    <p class="mb-1">Información extraída de la base de datos del Centro de Atención Cáritas</p>
+                <div style="background-color: #ece2a6; color: #583d2b; font-size: 12px;"
+                    class="py-2 text-center font-bold rounded w-3/5">
+                    <p>Información extraída de la base de datos del Centro de Atención Cáritas</p>
                 </div>
             </div>
         </div>

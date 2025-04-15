@@ -127,17 +127,17 @@
                                     <span class="ml-3 flex items-center gap-0.5">
                                         <span @class([
                                             'size-6',
-                                            'icon-[cuida--checkbox-checked-outlined]' => $codigoFamiliar === 1,
+                                            'icon-[cuida--checkbox-checked-outlined]' =>
+                                                $codigoFamiliar >= 1,
                                             'icon-[ci--checkbox-unchecked]' =>
                                                 $codigoFamiliar === 0 || $codigoFamiliar === 'void',
                                         ])></span>
                                         Si
-
                                     </span>
                                     <span class="ml-4 flex items-center gap-0.5">
                                         <span @class([
                                             'size-6',
-                                            'icon-[cuida--checkbox-checked-outlined]' => $codigoFamiliar === 0,
+                                            'icon-[cuida--checkbox-checked-outlined]' => $codigoFamiliar >= 0,
                                             'icon-[ci--checkbox-unchecked]' =>
                                                 $codigoFamiliar === 1 || $codigoFamiliar === 'void',
                                         ])></span>
