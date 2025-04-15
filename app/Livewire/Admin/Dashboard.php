@@ -172,6 +172,9 @@ class Dashboard extends Component
                             ]
                         ],
                         'position' => 'top' // Posición de la leyenda (opcional)
+                    ],
+                    'datalabels' => [
+                        'display' => false
                     ]
                 ]
             ]);
@@ -217,18 +220,9 @@ class Dashboard extends Component
                             "color" => "#FFFFFF" // Color del texto en la leyenda
                         ],
                         "position" => "top", // Posición de la leyenda
-                        // title
-                        // "title" => [
-                        //     "display" => true,
-                        //     "text" => "Migrantes por mes",
-                        //     "color" => "#000", // Color del texto del título
-                        //     "font" => [
-                        //         "size" => 16, // Tamaño de la fuente del título
-                        //         // semibold
-                        //         "weight" => "600"
-                        //     ]
-                        // ]
-
+                    ],
+                    "datalabels" => [
+                        "display" => false
                     ]
                 ]
             ]);

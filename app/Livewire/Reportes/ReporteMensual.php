@@ -70,6 +70,7 @@ class ReporteMensual extends Component
                 ->with('situacionMigratoria')
                 ->get();
 
+
             $this->situacionesMigratorias = $situaciones->pluck('total_situaciones', 'situacionMigratoria.situacion_migratoria')->toArray();
 
             $this->familias = Migrante::select('*')
@@ -77,7 +78,6 @@ class ReporteMensual extends Component
                 ->whereNot('codigo_familiar', 0)
                 ->distinct('codigo_familiar')
                 ->count();
-
         } else {
             $this->cantidad_migrantes = 0;
             $this->cantidad_hombres = 0;
@@ -113,34 +113,35 @@ class ReporteMensual extends Component
 
             $data = $this->paises->pluck('total_migrantes')->toArray();
             $labels = $this->paises->pluck('pais.nombre_pais')->toArray();
-            $data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            // $data = [1, 2, 3, 4, 32, 6, 7, 8, 9, 10, 11, 12, 13, 14, 40, 16, 17, 18];
 
-            $labels = [
-                "Reg-1",
-                "Reg-2",
-                "Reg-3",
-                "Reg-4",
-                "Reg-5",
-                "Reg-6",
-                "Reg-7",
-                "Reg-8",
-                "Reg-9",
-                "Reg-10",
-                // "Reg-11",
-                // "Reg-12",
-                // "Reg-13",
-                // "Reg-14",
-                // "Reg-15",
-                // "Reg-16",
-                // "Reg-17",
-                // "Reg-18",
-            ];
+            // $labels = [
+            //     "Reg-1",
+            //     "Reg-2",
+            //     "Reg-3",
+            //     "Reg-4",
+            //     "Reg-5",
+            //     "Reg-6",
+            //     "Reg-7",
+            //     "Reg-8",
+            //     "Reg-9",
+            //     "Reg-10",
+            //     "Reg-11",
+            //     "Reg-12",
+            //     "Reg-13",
+            //     "Reg-14",
+            //     "Reg-15",
+            //     "Reg-16",
+            //     "Emiratos Árabes Unidos",
+            //     "Reg-18",
+            // ];
 
             $this->datasets = [
                 'datasets' => [
                     [
                         "label" => "Migrantes",
                         "backgroundColor" => "#ad342b",
+
                         "borderColor" => "rgba(38, 185, 154, 0.7)",
                         "data" => $data
                     ]
@@ -158,23 +159,27 @@ class ReporteMensual extends Component
             ->livewire()
             ->model("datasets")
             ->type("bar")
-            ->size(['width' => 350, 'height' => 200])
+            ->size(['width' => 350, 'height' => 300])
             ->options([
                 'indexAxis' => 'y',
                 "responsive" => true,
+                'layout' => [
+                    'padding' => [
+                        'right' => 30
+                    ]
+                ],
                 "plugins" => [
                     "legend" => [
                         "display" => false
                     ],
                     "datalabels" => [
-                        "color" => "#FFF",
-                        "anchor" => "start",  // Coloca las etiquetas al final de las barras
-                        "align" => "left", // Alinea el texto a la derecha (fuera de la barra)
+                        "color" => "#000",
+                        "anchor" => "end",  // Coloca las etiquetas al final de las barras
+                        "align" => "right", // Alinea el texto a la derecha (fuera de la barra)
                         "formatter" => "function(value) { return value; }", // Muestra el valor
                         "font" => [
                             "weight" => "bold"
-                        ],
-                        "margin" => 4
+                        ]
                     ]
                 ],
                 "scales" => [

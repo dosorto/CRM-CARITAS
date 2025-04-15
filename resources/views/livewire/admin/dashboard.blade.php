@@ -1,6 +1,6 @@
 <div class="h-screen w-full flex flex-col bg-base-100">
     <header class="h-14 flex justify-between items-center p-4 shadow-md z-10">
-        <h1 class="text-xl font-bold">Estadísticas</h1>
+        <h1 class="text-xl font-bold">Estadísticas de Migrantes en el centro</h1>
         {{-- <div class="hidden">
             <span class="icon-[fa6-solid--child]"></span>
             <span class="icon-[fa6-solid--child-dress]"></span>
@@ -26,9 +26,7 @@
 
             {{-- Gráficos --}}
             <section class="w-full flex flex-col px-4">
-                {{-- <article class="w-1/3 border-2 p-4 rounded-lg h-max text-center bg-accent">
 
-                </article> --}}
                 <article class="w-full h-max bg-base-200 shadow-md px-6 py-4 rounded-lg">
                     <h3 class="font-semibold text-center mb-2">Cantidad de Migrantes por Mes</h3>
                     <x-chartjs-component :chart="$chart" />
