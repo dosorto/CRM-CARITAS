@@ -72,13 +72,14 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'ver-donaciones']);
         // Permission::create(['name' => 'donaciones']);
         // Permission::create(['name' => 'crear-donaciones']);
+        // Permission::create(['name' => 'ver-encuestas']);
+        // Permission::create(['name' => 'generar-reportes-de-migrantes']);
 
 
         // NUEVOS
         // --------------------------------------------------------------------------
         try {
-            Permission::create(['name' => 'ver-encuestas']);
-            Permission::create(['name' => 'generar-reportes-de-migrantes']);
+
         } catch (Exception $e) {
         }
     }
