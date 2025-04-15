@@ -4,12 +4,10 @@ namespace App\Livewire\Admin;
 
 use App\Models\Expediente;
 use Livewire\Component;
-// use Livewire\Attributes\Lazy;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use App\Models\Migrante;
-use App\Models\SituacionMigratoria;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
+// use Livewire\Attributes\Lazy;
 
 // #[Lazy()]
 class Dashboard extends Component
@@ -27,16 +25,14 @@ class Dashboard extends Component
     public $familias = 0;
 
     // Anillo de Cargando cuando el componente tarda
-    public function placeholder()
-    {
-        return <<<'HTML'
-            <div class="size-full h-screen flex items-center justify-center">
-                <span class="loading loading-ring loading-lg"></span>
-            </div>
-            HTML;
-    }
-
-    public function mount() {}
+    // public function placeholder()
+    // {
+    //     return <<<'HTML'
+    //         <div class="size-full h-screen flex items-center justify-center">
+    //             <span class="loading loading-ring loading-lg"></span>
+    //         </div>
+    //         HTML;
+    // }
 
     public function render()
     {

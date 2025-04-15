@@ -133,6 +133,7 @@ class MigranteService
     {
         return Migrante::where($col, 'LIKE', '%' . $text . '%')
             ->with('pais')
+            ->orderBy('created_at', 'desc')
             ->paginate($pagination);
     }
 
@@ -143,7 +144,7 @@ class MigranteService
 
     public function getAllMigrantesPaginated($pagination)
     {
-        return Migrante::paginate($pagination);
+        return Migrante::orderBy('created_at', 'desc')->paginate($pagination);
     }
 
     public function buscar($col, $text)
