@@ -8,13 +8,13 @@
 
     <div class="flex flex-col justify-between h-full overflow-y-auto">
         <main class="flex items-center h-full">
-
             <div class="overflow-y-auto w-full p-4 flex justify-center items-center flex-wrap gap-6">
                 @can('ver-migrantes')
                     <article>
                         <livewire:components.link-card title="Listado de Migrantes" cardWidth="w-full"
                             iconClass="icon-[fa-solid--users] size-6" route="ver-migrantes" />
                     </article>
+                    <livewire:crud.migrantes.generar-excel-modal />
                 @endcan
                 @can('registrar-migrantes')
                     <article>
@@ -28,12 +28,5 @@
                 </article>
             </div>
         </main>
-
-        {{-- Footer fijo en la parte inferior --}}
-        <footer class="h-auto flex justify-start bg-neutral text-base-content p-4">
-            <aside>
-
-            </aside>
-        </footer>
     </div>
 </div>

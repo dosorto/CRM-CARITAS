@@ -85,13 +85,6 @@
                                             <span class="icon-[mdi--account-arrow-right-outline] size-6"></span>
                                         </button>
                                     </div>
-                                    {{-- @else
-                                    <div class="tooltip tooltip-primary" data-tip="Nuevo Expediente">
-                                        <button wire:click="nuevoExpediente({{ $item->id }})"
-                                            class="btn btn-accent btn-sm text-base-content w-12" type="button">
-                                            <span class="icon-[streamline--clipboard-add-solid] size-5"></span>
-                                        </button>
-                                    </div> --}}
                                 @endif
 
                             </td>
@@ -105,29 +98,5 @@
             {{ $items->links() }}
         </footer>
     </main>
-
-    {{--
-    @if ($item->reside_en_centro)
-        <div class="tooltip tooltip-primary" data-tip="Registrar Salida">
-            <button wire:click="registrarSalida({{ $item->id }})"
-                class="btn btn-accent btn-sm text-base-content" type="button">
-                <span class="icon-[heroicons-outline--logout] size-6"></span>
-            </button>
-        </div>
-    @else
-        <div class="tooltip tooltip-primary" data-tip="Nuevo Expediente">
-            <button wire:click="nuevoExpediente({{ $item->id }})"
-                class="btn btn-accent btn-sm text-base-content" type="button">
-                <span class="icon-[streamline--clipboard-add-solid] size-5"></span>
-            </button>
-        </div>
-    @endif
-
-    <div class="tooltip tooltip-primary" data-tip="Ver Historial">
-        <button wire:click="verHistorial({{ $item->id }})"
-            class="btn btn-accent btn-sm text-base-content" type="button">
-            <span class="icon-[mdi--account-file-text] size-6"></span>
-        </button>
-    </div> --}}
 
 </div>

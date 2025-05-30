@@ -1,6 +1,5 @@
 <div>
     {{-- Botón para activar el Modal --}}
-
     <label for="{{ $idModal }}-{{ $persona->id }}" class="btn btn-{{ $btnSize }} btn-accent text-base-content">
         <span class="icon-[flowbite--info-circle-solid] size-{{ $iconSize }}"></span>
         {{ $label }}
