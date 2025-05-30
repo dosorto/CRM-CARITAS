@@ -55,15 +55,16 @@ class VerMigrantes extends Component
 
     public function nuevoExpediente($id)
     {
+        dd('Oops... Esto no debería haber ocurrido, no se admiten más de 1 expediente por migrante. (:');
         // pasos para saltarse los primeros pasos del formulario.
         // los primeros 3 son solo para datos personales.
-        session([
-            'currentStep' => 4,
-        ]);
-        session(['nombreMigrante' => $this->getMigranteService()->obtenerPrimerNombreApellido($id)]);
-        session(['identificacion' => $this->getMigranteService()->obtenerIdentificacion($id)]);
-        session(['migranteId' => $id]);
-        return $this->redirectRoute('registrar-migrante');
+        // session([
+        //     'currentStep' => 4,
+        // ]);
+        // session(['nombreMigrante' => $this->getMigranteService()->obtenerPrimerNombreApellido($id)]);
+        // session(['identificacion' => $this->getMigranteService()->obtenerIdentificacion($id)]);
+        // session(['migranteId' => $id]);
+        // return $this->redirectRoute('registrar-migrante');
     }
 
     public function registrarSalida($id)

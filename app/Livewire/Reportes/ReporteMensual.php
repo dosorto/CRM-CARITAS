@@ -28,11 +28,12 @@ class ReporteMensual extends Component
     public $datasets;
 
     public $familias = 0;
+    public $situacionesMigratorias = [];
     public $migrantesEnTransito = 0;
     public $migrantesEnProteccion = 0;
 
 
-    public function updated($propertyName)
+    public function updated()
     {
         if ($this->fecha_inicio && $this->fecha_final) {
             // $this->grafico = true;
@@ -61,12 +62,21 @@ class ReporteMensual extends Component
                 ->whereDate('fecha_nacimiento', '>=', $edad)
                 ->count();
 
-            $this->migrantesEnTransito = Expediente::where('situacion_migratoria_id', 1)
+            // Situaciones
+            $situaciones = Expediente::select('situacion_migratoria_id', DB::raw('count(*) as total_situaciones'))
                 ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
-                ->count();
+                ->groupBy('situacion_migratoria_id')
+                ->orderBy('total_situaciones', 'desc')
+                ->with('situacionMigratoria')
+                ->get();
 
-            $this->migrantesEnProteccion = Expediente::where('situacion_migratoria_id', 2)
+
+            $this->situacionesMigratorias = $situaciones->pluck('total_situaciones', 'situacionMigratoria.situacion_migratoria')->toArray();
+
+            $this->familias = Migrante::select('*')
                 ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
+                ->whereNot('codigo_familiar', 0)
+                ->distinct('codigo_familiar')
                 ->count();
         } else {
             $this->cantidad_migrantes = 0;
@@ -74,10 +84,11 @@ class ReporteMensual extends Component
             $this->cantidad_mujeres = 0;
             $this->cantidad_ninos = 0;
             $this->cantidad_ninas = 0;
-            $this->migrantesEnTransito = 0;;
-            $this->migrantesEnProteccion = 0;;
+            $this->migrantesEnTransito = 0;
+            $this->migrantesEnProteccion = 0;
         }
     }
+
     public function mount()
     {
         Carbon::setLocale('es');
@@ -97,20 +108,40 @@ class ReporteMensual extends Component
                 ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final]) // Filtrar por rango de fechas
                 ->groupBy('pais_id')
                 ->orderBy('total_migrantes', 'desc')
-                ->limit(5)
                 ->with('pais') // Asegúrate de que la relación 'pais' esté definida en el modelo Migrante
                 ->get();
 
             $data = $this->paises->pluck('total_migrantes')->toArray();
             $labels = $this->paises->pluck('pais.nombre_pais')->toArray();
-            // dd($labels);
+            // $data = [1, 2, 3, 4, 32, 6, 7, 8, 9, 10, 11, 12, 13, 14, 40, 16, 17, 18];
 
+            // $labels = [
+            //     "Reg-1",
+            //     "Reg-2",
+            //     "Reg-3",
+            //     "Reg-4",
+            //     "Reg-5",
+            //     "Reg-6",
+            //     "Reg-7",
+            //     "Reg-8",
+            //     "Reg-9",
+            //     "Reg-10",
+            //     "Reg-11",
+            //     "Reg-12",
+            //     "Reg-13",
+            //     "Reg-14",
+            //     "Reg-15",
+            //     "Reg-16",
+            //     "Emiratos Árabes Unidos",
+            //     "Reg-18",
+            // ];
 
             $this->datasets = [
                 'datasets' => [
                     [
                         "label" => "Migrantes",
                         "backgroundColor" => "#ad342b",
+
                         "borderColor" => "rgba(38, 185, 154, 0.7)",
                         "data" => $data
                     ]
@@ -128,27 +159,51 @@ class ReporteMensual extends Component
             ->livewire()
             ->model("datasets")
             ->type("bar")
-            ->size(['width' => 350, 'height' => 250])
+            ->size(['width' => 350, 'height' => 300])
             ->options([
                 'indexAxis' => 'y',
-                "responsive" => true, // Asegúrate de que el gráfico sea responsivo
+                "responsive" => true,
+                'layout' => [
+                    'padding' => [
+                        'right' => 30
+                    ]
+                ],
                 "plugins" => [
                     "legend" => [
-                        "display" => false // Oculta la leyenda
+                        "display" => false
+                    ],
+                    "datalabels" => [
+                        "color" => "#000",
+                        "anchor" => "end",  // Coloca las etiquetas al final de las barras
+                        "align" => "right", // Alinea el texto a la derecha (fuera de la barra)
+                        "formatter" => "function(value) { return value; }", // Muestra el valor
+                        "font" => [
+                            "weight" => "bold"
+                        ]
                     ]
                 ],
                 "scales" => [
                     "x" => [
-                        'position' => 'top',
-                        "display" => true, // Oculta las etiquetas del eje x
+                        'position' => 'bottom',
+                        "display" => true,
                         "grid" => [
-                            "display" => true // Quita las líneas de cuadrícula del eje x
+                            "display" => true
+                        ],
+                        "ticks" => [
+                            "font" => [
+                                "weight" => "bold"
+                            ]
                         ]
                     ],
                     "y" => [
                         "beginAtZero" => true,
                         "grid" => [
-                            "display" => false // Quita las líneas de cuadrícula del eje y
+                            "display" => false
+                        ],
+                        "ticks" => [
+                            "font" => [
+                                "weight" => "bold"
+                            ]
                         ]
                     ]
                 ]
@@ -157,45 +212,6 @@ class ReporteMensual extends Component
 
     public function render()
     {
-        // $chart = Chartjs::build()
-        // ->name('barChartTest')
-        // ->type('bar')
-        // ->size(['width' => 180, 'height' => 110])
-        // ->labels(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'otro'])
-        // ->datasets([
-        //     [
-        //         "label" => "", // No se mostrará ya que la leyenda está oculta
-        //         'backgroundColor' => ['#ad342b'],
-        //         'data' => [69, 59, 0, 0, 0], // Asegúrate de que los datos coincidan con las etiquetas
-        //         'barThickness' => 25,
-        //         'categoryPercentage' =>0.8, // Reduce la separación entre las categorías
-        //         'barPercentage' => 0.8,
-        //     ]
-        // ])
-        // ->options([
-        //     'indexAxis' => 'y',
-        //     "responsive" => true, // Asegúrate de que el gráfico sea responsivo
-        //     "plugins" => [
-        //         "legend" => [
-        //             "display" => false // Oculta la leyenda
-        //         ]
-        //     ],
-        //     "scales" => [
-        //         "x" => [
-        //              'position' => 'top',
-        //             "display" => true, // Oculta las etiquetas del eje x
-        //             "grid" => [
-        //                 "display" => true // Quita las líneas de cuadrícula del eje x
-        //             ]
-        //         ],
-        //         "y" => [
-        //             "beginAtZero" => true,
-        //             "grid" => [
-        //                 "display" => false // Quita las líneas de cuadrícula del eje y
-        //             ]
-        //         ]
-        //     ]
-        // ]);
         $this->getData();
 
         return view('livewire.reportes.reporte-mensual');

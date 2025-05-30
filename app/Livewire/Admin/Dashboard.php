@@ -4,12 +4,10 @@ namespace App\Livewire\Admin;
 
 use App\Models\Expediente;
 use Livewire\Component;
-// use Livewire\Attributes\Lazy;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use App\Models\Migrante;
-use App\Models\SituacionMigratoria;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
+// use Livewire\Attributes\Lazy;
 
 // #[Lazy()]
 class Dashboard extends Component
@@ -27,16 +25,14 @@ class Dashboard extends Component
     public $familias = 0;
 
     // Anillo de Cargando cuando el componente tarda
-    public function placeholder()
-    {
-        return <<<'HTML'
-            <div class="size-full h-screen flex items-center justify-center">
-                <span class="loading loading-ring loading-lg"></span>
-            </div>
-            HTML;
-    }
-
-    public function mount() {}
+    // public function placeholder()
+    // {
+    //     return <<<'HTML'
+    //         <div class="size-full h-screen flex items-center justify-center">
+    //             <span class="loading loading-ring loading-lg"></span>
+    //         </div>
+    //         HTML;
+    // }
 
     public function render()
     {
@@ -172,6 +168,9 @@ class Dashboard extends Component
                             ]
                         ],
                         'position' => 'top' // Posición de la leyenda (opcional)
+                    ],
+                    'datalabels' => [
+                        'display' => false
                     ]
                 ]
             ]);
@@ -217,18 +216,9 @@ class Dashboard extends Component
                             "color" => "#FFFFFF" // Color del texto en la leyenda
                         ],
                         "position" => "top", // Posición de la leyenda
-                        // title
-                        // "title" => [
-                        //     "display" => true,
-                        //     "text" => "Migrantes por mes",
-                        //     "color" => "#000", // Color del texto del título
-                        //     "font" => [
-                        //         "size" => 16, // Tamaño de la fuente del título
-                        //         // semibold
-                        //         "weight" => "600"
-                        //     ]
-                        // ]
-
+                    ],
+                    "datalabels" => [
+                        "display" => false
                     ]
                 ]
             ]);

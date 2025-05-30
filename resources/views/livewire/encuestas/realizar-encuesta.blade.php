@@ -31,12 +31,30 @@
                         </div>
                     @endforeach
 
+
                     <label class="p-1 font-semibold mt-4">
                         {{ $idioma == 'Español' ? 'Comentarios Adicionales' : 'Additional Comments' }}
                     </label>
                     <textarea class="textarea textarea-bordered" rows="4" wire:model="comentarios"
                         placeholder="{{ $idioma == 'Español' ? 'Escribir aquí...' : 'Write here...' }}">
                     </textarea>
+
+                    <label class="p-1 font-semibold mt-4">
+                        {{ $idioma == 'Español'
+                            ? '¿Cuántas personas representa al llenar esta encuesta?'
+                            : 'How many people are you representing in this survey?' }}
+                    </label>
+                    <input @class([
+                        'input input-bordered',
+                        'border-b-4 border-error' => $errors->has('cantidad'),
+                    ]) type="number" wire:model="cantidad" placeholder="000">
+                    </input>
+
+                    @error('cantidad')
+                        <div class="text-error mt-2 font-semibold">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                     @error('respuestas')
                         <div class="text-error mt-2 font-semibold">
@@ -62,7 +80,8 @@
                 <span class="icon-[vs--language] size-6"></span>
                 {{ $btnLanguageLabel[$idioma] }}{{ $idioma }}
             </div>
-            <ul tabindex="0" class="dropdown-content menu bg-slate-300 rounded-box z-[1] w-52 p-2 shadow font-semibold">
+            <ul tabindex="0"
+                class="dropdown-content menu bg-slate-300 rounded-box z-[1] w-52 p-2 shadow font-semibold">
                 <li><button wire:click="cambiarIdioma('Español')">Español</button></li>
                 <li><button wire:click="cambiarIdioma('English')">English</button></li>
             </ul>

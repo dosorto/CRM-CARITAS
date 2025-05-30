@@ -17,6 +17,7 @@ class RealizarEncuesta extends Component
     public $preguntas = [];
     public $respuestas = [];
     public $comentarios = '';
+    public $cantidad = 0;
 
     public $idioma = 'Español';
 
@@ -64,8 +65,15 @@ class RealizarEncuesta extends Component
             }
         }
 
+        if (!$this->cantidad) {
+            $mensaje = $this->idioma == 'Español' ? '* Por favor, ingrese el número de personas.' : '* Please enter the number of people.';
+            $this->addError('cantidad', $mensaje);
+            return;
+        }
+
         $encuesta = new Encuesta();
         $encuesta->comentario = $this->comentarios;
+        $encuesta->personas = $this->cantidad;
         $encuesta->save();
 
         foreach ($this->preguntas as $pregunta) {

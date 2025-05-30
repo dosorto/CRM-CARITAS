@@ -8,8 +8,8 @@
     <title>ÉXODO</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -71,7 +71,6 @@
         </div>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;700&display=swap');
