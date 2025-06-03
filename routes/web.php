@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RegistrosController;
 use App\Livewire\AboutUs\AboutPage;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Admin\Dashboard;
@@ -297,3 +298,7 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('can:generar-reportes-de-migrantes')
         ->name('reportes');
 });
+
+Route::get('/descargar-registros/{filename}', [RegistrosController::class, 'descargar'])
+    ->middleware('can:ver-migrantes')
+    ->name('descargar.registros');

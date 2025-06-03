@@ -43,7 +43,7 @@ module.exports = {
 
                     "error-content":    "#F6EFEF", // Color de alertas de validacion de formularios
 
-                    "success":          "#18A811",
+                    "success":          "#1A8241",
                     "success-content":  "#F1F5FB",
                     // "success-content":  "D0FDE1",
 
