@@ -25,6 +25,10 @@ class Migrante extends BaseModel
         'fecha_nacimiento',
     ];
 
+    protected $casts = [
+        'fecha_nacimiento' => 'date',
+    ];
+
     public function pais(): BelongsTo
     {
         return $this->belongsTo(Pais::class);
@@ -40,4 +44,3 @@ class Migrante extends BaseModel
         return $this->belongsToMany(Falta::class, 'migrantes_faltas', 'migrante_id', 'falta_id');
     }
 }
-

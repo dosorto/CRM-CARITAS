@@ -12,6 +12,10 @@ class Expediente extends BaseModel
     use SoftDeletes, HasFactory;
 
     protected $table = 'expedientes';
+    protected $casts = [
+        'fecha_ingreso' => 'date',
+        'fecha_salida' => 'date',
+    ];
 
     public function discapacidades(): BelongsToMany
     {
