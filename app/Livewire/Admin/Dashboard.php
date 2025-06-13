@@ -37,14 +37,12 @@ class Dashboard extends Component
     public function render()
     {
         $migrantesEntrantesPorMes = Expediente::selectRaw('MONTH(fecha_ingreso) as mes, COUNT(*) as total')
-            // ->whereYear('fecha_ingreso', date('Y'))
-            ->whereYear('fecha_ingreso', 2024)
+            ->whereYear('fecha_ingreso', date('Y'))
             ->groupBy('mes')
             ->pluck('total', 'mes');
 
         $migrantesSalientesPorMes = Expediente::selectRaw('MONTH(fecha_ingreso) as mes, COUNT(*) as total')
-            // ->whereYear('fecha_ingreso', date('Y'))
-            ->whereYear('fecha_ingreso', 2024)
+            ->whereYear('fecha_ingreso', date('Y'))
             ->where('fecha_salida', '!=', null)
             ->groupBy('mes')
             ->pluck('total', 'mes');
