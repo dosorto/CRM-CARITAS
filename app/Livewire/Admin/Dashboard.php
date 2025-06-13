@@ -36,16 +36,14 @@ class Dashboard extends Component
 
     public function render()
     {
-        $migrantesEntrantesPorMes = Migrante::selectRaw('MONTH(created_at) as mes, COUNT(*) as total')
-            ->whereYear('created_at', date('Y'))
+        $migrantesEntrantesPorMes = Expediente::selectRaw('MONTH(fecha_ingreso) as mes, COUNT(*) as total')
+            ->whereYear('fecha_ingreso', date('Y'))
             ->groupBy('mes')
             ->pluck('total', 'mes');
 
-        $migrantesSalientesPorMes = Migrante::selectRaw('MONTH(created_at) as mes, COUNT(*) as total')
-            ->whereYear('created_at', date('Y'))
-            ->whereHas('expedientes', function ($query) {
-                $query->where('fecha_salida', '!=', null);
-            })
+        $migrantesSalientesPorMes = Expediente::selectRaw('MONTH(fecha_ingreso) as mes, COUNT(*) as total')
+            ->whereYear('fecha_ingreso', date('Y'))
+            ->where('fecha_salida', '!=', null)
             ->groupBy('mes')
             ->pluck('total', 'mes');
 

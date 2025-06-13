@@ -13,7 +13,7 @@
             </div>
         </div>
     </label>
-    <input type="checkbox" id="generarExcelModal" class="modal-toggle" checked />
+    <input type="checkbox" id="generarExcelModal" class="modal-toggle" />
     <div class="modal" role="dialog">
         <div class="modal-box w-1/2 h-max max-w-5xl bg-neutral border-2 border-accent">
 

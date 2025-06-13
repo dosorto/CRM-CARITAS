@@ -22,3 +22,4 @@ yarn-error.log
 /.zed
 /registros/mensuales/*
 !/registros/mensuales/.gitkeep
+/database/seeders/data

@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        echo (getcwd() . '\database\seeders\data\migrantes_table.csv');
         $this->call([
             // PermissionSeeder::class,
             // RoleSeeder::class,
