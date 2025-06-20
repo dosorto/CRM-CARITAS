@@ -77,12 +77,12 @@ class PermissionSeeder extends Seeder
         // Permission::create(['name' => 'generar-reportes-de-migrantes']);
 
 
-        // // NUEVOS
-        // // --------------------------------------------------------------------------
+        // NUEVOS
+        // --------------------------------------------------------------------------
         // try {
-            // $admin = Role::where('name', 'admin')->first();
-            // $permissions = Permission::all();
-            // $admin->syncPermissions($permissions);
+        //     $admin = Role::where('name', 'admin')->first();
+        //     $permissions = Permission::all();
+        //     $admin->syncPermissions($permissions);
         // } catch (Exception $e) {
         // }
     }

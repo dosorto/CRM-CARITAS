@@ -85,10 +85,12 @@
                                         </button>
                                     </div>
                                 @else
-                                    <div class="tooltip tooltip-primary" data-tip="Anular Salida">
-                                        <livewire:crud.migrantes.anular-salida-modal :migranteId="$item->id"
-                                            wire:key="modal-anular-{{ $item->id }}-{{ $item->reside_en_centro ? 'registrado' : 'anulado' }}" />
-                                    </div>
+                                    @can('registrar-salida-de-migrante')
+                                        <div class="tooltip tooltip-primary" data-tip="Anular Salida">
+                                            <livewire:crud.migrantes.anular-salida-modal :migranteId="$item->id"
+                                                wire:key="modal-anular-{{ $item->id }}-{{ $item->reside_en_centro ? 'registrado' : 'anulado' }}" />
+                                        </div>
+                                    @endcan
                                 @endif
 
                             </td>
