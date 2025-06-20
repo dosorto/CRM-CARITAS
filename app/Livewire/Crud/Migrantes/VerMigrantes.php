@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
-use App\Models\Migrante;
 use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
@@ -72,9 +71,8 @@ class VerMigrantes extends Component
     }
 
     #[On('salida-anulada')]
-    public function salidaAnulada()
-    {
-        $this->resetPage();
+    public function salidaAnulada() {
+        $this->render();
     }
 
     public function placeholder()

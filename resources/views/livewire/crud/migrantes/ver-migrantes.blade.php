@@ -86,8 +86,8 @@
                                     </div>
                                 @else
                                     <div class="tooltip tooltip-primary" data-tip="Anular Salida">
-                                        <livewire:crud.migrantes.anular-salida-modal
-                                            migranteId='{{ $item->id }}' />
+                                        <livewire:crud.migrantes.anular-salida-modal :migranteId="$item->id"
+                                            wire:key="modal-anular-{{ $item->id }}-{{ $item->reside_en_centro ? 'registrado' : 'anulado' }}" />
                                     </div>
                                 @endif
 

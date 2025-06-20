@@ -69,7 +69,7 @@
                                         <span @class([
                                             'size-6',
                                             'icon-[cuida--checkbox-checked-outlined]' => $esLGBT === 1,
-                                            'icon-[ci--checkbox-unchecked]' => $esLGBT === 0 || $esLGBT === 'void',
+                                            'icon-[ci--checkbox-unchecked]' => $esLGBT === 0 || $esLGBT === -1,
                                         ])></span>
                                         Si
                                     </span>
@@ -78,7 +78,7 @@
                                         <span @class([
                                             'size-6',
                                             'icon-[cuida--checkbox-checked-outlined]' => $esLGBT === 0,
-                                            'icon-[ci--checkbox-unchecked]' => $esLGBT === 1 || $esLGBT === 'void',
+                                            'icon-[ci--checkbox-unchecked]' => $esLGBT === 1 || $esLGBT === -1,
                                         ])></span>
                                         No
                                     </span>
@@ -129,16 +129,16 @@
                                             'size-6',
                                             'icon-[cuida--checkbox-checked-outlined]' => $codigoFamiliar >= 1,
                                             'icon-[ci--checkbox-unchecked]' =>
-                                                $codigoFamiliar === 0 || $codigoFamiliar === 'void',
+                                                $codigoFamiliar === 0 || $codigoFamiliar === -1,
                                         ])></span>
                                         Si
                                     </span>
                                     <span class="ml-4 flex items-center gap-0.5">
                                         <span @class([
                                             'size-6',
+                                            'icon-[ci--checkbox-unchecked]' => $codigoFamiliar >= 1 || $codigoFamiliar === -1,
                                             'icon-[cuida--checkbox-checked-outlined]' =>
-                                                $codigoFamiliar === 0 || $codigoFamiliar === 'void',
-                                            'icon-[ci--checkbox-unchecked]' => $codigoFamiliar >= 1,
+                                                $codigoFamiliar === 0,
                                         ])></span>
                                         No
                                     </span>
@@ -169,7 +169,7 @@
 
                             </div>
 
-                            @if ($codigoFamiliar && $codigoFamiliar !== 'void')
+                            @if ($codigoFamiliar && $codigoFamiliar != -1)
                                 <div class="flex justify-center items-center w-1/3 border-l border-zinc-600 pl-2">
                                     <b>Familia # </b> {{ $codigoFamiliar }}
                                 </div>
@@ -178,7 +178,7 @@
                         </div>
 
                         <div
-                            class="flex border-t border-zinc-600 min-h-16 px-2 py-1 {{ $codigoFamiliar !== 'void' ? 'hidden' : '' }}">
+                            class="flex border-t border-zinc-600 min-h-16 px-2 py-1 {{ $codigoFamiliar != -1 ? 'hidden' : '' }}">
                             <b>Información del Familiar: </b>
                         </div>
 

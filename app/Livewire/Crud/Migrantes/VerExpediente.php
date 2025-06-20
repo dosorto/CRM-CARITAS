@@ -118,8 +118,8 @@ class VerExpediente extends Component
         $this->pais = '';
         $this->sexo = '';
         $this->estadoCivil = '';
-        $this->codigoFamiliar = 'void'; // el 0 es para migrantes sin familiares, entonces el campo familia # desapareceria.
-        $this->esLGBT = 'void';
+        $this->codigoFamiliar = -1; // el 0 es para migrantes sin familiares, entonces el campo familia # desapareceria.
+        $this->esLGBT = -1;
         $this->tipoSangre = '';
         $this->edad = '';
 
