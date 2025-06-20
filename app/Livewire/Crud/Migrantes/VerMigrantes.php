@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Crud\Migrantes;
 
+use App\Models\Migrante;
 use App\Services\MigranteService;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
@@ -34,12 +35,9 @@ class VerMigrantes extends Component
             $this->getMigranteService()->filterPaginated($this->fakeColNames[$this->colSelected], $this->textToFind, 30);
 
         foreach ($items as $item) {
-            $item->reside_en_centro = false;
-            foreach ($item->expedientes as $expediente) {
-                if ($expediente->fecha_salida === null) {
-                    $item->reside_en_centro = true;
-                }
-            }
+            // Reside si el último expediente no tiene fecha de salida
+            $ultimoExpediente = $item->expedientes->sortByDesc('created_at')->first();
+            $item->reside_en_centro = $ultimoExpediente && $ultimoExpediente->fecha_salida === null;
         }
 
         return view('livewire.crud.migrantes.ver-migrantes')
@@ -56,15 +54,6 @@ class VerMigrantes extends Component
     public function nuevoExpediente($id)
     {
         dd('Oops... Esto no debería haber ocurrido, no se admiten más de 1 expediente por migrante. (:');
-        // pasos para saltarse los primeros pasos del formulario.
-        // los primeros 3 son solo para datos personales.
-        // session([
-        //     'currentStep' => 4,
-        // ]);
-        // session(['nombreMigrante' => $this->getMigranteService()->obtenerPrimerNombreApellido($id)]);
-        // session(['identificacion' => $this->getMigranteService()->obtenerIdentificacion($id)]);
-        // session(['migranteId' => $id]);
-        // return $this->redirectRoute('registrar-migrante');
     }
 
     public function registrarSalida($id)
@@ -80,6 +69,12 @@ class VerMigrantes extends Component
     public function verHistorial($id)
     {
         return $this->redirectRoute('ver-historial', ['migranteId' => $id]);
+    }
+
+    #[On('salida-anulada')]
+    public function salidaAnulada()
+    {
+        $this->resetPage();
     }
 
     public function placeholder()

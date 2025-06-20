@@ -29,7 +29,6 @@
                     </label>
                 </div>
             </div>
-
         </div>
 
         {{-- Botones --}}
@@ -85,6 +84,11 @@
                                             <span class="icon-[mdi--account-arrow-right-outline] size-6"></span>
                                         </button>
                                     </div>
+                                @else
+                                    <div class="tooltip tooltip-primary" data-tip="Anular Salida">
+                                        <livewire:crud.migrantes.anular-salida-modal
+                                            migranteId='{{ $item->id }}' />
+                                    </div>
                                 @endif
 
                             </td>
@@ -98,5 +102,4 @@
             {{ $items->links() }}
         </footer>
     </main>
-
 </div>

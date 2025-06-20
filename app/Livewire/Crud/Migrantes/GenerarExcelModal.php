@@ -6,6 +6,7 @@ use App\Models\Expediente;
 use App\Models\Pais;
 use Exception;
 use Livewire\Component;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class GenerarExcelModal extends Component
@@ -67,7 +68,7 @@ class GenerarExcelModal extends Component
                 $expediente->migrante->segundo_apellido . ' ';
             $nombreCompleto = str_replace('  ', ' ', $nombre);
             $hoja->setCellValue('B' . $row, $nombreCompleto);
-            $hoja->setCellValue('C' . $row, $expediente->migrante->numero_identificacion);
+            $hoja->setCellValueExplicit('C' . $row, $expediente->migrante->numero_identificacion, DataType::TYPE_STRING);
             $hoja->setCellValue('D' . $row, $expediente->migrante->tipo_identificacion);
             $hoja->setCellValue('E' . $row, Pais::find($expediente->migrante->pais_id)->nombre_pais);
             $hoja->setCellValue('F' . $row, $expediente->migrante->sexo);
