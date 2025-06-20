@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Exception;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
@@ -79,7 +80,9 @@ class PermissionSeeder extends Seeder
         // // NUEVOS
         // // --------------------------------------------------------------------------
         // try {
-
+            // $admin = Role::where('name', 'admin')->first();
+            // $permissions = Permission::all();
+            // $admin->syncPermissions($permissions);
         // } catch (Exception $e) {
         // }
     }

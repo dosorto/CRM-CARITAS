@@ -15,8 +15,6 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = Role::where('name', 'admin')->first();
-        $permissions = Permission::all();
-        $admin->syncPermissions($permissions);
+
     }
 }
