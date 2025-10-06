@@ -15,6 +15,28 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        try {
+            $admin = Role::create(['name' => 'admin']);
+        } catch (Exception $e) {
+            $admin = Role::where('name', 'admin')->first();
+        }
 
+        $permissions = Permission::all();
+
+        $admin->syncPermissions($permissions);
+
+        $user = User::create([
+            'nombre' => 'Mario',
+            'apellido' => 'Carbajal',
+            'identidad' => '0601200303381',
+            'telefono' => '97639800',
+            'fecha_nacimiento' => '2003-09-02',
+            'estado_civil' => 'Soltero',
+            'email' => 'mcarbajalg@unah.hn',
+            'email_verified_at' => now(),
+            'password' => 'mcarbajalg123',
+        ]);
+
+        $user->assignRole($admin);
     }
 }

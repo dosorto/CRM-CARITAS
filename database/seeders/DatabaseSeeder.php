@@ -11,22 +11,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        echo (getcwd() . '\database\seeders\data\migrantes_table.csv');
+        // echo (getcwd() . '\database\seeders\data\migrantes_table.csv');
         $this->call([
             PermissionSeeder::class,
-            RoleSeeder::class,
-            PaisSeeder::class,
-            AsesorMigratorioSeeder::class,
-            DepartamentoSeeder::class,
-            CiudadSeeder::class,
-            DiscapacidadSeeder::class,
-            EncuestasSeeder::class,
-            FaltasSeeder::class,
-            FronteraSeeder::class,
-            MotivoSalidaPaisSeeder::class,
-            NecesidadSeeder::class,
-            SituacionMigratoriaSeeder::class,
-            zSeeder::class
+            // RoleSeeder::class,
+            // PaisSeeder::class,
+            // AsesorMigratorioSeeder::class,
+            // DepartamentoSeeder::class,
+            // CiudadSeeder::class,
+            // DiscapacidadSeeder::class,
+            // EncuestasSeeder::class,
+            // FaltasSeeder::class,
+            // FronteraSeeder::class,
+            // MotivoSalidaPaisSeeder::class,
+            // NecesidadSeeder::class,
+            // SituacionMigratoriaSeeder::class,
+            // zSeeder::class
         ]);
     }
 }
