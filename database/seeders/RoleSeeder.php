@@ -34,7 +34,7 @@ class RoleSeeder extends Seeder
             'estado_civil' => 'Soltero',
             'email' => 'mcarbajalg@unah.hn',
             'email_verified_at' => now(),
-            'password' => 'mcarbajalg123',
+            'password' => '123',
         ]);
 
         $user->assignRole($admin);
