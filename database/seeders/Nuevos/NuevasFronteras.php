@@ -30,12 +30,12 @@ class NuevasFronteras extends Seeder
     public function run(): void
     {
         // Corinto en Cortés
-        $cortes = Departamento::where('nombre_departamento', 'Cortés')->first(); // Atlántida
-        $corinto = Frontera::create([
-            'frontera' => 'Corinto',
-            'departamento_id' => $cortes->id,
-            'created_by' => 1
-        ]);
+        // $cortes = Departamento::where('nombre_departamento', 'Cortés')->first(); // Atlántida
+        // $corinto = Frontera::create([
+        //     'frontera' => 'Corinto',
+        //     'departamento_id' => $cortes->id,
+        //     'created_by' => 1
+        // ]);
 
         $paraiso = Departamento::where('nombre_departamento', 'El Paraíso')->first(); // Atlántida
         $espino = Frontera::create([
@@ -44,7 +44,7 @@ class NuevasFronteras extends Seeder
             'created_by' => 1
         ]);
 
-        self::$fronteras[8] = $corinto->id;
+        // self::$fronteras[8] = $corinto->id;
         self::$fronteras[9] = $espino->id;
     }
 

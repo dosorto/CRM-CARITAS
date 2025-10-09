@@ -200,21 +200,21 @@ class NuevosPaises extends Seeder {
     ];
 
     public function run(): void {
-        $mexico = Pais::create([
-            'nombre_pais' => 'México',
-            'codigo_alfa3' => 'MEX',
-            'codigo_numerico' => '484',
-            'created_by' => 1
-        ]);
-        $guatemala = Pais::create([
-            'nombre_pais' => 'Guatemala',
-            'codigo_alfa3' => 'GTM',
-            'codigo_numerico' => '320',
-            'created_by' => 1
-        ]);
+        // $mexico = Pais::create([
+        //     'nombre_pais' => 'México',
+        //     'codigo_alfa3' => 'MEX',
+        //     'codigo_numerico' => '484',
+        //     'created_by' => 1
+        // ]);
+        // $guatemala = Pais::create([
+        //     'nombre_pais' => 'Guatemala',
+        //     'codigo_alfa3' => 'GTM',
+        //     'codigo_numerico' => '320',
+        //     'created_by' => 1
+        // ]);
 
-        self::$paises[185] = $mexico->id;
-        self::$paises[186] = $guatemala->id;
+        self::$paises[185] = 186; // Mexico
+        self::$paises[186] = 185; // Guatemala
     }
 
     public static function getAllPaises() {

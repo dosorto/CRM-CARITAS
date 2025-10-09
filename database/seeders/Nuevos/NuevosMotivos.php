@@ -127,11 +127,11 @@ class NuevosMotivos extends Seeder {
         ]);
         self::$motivos[36] = $new_motivo->id;
 
-        $new_motivo = MotivoSalidaPais::create([
-            'motivo_salida_pais' => 'Turismo',
-            'created_by' => 1,
-        ]);
-        self::$motivos[37] = $new_motivo->id;
+        // $new_motivo = MotivoSalidaPais::create([
+        //     'motivo_salida_pais' => 'Turismo',
+        //     'created_by' => 1,
+        // ]);
+        self::$motivos[37] = 26; // Turismo ya existe, es el ID 26
 
         $new_motivo = MotivoSalidaPais::create([
             'motivo_salida_pais' => 'Exilio',

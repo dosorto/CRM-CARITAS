@@ -72,11 +72,11 @@ class NuevosAsesores extends Seeder {
         ]);
         self::$asesores[30] = $new_asesor->id;
 
-        $new_asesor = AsesorMigratorio::create([
-            'asesor_migratorio' => 'Bomberos',
-            'created_by' => 1
-        ]);
-        self::$asesores[31] = $new_asesor->id;
+        // $new_asesor = AsesorMigratorio::create([
+        //     'asesor_migratorio' => 'Bomberos',
+        //     'created_by' => 1
+        // ]);
+        self::$asesores[31] = 30; // Bomberos ya existe, es el ID 30
 
         $new_asesor = AsesorMigratorio::create([
             'asesor_migratorio' => 'RAJUMCH',
