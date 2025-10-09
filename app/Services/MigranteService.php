@@ -8,12 +8,10 @@ use Carbon\Carbon;
 use Exception;
 use Livewire\WithPagination;
 
-class MigranteService
-{
+class MigranteService {
     use WithPagination;
 
-    public function tieneExpedienteActivo($id)
-    {
+    public function tieneExpedienteActivo($id) {
         $migrante = Migrante::find($id)->first();
         foreach ($migrante->expedientes as $expediente) {
             if ($expediente->fecha_salida === null) {
@@ -23,8 +21,7 @@ class MigranteService
         return false;
     }
 
-    public function obtenerPrimerNombreApellido($id)
-    {
+    public function obtenerPrimerNombreApellido($id) {
         $migrante = Migrante::find($id)->first();
         if ($migrante) {
             return $migrante->primer_nombre . ' ' . $migrante->primer_apellido;
@@ -32,8 +29,7 @@ class MigranteService
         return null;
     }
 
-    public function obtenerIdentificacion($id)
-    {
+    public function obtenerIdentificacion($id) {
         $migrante = Migrante::find($id)->first();
         if ($migrante) {
             return $migrante->numero_identificacion;
@@ -113,8 +109,7 @@ class MigranteService
         }
     }
 
-    public function separarNombres($cadena)
-    {
+    public function separarNombres($cadena) {
         $partes = explode(' ', $cadena, 2); // Divide en 2 partes, donde el primer elemento es el primero
         $primero = $partes[0]; // Primer palabra es el primer nombre o apellido
         $segundo = isset($partes[1]) ? $partes[1] : ''; // Resto del string es el segundo nombre o apellido (o vacío si no hay)
@@ -122,57 +117,66 @@ class MigranteService
         return [$primero, $segundo];
     }
 
-    public function filter(string $col, string $text)
-    {
+    public function filter(string $col, string $text) {
         return Migrante::where($col, 'LIKE', '%' . $text . '%')
             ->with('pais')
             ->get();
     }
 
-    public function filterPaginated(string $col, string $text, $pagination)
-    {
-        return Migrante::where($col, 'LIKE', '%' . $text . '%')
+    public function filterPaginated(string $col, string $text, $pagination) {
+        return Migrante::select('migrantes.*')
+            ->selectSub(function ($query) {
+                $query->from('expedientes')
+                    ->selectRaw('MAX(fecha_ingreso)')
+                    ->whereColumn('expedientes.migrante_id', 'migrantes.id');
+            }, 'ultima_fecha_ingreso')
+            ->where("migrantes.$col", 'LIKE', '%' . $text . '%')
             ->with('pais')
-            ->orderBy('created_at', 'desc')
+            ->orderByDesc('ultima_fecha_ingreso')
             ->paginate($pagination);
     }
 
-    public function getAllMigrantes()
-    {
+
+    public function getAllMigrantes() {
         return Migrante::all();
     }
 
-    public function getAllMigrantesPaginated($pagination)
-    {
-        return Migrante::orderBy('created_at', 'desc')->paginate($pagination);
+    public function getAllMigrantesPaginated($pagination) {
+        $migrantes = Migrante::select('migrantes.*')
+            ->selectSub(function ($query) {
+                $query->from('expedientes')
+                    ->selectRaw('MAX(fecha_ingreso)')
+                    ->whereColumn('expedientes.migrante_id', 'migrantes.id');
+            }, 'ultima_fecha_ingreso')
+            ->orderByDesc('ultima_fecha_ingreso')
+            ->paginate($pagination);
+
+        return $migrantes;
     }
 
-    public function buscar($col, $text)
-    {
+    public function buscar($col, $text) {
         return Migrante::where($col, $text)
             ->with('pais')
             ->first();
     }
 
-    public function generateNewFamiliarCode()
-    {;
+    public function generateNewFamiliarCode() {;
         return Migrante::max('codigo_familiar') + 1;
     }
 
-    public function calcularEdad($fechaNacimiento)
-    {
+    public function calcularEdad($fechaNacimiento) {
         // Asegúrate de que la fecha de nacimiento esté bien parseada
         $fecha = Carbon::parse($fechaNacimiento);
         // Calcula la edad en años
         return $fecha->age;
     }
 
-    public function getLastCreated($max)
-    {
+    public function getLastCreated($max) {
         return Migrante::latest()
             ->take($max)
             ->get();
     }
 
-    public function registrarSalida($datosSalida) {}
+    public function registrarSalida($datosSalida) {
+    }
 }
