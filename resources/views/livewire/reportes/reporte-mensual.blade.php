@@ -120,10 +120,10 @@
                         @if (!empty($situacionesMigratorias))
 
                             <span class="text-center mb-4">
-                                Entre las fechas <b>{{ \Carbon\Carbon::parse($fecha_inicio)->format('d/m/Y') }}</b>
-                                y <b>{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</b>, se identificaron
-                                los
-                                siguientes
+                                Entre las fechas: <br>
+                                <b>{{ \Carbon\Carbon::parse($fecha_inicio)->format('d/m/Y') }}</b> y
+                                <b>{{ \Carbon\Carbon::parse($fecha_final)->format('d/m/Y') }}</b>, <br>
+                                se identificaron los siguientes <br>
                                 perfiles de migrantes:
                             </span>
 

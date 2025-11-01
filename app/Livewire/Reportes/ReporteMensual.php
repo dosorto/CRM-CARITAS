@@ -10,8 +10,7 @@ use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 
-class ReporteMensual extends Component
-{
+class ReporteMensual extends Component {
     public $fecha_inicio;
     public $fecha_final;
     public $cantidad_migrantes = 0;
@@ -33,38 +32,47 @@ class ReporteMensual extends Component
     public $migrantesEnProteccion = 0;
 
 
-    public function updated()
-    {
+    public function updated() {
         if ($this->fecha_inicio && $this->fecha_final) {
-            // $this->grafico = true;
-            $today = now();
-            $edad = $today->copy()->subYears(15);
+            $edad = now()->copy()->subYears(18);
 
-            $this->cantidad_migrantes = Migrante::whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])->count();
-            // dd($this->cantidad_migrantes);
+            $this->cantidad_migrantes = Expediente::whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final])->count();
+
+            // Adultos hombres
             $this->cantidad_hombres = Migrante::where('sexo', 'M')
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
-                ->whereDate('fecha_nacimiento', '<', $edad)
-                ->count();
-
-            $this->cantidad_mujeres = Migrante::where('sexo', 'F')
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
+                ->whereHas('expedientes', function ($query) {
+                    $query->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final]);
+                })
                 ->whereDate('fecha_nacimiento', '<=', $edad)
                 ->count();
 
-            $this->cantidad_ninos = Migrante::where('sexo', 'M')
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
-                ->whereDate('fecha_nacimiento', '>=', $edad)
+            // Adultos mujeres
+            $this->cantidad_mujeres = Migrante::where('sexo', 'F')
+                ->whereHas('expedientes', function ($query) {
+                    $query->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final]);
+                })
+                ->whereDate('fecha_nacimiento', '<=', $edad)
                 ->count();
 
+            // Niños hombres
+            $this->cantidad_ninos = Migrante::where('sexo', 'M')
+                ->whereHas('expedientes', function ($query) {
+                    $query->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final]);
+                })
+                ->whereDate('fecha_nacimiento', '>', $edad)
+                ->count();
+
+            // Niñas
             $this->cantidad_ninas = Migrante::where('sexo', 'F')
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
-                ->whereDate('fecha_nacimiento', '>=', $edad)
+                ->whereHas('expedientes', function ($query) {
+                    $query->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final]);
+                })
+                ->whereDate('fecha_nacimiento', '>', $edad)
                 ->count();
 
             // Situaciones
             $situaciones = Expediente::select('situacion_migratoria_id', DB::raw('count(*) as total_situaciones'))
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
+                ->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final])
                 ->groupBy('situacion_migratoria_id')
                 ->orderBy('total_situaciones', 'desc')
                 ->with('situacionMigratoria')
@@ -73,11 +81,12 @@ class ReporteMensual extends Component
 
             $this->situacionesMigratorias = $situaciones->pluck('total_situaciones', 'situacionMigratoria.situacion_migratoria')->toArray();
 
-            $this->familias = Migrante::select('*')
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final])
-                ->whereNot('codigo_familiar', 0)
+            $this->familias = Migrante::whereNot('codigo_familiar', 0)
+                ->whereHas('expedientes', function ($query) {
+                    $query->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final]);
+                })
                 ->distinct('codigo_familiar')
-                ->count();
+                ->count('codigo_familiar');
         } else {
             $this->cantidad_migrantes = 0;
             $this->cantidad_hombres = 0;
@@ -89,26 +98,30 @@ class ReporteMensual extends Component
         }
     }
 
-    public function mount()
-    {
+    public function mount() {
         Carbon::setLocale('es');
         $fechaActual = Carbon::now('America/Tegucigalpa');
         $this->nombreMes = ucfirst($fechaActual->translatedFormat('F')); // Mes en español con primera letra en mayúscula
         $this->numeroDia = $fechaActual->day;  // Día de la semana en español con primera letra en mayúscula
         $this->currentYear = now()->year;
-        $this->total_personas = Migrante::where('deleted_at', null)
-            ->whereYear('created_at', date('Y'))->count();
+        $this->total_personas = Migrante::whereNull('deleted_at')
+            ->whereHas('expedientes', function ($query) {
+                $query->whereYear('fecha_ingreso', date('Y'));
+            })
+            ->count();
     }
 
-    public function getData()
-    {
+    public function getData() {
         if ($this->fecha_inicio && $this->fecha_final) {
 
             $this->paises = Migrante::select('pais_id', DB::raw('count(*) as total_migrantes'))
-                ->whereBetween('created_at', [$this->fecha_inicio, $this->fecha_final]) // Filtrar por rango de fechas
+                ->whereNull('deleted_at')
+                ->whereHas('expedientes', function ($query) {
+                    $query->whereBetween('fecha_ingreso', [$this->fecha_inicio, $this->fecha_final]);
+                })
                 ->groupBy('pais_id')
                 ->orderBy('total_migrantes', 'desc')
-                ->with('pais') // Asegúrate de que la relación 'pais' esté definida en el modelo Migrante
+                ->with('pais')
                 ->get();
 
             $data = $this->paises->pluck('total_migrantes')->toArray();
@@ -152,8 +165,7 @@ class ReporteMensual extends Component
     }
 
     #[Computed]
-    public function chart()
-    {
+    public function chart() {
         return Chartjs::build()
             ->name("Migrantes")
             ->livewire()
@@ -210,8 +222,7 @@ class ReporteMensual extends Component
             ]);
     }
 
-    public function render()
-    {
+    public function render() {
         $this->getData();
 
         return view('livewire.reportes.reporte-mensual');
