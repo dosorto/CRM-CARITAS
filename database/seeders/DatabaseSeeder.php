@@ -36,14 +36,14 @@ class DatabaseSeeder extends Seeder
             // SituacionMigratoriaSeeder::class,
 
             // Excel Seeders
-            NuevosPaises::class,
-            NuevosMotivos::class,
-            NuevasNecesidades::class,
-            NuevasDiscapacidades::class,
-            NuevosAsesores::class,
-            NuevasFronteras::class,
+            // NuevosPaises::class,
+            // NuevosMotivos::class,
+            // NuevasNecesidades::class,
+            // NuevasDiscapacidades::class,
+            // NuevosAsesores::class,
+            // NuevasFronteras::class,
 
-            ExcelSeeder::class,
+            // ExcelSeeder::class,
         ]);
     }
 }
