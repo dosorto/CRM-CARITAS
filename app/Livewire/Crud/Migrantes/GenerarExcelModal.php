@@ -9,14 +9,12 @@ use Livewire\Component;
 use PhpOffice\PhpSpreadsheet\Cell\DataType;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-class GenerarExcelModal extends Component
-{
+class GenerarExcelModal extends Component {
     public $tipoRangoFechas = 'all';
     public $fechaInicio;
     public $fechaFinal;
 
-    public function generar()
-    {
+    public function generar() {
         switch ($this->tipoRangoFechas) {
             case 'all':
                 $this->descargarExcel(Expediente::all());
@@ -36,8 +34,7 @@ class GenerarExcelModal extends Component
                     $this->addError('excel-error', 'Ingrese ambas fechas.');
                     return;
                 }
-                if ($this->fechaInicio > $this->fechaFinal)
-                {
+                if ($this->fechaInicio > $this->fechaFinal) {
                     $this->addError('excel-error', 'La fecha inicial no puede ser mayor.');
                     return;
                 }
@@ -48,12 +45,13 @@ class GenerarExcelModal extends Component
         }
     }
 
-    public function descargarExcel($expedientes)
-    {
+    public function descargarExcel($expedientes) {
         if ($expedientes->isEmpty()) {
             $this->addError('excel-error', 'No se encontraron expedientes.');
             return;
         }
+        $expedientes = $expedientes->sortByDesc('fecha_ingreso');
+
         $spreadsheet = IOFactory::load(base_path('registros/plantilla/plantilla_registro_atenciones.xlsx'));
         $hoja = $spreadsheet->getSheetByName('Migrantes');
         $row = 11;
@@ -97,10 +95,24 @@ class GenerarExcelModal extends Component
             $hoja->setCellValue('Y' . $row, $expediente->asesoria_psicosocial ? 'Si' : 'No');
             $hoja->setCellValue('Z' . $row, $expediente->observacion);
 
-
             $row++;
         }
-        $blueBorders = [
+
+        // EXTENDER LA TABLA PRIMERO
+        $tables = $hoja->getTableCollection();
+        if (count($tables) > 0) {
+            foreach ($tables as $table) {
+                $tableRange = $table->getRange();
+                preg_match('/([A-Z]+)\d+:([A-Z]+)\d+/', $tableRange, $matches);
+                $startCol = $matches[1];
+                $endCol = $matches[2];
+                $newRange = $startCol . '10:' . $endCol . ($row - 1);
+                $table->setRange($newRange);
+            }
+        }
+
+        // APLICAR BORDES FILA POR FILA
+        $blueBorderBottom = [
             'borders' => [
                 'bottom' => [
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -112,7 +124,8 @@ class GenerarExcelModal extends Component
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
             ],
         ];
-        $orangeBorders = [
+
+        $orangeBorderBottom = [
             'borders' => [
                 'bottom' => [
                     'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -124,8 +137,28 @@ class GenerarExcelModal extends Component
                 'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
             ],
         ];
-        $hoja->getStyle('A11:L' . $row - 1)->applyFromArray($blueBorders);
-        $hoja->getStyle('M11:Z' . $row - 1)->applyFromArray($orangeBorders);
+
+        for ($i = 11; $i < $row; $i++) {
+            $hoja->getStyle('A' . $i . ':L' . $i)->applyFromArray($blueBorderBottom);
+            $hoja->getStyle('M' . $i . ':Z' . $i)->applyFromArray($orangeBorderBottom);
+        }
+
+
+        // ESTABLECER ALTURA DE FILAS (duplicar la altura por defecto)
+        $alturaBase = $hoja->getRowDimension(11)->getRowHeight();
+        // Si getRowHeight() retorna -1, significa que usa la altura por defecto
+        if ($alturaBase == -1) {
+            $alturaBase = $hoja->getDefaultRowDimension()->getRowHeight();
+            if ($alturaBase == -1) {
+                $alturaBase = 15; // Altura por defecto de Excel si no está especificada
+            }
+        }
+        $nuevaAltura = $alturaBase * 1.5;
+        for ($i = 11; $i < $row; $i++) {
+            $hoja->getRowDimension($i)->setRowHeight($nuevaAltura);
+        }
+
+
 
         $cols = ['B', 'C', 'M', 'N', 'O', 'R', 'S', 'T', 'Z'];
         foreach ($cols as $col) {
@@ -133,7 +166,6 @@ class GenerarExcelModal extends Component
         }
 
         $filename = 'registros_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
-        // $filepath = base_path('registros/' . $filename);
         $filepath = storage_path('app/public/exports/' . $filename);
 
         $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
@@ -142,8 +174,7 @@ class GenerarExcelModal extends Component
         $this->dispatch('descargarArchivo', route('descargar.registros', ['filename' => $filename]));
     }
 
-    public function render()
-    {
+    public function render() {
         return view('livewire.crud.migrantes.generar-excel-modal');
     }
 }
