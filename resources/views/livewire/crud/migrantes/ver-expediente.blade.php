@@ -214,11 +214,11 @@
                                     <span><b>Observación: </b> {{ $observacion }}</span>
                                 </div>
                                 <div class="min-h-10 items-center flex w-full">
-                                    <div class="size-full flex gap-1 items-center border-r border-zinc-600 pl-2">
+                                    <div class="size-full flex gap-1 items-center pl-2">
                                         <b>Fecha de Ingreso:</b>
                                         {{ $fechaIngreso }}
                                     </div>
-                                    <div class="size-full flex justify-between gap-1 items-center px-2">
+                                    <div class="size-full flex justify-between border-x border-zinc-600 gap-1 items-center px-2">
                                         <span>
                                             <b>Fecha de Salida:</b>
                                             @if ($mostrarFechaSalida)
@@ -234,6 +234,12 @@
                                                     <span class="icon-[iconoir--eye] size-6"></span>
                                                 </button>
                                             </div>
+                                        @endif
+                                    </div>
+                                    <div class="size-full flex gap-1 items-center border-r border-zinc-600 pl-2">
+                                        <b>Noches de Estadía:</b>
+                                        @if ($mostrarFechaSalida)
+                                            {{ $nochesEstadia }}
                                         @endif
                                     </div>
                                 </div>

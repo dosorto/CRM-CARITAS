@@ -39,6 +39,8 @@ class VerExpediente extends Component
 
     public $migranteId;
 
+    public $nochesEstadia;
+
     public function mount($expedienteId = 0)
     {
         $this->expedienteId = $expedienteId;
@@ -82,6 +84,11 @@ class VerExpediente extends Component
         $this->fechaSalida = $expediente->fecha_salida
             ? Carbon::parse($expediente->fecha_salida)->format('d-m-Y')
             : '';
+
+        $this->nochesEstadia = ($expediente->fecha_ingreso && $expediente->fecha_salida)
+            ? Carbon::parse($expediente->fecha_ingreso)
+            ->diffInDays(Carbon::parse($expediente->fecha_salida))
+            : 0;
 
         $this->situacionMigratoria = $expediente->situacionMigratoria?->situacion_migratoria ?? '-';
         $this->asesorMigratorio = $expediente->asesorMigratorio?->asesor_migratorio ?? '-';
