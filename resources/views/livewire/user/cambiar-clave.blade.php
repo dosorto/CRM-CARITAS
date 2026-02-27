@@ -20,8 +20,8 @@
             >
 
             @if($verificada)
-            <span class="text-success text-xl">
-                <span class="icon-[octicon--check-circle-fill-16] size-5 text-success bg-white"></span>
+            <span class="text-xl text-base-content">
+                <span class="icon-[octicon--check-circle-fill-16] size-5"></span>
             </span>
             @endif
             @unless($verificada)
