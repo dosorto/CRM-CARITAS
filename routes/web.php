@@ -48,13 +48,13 @@ use App\Livewire\Pages\MigrantesOptions;
 use App\Livewire\Pages\Reportes;
 use App\Livewire\Pages\Solicitudes\SolicitudesTrasladoPage;
 use App\Livewire\Pages\Solicitudes\SolicitudesInsumosPage;
-use App\Livewire\Reportes\ReporteArticulo;
 use App\Livewire\Crud\Migrantes\HistorialMigrante;
 use App\Livewire\Crud\Migrantes\VerExpediente;
 use App\Livewire\Crud\Roles\VerRoles;
 use App\Livewire\Crud\Usuarios\VerUsuarios;
 use App\Livewire\Encuestas\RealizarEncuesta;
 use App\Livewire\Encuestas\VerEncuestas;
+use App\Livewire\User\CambiarClave;
 
 Route::get('/', Login::class)
     ->name('login');
@@ -78,6 +78,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/inicio', Dashboard::class)
         ->name('inicio');
+
+    // ---------------- Configuración de Usuario ----------------
+    
+    Route::get('/cambiar-contrasena', CambiarClave::class)
+        ->name('cambiar-clave');
 
     // ---------------- Migrantes ----------------
 
@@ -104,7 +109,6 @@ Route::middleware(['auth'])->group(function () {
     // ---------------- Expedientes de Migrantes ----------------
 
     Route::get('/ver-expediente/{expedienteId?}', VerExpediente::class)
-        // ->middleware('can:ver-migrantes,registrar-migrantes')
         ->name('ver-expediente');
 
     Route::get('/discapacidades', VerDiscapacidades::class)

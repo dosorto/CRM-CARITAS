@@ -65,7 +65,7 @@
         @endcanany
 
 
-        @canany(['ver-usuarios', 'ver-roles'])
+        <!-- @canany(['ver-usuarios', 'ver-roles']) -->
             <section class="flex flex-col border-2 border-accent size-max rounded-lg">
                 <h4 class="font-semibold py-2 px-4 bg-accent rounded-t text-center">
                     Usuarios
@@ -84,9 +84,13 @@
                             <span>Roles</span>
                         </a>
                     @endcan
+                    <a href="{{ route('cambiar-clave') }}" class="btn btn-sm btn-accent w-max flex flex-col">
+                        <span class="icon-[solar--key-bold] size-5"></span>
+                        <span>Cambiar Mi Contraseña</span>
+                    </a>
                 </div>
             </section>
-        @endcanany
+        <!-- @endcanany -->
 
 
         @canany(['ver-donantes', 'ver-tipos-de-donantes'])
@@ -165,9 +169,7 @@
 
 
     {{-- Footer fijo en la parte inferior --}}
-    <footer class="h-auto flex justify-start bg-neutral text-base-content p-4">
-        <div>
-
-        </div>
+    <footer class="h-auto flex justify-end bg-neutral text-base-content p-4">
+       
     </footer>
 </div>
