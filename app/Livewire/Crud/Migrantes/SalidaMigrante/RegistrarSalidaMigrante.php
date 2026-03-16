@@ -21,14 +21,15 @@ class RegistrarSalidaMigrante extends Component
     public $migranteId;
 
     public $preguntas = [
-        'atencionPsicologica' => '¿Recibió atención psicológica?',
-        'asesoriaPsicologica' => '¿Recibió asesoría psicológica?',
         'atencionLegal' => '¿Recibió atención legal?',
         'asesoriaPsicosocial' => '¿Recibió asesoría psicosocial?',
+        'atencionPsicologica' => '¿Recibió atención psicológica?',
+        // Deprecated:
+        // 'asesoriaPsicologica' => '¿Recibió asesoría psicológica?',
     ];
 
     public $atencionPsicologica = 0;
-    public $asesoriaPsicologica = 0;
+    // public $asesoriaPsicologica = 0;
     public $atencionLegal = 0;
     public $asesoriaPsicosocial = 0;
 
@@ -69,7 +70,7 @@ class RegistrarSalidaMigrante extends Component
         $this->fechaSalida = Carbon::now()->format('Y-m-d');
 
         $this->atencionPsicologica = $expediente->atencion_psicologica ?? 0;
-        $this->asesoriaPsicologica = $expediente->asesoria_psicologica ?? 0;
+        // $this->asesoriaPsicologica = $expediente->asesoria_psicologica ?? 0;
         $this->atencionLegal = $expediente->atencion_legal ?? 0;
         $this->asesoriaPsicosocial = $expediente->asesoria_psicosocial ?? 0;
     }
@@ -110,10 +111,10 @@ class RegistrarSalidaMigrante extends Component
         $expediente = Expediente::find($this->expedienteId);
 
         $expediente->fecha_salida = $this->fechaSalida;
-        $expediente->atencion_psicologica = intval($this->atencionPsicologica);
-        $expediente->asesoria_psicologica = intval($this->asesoriaPsicologica);
         $expediente->atencion_legal = intval($this->atencionLegal);
         $expediente->asesoria_psicosocial = intval($this->asesoriaPsicosocial);
+        $expediente->atencion_psicologica = intval($this->atencionPsicologica);
+        // $expediente->asesoria_psicologica = intval($this->asesoriaPsicologica);
         $expediente->observacion = $this->Observaciones;
 
         $expediente->save();

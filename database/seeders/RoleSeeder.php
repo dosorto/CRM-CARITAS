@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Exception;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -34,7 +35,7 @@ class RoleSeeder extends Seeder
             'estado_civil' => 'Soltero',
             'email' => 'mcarbajalg@unah.hn',
             'email_verified_at' => now(),
-            'password' => '123',
+            'password' => Hash::make('123')
         ]);
 
         $user->assignRole($admin);

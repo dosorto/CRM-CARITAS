@@ -80,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('inicio');
 
     // ---------------- Configuración de Usuario ----------------
-    
+
     Route::get('/cambiar-contrasena', CambiarClave::class)
         ->name('cambiar-clave');
 

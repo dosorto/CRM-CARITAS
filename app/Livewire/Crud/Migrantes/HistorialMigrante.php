@@ -18,14 +18,15 @@ class HistorialMigrante extends Component
     public $migrante;
 
     public $preguntas = [
-        'atencionPsicologica' => '¿Recibió atención psicológica?',
-        'asesoriaPsicologica' => '¿Recibió asesoría psicológica?',
-        'atencionLegal' => '¿Recibió atención legal?',
+        'atencionLegal' => '¿Recibió asesoría legal?',
         'asesoriaPsicosocial' => '¿Recibió asesoría psicosocial?',
+        'atencionPsicologica' => '¿Recibió atención psicológica?',
+        // Deprecated:
+        // 'asesoriaPsicologica' => '¿Recibió asesoría psicológica?',
     ];
 
     public $atencionPsicologica = 0;
-    public $asesoriaPsicologica = 0;
+    // public $asesoriaPsicologica = 0;
     public $atencionLegal = 0;
     public $asesoriaPsicosocial = 0;
 
@@ -45,7 +46,7 @@ class HistorialMigrante extends Component
 
         if ($this->expediente) {
             $this->atencionPsicologica = $this->expediente->atencion_psicologica;
-            $this->asesoriaPsicologica = $this->expediente->asesoria_psicologica;
+            // $this->asesoriaPsicologica = $this->expediente->asesoria_psicologica;
             $this->atencionLegal = $this->expediente->atencion_legal;
             $this->asesoriaPsicosocial = $this->expediente->asesoria_psicosocial;
 
@@ -67,11 +68,11 @@ class HistorialMigrante extends Component
         $this->expediente->save();
     }
 
-    public function updatedAsesoriaPsicologica()
-    {
-        $this->expediente->asesoria_psicologica = $this->asesoriaPsicologica;
-        $this->expediente->save();
-    }
+    // public function updatedAsesoriaPsicologica()
+    // {
+    //     $this->expediente->asesoria_psicologica = $this->asesoriaPsicologica;
+    //     $this->expediente->save();
+    // }
 
     public function updatedAtencionLegal()
     {
