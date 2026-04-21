@@ -21,19 +21,19 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             // Dev Fresh Seeders
-            RoleSeeder::class,
-            PaisSeeder::class,
+            // RoleSeeder::class,
+            // PaisSeeder::class,
             PermissionSeeder::class,
-            AsesorMigratorioSeeder::class,
-            DepartamentoSeeder::class,
-            CiudadSeeder::class,
-            DiscapacidadSeeder::class,
-            EncuestasSeeder::class,
-            FaltasSeeder::class,
-            FronteraSeeder::class,
-            MotivoSalidaPaisSeeder::class,
-            NecesidadSeeder::class,
-            SituacionMigratoriaSeeder::class,
+            // AsesorMigratorioSeeder::class,
+            // DepartamentoSeeder::class,
+            // CiudadSeeder::class,
+            // DiscapacidadSeeder::class,
+            // EncuestasSeeder::class,
+            // FaltasSeeder::class,
+            // FronteraSeeder::class,
+            // MotivoSalidaPaisSeeder::class,
+            // NecesidadSeeder::class,
+            // SituacionMigratoriaSeeder::class,
 
             // Excel Seeders
             // NuevosPaises::class,

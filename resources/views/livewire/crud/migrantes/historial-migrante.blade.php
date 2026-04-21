@@ -8,10 +8,12 @@
                 <span class="icon-[ph--user-list-bold] size-5"></span>
                 Listado de Migrantes
             </button>
-            <button class="btn btn-sm btn-warning" wire:click="editarMigrante({{ $migrante->id }})">
-                <span class="icon-[line-md--edit] size-5"></span>
-                Editar
-            </button>
+            @can('editar-migrante')
+                <button class="btn btn-sm btn-warning" wire:click="editarMigrante({{ $migrante->id }})">
+                    <span class="icon-[line-md--edit] size-5"></span>
+                    Editar
+                </button>
+            @endcan
         </div>
     </header>
 
