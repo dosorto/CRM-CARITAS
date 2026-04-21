@@ -91,18 +91,6 @@ class HistorialMigrante extends Component
         $this->redirectRoute('ver-migrantes');
     }
 
-    public function guardarSituacion()
-    {
-        $this->expediente->situacion_migratoria_id = $this->situacionMigratoriaId;
-        $this->expediente->save();
-        $this->dispatch('cerrar-modal-situacion')->self();
-    }
-    public function cancelarSituacion()
-    {
-        $this->situacionMigratoriaId = $this->expediente->situacion_migratoria_id;
-        $this->dispatch('cerrar-modal-situacion')->self();
-    }
-
     public function imprimir()
     {
         $this->redirectRoute('ver-expediente', ['expedienteId' => $this->expediente->id]);
@@ -111,6 +99,11 @@ class HistorialMigrante extends Component
     public function getMigranteService()
     {
         return app(MigranteService::class);
+    }
+
+    public function editarMigrante($id)
+    {
+        $this->redirectRoute('editar-migrante', $id);
     }
 
     public function render()

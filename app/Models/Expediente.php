@@ -12,9 +12,30 @@ class Expediente extends BaseModel
     use SoftDeletes, HasFactory;
 
     protected $table = 'expedientes';
+    protected $fillable = [
+        'migrante_id',
+        'frontera_id',
+        'asesor_migratorio_id',
+        'situacion_migratoria_id',
+        'observacion',
+        'fecha_ingreso',
+        'fallecimiento',
+        'fecha_salida',
+        'atencion_psicologica',
+        'atencion_legal',
+        'asesoria_psicosocial',
+        'created_by',
+        'updated_by',
+        'deleted_by',
+    ];
+
     protected $casts = [
         'fecha_ingreso' => 'date',
-        'fecha_salida' => 'date',
+        'fecha_salida'  => 'date',
+        'fallecimiento' => 'boolean',
+        'atencion_psicologica' => 'boolean',
+        'atencion_legal'       => 'boolean',
+        'asesoria_psicosocial' => 'boolean',
     ];
 
     public function discapacidades(): BelongsToMany

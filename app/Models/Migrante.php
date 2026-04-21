@@ -20,13 +20,22 @@ class Migrante extends BaseModel
         'primer_apellido',
         'segundo_apellido',
         'sexo',
+        'tipo_identificacion',
+        'numero_identificacion',
+        'pais_id',
         'estado_civil',
+        'codigo_familiar',
         'es_lgbt',
         'fecha_nacimiento',
+        'tipo_sangre',
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     protected $casts = [
         'fecha_nacimiento' => 'date',
+        'es_lgbt' => 'boolean',
     ];
 
     public function pais(): BelongsTo

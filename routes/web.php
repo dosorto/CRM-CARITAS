@@ -36,6 +36,7 @@ use App\Livewire\Crud\Discapacidades\VerDiscapacidades;
 use App\Livewire\Crud\Donaciones\CrearDonaciones;
 use App\Livewire\Crud\Faltas\VerFaltas;
 use App\Livewire\Crud\Fronteras\VerFronteras;
+use App\Livewire\Crud\Migrantes\EditarMigrante;
 use App\Livewire\Crud\Migrantes\SalidaMigrante\RegistrarSalidaMigrante;
 use App\Livewire\Crud\Necesidades\VerNecesidades;
 use App\Livewire\Crud\MotivoSalida\VerMotivos;
@@ -97,6 +98,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/registrar-migrante', RegistrarMigrante::class)
         ->middleware('can:registrar-migrantes')
         ->name('registrar-migrante');
+
+    Route::get('/editar-migrante/{id}', EditarMigrante::class)
+        ->middleware('can:editar-migrante')
+        ->name('editar-migrante');
 
     Route::get('/registrar-salida-migrante/{migranteId}', RegistrarSalidaMigrante::class)
         ->middleware('can:registrar-salida-de-migrante')

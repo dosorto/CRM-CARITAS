@@ -3,10 +3,14 @@
         <h1 class="text-xl font-bold">Historial de:
             {{ $migrante->primer_nombre . ' ' . $migrante->primer_apellido }} - {{ $migrante->numero_identificacion }}
         </h1>
-        <div>
+        <div class="flex gap-4">
             <button wire:click="salir" class="btn btn-sm btn-accent text-base-content">
                 <span class="icon-[ph--user-list-bold] size-5"></span>
                 Listado de Migrantes
+            </button>
+            <button class="btn btn-sm btn-warning" wire:click="editarMigrante({{ $migrante->id }})">
+                <span class="icon-[line-md--edit] size-5"></span>
+                Editar
             </button>
         </div>
     </header>
@@ -26,43 +30,6 @@
             <div class="flex flex-col gap-2 pt-4">
                 <span class="h-max flex items-center gap-1"><b>Situación Migratoria:</b>
                     {{ $expediente->situacionMigratoria->situacion_migratoria }}
-                    @can('editar-situacion-migratoria')
-                        <div class="tooltip tooltip-primary tooltip-right" data-tip="Editar Situación Migratoria">
-                            <label for="editarSituacionModal" class="btn btn-warning btn-xs">
-                                <span class="icon-[line-md--edit] size-4"></span>
-                            </label>
-                        </div>
-                        {{-- Modal para editar la situacion migratoria --}}
-                        <input type="checkbox" id="editarSituacionModal" class="modal-toggle" />
-                        <div class="modal" role="dialog">
-                            <div class="modal-box border-2 border-accent bg-neutral">
-                                <h3 class="text-lg font-bold text-center mb-4">Editar Situación Migratoria</h3>
-
-                                <select class="select w-full bg-accent select-bordered" wire:model="situacionMigratoriaId">
-                                    @foreach ($situacionesMigratorias as $situacion)
-                                        <option value="{{ $situacion->id }}">{{ $situacion->situacion_migratoria }}</option>
-                                    @endforeach
-                                </select>
-
-                                <div class="modal-action flex justify-between">
-                                    <div wire:loading class="flex items-center">
-                                        <span class="loading loading-spinner loading-md text-base-content"></span>
-                                    </div>
-                                    <div class="flex gap-2 w-full justify-end">
-                                        <button class="btn btn-success" wire:click="guardarSituacion">
-                                            <span class="icon-[material-symbols--save] size-6"></span>
-                                            Guardar
-                                        </button>
-                                        <button class="btn btn-accent" wire:click="cancelarSituacion">
-                                            <span class="icon-[f7--xmark] size-6"></span>
-                                            Cancelar
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    @endcan
                 </span>
                 <span><b>Frontera por la que Ingresó:</b> {{ $expediente->frontera->frontera }}</span>
                 <span><b>Entidad que lo guió al centro:</b>
@@ -130,11 +97,3 @@
         </button>
     </footer>
 </div>
-@script
-    <script>
-        $wire.on('cerrar-modal-situacion', () => {
-            // Cierra el modal desactivando el checkbox
-            document.getElementById('editarSituacionModal').checked = false;
-        })
-    </script>
-@endscript

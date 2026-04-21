@@ -36,6 +36,9 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'registrar-salida-de-migrante']);
         Permission::create(['name' => 'ver-faltas-de-migrante']);
         Permission::create(['name' => 'asignar-falta-a-migrante']);
+        // Nuevo
+        Permission::create(['name' => 'editar-migrante']);
+
 
         // Expedientes
         Permission::create(['name' => 'ver-expediente']);
@@ -76,9 +79,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'ver-encuestas']);
         Permission::create(['name' => 'generar-reportes-de-migrantes']);
 
-
-        // NUEVOS
-        // --------------------------------------------------------------------------
         try {
             $admin = Role::where('name', 'admin')->first();
             $permissions = Permission::all();
