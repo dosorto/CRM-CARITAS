@@ -30,7 +30,7 @@
                     ? 'Gracias por participar en nuestra encuesta de satisfacción. Su opinión nos ayuda a mejorar.'
                     : 'Thank you for participating in our satisfaction survey. Your feedback helps us improve.' }}
             </p>
-            <button class="btn btn-success mt-6" onclick="window.close()">
+            <button class="btn btn-success btn-sm mt-6" onclick="window.location.href='{{ route('login') }}'">
                 <span class="icon-[mdi--check] size-4"></span>
                 {{ $idioma == 'Español' ? 'Cerrar' : 'Close' }}
             </button>
