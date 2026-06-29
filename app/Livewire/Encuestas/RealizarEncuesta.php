@@ -21,6 +21,7 @@ class RealizarEncuesta extends Component
     public $cantidad = 0;
 
     public $cuposDisponibles;
+    public $encuestaCompletada = false;
 
     public $idioma = 'Español';
 
@@ -106,7 +107,7 @@ class RealizarEncuesta extends Component
             $kpiEncuesta->save();
         }
 
-        $this->redirectRoute('login');
+        $this->encuestaCompletada = true;
     }
 
     public function cambiarIdioma($nuevoIdioma)

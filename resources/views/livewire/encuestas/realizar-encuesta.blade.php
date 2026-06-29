@@ -19,7 +19,23 @@
         </div>
     </header>
 
-    @if ($cuposDisponibles <= 0)
+    @if ($encuestaCompletada)
+        <div class="flex-1 flex flex-col items-center justify-center bg-white w-full sm:w-[768px] p-6 sm:rounded-b-2xl">
+            <span class="icon-[mdi--check-circle] size-16 text-success mb-4"></span>
+            <h2 class="text-xl font-bold text-center">
+                {{ $idioma == 'Español' ? 'Encuesta completada' : 'Survey completed' }}
+            </h2>
+            <p class="text-sm opacity-70 text-center mt-2">
+                {{ $idioma == 'Español'
+                    ? 'Gracias por participar en nuestra encuesta de satisfacción. Su opinión nos ayuda a mejorar.'
+                    : 'Thank you for participating in our satisfaction survey. Your feedback helps us improve.' }}
+            </p>
+            <button class="btn btn-success mt-6" onclick="window.close()">
+                <span class="icon-[mdi--check] size-4"></span>
+                {{ $idioma == 'Español' ? 'Cerrar' : 'Close' }}
+            </button>
+        </div>
+    @elseif ($cuposDisponibles <= 0)
         <div class="flex-1 flex flex-col items-center justify-center bg-white w-full sm:w-[768px] p-6 sm:rounded-b-2xl">
             <span class="icon-[mdi--clipboard-off] size-16 text-error mb-4"></span>
             <h2 class="text-xl font-bold text-center">
