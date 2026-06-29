@@ -20,21 +20,21 @@
 
             {{-- Cards de información --}}
             <section class="flex w-full p-4 gap-4">
-                <div class="flex py-3 bg-base-200 min-w-40 pl-5 rounded-lg shadow-md items-center w-2/5">
+                <div class="flex py-3 bg-base-200 pl-5 rounded-lg shadow-md items-center w-1/3">
                     <span class="icon-[mingcute--happy-fill] size-8"></span>
                     <div class="flex flex-col ml-3">
-                        <span class="text-sm font-semibold">Porcentaje de Satisfacción General:</span>
+                        <span class="text-sm font-semibold">Satisfacción general:</span>
                         <span class="text-2xl font-semibold">{{ $satisfaccionGeneral }} %</span>
                     </div>
                 </div>
-                <div class="flex py-3 bg-base-200 min-w-40 pl-5 rounded-lg shadow-md items-center w-2/5">
+                <div class="flex py-3 bg-base-200 pl-5 rounded-lg shadow-md items-center w-1/3">
                     <span class="icon-[ri--survey-fill] size-8"></span>
                     <div class="flex flex-col ml-3">
-                        <span class="text-sm font-semibold">Encuestas totales realizadas:</span>
+                        <span class="text-sm font-semibold">Total encuestas realizadas:</span>
                         <span class="text-2xl font-semibold">{{ $totalEncuestas }}</span>
                     </div>
                 </div>
-                <div class="flex py-3 bg-base-200 min-w-40 pl-5 rounded-lg shadow-md items-center w-1/5">
+                <div class="flex py-3 bg-base-200 pl-5 rounded-lg shadow-md items-center w-1/3">
                     <span class="icon-[mdi--clipboard-check] size-8"></span>
                     <div class="flex flex-col ml-3">
                         <span class="text-sm font-semibold">Cupos disponibles:</span>
