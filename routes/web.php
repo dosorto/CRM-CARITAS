@@ -70,7 +70,8 @@ Route::post('/logout', function () {
 Route::get('/acerca-de-nosotros', AboutPage::class)
     ->name('about-us');
 
-Route::get('/encuesta-de-satisfaccion', RealizarEncuesta::class)
+Route::get('/encuesta', RealizarEncuesta::class)
+    ->middleware('throttle:encuestas')
     ->name('encuesta');
 
 Route::middleware(['auth'])->group(function () {

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Encuestas;
 
+use App\Models\CupoEncuesta;
 use App\Models\Encuesta;
 use App\Models\KPIEncuesta;
 use App\Models\Pregunta;
@@ -19,6 +20,8 @@ class RealizarEncuesta extends Component
     public $comentarios = '';
     public $cantidad = 0;
 
+    public $cuposDisponibles;
+
     public $idioma = 'Español';
 
     public $titulo = [
@@ -31,7 +34,6 @@ class RealizarEncuesta extends Component
             'instruccionTitle' => 'Instrucciones: ',
             'instruccion' => 'Responda cada una de las preguntas de manera honesta.'
         ],
-
 
         'English' => [
             'instruccionTitle' => 'Instructions: ',
@@ -47,12 +49,26 @@ class RealizarEncuesta extends Component
     public function mount()
     {
         Auth::logout();
+
+        $this->cuposDisponibles = CupoEncuesta::disponibles();
+
+        if ($this->cuposDisponibles <= 0) {
+            return;
+        }
+
         $this->preguntas = Pregunta::where('idioma', $this->idioma)->get();
     }
 
     public function terminarEncuesta()
     {
-        // Validate that all questions are answered
+        if ($this->cuposDisponibles <= 0) {
+            $mensaje = $this->idioma == 'Español'
+                ? '* No hay encuestas disponibles en este momento.'
+                : '* No surveys are available at this time.';
+            $this->addError('cupos', $mensaje);
+            return;
+        }
+
         foreach ($this->preguntas as $pregunta) {
             if (!isset($this->respuestas[$pregunta->id_kpi])) {
                 $mensaje = $this->idioma == 'Español' ? '* Por favor, responda todas las preguntas.' : '* Please answer all questions.';
@@ -67,15 +83,23 @@ class RealizarEncuesta extends Component
             return;
         }
 
+        $decrementado = CupoEncuesta::restar(1);
+
+        if (!$decrementado) {
+            $mensaje = $this->idioma == 'Español'
+                ? '* No hay encuestas disponibles en este momento.'
+                : '* No surveys are available at this time.';
+            $this->addError('cupos', $mensaje);
+            return;
+        }
+
         $encuesta = new Encuesta();
         $encuesta->comentario = $this->comentarios;
         $encuesta->personas = $this->cantidad;
         $encuesta->save();
 
         foreach ($this->preguntas as $pregunta) {
-
             $kpiEncuesta = new KPIEncuesta();
-
             $kpiEncuesta->respuesta = $this->respuestas[$pregunta->id_kpi];
             $kpiEncuesta->id_kpi = $pregunta->id_kpi;
             $kpiEncuesta->id_encuesta = $encuesta->id;

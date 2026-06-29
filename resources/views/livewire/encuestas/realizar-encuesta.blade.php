@@ -18,6 +18,20 @@
             </ul>
         </div>
     </header>
+
+    @if ($cuposDisponibles <= 0)
+        <div class="flex-1 flex flex-col items-center justify-center bg-white w-full sm:w-[768px] p-6 sm:rounded-b-2xl">
+            <span class="icon-[mdi--clipboard-off] size-16 text-error mb-4"></span>
+            <h2 class="text-xl font-bold text-center">
+                {{ $idioma == 'Español' ? 'No hay encuestas disponibles' : 'No surveys available' }}
+            </h2>
+            <p class="text-sm opacity-70 text-center mt-2">
+                {{ $idioma == 'Español'
+                    ? 'En este momento no hay cupos disponibles para realizar la encuesta. Por favor, intente más tarde.'
+                    : 'There are no slots available to take the survey at this time. Please try again later.' }}
+            </p>
+        </div>
+    @else
     <section class="flex-1 flex-col overflow-auto bg-white w-full sm:w-[768px] p-6">
         <p><b>{{ $instrucciones[$idioma]['instruccionTitle'] }}</b>
             {{ $instrucciones[$idioma]['instruccion'] }}</p>
@@ -76,11 +90,12 @@
     </section>
     <footer class="w-full sm:w-[768px] h-max p-4 bg-white sm:rounded-b-2xl border-t flex justify-between">
         <button class="btn btn-sm bg-base-100">Cancelar</button>
-        <button class="btn btn-success btn-sm">
+        <button class="btn btn-success btn-sm" wire:click="terminarEncuesta">
             Enviar
             <span class="icon-[bxs--send] size-4"></span>
         </button>
     </footer>
+    @endif
 
 
 

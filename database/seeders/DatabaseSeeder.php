@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             // Dev Fresh Seeders
             // RoleSeeder::class,
             // PaisSeeder::class,
-            PermissionSeeder::class,
+            // PermissionSeeder::class,
             // AsesorMigratorioSeeder::class,
             // DepartamentoSeeder::class,
             // CiudadSeeder::class,

@@ -99,27 +99,37 @@
                 ¿Seguro que desea registrar la salida de esta persona?
             </h3>
 
-
             <div class="text-center flex flex-col gap-4">
                 <div class="w-full flex justify-center mt-4">
                     <span class="icon-[ep--warning-filled] size-8 text-warning text-center"></span>
                 </div>
                 <div class="flex flex-col gap-2">
                     <span>
-                        Puede realizar una Encuesta de Satisfacción al migrante sobre los servicios brindados en el
-                        centro.
+                        Puede habilitar encuestas de Satisfacción para que el migrante las realice por su cuenta
+                        escaneando un código QR con el enlace de la encuesta.
                     </span>
-                    <span>
-                        Al iniciar la encuesta, su sesión se cerrará temporalmente. Para volver a
-                        ingresar al sistema, deberá introducir su contraseña o iniciar sesión con otro usuario.
+                    <span class="text-sm opacity-70">
+                        Cupos disponibles actualmente:
+                        <strong class="{{ $cuposDisponibles > 0 ? 'text-success' : 'text-error' }}">
+                            {{ $cuposDisponibles }}
+                        </strong>
                     </span>
+                </div>
+
+                <div class="flex flex-col items-center gap-2 mt-2">
+                    <label class="font-semibold text-sm">Cantidad de encuestas a habilitar:</label>
+                    <input type="number" wire:model="cantidadEncuestas" min="1"
+                        class="input input-bordered w-32 text-center" />
+                    @error('cantidadEncuestas')
+                        <span class="text-error text-xs">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
 
             <div class="modal-action flex justify-between">
-                <button wire:click="realizarEncuesta" class="btn btn-success">
-                    <span class="icon-[fa-solid--check] size-6"></span>
-                    Guardar Salida y Realizar Encuesta de Satisfacción
+                <button wire:click="guardarYHabilitarEncuesta" class="btn btn-success">
+                    <span class="icon-[mdi--check-circle] size-6"></span>
+                    Guardar Salida y Habilitar Encuesta
                 </button>
                 <div class="flex gap-4">
                     <button wire:click="guardarDatosSalida" class="btn btn-info">
