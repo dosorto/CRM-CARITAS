@@ -43,10 +43,6 @@ class RealizarEncuesta extends Component
         'Español' => 'Terminar Encuesta',
         'English' => 'Complete Survey',
     ];
-    public $btnLanguageLabel = [
-        'Español' => 'Idioma: ',
-        'English' => 'Language: ',
-    ];
 
     public function mount()
     {
