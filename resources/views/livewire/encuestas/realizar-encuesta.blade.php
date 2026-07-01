@@ -105,7 +105,7 @@
 
     </section>
     <footer class="w-full sm:w-[768px] h-max p-4 bg-white sm:rounded-b-2xl border-t flex justify-between">
-        <button class="btn btn-sm bg-base-100">Cancelar</button>
+        <button wire:click="cancelarEncuesta" class="btn btn-sm bg-base-100">Cancelar</button>
         <button class="btn btn-success btn-sm" wire:click="terminarEncuesta">
             Enviar
             <span class="icon-[bxs--send] size-4"></span>

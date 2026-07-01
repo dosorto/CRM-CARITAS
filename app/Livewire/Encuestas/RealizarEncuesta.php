@@ -127,6 +127,11 @@ class RealizarEncuesta extends Component
         HTML;
     }
 
+    public function cancelarEncuesta()
+    {
+        return $this->redirectRoute('login');
+    }
+
     public function render()
     {
         return view('livewire.encuestas.realizar-encuesta');
